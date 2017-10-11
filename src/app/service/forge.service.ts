@@ -8,8 +8,11 @@ import {Config} from './config.component';
 @Injectable()
 export class ForgeService {
   public filters: string;
+  private apiUrl: string;
 
-  constructor(protected http: Http, protected apiUrl: string) {}
+  constructor(protected http: Http, protected config: Config) {
+    this.apiUrl = config.get('backend_url');
+  }
 
   version(): Promise<Version> {
     return this.http.get(`${this.apiUrl}/version`, this.options()).toPromise()
