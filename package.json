@@ -1,8 +1,8 @@
 {
   "name": "ngx-forge",
-  "version": "0.0.0-development",
+  "version": "0.0.5-development",
   "description": "Forge services for Angular v2 and up",
-  "main": "bundles/login.umd.js",
+  "main": "bundles/ngx-forge.umd.js",
   "module": "index.js",
   "typings": "index.d.ts",
   "scripts": {
@@ -14,7 +14,7 @@
     "clean": "npm cache clean && npm run rimraf -- node_modules doc coverage dist bundles",
     "cleanup": "rimraf dist/package.json dist/bundles dist/src dist/index.d.ts dist/index.metadata.json dist/index.js dist/index.js.map dist/LICENSE dist/README.md",
     "copy-files": "gulp copyfiles",
-    "minify": "uglifyjs dist/bundles/login.umd.js --screw-ie8 --compress --mangle --comments --output dist/bundles/login.umd.min.js",
+    "minify": "uglifyjs dist/bundles/ngx-forge.umd.js --screw-ie8 --compress --mangle --comments --output dist/bundles/ngx-forge.umd.min.js",
     "reinstall": "npm run clean && npm install",
     "remove-dist": "rimraf dist",
     "rimraf": "rimraf",
