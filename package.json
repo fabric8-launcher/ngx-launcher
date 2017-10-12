@@ -1,6 +1,6 @@
 {
   "name": "ngx-forge",
-  "version": "0.0.5-development",
+  "version": "0.0.10-development",
   "description": "Forge services for Angular v2 and up",
   "main": "bundles/ngx-forge.umd.js",
   "module": "index.js",
