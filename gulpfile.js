@@ -8,7 +8,8 @@ var gulp = require('gulp'),
   ngc = require('gulp-ngc'),
   changed = require('gulp-changed'),
   path = require('path'),
-  util = require('gulp-util');
+  util = require('gulp-util'),
+  sass = require('gulp-sass');
 
 var appSrc = 'src';
 var libraryDist = 'dist';
@@ -51,15 +52,22 @@ gulp.task('post-transpile', ['transpile'], function () {
 
 //Sass compilation and minifiction
 gulp.task('transpile-sass', function () {
-  return transpileSASS(appSrc + '/app/**/*.scss');
+  return gulp.src(appSrc + '/app/**/*.scss')
+    .pipe(sourcemaps.init())
+    .pipe(sass().on('error', sass.logError))
+    .pipe(sourcemaps.write())
+    .pipe(gulp.dest(function (file) {
+      return 'dist' + file.base.slice(__dirname.length);
+    }));
 });
 
 // Put the SASS files back to normal
 gulp.task('build-library',
   [
     'transpile',
-    // 'post-transpile',
-    // 'copy-html',
+    'transpile-sass',
+    'post-transpile',
+    'copy-html',
     'copy-static-assets'
   ]);
 
