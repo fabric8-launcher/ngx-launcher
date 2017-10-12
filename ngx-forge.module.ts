@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AsciidocComponent } from './src/app/asciidoc/asciidoc.component';
@@ -11,18 +11,20 @@ import { AsciidocService } from './src/app/asciidoc/asciidoc.service';
 
 const classes = [
   AsciidocComponent,
-  AsciidocService,
   InputComponent,
-  ProjectSelect,
-  Config,
-  ForgeService,
-  History
+  ProjectSelect
 ];
 
 @NgModule({
   imports: [CommonModule, FormsModule],
   exports: classes,
-  declarations: classes
+  declarations: classes,
+  providers: [
+    ForgeService,
+    AsciidocService,
+    History,
+    {provide: APP_INITIALIZER, useFactory: (config: Config) => () => config.load(), deps: [Config], multi: true}
+  ]
 })
 export class NgxForgeModule {
 }
