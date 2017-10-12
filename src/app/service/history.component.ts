@@ -3,8 +3,8 @@ import { Gui, Input } from '../model/base.model';
 
 @Injectable()
 export class History {
-  private state: Gui[] = [];
-  private ready: boolean;
+  state: Gui[] = [];
+  ready: boolean;
 
   add(gui: Gui) {
     this.state.push(gui);

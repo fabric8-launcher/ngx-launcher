@@ -37,6 +37,14 @@ export class ForgeService {
     return this.post(history.convert(history.stepIndex), `/commands/${command}/next`);
   }
 
+  executeStep(command: string, history: History): Promise<Gui> {
+    return this.post(history.convert(history.stepIndex), `/commands/${command}/execute`);
+  }
+
+  action(gui: Gui): Promise<Gui> {
+    return this.post(gui, 'action');
+  }
+
   loadGui(command: string, history: History): Promise<Gui> {
     if (history.stepIndex === 0) {
       return this.commandInfo(command);

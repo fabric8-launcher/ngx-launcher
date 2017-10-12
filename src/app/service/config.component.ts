@@ -3,7 +3,7 @@ import { Http } from '@angular/http';
 
 @Injectable()
 export class Config {
-  private settings: any;
+  protected settings: any;
 
   constructor(private http: Http) {
   }
