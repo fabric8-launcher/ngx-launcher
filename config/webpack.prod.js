@@ -39,8 +39,8 @@ module.exports = function (env) {
     output: {
       path: helpers.root('dist'),
       publicPath: '/',
-      filename: 'bundles/ngx-widgets.js',
-      library: 'ngx-widgets',
+      filename: 'bundles/ngx-forge.js',
+      library: 'ngx-forge',
       libraryTarget: 'umd',
       umdNamedDefine: true
     }

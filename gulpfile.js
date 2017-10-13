@@ -65,9 +65,9 @@ gulp.task('transpile-sass', function () {
 gulp.task('build-library',
   [
     'transpile',
-    'transpile-sass',
-    'post-transpile',
-    'copy-html',
+    // 'transpile-sass',
+    // 'post-transpile',
+    // 'copy-html',
     'copy-static-assets'
   ]);
 

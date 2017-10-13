@@ -8,10 +8,11 @@ export class Config {
   constructor(private http: Http) {
   }
 
-  load(settingsLocation: string = 'settings.json'): Promise<any> {
-    return this.http.get(settingsLocation).toPromise().then((settings) => {
-      this.settings = settings.json();
+  load(settingsLocation: string = 'settings.json'): Promise<Config> {
+    this.http.get(settingsLocation).toPromise().then((settings) => {
+      this.settings = Object.assign(this.settings, settings.json());
     }).catch(() => console.log('settings.json not found ignoring'));
+    return Promise.resolve(this);
   }
 
   set(settings: any) {

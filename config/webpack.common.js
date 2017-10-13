@@ -31,6 +31,10 @@ const extractCSS = new ExtractTextPlugin({
 module.exports = {
   devtool: 'inline-source-map',
 
+  node: {
+    fs: "empty"
+  },
+
   resolve: {
     extensions: ['.ts', '.js', '.json']
   },
@@ -82,7 +86,7 @@ module.exports = {
           }, {
             loader: 'sass-loader',
             options: {
-              includePaths: sass.modules.map(val => {
+              includePaths: sass.modules.map(function(val) {
                 return val.sassPath;
               }),
               sourceMap: true
@@ -123,10 +127,9 @@ module.exports = {
         use: ['json-loader']
       },
 
-      // todo: change the loader to something that adds a hash to images
       {
         test: /\.html$/,
-        use: ['raw-loader']
+        loader: 'html-loader'
       }
     ]
   },

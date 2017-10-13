@@ -1,34 +1,3 @@
-$assetPath : "../../../../assets/img/project-select-icons/";
-
-.icon {
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
-  background-position: center;
-  margin: auto;
-  width:80px;
-  height:80px;
-}
-
-.Node {
-  @extend .icon;
-  width:120px;
-  background-image: url(#{$assetPath}nodejs-logo.png);
-}
-
-.Spring {
-  @extend .icon;
-  background-image: url(#{$assetPath}spring-boot-logo.png);
-}
-
-.WildFly {
-  @extend .icon;
-  background-image: url(#{$assetPath}wildfly-swarm.png);
-}
-
-.Eclipse {
-  @extend .icon;
-  background-image: url(#{$assetPath}vertx.svg);
-}
 
 $red_berry: #8e0000;
 $red_base: #c00;

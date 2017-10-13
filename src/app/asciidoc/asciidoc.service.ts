@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { History } from '../service/history.component';
+import { AsciidocIndex } from './asciidoc.index';
 
-let adocIndex: any = []; // require('../../../../assets/adoc.index');
 let asciidoctor = require('asciidoctor.js')();
 
 @Injectable()
@@ -12,10 +12,10 @@ export class AsciidocService {
     sourceHighlighter: 'highlightjs'
   };
 
-  constructor(private domSanitizer: DomSanitizer, private history: History) {}
+  constructor(private domSanitizer: DomSanitizer, private history: History, private adocIndex: AsciidocIndex) {}
 
   public generateHtml(docId: string): string {
-    if (!adocIndex.hasOwnProperty(docId)) {
+    if (!this.adocIndex.hasKey(docId)) {
       console.warn(`docId: '${docId}' not valid`);
       return '';
     }
@@ -25,7 +25,8 @@ export class AsciidocService {
       context += `:${input.name}: ${input.value}\n`;
     });
 
-    return asciidoctor.convert(context + adocIndex['document-attributes'] + adocIndex[docId], this.defaultOptions);
+    return asciidoctor.convert(context + this.adocIndex.get('document-attributes')
+      + this.adocIndex.get(docId), this.defaultOptions);
   }
 
   public generateSafeHtml(docId: string): SafeHtml {

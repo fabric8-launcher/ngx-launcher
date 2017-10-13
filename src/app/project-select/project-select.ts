@@ -12,11 +12,12 @@ const PROJECTSELECT_VALUE_ACCESSOR: any = {
 @Component({
   selector: 'ob-project-select',
   providers: [PROJECTSELECT_VALUE_ACCESSOR],
-  templateUrl: './project-select.component.html',
-  styleUrls: ['./project-select.component.less']
+  templateUrl: 'project-select.html',
+  styleUrls: ['project-select.scss']
 })
 export class ProjectSelect extends DefaultValueAccessor {
   @Input() input: Field;
+  @Input() config: ProjectSelectConfig;
   model: string;
 
   writeValue(value: any): void {
@@ -25,10 +26,18 @@ export class ProjectSelect extends DefaultValueAccessor {
     }
   }
 
-  className(option: Option) {
-    let index = option.id.indexOf(' ');
-    index = index === -1 ? option.id.indexOf('.') : index;
-    return option.id.substr(0, index).replace(/\./, '-');
+  className(option: Option): string {
+    for (let key of this.config.classes) {
+      if (option.id.toLowerCase().indexOf(key.toLowerCase()) !== -1) {
+        return key;
+      }
+    }
+    return '';
+  }
+
+  techPreview(option: Option): boolean {
+    const className = this.className(option);
+    return this.config.techPreview.indexOf(className) !== -1;
   }
 
   isSelected(option: Option): boolean {
@@ -42,10 +51,16 @@ export class ProjectSelect extends DefaultValueAccessor {
 
 }
 
+export class ProjectSelectConfig {
+  classes: string[] = [];
+  techPreview: string[] = [];
+  renderType: string = 'title';
+}
+
 @NgModule({
   imports: [CommonModule, FormsModule],
-  exports: [ProjectSelect],
-  declarations: [ProjectSelect]
+  exports: [ProjectSelect, ProjectSelectConfig],
+  declarations: [ProjectSelect, ProjectSelectConfig]
 })
 export class ProjectSelectModule {
 }

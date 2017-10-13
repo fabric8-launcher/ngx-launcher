@@ -1,9 +1,9 @@
 {
   "name": "ngx-forge",
-  "version": "0.0.10-development",
+  "version": "0.0.12-development",
   "description": "Forge services for Angular v2 and up",
-  "main": "bundles/ngx-forge.umd.js",
-  "module": "index.js",
+  "main": "bundles/ngx-forge.js",
+  "module": "bundles/ngx-forge.js",
   "typings": "index.d.ts",
   "scripts": {
     "build": "npm run remove-dist && npm run build:library",
@@ -140,7 +140,7 @@
     "ts-helpers": "1.1.2",
     "ts-node": "3.0.2",
     "tslint": "5.0.0",
-    "tslint-loader": "3.4.3",
+    "tslint-loader": "3.5.3",
     "typedoc": "0.5.9",
     "typescript": "2.3",
     "uglify-js": "2.8.20",
