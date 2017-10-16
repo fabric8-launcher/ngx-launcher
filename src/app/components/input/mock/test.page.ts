@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Gui } from '../../model/base.model';
+import { Gui } from '../../../model/base.model';
 import { InputComponent } from '../input.component';
 
 @Component({

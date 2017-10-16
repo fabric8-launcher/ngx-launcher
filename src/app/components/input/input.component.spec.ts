@@ -7,7 +7,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {GenericPage} from './mock/test.page';
 import {InputComponent} from './input.component';
 import {MultiselectDropdownModule} from 'angular-2-dropdown-multiselect/src/multiselect-dropdown';
-import {History} from '../service/history.component';
+import {History} from '../../service/history.component';
 
 let comp: GenericPage;
 let fixture: ComponentFixture<GenericPage>;

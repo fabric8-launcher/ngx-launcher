@@ -1,5 +1,5 @@
 import {Component, forwardRef, Input, OnInit} from '@angular/core';
-import {Input as ForgeInput, Message} from '../model/base.model';
+import {Input as ForgeInput, Message} from '../../model/base.model';
 import {DefaultValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 import {IMultiSelectSettings} from 'angular-2-dropdown-multiselect/src/multiselect-dropdown';
 import {Observable} from 'rxjs/Observable';

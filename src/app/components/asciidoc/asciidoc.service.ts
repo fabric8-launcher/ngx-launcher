@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import { History } from '../service/history.component';
+import { History } from '../../service/history.component';
 import { AsciidocIndex } from './asciidoc.index';
 
 let asciidoctor = require('asciidoctor.js')();

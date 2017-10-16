@@ -1,7 +1,7 @@
 import {Component, forwardRef, Input, NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {DefaultValueAccessor, FormsModule, NG_VALUE_ACCESSOR} from '@angular/forms';
-import {Input as Field, Option} from '../model/base.model';
+import {Input as Field, Option} from '../../model/base.model';
 
 const PROJECTSELECT_VALUE_ACCESSOR: any = {
   provide: NG_VALUE_ACCESSOR,

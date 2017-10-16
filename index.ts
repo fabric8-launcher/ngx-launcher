@@ -1,8 +1,8 @@
 
-export { AsciidocComponent } from './src/app/asciidoc/asciidoc.component';
-export { AsciidocIndex } from './src/app/asciidoc/asciidoc.index';
-export { AsciidocService } from './src/app/asciidoc/asciidoc.service';
-export { InputComponent } from './src/app/input/input.component';
+export { AsciidocComponent } from './src/app/components/asciidoc/asciidoc.component';
+export { AsciidocIndex } from './src/app/components/asciidoc/asciidoc.index';
+export { AsciidocService } from './src/app/components/asciidoc/asciidoc.service';
+export { InputComponent } from './src/app/components/input/input.component';
 export * from './src/app/model/base.model';
 export * from './src/app/model/gui.model';
 export { ProjectSelect, ProjectSelectConfig } from './src/app/project-select/project-select';
