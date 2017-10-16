@@ -1,4 +1,4 @@
-import {Input} from './base.model';
+import {Input, Option} from './base.model';
 
 export class OpenshiftIOInput extends Input {
   description: string;

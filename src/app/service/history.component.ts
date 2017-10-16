@@ -62,6 +62,17 @@ export class History {
     return submittableGui;
   }
 
+  updateFormValues(values: any, stepIndex = this.stepIndex - 1): void {
+    let gui = this.state[stepIndex];
+    for (let input of gui.inputs) {
+      for (let key of Object.keys(values)) {
+        if (input.name === key) {
+          input.value = values[key];
+        }
+      }
+    }
+  }
+
   toString(): string {
     return btoa(JSON.stringify(this.convert()));
   }
