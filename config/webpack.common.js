@@ -73,7 +73,7 @@ module.exports = {
           use: "css-loader?sourceMap&context=/"
         })
       }, {
-        test: /\.scss$/,
+        test: /\.less$/,
         loaders: [
           {
             loader: 'to-string-loader'
@@ -84,11 +84,12 @@ module.exports = {
               context: '/'
             }
           }, {
-            loader: 'sass-loader',
+            loader: 'less-loader',
             options: {
-              includePaths: sass.modules.map(function(val) {
-                return val.sassPath;
-              }),
+              paths: [
+                path.resolve(__dirname, "../node_modules/patternfly/src/less"),
+                path.resolve(__dirname, "../node_modules/patternfly/node_modules")
+              ],
               sourceMap: true
             }
           }

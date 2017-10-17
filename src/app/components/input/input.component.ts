@@ -8,7 +8,7 @@ import {Subject} from 'rxjs/Subject';
 @Component({
   selector: 'la-input',
   templateUrl: 'input.component.html',
-  styleUrls: ['input.component.scss'],
+  styleUrls: ['input.component.less'],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
