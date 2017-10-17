@@ -1,16 +1,16 @@
 
-$red_berry: #8e0000;
-$red_base: #c00;
-$black_10: rgba(0,0,0,.1);
-$white: #fff;
-$black_20: rgba(0,0,0,.2);
+@red_berry: #8e0000;
+@red_base: #c00;
+@black_10: rgba(0, 0, 0, .1);
+@white: #fff;
+@black_20: rgba(0, 0, 0, .2);
 
-%ribbon-base {
+.ribbon-base {
   position: absolute;
   z-index: 0;
   content: '';
   display: block;
-  border: 5px solid $red_berry;
+  border: 5px solid @red_berry;
 }
 
 .ribbon {
@@ -23,19 +23,19 @@ $black_20: rgba(0,0,0,.2);
     display: block;
     width: 220px;
     padding: 9px 0;
-    background-color: $red_base;
-    box-shadow: 0 5px 10px $black_10;
-    color: $white;
-    font: 700 11px/1 'Overpass', sans-serif;
-    text-shadow: 0 1px 1px $black_20;
+    background-color: @red_base;
+    box-shadow: 0 5px 10px @black_10;
+    color: @white;
+    font: 700 11px/1 Overpass, sans-serif;
+    text-shadow: 0 1px 1px @black_20;
     text-align: center;
   }
 }
-.ribbon::before {
-  @extend %ribbon-base;
+.ribbon:before {
+  .ribbon-base;
 }
-.ribbon::after {
-  @extend %ribbon-base;
+.ribbon:after {
+  .ribbon-base;
 }
 .ribbon-top-right {
   top: -10px;
@@ -45,13 +45,13 @@ $black_20: rgba(0,0,0,.2);
     top: 30px;
     transform: rotate(45deg);
   }
-  &::before {
+  &:before {
     border-top-color: transparent;
     border-right-color: transparent;
     top: 0;
     left: 0;
   }
-  &::after {
+  &:after {
     border-top-color: transparent;
     border-right-color: transparent;
     bottom: 0;
