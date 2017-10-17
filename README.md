@@ -41,9 +41,11 @@ There are several components, services and a couple of models used by them avail
 
 To build ngx-forge as a npm library, use:
 
-----
-npm run build
-----
+```
+npm run build   
+npm run bundle-webpack
+npm publish dist
+```
 
 Whilst the standalone build uses webpack the library build uses gulp.
 
