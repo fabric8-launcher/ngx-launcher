@@ -9,3 +9,4 @@ export { Config } from './src/app/service/config.component';
 export { ForgeService } from './src/app/service/forge.service';
 export { History } from './src/app/service/history.component';
 export { NgxForgeModule } from './ngx-forge.module';
+export { TokenProvider } from './src/app/service/token-provider';
