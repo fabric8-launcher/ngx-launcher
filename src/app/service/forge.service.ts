@@ -4,13 +4,14 @@ import {Http, Headers} from '@angular/http';
 import {Gui, StatusResult, Version} from '../model/base.model';
 import {History} from './history.component';
 import {Config} from './config.component';
+import {TokenProvider} from './token-provider';
 
 @Injectable()
 export class ForgeService {
   public filters: string;
   private apiUrl: string;
 
-  constructor(protected http: Http, protected config: Config) {
+  constructor(protected http: Http, protected config: Config, protected tokenProvider: TokenProvider) {
     this.apiUrl = config.get('backend_url');
   }
 
@@ -116,6 +117,7 @@ export class ForgeService {
     if ( this.filters ) {
       headers.append('X-LAUNCHPAD_BACKEND_LABEL_FILTERS', this.filters);
     }
+    headers.append('Authorization', 'Bearer ' + this.tokenProvider.getToken());
     return {
       headers: headers
     };
