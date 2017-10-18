@@ -169,7 +169,7 @@ module.exports = function (options) {
             }
           ]
         }, {
-          test: /\.jpg$|\.png$|\.gif$|\.jpeg$/,
+          test: /\.jpg$|\.png$|\.gif$|\.jpeg$|\.svg$/,
           loaders: [
             {
               loader: "url-loader",

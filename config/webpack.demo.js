@@ -104,13 +104,13 @@ module.exports = {
           }
         ]
       }, {
-        test: /\.jpg$|\.png$|\.gif$|\.jpeg$/,
+        test: /\.jpg$|\.png$|\.gif$|\.jpeg$|\.svg$/,
         loaders: [
           {
             loader: "url-loader",
             query: {
               limit: 3000,
-              name: 'assets/fonts/[name].[ext]'
+              name: 'assets/images/[name].[ext]'
             }
           }
         ]

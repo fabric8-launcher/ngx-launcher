@@ -69,7 +69,8 @@ gulp.task('copy-html', function () {
 
 gulp.task('copy-images', function () {
   return copyToDist([
-    'src/**/*.png'
+    'src/**/*.png',
+    'src/**/*.svg'
   ]);
 });
 
