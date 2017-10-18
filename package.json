@@ -1,6 +1,6 @@
 {
   "name": "ngx-forge",
-  "version": "0.0.16-development",
+  "version": "0.0.17-development",
   "description": "Forge services for Angular v2 and up",
   "main": "bundles/ngx-forge.js",
   "module": "bundles/ngx-forge.js",
@@ -93,6 +93,7 @@
     "cz-conventional-changelog": "2.0.0",
     "del": "2.2.2",
     "extract-text-webpack-plugin": "2.1.0",
+    "file-loader": "^1.1.5",
     "gulp": "3.9.1",
     "gulp-changed": "2.0.0",
     "gulp-ngc": "0.2.0",

@@ -53,7 +53,8 @@ gulp.task('post-transpile', ['transpile'], function () {
 gulp.task('build-library',
   [
     'transpile',
-    'copy-static-assets'
+    'copy-static-assets',
+    'copy-images'
   ]);
 
 gulp.task('transpile', function () {
@@ -66,11 +67,17 @@ gulp.task('copy-html', function () {
   ]);
 });
 
+gulp.task('copy-images', function () {
+  return copyToDist([
+    'src/**/*.png'
+  ]);
+});
+
 gulp.task('copy-static-assets', function () {
   return gulp.src([
     'LICENSE',
     'README.adoc',
-    'package.json'
+    'package.json',
   ])
     .pipe(gulp.dest(libraryDist));
 });
