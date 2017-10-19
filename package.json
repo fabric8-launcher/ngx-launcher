@@ -1,6 +1,6 @@
 {
   "name": "ngx-forge",
-  "version": "0.0.20-development",
+  "version": "0.0.23-development",
   "description": "Forge services for Angular v2 and up",
   "main": "bundles/ngx-forge.js",
   "module": "bundles/ngx-forge.js",
@@ -145,7 +145,7 @@
     "typedoc": "0.5.9",
     "typescript": "2.3",
     "uglify-js": "2.8.20",
-    "url-loader": "0.5.8",
+    "url-loader": "0.6.2",
     "webpack": "2.3.2",
     "webpack-bundle-analyzer": "2.3.1",
     "webpack-dashboard": "0.3.0",
