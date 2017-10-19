@@ -99,23 +99,12 @@ module.exports = {
       /* File loader for supporting fonts, for example, in CSS files.
        */
       {
-        test: /\.woff2?$|\.ttf$|\.eot$/,
-        loaders: [
-          {
-            loader: "url-loader",
-            query: {
-              limit: 3000,
-              name: 'assets/fonts/[name].[ext]'
-            }
-          }
-        ]
-      }, {
         test: /\.jpg$|\.png$|\.gif$|\.jpeg$|\.svg$/,
         loaders: [
           {
             loader: "url-loader",
             query: {
-              limit: 3000,
+              limit: 30000000,
               name: 'assets/images/[name].[ext]'
             }
           }

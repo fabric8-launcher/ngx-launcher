@@ -5,7 +5,7 @@
         style="min-height:160px" class="card-pf card-pf-view card-pf-view-select card-pf-view-single-select">
         <div class="ribbon ribbon-top-right" *ngIf="techPreview(option)"><span>technology preview</span></div>
         <div class="card-pf-body">
-          <div class="card-pf-top-element icon {{className(option)}}">
+          <div class="card-pf-top-element {{className(option)}}">
           </div>
           <h2 class="card-pf-title text-center" *ngIf="config.renderType === 'title'">
             {{option.id}}
