@@ -95,11 +95,6 @@ gulp.task('watch', ['build-library', 'copy-watch-all'], function () {
   gulp.watch([appSrc + '/app/**/*.ts', '!' + appSrc + '/app/**/*.spec.ts'], ['transpile', 'post-transpile', 'copy-watch']).on('change', function (e) {
     util.log(util.colors.cyan(e.path) + ' has been changed. Compiling.');
   });
-  gulp.watch([appSrc + '/app/**/*.scss']).on('change', function (e) {
-    util.log(util.colors.cyan(e.path) + ' has been changed. Updating.');
-    transpileSASS(e.path);
-    updateWatchDist();
-  });
   gulp.watch([appSrc + '/app/**/*.html']).on('change', function (e) {
     util.log(util.colors.cyan(e.path) + ' has been changed. Updating.');
     copyToDist(e.path);

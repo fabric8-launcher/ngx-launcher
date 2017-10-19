@@ -4,7 +4,6 @@
 const path = require('path'),
   helpers = require('./helpers'),
   webpack = require('webpack'),
-  sass = require('./sass'),
   CleanWebpackPlugin = require('clean-webpack-plugin');
 // const stringify = require('json-stringify');
 
@@ -162,55 +161,15 @@ module.exports = {
 
     new webpack.LoaderOptionsPlugin({
       options: {
-        /**
-         * Html loader advanced options
-         *
-         * See: https://github.com/webpack/html-loader#advanced-options
-         */
-        // TODO: Need to workaround Angular 2's html syntax => #id [bind] (event) *ngFor
-        // htmlLoader: {
-        //   minimize: true,
-        //   removeAttributeQuotes: false,
-        //   caseSensitive: true,
-        //   customAttrSurround: [
-        //     [/#/, /(?:)/],
-        //     [/\*/, /(?:)/],
-        //     [/\[?\(?/, /(?:)/]
-        //   ],
-        //   customAttrAssign: [/\)?\]?=/]
-        // },
-
         tslintLoader: {
           emitErrors: false,
           failOnHint: false
-        },
-        /**
-         * Sass
-         * Reference: https://github.com/jtangelder/sass-loader
-         * Transforms .scss files to .css
-         */
-        sassLoader: {
-          //includePaths: [path.resolve(__dirname, "node_modules/foundation-sites/scss")]
         }
       }
     }),
     // Reference: http://webpack.github.io/docs/list-of-plugins.html#noerrorsplugin
     // Only emit files when there are no errors
     new webpack.NoEmitOnErrorsPlugin(),
-
-    // // Reference: http://webpack.github.io/docs/list-of-plugins.html#dedupeplugin
-    // // Dedupe modules in the output
-    // new webpack.optimize.DedupePlugin(),
-
-    // Reference: http://webpack.github.io/docs/list-of-plugins.html#uglifyjsplugin
-    // Minify all javascript, switch loaders to minimizing mode
-    // new webpack.optimize.UglifyJsPlugin({sourceMap: true, mangle: { keep_fnames: true }}),
-
-    // Copy assets from the public folder
-    // Reference: https://github.com/kevlened/copy-webpack-plugin
-    // new CopyWebpackPlugin([{
-    //   from: helpers.root('src/public')
-    // }]),
 
     // Reference: https://github.com/johnagan/clean-webpack-plugin
     // Removes the bundle folder before the build

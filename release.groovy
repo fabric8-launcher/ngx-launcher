@@ -6,9 +6,6 @@ def ci (){
     stage('unit test'){
         sh './run_unit_tests.sh'
     }
-    stage('functional test'){
-        sh './run_functional_tests.sh'
-    }
 }
 
 def cd (b){
@@ -23,10 +20,6 @@ def cd (b){
 
     stage('unit test'){
         sh './run_unit_tests.sh'
-    }
-
-    stage('functional test'){
-        sh './run_functional_tests.sh'
     }
 
     stage('release'){
