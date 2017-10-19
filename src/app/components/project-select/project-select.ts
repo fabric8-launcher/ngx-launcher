@@ -55,7 +55,7 @@ export class ProjectSelect extends DefaultValueAccessor {
 }
 
 export class ProjectSelectConfig {
-  classes?: string[] = ['Node','Spring','WildFly','Eclipse'];
+  classes?: string[] = ['Node', 'Spring', 'WildFly', 'Vertx'];
   techPreview: string[] = [];
   renderType: string = 'title';
 }
