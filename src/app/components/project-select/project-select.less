@@ -59,41 +59,33 @@
   }
 }
 
-.Node {
+.icon-base {
   background-size: 100% 100%;
   background-repeat: no-repeat;
   background-position: center;
   margin: auto;
-  width:120px;
-  height:80px;
+  width: 80px;
+  height: 80px;
+}
+
+.Node {
+  &:extend(.icon-base);
+  width: 120px;
   background-image: url(../../../assets/images/nodejs-logo.png);
 }
 
 .Spring {
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
-  background-position: center;
-  margin: auto;
-  width:80px;
-  height:80px;
+  &:extend(.icon-base);
   background-image: url(../../../assets/images/spring-boot-logo.png);
 }
+
 .WildFly {
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
-  background-position: center;
-  margin: auto;
-  width:80px;
-  height:80px;
+  &:extend(.icon-base);
   background-image: url(../../../assets/images/wildfly-swarm.png);
 }
+
 .Vert {
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
-  background-position: center;
-  margin: auto;
-  width:80px;
-  height:80px;
+  &:extend(.icon-base);
   background-image: url(../../../assets/images/vertx.svg);
 }
 
