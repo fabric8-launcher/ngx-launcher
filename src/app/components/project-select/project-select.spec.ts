@@ -1,5 +1,5 @@
-import { Option } from '../model/base.model';
 import { ProjectSelect } from './project-select';
+import { Option } from '../../model/base.model';
 
 describe('Project select component', () => {
   let projectSelect = new ProjectSelect(null, null, null);

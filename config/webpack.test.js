@@ -136,6 +136,26 @@ module.exports = function (options) {
           ],
         },
 
+        {
+          test: /\.less$/,
+          loaders: [
+            {
+              loader: 'to-string-loader'
+            }, {
+              loader: 'css-loader'
+            }, {
+              loader: 'less-loader',
+              options: {
+                paths: [
+                  path.resolve(__dirname, "../node_modules/patternfly/src/less"),
+                  path.resolve(__dirname, "../node_modules/patternfly/node_modules")
+                ],
+                sourceMap: true
+              }
+            }
+          ]
+        },
+
         /* File loader for supporting fonts, for example, in CSS files.
          */
         {

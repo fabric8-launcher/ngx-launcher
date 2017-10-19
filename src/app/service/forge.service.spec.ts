@@ -72,7 +72,7 @@ describe('Forge Service:', () => {
         connection.mockError(new Error('some error'));
       });
       // when
-      forgeService.commandInfo('git-import-wizard').then((data: any) => {
+      forgeService.commandInfo('git-import-wizard').then(() => {
           fail('Get commandInfo in error');
         }, // then
         error => expect(error.name).toEqual('some error'));
@@ -117,7 +117,7 @@ describe('Forge Service:', () => {
       h.state = nextStepInput.state;
       h.ready = nextStepInput.ready;
       // when
-      forgeService.nextStep('git-import-wizard', h).then((data: any) => {
+      forgeService.nextStep('git-import-wizard', h).then(() => {
           fail('Post nextStep in error');
         }, // then
         error => expect(error.name).toEqual('some error'));
@@ -162,7 +162,7 @@ describe('Forge Service:', () => {
       h.state = executeInput.state;
       h.ready = executeInput.ready;
       // when
-      forgeService.executeStep('git-import-wizard', h).then((data: any) => {
+      forgeService.executeStep('git-import-wizard', h).then(() => {
           fail('Post executeStep in error');
         }, // then
         error => expect(error.name).toEqual('some error'));
@@ -186,7 +186,8 @@ describe('Forge Service:', () => {
       let gui = new Gui();
       gui.inputs = [{
         'name': 'gitOrganisation',
-        'shortName': ' ',
+        'shortName': '',
+        'description': '',
         'valueType': 'io.fabric8.forge.generator.git.GitOrganisationDTO',
         'inputType': 'org.jboss.forge.inputType.DEFAULT',
         'enabled': true,
