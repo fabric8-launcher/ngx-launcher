@@ -17,10 +17,7 @@ const PROJECTSELECT_VALUE_ACCESSOR: any = {
 })
 export class ProjectSelect extends DefaultValueAccessor {
   @Input() input: Field;
-  @Input() config: ProjectSelectConfig = {
-    techPreview: ['Node'],
-    renderType: 'title'
-  };
+  @Input() config: ProjectSelectConfig;
   model: string;
 
   writeValue(value: any): void {
@@ -55,7 +52,7 @@ export class ProjectSelect extends DefaultValueAccessor {
 }
 
 export class ProjectSelectConfig {
-  classes?: string[] = ['Node', 'Spring', 'WildFly', 'Vert'];
+  classes: string[] = [];
   techPreview: string[] = [];
   renderType: string = 'title';
 }
