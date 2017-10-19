@@ -99,7 +99,7 @@ module.exports = {
       /* File loader for supporting fonts, for example, in CSS files.
        */
       {
-        test: /\.woff2?$|\.ttf$|\.eot$|\.svg$/,
+        test: /\.woff2?$|\.ttf$|\.eot$/,
         loaders: [
           {
             loader: "url-loader",
