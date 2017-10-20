@@ -67,7 +67,7 @@
     "@angular/core": "4.1.2",
     "@angular/forms": "4.1.2",
     "@angular/http": "4.1.2",
-    "angular-2-dropdown-multiselect": "0.3.1",
+    "angular-2-dropdown-multiselect": "1.6.0",
     "asciidoctor.js": "1.5.6-preview.3",
     "rxjs": "5.2.0"
   },

@@ -4,6 +4,7 @@ var gulp = require('gulp'),
   LessAutoprefix = require('less-plugin-autoprefix'),
   autoprefix = new LessAutoprefix({ browsers: ['last 2 versions'] });
   lesshint = require('gulp-lesshint'),
+  sourcemaps = require('gulp-sourcemaps'),
   runSequence = require('run-sequence'),
   del = require('del'),
   replace = require('gulp-string-replace'),
@@ -42,11 +43,11 @@ function transpileLESS(src, debug) {
     .pipe(less({
       plugins: [autoprefix]
     }))
-    // .pipe(lesshint({
-    //   configPath: './.lesshintrc' // Options
-    // }))
+    .pipe(lesshint({
+      configPath: './.lesshintrc' // Options
+    }))
     .pipe(lesshint.reporter()) // Leave empty to use the default, "stylish"
-   //.pipe(lesshint.failOnError()) // Use this to fail the task on lint errors
+   .pipe(lesshint.failOnError()) // Use this to fail the task on lint errors
     .pipe(sourcemaps.init())
     .pipe(less(opts))
     //.pipe(concat('styles.css'))
