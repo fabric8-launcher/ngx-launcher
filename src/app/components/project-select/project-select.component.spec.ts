@@ -1,4 +1,4 @@
-import { ProjectSelect } from './project-select';
+import { ProjectSelect } from './project-select.component';
 import { Option } from '../../model/base.model';
 
 describe('Project select component', () => {

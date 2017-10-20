@@ -69,3 +69,18 @@ and install that symlinked node module into your webapp.
 enabled. To do this using a typical Angular Webpack setup, such as the one based on Angular Class,
 just run `npm start. You will have access to both JS sourcemaps and SASS sourcemaps if your webapp
 is properly setup.
+
+## Dependencies
+
+Our dependencies (`--dev` included) are managed but npm-shrinkwrap.
+When updating versions, make sure you update both `package.json` and `npm-shrinkwrap.json`.
+
+To generate a new shrinkwrap file:
+```
+npm install shrinkwrap
+npm shrinkwrap --dev
+```
+Links:
+
+* [Updating a package when you're using npm shrinkwrap](https://gist.github.com/alanhogan/a32889830384f4e190fa)
+* with npm3, you may need to manually update `node_module/your_dependency/package.json` to remove `peerDependecies` casuing shrinkwrap file hgenration to fail.

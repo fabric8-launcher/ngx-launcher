@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { AsciidocComponent } from './src/app/components/asciidoc/asciidoc.component';
 import { InputComponent } from './src/app/components/input/input.component';
 import { MultiselectDropdownModule } from 'angular-2-dropdown-multiselect';
-import { ProjectSelect } from './src/app/components/project-select/project-select';
+import { ProjectSelect } from './src/app/components/project-select/project-select.component';
 import { Config } from './src/app/service/config.component';
 import { ForgeService } from './src/app/service/forge.service';
 import { History } from './src/app/service/history.component';
@@ -27,7 +27,8 @@ const classes = [
     AsciidocService,
     History,
     Config
-  ]
+  ],
+  schemas: [],
 })
 export class NgxForgeModule {
 }

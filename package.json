@@ -1,6 +1,6 @@
 {
   "name": "ngx-forge",
-  "version": "0.0.26-development",
+  "version": "0.0.27-development",
   "description": "Forge services for Angular v2 and up",
   "main": "bundles/ngx-forge.js",
   "module": "bundles/ngx-forge.js",
@@ -64,21 +64,21 @@
     "npm": ">= 3"
   },
   "dependencies": {
-    "@angular/core": "4.1.2",
-    "@angular/forms": "4.1.2",
-    "@angular/http": "4.1.2",
+    "@angular/core": "4.4.4",
+    "@angular/forms": "4.4.4",
+    "@angular/http": "4.4.4",
     "angular-2-dropdown-multiselect": "1.6.0",
-    "asciidoctor.js": "1.5.6-preview.3",
-    "rxjs": "5.2.0"
+    "asciidoctor.js": "1.5.6-preview.4",
+    "rxjs": "5.0.1"
   },
   "peerDependencies": {},
   "devDependencies": {
-    "@angular/common": "4.1.2",
-    "@angular/compiler": "4.1.2",
-    "@angular/compiler-cli": "4.1.2",
-    "@angular/platform-browser": "4.1.2",
-    "@angular/platform-browser-dynamic": "4.1.2",
-    "@angular/router": "4.1.2",
+    "@angular/common": "4.4.4",
+    "@angular/compiler": "4.4.4",
+    "@angular/compiler-cli": "4.4.4",
+    "@angular/platform-browser": "4.4.4",
+    "@angular/platform-browser-dynamic": "4.4.4",
+    "@angular/router": "4.4.4",
     "@types/jasmine": "2.5.47",
     "angular2-template-loader": "0.6.2",
     "awesome-typescript-loader": "3.1.2",
