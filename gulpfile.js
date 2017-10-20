@@ -13,7 +13,9 @@ var gulp = require('gulp'),
   ngc = require('gulp-ngc'),
   changed = require('gulp-changed'),
   path = require('path'),
-  util = require('gulp-util')
+  util = require('gulp-util'),
+  shell = require('gulp-shell'),
+  runSequence = require('run-sequence')
 
 var appSrc = 'src';
 var libraryDist = 'dist';
@@ -96,16 +98,7 @@ gulp.task('copy-static-assets', function () {
   ]).pipe(gulp.dest(libraryDist));
 });
 
-// Put the less files back to normal
-gulp.task('build:library',
-  [
-    'transpile',
-    'post-transpile',
-    'transpile-less',
-    'copy-html',
-    'copy-static-assets'
-  ]);
-
+gulp.task('bundle', shell.task('npm run bundle-webpack'));
 
 gulp.task('build:library',
 [
@@ -124,19 +117,29 @@ gulp.task('copy-watch-all', ['build:library'], function () {
   return updateWatchDist();
 });
 
-gulp.task('watch', ['build:library', 'copy-watch-all'], function () {
-  gulp.watch([appSrc + '/app/**/*.ts', '!' + appSrc + '/app/**/*.spec.ts'], ['transpile', 'post-transpile', 'copy-watch']).on('change', function (e) {
+gulp.task('watch', ['build:library', 'copy-watch-all'], function (c) {
+  gulp.watch([appSrc + '/app/**/*.ts', '!' + appSrc + '/app/**/*.spec.ts']).on('change', function (e) {
     util.log(util.colors.cyan(e.path) + ' has been changed. Compiling.');
+    runSequence('transpile',
+                 'post-transpile',
+                 'bundle',
+                 'copy-watch',
+                 c);
+
   });
   gulp.watch([appSrc + '/app/**/*.less']).on('change', function (e) {
     util.log(util.colors.cyan(e.path) + ' has been changed. Updating.');
-    transpileLESS(e.path);
-    updateWatchDist();
+    runSequence('transpile-less',
+    'bundle',
+    'copy-watch',
+    c);
   });
   gulp.watch([appSrc + '/app/**/*.html']).on('change', function (e) {
     util.log(util.colors.cyan(e.path) + ' has been changed. Updating.');
-    copyToDist(e.path);
-    updateWatchDist();
+    runSequence('copy-html',
+    'bundle',
+    'copy-watch',
+    c);
   });
   util.log('Now run');
   util.log('');

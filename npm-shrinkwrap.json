@@ -1,6 +1,6 @@
 {
   "name": "ngx-forge",
-  "version": "0.0.27-development",
+  "version": "0.0.28-development",
   "dependencies": {
     "@angular/common": {
       "version": "4.4.4",
@@ -2994,6 +2994,11 @@
       "version": "0.3.2",
       "from": "gulp-ngc@>=0.3.2 <0.4.0",
       "resolved": "https://registry.npmjs.org/gulp-ngc/-/gulp-ngc-0.3.2.tgz"
+    },
+    "gulp-shell": {
+      "version": "0.6.3",
+      "from": "gulp-shell@>=0.6.3 <0.7.0",
+      "resolved": "https://registry.npmjs.org/gulp-shell/-/gulp-shell-0.6.3.tgz"
     },
     "gulp-sourcemaps": {
       "version": "2.6.1",
@@ -6040,7 +6045,7 @@
     },
     "run-sequence": {
       "version": "1.2.2",
-      "from": "run-sequence@1.2.2",
+      "from": "run-sequence@>=1.2.2 <2.0.0",
       "resolved": "https://registry.npmjs.org/run-sequence/-/run-sequence-1.2.2.tgz"
     },
     "run-series": {
