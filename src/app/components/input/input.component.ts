@@ -1,6 +1,5 @@
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
-import 'rxjs/add/operator/flatMap';
 import "rxjs/add/operator/mergeMap";
 import 'rxjs/add/observable/of';
 import {Component, forwardRef, Input, OnInit} from '@angular/core';

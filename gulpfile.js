@@ -116,6 +116,10 @@ gulp.task('build:library',
   'copy-static-assets'
 ]);
 
+gulp.task('copy-watch', ['post-transpile'], function () {
+  return updateWatchDist();
+});
+
 gulp.task('copy-watch-all', ['build:library'], function () {
   return updateWatchDist();
 });
