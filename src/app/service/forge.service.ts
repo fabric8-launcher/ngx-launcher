@@ -1,3 +1,6 @@
+import 'rxjs/add/operator/retryWhen';
+import 'rxjs/add/operator/delay';
+import 'rxjs/add/operator/scan';
 import {Injectable} from '@angular/core';
 import 'rxjs/add/operator/toPromise';
 import {Http, Headers} from '@angular/http';
