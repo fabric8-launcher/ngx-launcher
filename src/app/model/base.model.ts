@@ -63,6 +63,7 @@ export class Input extends SubmittableInput {
 
 export class Option {
   id: string;
+  key: string;
   description: string;
   name: string;
   selected: boolean; // Add for component multiple-select list
