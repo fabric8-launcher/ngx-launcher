@@ -16,8 +16,14 @@ export class History {
   }
 
   apply(state: string) {
-    if (state == null) return;
-    let submittableGui = JSON.parse(atob(state));
+    if (state == null || state === '') return;
+    let submittableGui: Gui;
+    try {
+      submittableGui = JSON.parse(atob(state));
+    } catch (e) {
+      return;
+    }
+
     if (submittableGui.inputs) {
       for (let input of submittableGui.inputs) {
         for (let gui of this.state) {
