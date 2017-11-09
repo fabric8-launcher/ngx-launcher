@@ -1,13 +1,13 @@
 import 'rxjs/add/operator/retryWhen';
 import 'rxjs/add/operator/delay';
 import 'rxjs/add/operator/scan';
-import {Injectable} from '@angular/core';
+import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/toPromise';
-import {Http, Headers} from '@angular/http';
-import {Gui, StatusResult, Version} from '../model/base.model';
-import {History} from './history.component';
-import {Config} from './config.component';
-import {TokenProvider} from './token-provider';
+import { Headers, Http } from '@angular/http';
+import { Gui, StatusResult, Version } from '../model/base.model';
+import { History } from './history.component';
+import { Config } from './config.component';
+import { TokenProvider } from './token-provider';
 
 @Injectable()
 export class ForgeService {
@@ -19,18 +19,22 @@ export class ForgeService {
   }
 
   version(): Promise<Version> {
-    return this.http.get(`${this.apiUrl}/version`, this.options()).toPromise()
-      .then(response => response.json() as Version)
-      .catch(this.handleError);
+    return this.options.then(options => {
+      return this.http.get(`${this.apiUrl}/version`, options).toPromise()
+        .then(response => response.json() as Version)
+        .catch(this.handleError);
+    });
   }
 
   commandInfo(command: string): Promise<Gui> {
-    return this.http.get(`${this.apiUrl}/commands/${command}`, this.options())
-      .retryWhen(errors => errors.delay(3000).scan((acc, source, index) => {
-        if (index) throw source;
-      })).toPromise()
-      .then(response => response.json() as Gui)
-      .catch(this.handleError);
+    return this.options.then(options => {
+      return this.http.get(`${this.apiUrl}/commands/${command}`, options)
+        .retryWhen(errors => errors.delay(3000).scan((acc, source, index) => {
+          if (index) throw source;
+        })).toPromise()
+        .then(response => response.json() as Gui)
+        .catch(this.handleError);
+    });
   }
 
   validate(command: string, history: History): Promise<Gui> {
@@ -58,10 +62,12 @@ export class ForgeService {
   }
 
   upload(command: string, history: History): Promise<StatusResult> {
-    return this.http.post(`${this.apiUrl}/commands/${command}/missioncontrol`,
-      history.convert(), this.options()).toPromise()
-      .then(response => response.json() as StatusResult)
-      .catch(this.handleError);
+    return this.options.then(options => {
+      return this.http.post(`${this.apiUrl}/commands/${command}/missioncontrol`,
+        history.convert(), options).toPromise()
+        .then(response => response.json() as StatusResult)
+        .catch(this.handleError);
+    });
   }
 
   downloadZip(command: string, history: History) {
@@ -99,12 +105,14 @@ export class ForgeService {
   }
 
   private post(submittableGui: Gui, action: string): Promise<Gui> {
-    return this.http.post(this.apiUrl + action, submittableGui, this.options())
-      .retryWhen(errors => errors.delay(3000).scan((acc, source, index) => {
-        if (index) throw source;
-      })).toPromise()
-      .then(response => response.json() as Gui)
-      .catch(this.handleError);
+    return this.options.then(options => {
+      return this.http.post(this.apiUrl + action, submittableGui, options)
+        .retryWhen(errors => errors.delay(3000).scan((acc, source, index) => {
+          if (index) throw source;
+        })).toPromise()
+        .then(response => response.json() as Gui)
+        .catch(this.handleError);
+    });
   }
 
   private handleError(error: any): Promise<any> {
@@ -115,14 +123,16 @@ export class ForgeService {
     return Promise.reject(error.message || 'Error calling service');
   }
 
-  private options(): any {
+  private get options(): Promise<any> {
     let headers = new Headers();
-    if ( this.filters ) {
+    if (this.filters) {
       headers.append('X-LAUNCHPAD_BACKEND_LABEL_FILTERS', this.filters);
     }
-    headers.append('Authorization', 'Bearer ' + this.tokenProvider.getToken());
-    return {
-      headers: headers
-    };
+    return this.tokenProvider.token.then(token => {
+      headers.append('Authorization', 'Bearer ' + token);
+      return {
+        headers: headers
+      };
+    });
   }
 }
