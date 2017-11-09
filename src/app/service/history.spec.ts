@@ -66,4 +66,30 @@ describe('History and deep linking', () => {
     expect(history.get(2)).toBeUndefined('not reset?');
   });
 
+  it('should not blow up when no state is given', () => {
+    // given
+    let history = new History();
+
+    // when
+    try {
+      history.apply('');
+    } catch (ex) {
+      fail('should not throw exception');
+    }
+  });
+
+  it('should not blow up when invalid state is given', () => {
+    // given
+    let history = new History();
+
+    // when
+    try {
+      // { a : b
+      history.apply('eydhJzonYic=');
+    } catch (ex) {
+      console.log(ex);
+      fail('should not throw exception');
+    }
+  });
+
 });
