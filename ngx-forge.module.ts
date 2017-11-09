@@ -28,7 +28,7 @@ const classes = [
     History,
     Config
   ],
-  schemas: [],
+  schemas: []
 })
 export class NgxForgeModule {
 }
