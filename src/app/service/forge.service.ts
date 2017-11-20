@@ -97,7 +97,7 @@ export class ForgeService {
   }
 
   private merge(options: RequestOptionsArgs, headers: Headers): RequestOptionsArgs {
-    options.headers.forEach((value, name) => {
+    headers.forEach((value, name) => {
       options.headers.append(name, value[0]);
     });
     return options;
