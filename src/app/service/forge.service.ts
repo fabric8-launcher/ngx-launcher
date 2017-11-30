@@ -3,7 +3,7 @@ import 'rxjs/add/operator/delay';
 import 'rxjs/add/operator/scan';
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/toPromise';
-import { Headers, Http } from '@angular/http';
+import { Headers, Http, RequestOptionsArgs } from '@angular/http';
 import { Gui, StatusResult, Version } from '../model/base.model';
 import { History } from './history.component';
 import { Config } from './config.component';
@@ -18,17 +18,17 @@ export class ForgeService {
     this.apiUrl = config.get('backend_url');
   }
 
-  version(): Promise<Version> {
+  version(additionalHeaders: Headers = new Headers()): Promise<Version> {
     return this.options.then(options => {
-      return this.http.get(`${this.apiUrl}/version`, options).toPromise()
+      return this.http.get(`${this.apiUrl}/version`, this.merge(options, additionalHeaders)).toPromise()
         .then(response => response.json() as Version)
         .catch(this.handleError);
     });
   }
 
-  commandInfo(command: string): Promise<Gui> {
+  commandInfo(command: string, additionalHeaders: Headers = new Headers()): Promise<Gui> {
     return this.options.then(options => {
-      return this.http.get(`${this.apiUrl}/commands/${command}`, options)
+      return this.http.get(`${this.apiUrl}/commands/${command}`, this.merge(options, additionalHeaders))
         .retryWhen(errors => errors.delay(3000).scan((acc, source, index) => {
           if (index) throw source;
         })).toPromise()
@@ -61,10 +61,10 @@ export class ForgeService {
     }
   }
 
-  upload(command: string, history: History): Promise<StatusResult> {
+  upload(command: string, history: History, additionalHeaders: Headers = new Headers()): Promise<StatusResult> {
     return this.options.then(options => {
       return this.http.post(`${this.apiUrl}/commands/${command}/missioncontrol`,
-        history.convert(), options).toPromise()
+        history.convert(), this.merge(options, additionalHeaders)).toPromise()
         .then(response => response.json() as StatusResult)
         .catch(this.handleError);
     });
@@ -96,6 +96,13 @@ export class ForgeService {
     form.submit();
   }
 
+  private merge(options: RequestOptionsArgs, headers: Headers): RequestOptionsArgs {
+    headers.forEach((value, name) => {
+      options.headers.append(name, value[0]);
+    });
+    return options;
+  }
+
   private createFormInput(name: string, value: string): HTMLElement {
     let element = document.createElement('input');
     element.setAttribute('type', 'hidden');
@@ -104,9 +111,9 @@ export class ForgeService {
     return element;
   }
 
-  private post(submittableGui: Gui, action: string): Promise<Gui> {
+  private post(submittableGui: Gui, action: string, additionalHeaders: Headers = new Headers()): Promise<Gui> {
     return this.options.then(options => {
-      return this.http.post(this.apiUrl + action, submittableGui, options)
+      return this.http.post(this.apiUrl + action, submittableGui, this.merge(options, additionalHeaders))
         .retryWhen(errors => errors.delay(3000).scan((acc, source, index) => {
           if (index) throw source;
         })).toPromise()
@@ -123,7 +130,7 @@ export class ForgeService {
     return Promise.reject(error.message || 'Error calling service');
   }
 
-  private get options(): Promise<any> {
+  protected get options(): Promise<RequestOptionsArgs> {
     let headers = new Headers();
     if (this.filters) {
       headers.append('X-LAUNCHPAD_BACKEND_LABEL_FILTERS', this.filters);

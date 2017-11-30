@@ -1,5 +1,5 @@
 import { inject, TestBed } from '@angular/core/testing';
-import { HttpModule, Response, ResponseOptions, XHRBackend } from '@angular/http';
+import { HttpModule, Response, ResponseOptions, XHRBackend, Headers } from '@angular/http';
 import { MockBackend } from '@angular/http/testing';
 import { ForgeService } from './forge.service';
 import {
@@ -301,6 +301,33 @@ describe('Forge Service:', () => {
 
       // when
       forgeService.downloadZip('download', h);
+    });
+  });
+
+  it('additional headers', () => {
+    inject([
+      XHRBackend,
+      ForgeService
+    ], (mockService: MockBackend, forgeService: ForgeService) => {
+      // given
+      let passedHeaders = new Headers();
+      passedHeaders.append('passed', 'value');
+      let receivedHeaders = mockService.connections.subscribe((connection: any) => {
+        connection.mockRespond(new Response(
+          new ResponseOptions({
+            body: JSON.stringify({}),
+            status: 200
+          })
+        ));
+        return connection.headers;
+      });
+
+      // when
+      forgeService.upload('dummy', new History(), passedHeaders)
+      .then(() => {
+        // then
+        expect(receivedHeaders.get('passed')).toBe('value');
+      });
     });
   });
 });
