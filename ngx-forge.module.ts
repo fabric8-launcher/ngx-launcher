@@ -10,11 +10,13 @@ import { ForgeService } from './src/app/service/forge.service';
 import { History } from './src/app/service/history.component';
 import { AsciidocIndex } from './src/app/components/asciidoc/asciidoc.index';
 import { AsciidocService } from './src/app/components/asciidoc/asciidoc.service';
+import { SanitizeUrlPipe } from './src/app/components/sanitize/sanitize.url.pipe';
 
 const classes = [
   AsciidocComponent,
   InputComponent,
-  ProjectSelect
+  ProjectSelect,
+  SanitizeUrlPipe
 ];
 
 @NgModule({
