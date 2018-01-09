@@ -4,6 +4,9 @@ var gulp = require('gulp'),
   LessAutoprefix = require('less-plugin-autoprefix'),
   autoprefix = new LessAutoprefix({ browsers: ['last 2 versions'] });
   lesshint = require('gulp-lesshint'),
+  cssmin = require('gulp-cssmin'),
+  stylelint = require('gulp-stylelint'),
+  postcss = require('postcss'),
   sourcemaps = require('gulp-sourcemaps'),
   runSequence = require('run-sequence'),
   del = require('del'),
@@ -36,28 +39,62 @@ function updateWatchDist() {
     .pipe(changed(watchDist))
     .pipe(gulp.dest(watchDist));
 }
-// transpiles a given LESS source set to CSS, storing results to libraryDist.
 function transpileLESS(src, debug) {
-  var opts = {
-   // paths: [ path.join(__dirname, 'less', 'includes') ], //THIS NEEDED FOR REFERENCE
-  }
   return gulp.src(src)
-    .pipe(less({
-      plugins: [autoprefix]
-    }))
-    .pipe(lesshint({
-      configPath: './.lesshintrc' // Options
-    }))
-    .pipe(lesshint.reporter()) // Leave empty to use the default, "stylish"
-   .pipe(lesshint.failOnError()) // Use this to fail the task on lint errors
     .pipe(sourcemaps.init())
-    .pipe(less(opts))
-    //.pipe(concat('styles.css'))
+    .pipe(less({
+      paths: [ path.join(__dirname, 'less', 'includes') ]
+    }).on('error', function (err) {
+      console.log(err);
+    }))
+    .pipe(cssmin().on('error', function(err) {
+      console.log(err);
+    }))
     .pipe(sourcemaps.write())
     .pipe(gulp.dest(function (file) {
       return libraryDist + file.base.slice(__dirname.length + 'src/'.length);
+    }));
+    combined.on('error', console.error.bind(console));
+    return combined;
+}
+function minifyCSS(file) {
+  try {
+    var minifiedFile = stylus.render(file);
+    minifiedFile = postcss([autoprefixer]).process(minifiedFile).css;
+    minifiedFile = csso.minify(minifiedFile).css;
+    return minifiedFile;
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+/*
+ * Tasks
+ */
+
+// Stylelint task for build process
+gulp.task('lint-less', function lintLessTask() {
+  return gulp
+  .src('src/**/*.less')
+  .pipe(stylelint({
+    failAfterError: true,
+    reporters: [{
+      formatter: 'string', console: true
+    }]
   }));
- }
+});
+
+// Stylelint task for npm script - uses verbose format for error messages
+gulp.task('stylelint', function lintLessTask() {
+  return gulp
+  .src('src/**/*.less')
+  .pipe(stylelint({
+    failAfterError: true,
+    reporters: [{
+      formatter: 'verbose', console: true
+    }]
+  }));
+});
 
 // FIXME: why do we need that?
 // replaces templateURL/styleURL with require statements in js.
@@ -73,12 +110,12 @@ gulp.task('post-transpile', ['transpile'], function () {
 });
 
 // Transpile and minify less, storing results in libraryDist.
-gulp.task('transpile-less', function () {
+gulp.task('transpile-less', ['lint-less'], function () {
   return transpileLESS(appSrc + '/**/*.less');
 });
 
 // transpiles the ts sources to js using the tsconfig.
-gulp.task('transpile', function () {
+gulp.task('transpile', ['transpile-less'], function () {
   return ngc('tsconfig.json')
 });
 
@@ -86,6 +123,13 @@ gulp.task('transpile', function () {
 gulp.task('copy-html', function () {
   return copyToDist([
     'src/**/*.html'
+  ]);
+});
+
+// require transpile to finish before copying the css
+gulp.task('copy-css', ['transpile'], function () {
+  return copyToDist([
+    'src/**/*.css'
   ]);
 });
 
@@ -102,9 +146,7 @@ gulp.task('bundle', shell.task('npm run bundle-webpack'));
 
 gulp.task('build:library',
 [
-  'transpile',
   'post-transpile',
-  'transpile-less',
   'copy-html',
   'bundle',
   'copy-static-assets'
@@ -118,28 +160,27 @@ gulp.task('copy-watch-all', ['build:library'], function () {
   return updateWatchDist();
 });
 
-gulp.task('watch', ['build:library', 'copy-watch-all'], function (c) {
+gulp.task('watch', ['copy-watch-all'], function () {
   gulp.watch([appSrc + '/app/**/*.ts', '!' + appSrc + '/app/**/*.spec.ts']).on('change', function (e) {
     util.log(util.colors.cyan(e.path) + ' has been changed. Compiling.');
-    runSequence('transpile',
-                 'post-transpile',
-                 'copy-watch',
-                 c);
+    runSequence(
+       'post-transpile'
+    );
 
   });
   gulp.watch([appSrc + '/app/**/*.less']).on('change', function (e) {
     util.log(util.colors.cyan(e.path) + ' has been changed. Updating.');
-    runSequence('transpile-less',
-    'bundle',
-    'copy-watch',
-    c);
+    runSequence(
+      'post-transpile',
+      'bundle'
+    );
   });
   gulp.watch([appSrc + '/app/**/*.html']).on('change', function (e) {
     util.log(util.colors.cyan(e.path) + ' has been changed. Updating.');
-    runSequence('copy-html',
-    'bundle',
-    'copy-watch',
-    c);
+    runSequence(
+      'copy-html',
+      'bundle'
+    );
   });
   util.log('Now run');
   util.log('');
