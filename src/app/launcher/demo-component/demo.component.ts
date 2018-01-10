@@ -3,7 +3,7 @@ import { Component, Input } from '@angular/core';
 @Component({
   selector: 'demo-component',
   templateUrl: './demo.component.html',
-  styles: []
+  styleUrls: ['./demo.component.less']
 })
 export class DemoComponent {
 
