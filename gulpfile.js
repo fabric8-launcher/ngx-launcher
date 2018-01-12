@@ -44,9 +44,10 @@ function transpileLESS(src, debug) {
     .pipe(sourcemaps.init())
     .pipe(less({
       paths: [
-        path.join(__dirname, 'less', 'includes'),
-        path.join('src/assets/stylesheets'),
-      ]
+                path.join('src/assets/stylesheets/shared/'),
+                path.join('node_modules/'),
+                path.join('node_modules/patternfly/dist/less/'),
+                path.join('node_modules/patternfly/node_modules/')],
     }).on('error', function (err) {
       console.log(err);
     }))
