@@ -16,6 +16,18 @@ body {
 .launcher {
   position: absolute;
   top: 41px;
+  .active {
+    background-color: @color-pf-black-700;
+    border-left: 3px solid;
+    text-decoration: none;
+    /* stylelint-disable */
+    border-left-color: @color-pf-blue-300 !important;
+    /* stylelint-enable */
+    .step-circle {
+      background-color: @color-pf-blue-300;
+      border: solid 1px @color-pf-black-700;
+    }
+  }
   .card-title {
     display: inline-flex;
   }
@@ -210,22 +222,9 @@ body {
             padding-left: 17px;
             width: 250px;
             color: #bbb;
-            &:active,
-            &:focus,
             &:hover {
               background-color: @color-pf-black-700;
               text-decoration: none;
-            }
-            &:active,
-            &:focus {
-              border-left: 3px solid;
-              /* stylelint-disable */
-              border-left-color: @color-pf-blue-300 !important;
-              .step-circle {
-                background-color: @color-pf-blue-300;
-	              border: solid 1px @color-pf-black-700;
-              }
-              /* stylelint-enable */
             }
           }
           &--title {
