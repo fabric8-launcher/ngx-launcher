@@ -12,7 +12,7 @@
           <div class="step-circle"></div> <span class="vertical-bar_steps--title">Select Release Strategy</span>
         </a>
         <a href="#GitProvider" class="vertical-bar_steps--4 git-provider">
-          <div class="step-circle"></div> <span class="vertical-bar_steps--title">Select &amp; Authorize Git Provider</span>
+          <div class="step-circle"></div> <span class="vertical-bar_steps--title">Authorize Git Provider</span>
         </a>
         <a href="#ProjectSummary" class="vertical-bar_steps--5 project-summary">
           <div class="step-circle"></div> <span class="vertical-bar_steps--title">Confirm Project Summary</span>
@@ -395,9 +395,9 @@
                     <p>
                       Here is a brief description of what OpenShift Online is. There is a distinction between what OpenShift Online does compared to OpenShift.io.
                     </p>
-                  </div>
-                  <div class="card-pf-footer--logo">
-                    <img src="../../../assets/images/Logotype_RH_OpenShift-io_RGB_Black.svg" />
+                    <div class="card-pf-footer--logo">
+                      <img src="../../../assets/images/Logotype_RH_OpenShift-io_RGB_Black.svg" />
+                    </div>
                   </div>
                 </div>
               </div>
@@ -497,20 +497,19 @@
                           <div class="row">
                             <div class="col-md-12 pipeline-stages">
                               <span class="pipeline-stages-line">Stage Name</span>
+                              <span class="pipeline-stages-arrow"></span>
                               <span class="pipeline-stages-line">Stage Name</span>
+                              <span class="pipeline-stages-arrow"></span>
                               <span class="pipeline-stages-line">Stage Name</span>
+                              <span class="pipeline-stages-arrow"></span>
                               <span class="pipeline-stages-line">Stage Name</span>
+                              <span class="pipeline-stages-arrow"></span>
                               <span class="pipeline-stages-line">Stage Name</span>
                             </div>
                           </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                  <div class="card-pf-footer">
-                    <p>
-                      Prefer to use another pipeline? <a href="#">More...</a>
-                    </p>
                   </div>
                 </div>
               </div>
@@ -527,49 +526,41 @@
       </section>
       <section id="GitProvider" class="col-xs-12 section-git-provider">
         <div>
-          <h1>Select &amp; Authorize Git Provider</h1>
-          <p>
-            With a deployment pipeline selected, you can now select a Git provider to host your application. In order to continue the setup process,
-            you must have an account with one of the Git providers featured below. Create an account with one of these providers if you do not currently have one.
-          </p>
+          <h1>Authorize Git Provider</h1>
         </div>
         <div>
-          <div class="container-fluid container-cards-pf">
-            <div class="row row-cards-pf">
-              <div class="col-xs-6 col-md-3">
-                <div class="card-pf card-pf--small">
-                  <input type="radio" name="git-provider">
-                  <h2 class="card-pf-title--title">GitHub</h2>
-                  <div class="card-pf-body--body card-pf-body--body_logo">
-                    <i class="fa fa-github fa-5x"></i>
-                  </div>
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-xs-12 col-md-offset-2 col-md-8 provider-card">
+                <div class="col-xs-4 provider-card-icon">
+                  <h3>GitHub</h3>
+                  <i class="fa fa-github"></i>
                 </div>
-              </div>
-              <div class="col-xs-6 col-md-3">
-                <div class="card-pf card-pf--small">
-                  <input type="radio" name="git-provider">
-                  <h2 class="card-pf-title--title">GitLab</h2>
-                  <div class="card-pf-body--body card-pf-body--body_logo">
-                    <i class="fa fa-gitlab fa-5x"></i>
+                <div class="col-xs-8 provider-card-information">
+                  <h3>Authorized Account</h3>
+                  <div class="provider-card-information-authorize">
+                    <i class="fa fa-ban fa-2x"></i> <span class="username">None</span>
+                    <button class="btn btn-primary authorize-account">Authorize Account</button>
                   </div>
-                </div>
-              </div>
-              <div class="col-xs-6 col-md-3">
-                <div class="card-pf card-pf--small">
-                  <input type="radio" name="git-provider">
-                  <h2 class="card-pf-title--title">Beanstalk</h2>
-                  <div class="card-pf-body--body card-pf-body--body_logo">
-                    <i class="fa fa-rebel fa-5x"></i>
-                  </div>
-                </div>
-              </div>
-              <div class="col-xs-6 col-md-3">
-                <div class="card-pf card-pf--small">
-                  <input type="radio" name="git-provider">
-                  <h2 class="card-pf-title--title">BitBucket</h2>
-                  <div class="card-pf-body--body card-pf-body--body_logo">
-                    <i class="fa fa-bitbucket fa-5x"></i>
-                  </div>
+                  <h4>Organization &amp; Repository</h4>
+                  <form class="form-horizontal">
+                    <div class="form-group">
+                      <label for="orgDropdown" class="col-sm-2 control-label">Organization</label>
+                      <div class="col-sm-10">
+                        <select class="form-control">
+                          <option>fabric8-ui</option>
+                          <option>fabric8-launcher</option>
+                          <option>PatternFly</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="repositoryName" class="col-sm-2 control-label">Repository</label>
+                      <div class="col-sm-10">
+                        <input type="text" class="form-control" id="orgDropdown" placeholder="Organization">
+                      </div>
+                    </div>
+                  </form>
                 </div>
               </div>
             </div>

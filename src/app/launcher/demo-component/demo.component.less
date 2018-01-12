@@ -4,6 +4,15 @@ body {
   overflow-x: hidden;
   background-color: @color-pf-black-200;
 }
+.launcher-grid {
+  display: grid;
+  grid-template-rows: auto 1fr 200px;
+  grid-template-columns: 1fr;
+  height: 100vh;
+  @media screen and (max-width: 768px) {
+    height: auto;
+  }
+}
 .launcher {
   position: absolute;
   top: 41px;
@@ -24,28 +33,73 @@ body {
   .section {
     &-mission-runtime,
     &-target-environment,
-    &-release-strategy,
+    &-release-strategy {
+      .launcher-grid();
+    }
     &-git-provider {
-      display: grid;
-      grid-template-rows: auto 1fr 200px;
-      grid-template-columns: 1fr;
-      height: 100vh;
-      @media screen and (max-width: 768px) {
-        height: auto;
+      &:extend(.launcher-grid);
+      grid-template-rows: auto auto 200px;
+    }
+    &-target-environment {
+      .card-pf-title {
+        height: 80px;
+      }
+      .card-pf-footer {
+        position: absolute;
+        right: 30px;
+        bottom: 20px;
+        left: 30px;
       }
     }
   }
-  .list-view-pf-description {
-    width: 100%;
+  .provider-card {
+    background-color: @color-pf-white;
+    min-height: 300px;
+    padding-left: 0;
+    padding-right: 0;
+    box-shadow: 0 .5px 1px 0 rgba(0, 0, 0, .3);
+    &-icon {
+      min-height: 300px;
+      background-color: @color-pf-black-200;
+      text-align: center;
+      h3 {
+        font-weight: 300;
+      }
+      i {
+        padding: 25px;
+        font-size: 15em;
+      }
+    }
+    &-information {
+      padding-left: 15px;
+      padding-right: 15px;
+      min-height: 300px;
+      h3 {
+        font-weight: 600;
+      }
+      &-authorize {
+        margin-bottom: 65px;
+        .username {
+          vertical-align: super;
+        }
+        .authorize-account {
+          float: right;
+        }
+      }
+    }
   }
-  .list-view-pf-logo {
-    img {
-      width: 4em;
+  .list-view-pf {
+    &-description {
+    width: 100%;
+    }
+    &-logo {
+      img {
+        width: 4em;
+      }
     }
   }
   .continue {
     text-align: center;
-    background-image: linear-gradient(to left, rgba(255, 255, 255, 0.0), #fff 26%, #fff 74%, rgba(255, 255, 255, 0.0));
     padding-top: 15px;
     padding-bottom: 15px;
   }
@@ -81,16 +135,11 @@ body {
     }
     &--logo {
       background-color: @color-pf-black-200;
-      // margin-right: -20px;
-      // margin-bottom: -10px;
-      // margin-left: -20px;
       padding-top: 10px;
-      padding-bottom: 10px;
-      position: absolute;
-      bottom: 19px;
-      right: 10px;
-      left: 10px;
-      height: 73px;
+      margin-right: -20px;
+      margin-left: -20px;
+      margin-bottom: -10px;
+      height: 75px;
       img {
         display: block;
         margin: auto;
@@ -99,7 +148,6 @@ body {
   }
   .card-pf-body-description {
     background-color: #f7f7f7;
-    // height: 75px;
     position: absolute;
     bottom: 20px;
     left: 0;
@@ -123,11 +171,11 @@ body {
       grid-area: nav;
       display: flex;
       height: 100vh;
-      align-items: center;
+      // align-items: center;
       background-color: @color-pf-black-900;
       position: fixed;
-      // top: 60px;
       left: 0;
+      padding-top: 20px;
       width: 250px;
       .vertical-bar {
         display: grid;
@@ -165,7 +213,7 @@ body {
             &:active,
             &:focus,
             &:hover {
-              background-color: @color-pf-black-700;;
+              background-color: @color-pf-black-700;
               text-decoration: none;
             }
             &:active,
@@ -181,6 +229,7 @@ body {
             }
           }
           &--title {
+            margin-left: 10px;
             vertical-align: top;
           }
         }
@@ -236,6 +285,39 @@ body {
       border-bottom: 5px solid @color-pf-blue;
       padding-left: 15px;
       padding-right: 15px;
+      /*
+       * adding .approved to the line will set it to pulse from blue to green
+      */
+      &.approved {
+        animation: pulse 2s ease infinite alternate;
+      }
+    }
+    &-arrow {
+      width: 25px;
+      height: 2px;
+      position: relative;
+      margin-top: 20px;
+      background: @color-pf-blue;
+      &:before {
+        content: '';
+        position: absolute;
+        right: -5px;
+        bottom: -4px;
+        width: 0;
+        height: 0;
+        border-left: 5px solid @color-pf-blue;
+        border-top: 5px solid transparent;
+        border-bottom: 5px solid transparent;
+      }
+      /*
+       * adding .approved to the arrow will change it to green
+      */
+      &.approved {
+        background-color: @color-pf-green;
+        &:before {
+          border-left-color: @color-pf-green;
+        }
+      }
     }
     &:before {
       width: 20px;
@@ -252,13 +334,19 @@ body {
     #ReleaseStrategy,
     #GitProvider,
     #ProjectSummary {
-    // min-height: 400px;
-    // padding-bottom: 200px;
-    margin-top: 100px;
+    margin-top: 150px;
     box-shadow: 0 -2px 2px #d7d7d7;
-    border-bottom: 1px solid #030303;
   }
   #MissionRuntime {
     margin-top: 0;
+  }
+}
+@keyframes pulse {
+  0%,
+  100% {
+    border-bottom-color: @color-pf-blue;
+  }
+  50% {
+    border-bottom-color: @color-pf-green;
   }
 }
