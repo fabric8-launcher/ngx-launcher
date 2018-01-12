@@ -1,6 +1,6 @@
 // import './rxjs-extensions';
 
-import { NgModule } from '@angular/core';
+import { NgModule, Provider } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
@@ -13,12 +13,21 @@ import { AppRoutingModule } from './app-routing.module';
 import { WelcomeComponent } from './components/welcome.component';
 import { DemoComponent } from '../app/launcher/demo-component/demo.component';
 
+import { InViewportModule, WindowRef } from '@thisissoon/angular-inviewport';
+
+// Provide window object so as to not break SSR if using universal
+export const getWindow = () => window;
+export const providers: Provider[] = [
+  { provide: WindowRef, useFactory: (getWindow) }
+];
+
 @NgModule({
   imports: [
     AppRoutingModule,
     BrowserModule,
     FormsModule,
     HttpModule,
+    InViewportModule.forRoot(providers)
   ],
   declarations: [
     AppComponent,
@@ -29,4 +38,4 @@ import { DemoComponent } from '../app/launcher/demo-component/demo.component';
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }

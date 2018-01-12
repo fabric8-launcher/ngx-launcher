@@ -2,19 +2,19 @@
   <div class="launcher-container">
     <div class="launcher-container_nav">
       <div class="vertical-bar">
-        <a href="#MissionRuntime" class="vertical-bar_steps--1 mission-runtime">
+        <a href="javascript:void(0)" class="vertical-bar_steps--1 mission-runtime" (click)="selectSection('MissionRuntime')" [class.active]="selectedSection === 'MissionRuntime'">
           <div class="step-circle"></div> <span class="vertical-bar_steps--title">Select Mission &amp; Runtime</span>
         </a>
-        <a href="#TargetEnvironment" class="vertical-bar_steps--2 target-environment">
+        <a href="javascript:void(0)" class="vertical-bar_steps--2 target-environment" (click)="selectSection('TargetEnvironment')" [class.active]="selectedSection === 'TargetEnvironment'">
           <div class="step-circle"></div> <span class="vertical-bar_steps--title">Select Target Environment</span>
         </a>
-        <a href="#ReleaseStrategy" class="vertical-bar_steps--3 release-strategy">
+        <a href="javascript:void(0)" class="vertical-bar_steps--3 release-strategy" (click)="selectSection('ReleaseStrategy')" [class.active]="selectedSection === 'ReleaseStrategy'">
           <div class="step-circle"></div> <span class="vertical-bar_steps--title">Select Release Strategy</span>
         </a>
-        <a href="#GitProvider" class="vertical-bar_steps--4 git-provider">
+        <a href="javascript:void(0)" class="vertical-bar_steps--4 git-provider" (click)="selectSection('GitProvider')" [class.active]="selectedSection === 'GitProvider'">
           <div class="step-circle"></div> <span class="vertical-bar_steps--title">Authorize Git Provider</span>
         </a>
-        <a href="#ProjectSummary" class="vertical-bar_steps--5 project-summary">
+        <a href="javascript:void(0)" class="vertical-bar_steps--5 project-summary">
           <div class="step-circle"></div> <span class="vertical-bar_steps--title">Confirm Project Summary</span>
         </a>
       </div>
@@ -23,7 +23,7 @@
       <section id="section0">
       </section>
       <section id="MissionRuntime" class="col-xs-12 section-mission-runtime">
-        <div>
+        <div snInViewport (onInViewportChange)="onInViewportChange($event, 'MissionRuntime')" [debounce]="500">
           <h1>Select Mission &amp; Runtime</h1>
           <p>
             Start by selecting a runtime or mission. Secondary selection will be narrowed based on your primary selection.
@@ -330,7 +330,7 @@
         </div>
       </section>
       <section id="TargetEnvironment" class="col-xs-12 section-target-environment">
-        <div>
+        <div snInViewport (onInViewportChange)="onInViewportChange($event, 'TargetEnvironment')" [debounce]="500">
           <h1>Select Target Environment</h1>
           <p>
             Choose which environment the application should live in.
@@ -444,7 +444,7 @@
         </div>
       </section>
       <section id="ReleaseStrategy" class="col-xs-12 section-release-strategy">
-        <div>
+        <div snInViewport (onInViewportChange)="onInViewportChange($event, 'ReleaseStrategy')" [debounce]="500">
           <h1>Select Release Strategy</h1>
           <p>
             There are multiple pipelines available to deploy your application. Each has 4 different stages with a varying set of capabilities. Stages of the piplines include: build release, integration testing, staging and running an application.
@@ -525,7 +525,7 @@
         </div>
       </section>
       <section id="GitProvider" class="col-xs-12 section-git-provider">
-        <div>
+        <div snInViewport (onInViewportChange)="onInViewportChange($event, 'GitProvider')" [debounce]="500">
           <h1>Authorize Git Provider</h1>
         </div>
         <div>
