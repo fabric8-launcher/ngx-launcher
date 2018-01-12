@@ -9,3 +9,7 @@ import '@angular/router';
 
 // RxJS
 import 'rxjs';
+
+// import PatternFly CSS
+import '../node_modules/patternfly/dist/css/patternfly.min.css';
+import '../node_modules/patternfly/dist/css/patternfly-additions.min.css';

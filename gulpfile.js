@@ -43,7 +43,10 @@ function transpileLESS(src, debug) {
   return gulp.src(src)
     .pipe(sourcemaps.init())
     .pipe(less({
-      paths: [ path.join(__dirname, 'less', 'includes') ]
+      paths: [
+        path.join(__dirname, 'less', 'includes'),
+        path.join('src/assets/stylesheets'),
+      ]
     }).on('error', function (err) {
       console.log(err);
     }))
