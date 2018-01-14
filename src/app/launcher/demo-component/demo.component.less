@@ -1,4 +1,4 @@
-@import (reference) '../../../../node_modules/patternfly/dist/less/patternfly.less';
+@import (reference) '../../../assets/stylesheets/shared/main.less';
 
 body {
   overflow-x: hidden;
@@ -28,18 +28,94 @@ body {
       border: solid 1px @color-pf-black-700;
     }
   }
-  .card-title {
-    display: inline-flex;
-  }
-  .card-pf {
-    &--small {
-      height: 400px;
+  .card {
+    &-title {
+      display: inline-flex;
     }
-    &--medium {
-      min-height: 550px;
+    &-pf {
+      &--xsmall {
+        height: 250px;
+      }
+      &--small {
+        height: 400px;
+      }
+      &--medium {
+        min-height: 550px;
+      }
+      &--large {
+        min-height: 750px;
+      }
+      &-title {
+        display: inline-flex;
+        button {
+          position: absolute;
+          top: 15px;
+          right: 30px;
+        }
+        &--title {
+          display: inline-flex;
+          margin-left: 15px;
+          padding-left: 15px;
+          border-left: 1px solid #d7d7d7;
+        }
+      }
+      &-body {
+        &-description {
+          background-color: #f7f7f7;
+          position: absolute;
+          bottom: 20px;
+          left: 0;
+          right: 0;
+          margin-left: 10px;
+          margin-right: 10px;
+        }
+        &--body {
+          height: 300px;
+          &_header {
+            font-weight: 600;
+          }
+          &_logo {
+            display: grid;
+            grid-template-rows: 1fr;
+            align-items: center;
+            justify-content: center;
+          }
+        }
+      }
+      &-footer {
+        &--title {
+          font-weight: 600;
+        }
+        &--logo {
+          background-color: @color-pf-black-200;
+          padding-top: 10px;
+          margin-right: -20px;
+          margin-left: -20px;
+          margin-bottom: -10px;
+          height: 75px;
+          img {
+            display: block;
+            margin: auto;
+          }
+        }
+      }
     }
-    &--large {
-      min-height: 600px;
+    &-column {
+      display: inline-flex;
+      width: 100%;
+      &-single {
+        width: 100%;
+      }
+      &-60 {
+        width: 60%;
+      }
+      &-40 {
+        width: 40%;
+        img {
+          width: 200px;
+          padding: 0 25px;
+        }
+      }
     }
   }
   .section {
@@ -114,58 +190,6 @@ body {
     text-align: center;
     padding-top: 15px;
     padding-bottom: 15px;
-  }
-  .card-pf-title {
-    display: inline-flex;
-    button {
-      position: absolute;
-      top: 15px;
-      right: 30px;
-    }
-    &--title {
-      display: inline-flex;
-      margin-left: 15px;
-      padding-left: 15px;
-      border-left: 1px solid #d7d7d7;
-    }
-  }
-  .card-pf-body--body {
-    height: 300px;
-    &_header {
-      font-weight: 600;
-    }
-    &_logo {
-      display: grid;
-      grid-template-rows: 1fr;
-      align-items: center;
-      justify-content: center;
-    }
-  }
-  .card-pf-footer {
-    &--title {
-      font-weight: 600;
-    }
-    &--logo {
-      background-color: @color-pf-black-200;
-      padding-top: 10px;
-      margin-right: -20px;
-      margin-left: -20px;
-      margin-bottom: -10px;
-      height: 75px;
-      img {
-        display: block;
-        margin: auto;
-      }
-    }
-  }
-  .card-pf-body-description {
-    background-color: #f7f7f7;
-    position: absolute;
-    bottom: 20px;
-    left: 0;
-    right: 0;
-    margin-left: 10px;
-    margin-right: 10px;
   }
   &-container {
     display: grid;
@@ -333,11 +357,14 @@ body {
     #ReleaseStrategy,
     #GitProvider,
     #ProjectSummary {
-    margin-top: 150px;
+    margin-top: 15em;
     box-shadow: 0 -2px 2px #d7d7d7;
   }
   #MissionRuntime {
     margin-top: 0;
+  }
+  #ProjectSummary {
+    margin-bottom: 5em;
   }
 }
 @keyframes pulse {

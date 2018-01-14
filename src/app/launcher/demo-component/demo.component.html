@@ -14,7 +14,7 @@
         <a href="javascript:void(0)" class="vertical-bar_steps--4 git-provider" (click)="selectSection('GitProvider')" [class.active]="selectedSection === 'GitProvider'">
           <div class="step-circle"></div> <span class="vertical-bar_steps--title">Authorize Git Provider</span>
         </a>
-        <a href="javascript:void(0)" class="vertical-bar_steps--5 project-summary">
+        <a href="javascript:void(0)" class="vertical-bar_steps--5 project-summary" (click)="selectSection('ProjectSummary')" [class.active]="selectedSection === 'ProjectSummary'">
           <div class="step-circle"></div> <span class="vertical-bar_steps--title">Confirm Project Summary</span>
         </a>
       </div>
@@ -531,7 +531,7 @@
         <div>
           <div class="container-fluid">
             <div class="row">
-              <div class="col-xs-12 col-md-offset-2 col-md-8 provider-card">
+              <div class="col-xs-12 provider-card">
                 <div class="col-xs-4 provider-card-icon">
                   <h3>GitHub</h3>
                   <i class="fa fa-github"></i>
@@ -570,6 +570,81 @@
           <div class="container-fluid">
             <div class="continue">
               <button class="btn btn-primary">OK</button> or press <b>ENTER</b>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section id="ProjectSummary" class="col-xs-12 section-project-summary">
+        <div>
+          <h1 snInViewport (onInViewportChange)="onInViewportChange($event, 'ProjectSummary')" [debounce]="500">Confirm Project Summary</h1>
+        </div>
+        <div>
+          <div class="container-fluid container-cards-pf">
+            <div class="row row-cards-pf">
+              <div class="col-xs-6">
+                <div class="card-pf card-pf--xsmall">
+                  <div class="card-pf-heading">
+                    <h2 class="card-pf-title">
+                      Runtime
+                    </h2>
+                  </div>
+                  <div class="card-pf-body card-column">
+                    <div class="card-column-60">
+                      <b>Eclipse Vert.x</b>
+                      <b class="pull-right">v2.4</b>
+                      <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore...<a href="#">more</a>
+                      </p>
+                    </div>
+                    <div class="card-column-40">
+                      <img src="../../../assets/images/vertx.svg" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xs-6">
+                <div class="card-pf card-pf--xsmall">
+                  <div class="card-pf-heading">
+                    <h2 class="card-pf-title">
+                      Mission
+                    </h2>
+                  </div>
+                  <div class="card-pf-body card-column">
+                    <div class="card-column-single">
+                      <b>Basic Application</b>
+                      <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore...<a href="#">more</a>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="container-fluid container-cards-pf">
+          <div class="row row-cards-pf">
+            <div class="col-xs-12">
+              <div class="card-pf card-pf--xsmall">
+                <div class="card-pf-heading">
+                  <h2 class="card-pf-title">
+                    Pipeline
+                  </h2>
+                </div>
+                <div class="card-pf-body card-column">
+                  <div class="card-column-40">
+                    <h5><b>Name of Pipeline</b></h5>
+                    <h5><b>5 Stages</b></h5>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="container-fluid">
+            <div class="continue">
+              <button class="btn btn-primary" disabled>OK</button> or press <b>ENTER</b>
             </div>
           </div>
         </div>
