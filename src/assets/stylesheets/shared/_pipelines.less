@@ -1,0 +1,62 @@
+@import (reference) 'main.less';
+
+.pipeline-stages {
+  display: inline-flex;
+  justify-content: space-evenly;
+  &-line {
+    border-bottom: 5px solid @color-pf-blue;
+    padding-left: 15px;
+    padding-right: 15px;
+    &:after {
+      width: 25px;
+      height: 25px;
+      content: '\f111';
+      font-family: FontAwesome;
+      color: @color-pf-blue;
+      position: relative;
+      right: 45%;
+      bottom: -12px;
+      @media screen and (max-width: 768px) {
+        right: 15%;
+      }
+    }
+    /*
+     * adding .approved to the line will set it to pulse from blue to green
+    */
+    &.approved {
+      animation: pulse 2s ease infinite alternate;
+    }
+  }
+  &-arrow {
+    width: 25px;
+    height: 2px;
+    position: relative;
+    margin-top: 20px;
+    background: @color-pf-blue;
+    &:before {
+      content: '';
+      position: absolute;
+      right: -5px;
+      bottom: -4px;
+      width: 0;
+      height: 0;
+      border-left: 10px solid @color-pf-blue;
+      border-top: 5px solid transparent;
+      border-bottom: 5px solid transparent;
+    }
+    /*
+     * adding .approved to the arrow will change it to green
+    */
+    &.approved {
+      background-color: @color-pf-green;
+      &:before {
+        border-left-color: @color-pf-green;
+      }
+    }
+  }
+  &:before {
+    width: 20px;
+    height: 5px;
+    background-color: @color-pf-blue;
+  }
+}

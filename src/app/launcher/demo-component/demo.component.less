@@ -1,5 +1,8 @@
 @import (reference) '../../../assets/stylesheets/shared/main.less';
 
+// required as a non-referenced item in order to be included with the component
+@import '../../../assets/stylesheets/shared/_pipelines.less';
+
 body {
   overflow-x: hidden;
   background-color: @color-pf-black-200;
@@ -16,13 +19,14 @@ body {
 .launcher {
   position: absolute;
   top: 41px;
+  background-color: @color-pf-black-300;
+  width: 100%;
   .active {
     background-color: @color-pf-black-700;
     border-left: 3px solid;
     text-decoration: none;
-    /* stylelint-disable */
+    /* stylelint-disable-next-line declaration-no-important */
     border-left-color: @color-pf-blue-300 !important;
-    /* stylelint-enable */
     .step-circle {
       background-color: @color-pf-blue-300;
       border: solid 1px @color-pf-black-700;
@@ -56,12 +60,12 @@ body {
           display: inline-flex;
           margin-left: 15px;
           padding-left: 15px;
-          border-left: 1px solid #d7d7d7;
+          border-left: 1px solid @color-pf-black-300;
         }
       }
       &-body {
         &-description {
-          background-color: #f7f7f7;
+          background-color: @color-pf-black-150;
           position: absolute;
           bottom: 20px;
           left: 0;
@@ -202,7 +206,17 @@ body {
     }
     &_nav {
       @media screen and (max-width: 768px) {
-        display: none;
+        // display: none;
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        width: 250px;
+        left: -250px;
+        z-index: 10;
+        transition: transform .3s ease-in-out;
+        &:target {
+          transform: translateX(250px);
+        }
       }
       grid-area: nav;
       display: flex;
@@ -223,6 +237,9 @@ body {
         height: 90vh;
         border-radius: 10px;
         margin-left: 15px;
+        @media screen and (max-width: 768px) {
+          margin-top: 25px;
+        }
         a {
           margin-left: -15px;
           padding-top: 10px;
@@ -245,7 +262,7 @@ body {
           &--5 {
             padding-left: 17px;
             width: 250px;
-            color: #bbb;
+            color: @color-pf-black-400;
             &:hover {
               background-color: @color-pf-black-700;
               text-decoration: none;
@@ -262,7 +279,7 @@ body {
       grid-area: content;
       display: grid;
       grid-template-rows: 50px 100vh 100vh 100vh 100vh 100vh 50px;
-      background-color: #d7d7d7;
+      background-color: @color-pf-black-300;
       padding-left: 15px;
       @media screen and (max-width: 768px) {
         grid-template-rows: 50px repeat(5, auto) 50px;
@@ -275,15 +292,15 @@ body {
     width: 15px;
     height: 15px;
     border-radius: 50%;
-    background-color: #d7d7d7;
-    color: #d7d7d7;
+    background-color: @color-pf-black-300;
+    color: @color-pf-black-300;
     margin-right: 5px;
     display: inline-flex;
   }
   .tag-featured {
     padding: 2px 5px;
-    background-color: #0088ce;
-    color: #fff;
+    background-color: @color-pf-blue;
+    color: @color-pf-white;
     font-size: .9em;
     position: absolute;
     top: 0;
@@ -291,7 +308,7 @@ body {
   }
   .box {
     display: inline-block;
-    border: 1px solid #d7d7d7;
+    border: 1px solid @color-pf-black-300;
     width: 150px;
     height: 200px;
     line-height: 200px;
@@ -299,53 +316,6 @@ body {
     margin-right: 15px;
     i {
       vertical-align: middle;
-    }
-  }
-  .pipeline-stages {
-    display: inline-flex;
-    justify-content: space-evenly;
-    &-line {
-      border-bottom: 5px solid @color-pf-blue;
-      padding-left: 15px;
-      padding-right: 15px;
-      /*
-       * adding .approved to the line will set it to pulse from blue to green
-      */
-      &.approved {
-        animation: pulse 2s ease infinite alternate;
-      }
-    }
-    &-arrow {
-      width: 25px;
-      height: 2px;
-      position: relative;
-      margin-top: 20px;
-      background: @color-pf-blue;
-      &:before {
-        content: '';
-        position: absolute;
-        right: -5px;
-        bottom: -4px;
-        width: 0;
-        height: 0;
-        border-left: 5px solid @color-pf-blue;
-        border-top: 5px solid transparent;
-        border-bottom: 5px solid transparent;
-      }
-      /*
-       * adding .approved to the arrow will change it to green
-      */
-      &.approved {
-        background-color: @color-pf-green;
-        &:before {
-          border-left-color: @color-pf-green;
-        }
-      }
-    }
-    &:before {
-      width: 20px;
-      height: 5px;
-      background-color: @color-pf-blue;
     }
   }
   /* Content */
@@ -358,7 +328,6 @@ body {
     #GitProvider,
     #ProjectSummary {
     margin-top: 15em;
-    box-shadow: 0 -2px 2px #d7d7d7;
   }
   #MissionRuntime {
     margin-top: 0;
