@@ -1,4 +1,6 @@
 /* stylelint-disable */
+// must disable stylelint for everything, until gulp-stylelint package is fixed
+// to recognize the .stylelintignore file
 .padding-loop(@i) when (@i > 0) {
   .padding-@{i} {
     padding: (1px*@i) !important;
@@ -17,7 +19,7 @@
   }
   .padding-loop(@i - 1);
 }
-.padding-loop(15);
+.padding-loop(50);
 
 .margin-loop(@i) when (@i > 0) {
   .margin-v {

@@ -20,6 +20,7 @@ const NormalModuleReplacementPlugin = require('webpack/lib/NormalModuleReplaceme
 const OptimizeJsPlugin = require('optimize-js-plugin');
 const ProvidePlugin = require('webpack/lib/ProvidePlugin');
 const UglifyJsPlugin = require('webpack/lib/optimize/UglifyJsPlugin');
+const StyleLintPlugin = require('stylelint-webpack-plugin');
 
 // ExtractTextPlugin
 const extractCSS = new ExtractTextPlugin({
@@ -146,6 +147,18 @@ module.exports = {
 
     new OptimizeJsPlugin({
       sourceMap: false
+    }),
+
+    /*
+     * StyleLintPlugin
+    */
+    new StyleLintPlugin({
+      configFile: '.stylelintrc',
+      syntax: 'less',
+      context: 'src',
+      files: '**/*.less',
+      failOnError: true,
+      quiet: false,
     }),
 
     new HtmlWebpackPlugin(),
