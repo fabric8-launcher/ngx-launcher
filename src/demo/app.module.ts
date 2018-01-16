@@ -11,9 +11,9 @@ import { AppRoutingModule } from './app-routing.module';
 
 // Main areas
 import { WelcomeComponent } from './components/welcome.component';
-import { DemoComponent } from '../app/launcher/demo-component/demo.component';
 
 import { InViewportModule, WindowRef } from '@thisissoon/angular-inviewport';
+import { LauncherModule } from '../app/launcher/launcher.module';
 
 // Provide window object so as to not break SSR if using universal
 export const getWindow = () => window;
@@ -27,12 +27,12 @@ export const providers: Provider[] = [
     BrowserModule,
     FormsModule,
     HttpModule,
+    LauncherModule,
     InViewportModule.forRoot(providers)
   ],
   declarations: [
     AppComponent,
-    WelcomeComponent,
-    DemoComponent
+    WelcomeComponent
   ],
   providers: [
   ],

@@ -1,23 +1,7 @@
 <div class="launcher">
   <div class="launcher-container">
     <div class="launcher-container_nav">
-      <div class="vertical-bar">
-        <a href="javascript:void(0)" class="vertical-bar_steps--1 mission-runtime" (click)="selectSection('MissionRuntime')" [class.active]="selectedSection === 'MissionRuntime'">
-          <div class="step-circle"></div> <span class="vertical-bar_steps--title">Select Mission &amp; Runtime</span>
-        </a>
-        <a href="javascript:void(0)" class="vertical-bar_steps--2 target-environment" (click)="selectSection('TargetEnvironment')" [class.active]="selectedSection === 'TargetEnvironment'">
-          <div class="step-circle"></div> <span class="vertical-bar_steps--title">Select Target Environment</span>
-        </a>
-        <a href="javascript:void(0)" class="vertical-bar_steps--3 release-strategy" (click)="selectSection('ReleaseStrategy')" [class.active]="selectedSection === 'ReleaseStrategy'">
-          <div class="step-circle"></div> <span class="vertical-bar_steps--title">Select Release Strategy</span>
-        </a>
-        <a href="javascript:void(0)" class="vertical-bar_steps--4 git-provider" (click)="selectSection('GitProvider')" [class.active]="selectedSection === 'GitProvider'">
-          <div class="step-circle"></div> <span class="vertical-bar_steps--title">Authorize Git Provider</span>
-        </a>
-        <a href="javascript:void(0)" class="vertical-bar_steps--5 project-summary" (click)="selectSection('ProjectSummary')" [class.active]="selectedSection === 'ProjectSummary'">
-          <div class="step-circle"></div> <span class="vertical-bar_steps--title">Confirm Project Summary</span>
-        </a>
-      </div>
+      <f8launcher-step-indicator></f8launcher-step-indicator>
     </div>
     <div class="launcher-container_main">
       <section id="section0">
@@ -67,7 +51,7 @@
                         <div class="list-view-pf-main-info">
                           <div class="list-view-pf-left">
                             <span class="list-view-pf-logo">
-                              <img src="../../../assets/images/spring-boot-logo.png" />
+                              <img src="../../assets/images/spring-boot-logo.png" />
                             </span>
                           </div>
                           <div class="list-view-pf-body">
@@ -107,7 +91,7 @@
                         <div class="list-view-pf-main-info">
                           <div class="list-view-pf-left">
                             <span class="list-view-pf-logo">
-                              <img src="../../../assets/images/nodejs-logo.png" />
+                              <img src="../../assets/images/nodejs-logo.png" />
                             </span>
                           </div>
                           <div class="list-view-pf-body">
@@ -147,7 +131,7 @@
                         <div class="list-view-pf-main-info">
                           <div class="list-view-pf-left">
                             <span class="list-view-pf-logo">
-                              <img src="../../../assets/images/vertx.svg" />
+                              <img src="../../assets/images/vertx.svg" />
                             </span>
                           </div>
                           <div class="list-view-pf-body">
@@ -187,7 +171,7 @@
                         <div class="list-view-pf-main-info">
                           <div class="list-view-pf-left">
                             <span class="list-view-pf-logo">
-                              <img src="../../../assets/images/wildfly-swarm.png" />
+                              <img src="../../assets/images/wildfly-swarm.png" />
                             </span>
                           </div>
                           <div class="list-view-pf-body">
@@ -365,7 +349,7 @@
                       Here is a brief description of what OpenShift Online is. There is a distinction between what OpenShift Online does compared to OpenShift.io.
                     </p>
                     <div class="card-pf-footer--logo">
-                      <img src="../../../assets/images/Logotype_RH_OpenShiftOnline_wLogo_RGB_Black.svg" />
+                      <img src="../../assets/images/Logotype_RH_OpenShiftOnline_wLogo_RGB_Black.svg" />
                     </div>
                   </div>
                 </div>
@@ -396,7 +380,7 @@
                       Here is a brief description of what OpenShift Online is. There is a distinction between what OpenShift Online does compared to OpenShift.io.
                     </p>
                     <div class="card-pf-footer--logo">
-                      <img src="../../../assets/images/Logotype_RH_OpenShift-io_RGB_Black.svg" />
+                      <img src="../../assets/images/Logotype_RH_OpenShift-io_RGB_Black.svg" />
                     </div>
                   </div>
                 </div>
@@ -427,7 +411,7 @@
                       When you build and run locally, you will receive a .zip file containing the setup you have established for your application.
                     </p>
                     <div class="card-pf-footer--logo">
-                      <img src="../../../assets/images/icon-fa-zip.svg" />
+                      <img src="../../assets/images/icon-fa-zip.svg" />
                     </div>
                   </div>
                 </div>
@@ -597,7 +581,7 @@
                       </p>
                     </div>
                     <div class="card-column-40">
-                      <img src="../../../assets/images/vertx.svg" />
+                      <img src="../../assets/images/vertx.svg" />
                     </div>
                   </div>
                 </div>

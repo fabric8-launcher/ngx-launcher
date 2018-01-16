@@ -1,13 +1,13 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CommonModule } from '@angular/common';
-import { DemoComponent } from './demo.component';
+import { StepIndicatorComponent } from './step-indicator.component';
 import { By } from '@angular/platform-browser';
 
 
-describe('DemoComponent', () => {
-  let component: DemoComponent;
-  let fixture: ComponentFixture<DemoComponent>;
+describe('StepIndicatorComponent', () => {
+  let component: StepIndicatorComponent;
+  let fixture: ComponentFixture<StepIndicatorComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -15,25 +15,18 @@ describe('DemoComponent', () => {
         CommonModule
       ],
       declarations: [
-        DemoComponent
+        StepIndicatorComponent
       ]
     }).compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DemoComponent);
+    fixture = TestBed.createComponent(StepIndicatorComponent);
     component = fixture.componentInstance;
-    component.testValue = 'value value value';
     fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
-  });
-
-  it('should set value', () => {
-    let de = fixture.debugElement.query(By.css('h1'));
-    let ne = de.nativeElement;
-    expect (ne.textContent).toBe('value value value');
   });
 });
