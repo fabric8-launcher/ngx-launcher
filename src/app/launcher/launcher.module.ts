@@ -1,14 +1,22 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DemoComponent } from './demo-component/demo.component';
+import { StepIndicatorComponent } from './step-indicator/step-indicator.component';
+import { WizardComponent } from './wizard.component';
+import { InViewportModule } from '@thisissoon/angular-inviewport';
 
 
 @NgModule({
-  imports: [CommonModule],
+  imports: [
+    CommonModule,
+    InViewportModule
+  ],
   exports: [
+    StepIndicatorComponent,
+    WizardComponent
   ],
   declarations: [
-    DemoComponent
+    StepIndicatorComponent,
+    WizardComponent
   ]
 })
 export class LauncherModule {
