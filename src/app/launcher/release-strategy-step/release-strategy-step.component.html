@@ -1,0 +1,81 @@
+<section id="ReleaseStrategy" class="col-xs-12 section-release-strategy">
+  <div>
+    <h1 snInViewport (onInViewportChange)="wizardComponent.onInViewportChange($event, 'ReleaseStrategy')" [debounce]="500">Select Release Strategy</h1>
+    <p>
+      There are multiple pipelines available to deploy your application. Each has 4 different stages with a varying set of capabilities. Stages of the piplines include: build release, integration testing, staging and running an application.
+    </p>
+    <p>
+      There is a pre-selected, recommended pipeline based on the selected mission and technology.
+    </p>
+  </div>
+  <div>
+    <div class="container-fluid container-cards-pf">
+      <div class="row row-cards-pf">
+        <div class="col-xs-12">
+          <div class="card-pf">
+            <div class="card-pf-heading">
+              <h2 class="card-pf-title">
+                Select Pipeline
+              </h2>
+            </div>
+            <div class="card-pf-body">
+              <div class="list-group list-view-pf list-view-pf-view">
+                <div class="list-group-item">
+                  <div class="tag-featured">
+                    Recommended Pipeline
+                  </div>
+                  <div class="list-group-item-header">
+                    <div class="list-view-pf-expand">
+                      <span class="fa fa-angle-down"></span>
+                    </div>
+                    <div class="list-view-pf-checkbox">
+                      <input type="radio">
+                    </div>
+                    <div class="list-view-pf-main-info">
+                      <div class="list-view-pf-body">
+                        <div class="list-view-pf-description">
+                          <div class="list-group-item-heading">
+                            <b>Name of Pipeline</b>
+                          </div>
+                          <div class="list-group-item-text">
+                            <b>5</b> Stages
+                            A slightly longer description of this pipeline's capabilities and usage.
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="list-group-item-container container-fluid">
+                    <div class="close">
+                      <span class="pficon pficon-close"></span>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12 pipeline-stages">
+                        <span class="pipeline-stages-line">Stage Name</span>
+                        <span class="pipeline-stages-arrow"></span>
+                        <span class="pipeline-stages-line">Stage Name</span>
+                        <span class="pipeline-stages-arrow"></span>
+                        <span class="pipeline-stages-line">Stage Name</span>
+                        <span class="pipeline-stages-arrow"></span>
+                        <span class="pipeline-stages-line">Stage Name</span>
+                        <span class="pipeline-stages-arrow"></span>
+                        <span class="pipeline-stages-line">Stage Name</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div class="container-fluid">
+      <div class="continue">
+        <button class="btn btn-primary">OK</button> or press <b>ENTER</b>
+      </div>
+    </div>
+  </div>
+</section>
