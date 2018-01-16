@@ -15,6 +15,6 @@ export class StepIndicatorComponent {
   selectSection(id: string) {
     // TODO: dispatch event for scrolling, parent should also update selectedSection instead of doing it here
     document.getElementById(id).scrollIntoView({ behavior: 'smooth', block: 'start' });
-    this.wizardComponent.selectedSection = id;
+    // this.wizardComponent.selectedSection = id;
   }
 }
