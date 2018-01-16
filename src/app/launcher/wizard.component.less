@@ -7,7 +7,7 @@ body {
   overflow-x: hidden;
   background-color: @color-pf-black-200;
 }
-.launcher-grid {
+.f8launcher-grid {
   display: grid;
   grid-template-rows: auto 1fr 200px;
   grid-template-columns: 1fr;
@@ -16,18 +16,22 @@ body {
     height: auto;
   }
 }
-.launcher {
+.f8launcher {
   position: absolute;
   top: 41px;
   background-color: @color-pf-black-300;
   width: 100%;
   .active {
-    background-color: @color-pf-black-700;
+    // background-color: @color-pf-black-700;
     border-left: 3px solid;
     text-decoration: none;
+    // .animation();
+    // .a3();
+    // .animated-background-color();
+    .gradient-animation( @color-pf-black-900, @color-pf-blue, 2s );
     /* stylelint-disable-next-line declaration-no-important */
     border-left-color: @color-pf-blue-300 !important;
-    .step-circle {
+    .f8launcher-step-circle {
       background-color: @color-pf-blue-300;
       border: solid 1px @color-pf-black-700;
     }
@@ -122,14 +126,14 @@ body {
       }
     }
   }
-  .section {
+  .f8launcher-section {
     &-mission-runtime,
     &-target-environment,
     &-release-strategy {
-      .launcher-grid();
+      .f8launcher-grid();
     }
     &-git-provider {
-      &:extend(.launcher-grid);
+      &:extend(.f8launcher-grid);
       grid-template-rows: auto auto 200px;
     }
     &-target-environment {
@@ -144,12 +148,12 @@ body {
       }
     }
   }
-  .provider-card {
+  .f8launcher-provider-card {
     background-color: @color-pf-white;
     min-height: 300px;
     padding-left: 0;
     padding-right: 0;
-    box-shadow: 0 .5px 1px 0 rgba(0, 0, 0, .3);
+    box-shadow: 0 .5px 1px 0 rgba(0, 0, 0, .3), 0 -.5px 1px 0 rgba(0, 0, 0, .3);
     &-icon {
       min-height: 300px;
       background-color: @color-pf-black-200;
@@ -171,10 +175,10 @@ body {
       }
       &-authorize {
         margin-bottom: 65px;
-        .username {
+        .f8launcher-username {
           vertical-align: super;
         }
-        .authorize-account {
+        .f8launcher-authorize-account {
           float: right;
         }
       }
@@ -190,7 +194,7 @@ body {
       }
     }
   }
-  .continue {
+  .f8launcher-continue {
     text-align: center;
     padding-top: 15px;
     padding-bottom: 15px;
@@ -227,7 +231,7 @@ body {
       left: 0;
       padding-top: 20px;
       width: 250px;
-      .vertical-bar {
+      .f8launcher-vertical-bar {
         display: grid;
         grid-template-rows: 1fr 1fr 1fr 1fr;
         // align-content: space-between;
@@ -248,9 +252,9 @@ body {
           border-left-color: transparent;
           font-weight: 700;
           height: 40px;
-          transition: background .3s ease-in-out;
-            -webkit-transition: background .3s ease-in-out;
-            -moz-transition: background .3s ease-in-out;
+          transition: background, border .3s ease-in-out;
+          -webkit-transition: background, border .3s ease-in-out;
+          -moz-transition: background, border .3s ease-in-out;
         }
         &_steps {
           color: @color-pf-black-400;
@@ -264,8 +268,18 @@ body {
             width: 250px;
             color: @color-pf-black-400;
             &:hover {
-              background-color: @color-pf-black-700;
+              // background: @color-pf-black-700;
+              // .gradient-animation( @color-pf-blue, @color-pf-black-900, 2s );
+              // background: linear-gradient(-90deg, @color-pf-black-900, @color-pf-black-900, @color-pf-blue);
               text-decoration: none;
+              border-left: 3px solid;
+              /* stylelint-disable-next-line declaration-no-important */
+              border-left-color: @color-pf-blue !important;
+            }
+            &:active {
+              &:before {
+                opacity: 0;
+              }
             }
           }
           &--title {
@@ -279,7 +293,7 @@ body {
       grid-area: content;
       display: grid;
       grid-template-rows: 50px 100vh 100vh 100vh 100vh 100vh 50px;
-      background-color: @color-pf-black-300;
+      background-color: #ededed;
       padding-left: 15px;
       @media screen and (max-width: 768px) {
         grid-template-rows: 50px repeat(5, auto) 50px;
@@ -287,7 +301,7 @@ body {
     }
   }
   /* Icons */
-  .step-circle {
+  .f8launcher-step-circle {
     border: 1px solid #303030;
     width: 15px;
     height: 15px;
@@ -297,7 +311,7 @@ body {
     margin-right: 5px;
     display: inline-flex;
   }
-  .tag-featured {
+  .f8launcher-tag-featured {
     padding: 2px 5px;
     background-color: @color-pf-blue;
     color: @color-pf-white;
@@ -343,5 +357,78 @@ body {
   }
   50% {
     border-bottom-color: @color-pf-green;
+  }
+}
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translate3d(-100%, 0, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes animatebackground {
+  0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+@keyframes slidein {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+@keyframes stay {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(0); }
+}
+.animation {
+  background: @color-pf-black-700;
+  width: 250px;
+  height: calc(100% - 1.5em);
+  transform-origin: left center;
+}
+.a3 {
+  animation-duration: .3s;
+  animation-timing-function: linear;
+  animation-name: slidein;
+}
+.animated-background-color {
+  background: linear-gradient(-90deg, #23a6d5, @color-pf-black-900, @color-pf-black-900, #23a6d5);
+  animation: animatebackground 3s ease;
+  -webkit-animation: animatebackground 3s ease;
+	-moz-animation: animatebackground 3s ease;
+  background-size: 400% 400%;
+  width: 250px;
+}
+.gradient-animation( @start, @end, @transTime ) {
+  background-size: 100%;
+  background-image: linear-gradient(-90deg, @start, @end);
+  position: relative;
+  z-index: 100;
+  &:before {
+    background-image: linear-gradient(-90deg, @end, @start);
+    content: '';
+    display: block;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    width: 100%;
+    z-index: -100;
+    transition: opacity @transTime;
+  }
+  &:hover {
+     &:before {
+       opacity: 1;
+     }
   }
 }

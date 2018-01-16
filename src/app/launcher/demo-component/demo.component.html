@@ -1,0 +1,654 @@
+<div class="f8launcher">
+  <div class="f8launcher-container">
+    <div class="f8launcher-container_nav">
+      <div class="f8launcher-vertical-bar">
+        <a href="javascript:void(0)" class="f8launcher-vertical-bar_steps--1 mission-runtime" (click)="selectSection('MissionRuntime')" [class.active]="selectedSection === 'MissionRuntime'">
+          <div class="f8launcher-step-circle"></div> <span class="f8launcher-vertical-bar_steps--title">Select Mission &amp; Runtime</span>
+        </a>
+        <a href="javascript:void(0)" class="f8launcher-vertical-bar_steps--2 target-environment" (click)="selectSection('TargetEnvironment')" [class.active]="selectedSection === 'TargetEnvironment'">
+          <div class="f8launcher-step-circle"></div> <span class="f8launcher-vertical-bar_steps--title">Select Target Environment</span>
+        </a>
+        <a href="javascript:void(0)" class="f8launcher-vertical-bar_steps--3 release-strategy" (click)="selectSection('ReleaseStrategy')" [class.active]="selectedSection === 'ReleaseStrategy'">
+          <div class="f8launcher-step-circle"></div> <span class="f8launcher-vertical-bar_steps--title">Select Release Strategy</span>
+        </a>
+        <a href="javascript:void(0)" class="f8launcher-vertical-bar_steps--4 git-provider" (click)="selectSection('GitProvider')" [class.active]="selectedSection === 'GitProvider'">
+          <div class="f8launcher-step-circle"></div> <span class="f8launcher-vertical-bar_steps--title">Authorize Git Provider</span>
+        </a>
+        <a href="javascript:void(0)" class="f8launcher-vertical-bar_steps--5 project-summary" (click)="selectSection('ProjectSummary')" [class.active]="selectedSection === 'ProjectSummary'">
+          <div class="f8launcher-step-circle"></div> <span class="f8launcher-vertical-bar_steps--title">Confirm Project Summary</span>
+        </a>
+      </div>
+    </div>
+    <div class="f8launcher-container_main">
+      <section id="section0">
+      </section>
+      <section id="MissionRuntime" class="col-xs-12 f8launcher-section-mission-runtime">
+        <div>
+          <h1 snInViewport (onInViewportChange)="onInViewportChange($event, 'MissionRuntime')" [debounce]="500">Select Mission &amp; Runtime</h1>
+          <p>
+            Start by selecting a runtime or mission. Secondary selection will be narrowed based on your primary selection.
+          </p>
+        </div>
+        <div>
+          <div class="container-fluid container-cards-pf">
+            <div class="row row-cards-pf">
+              <div class="col-xs-12 col-md-6">
+                <div class="card-pf card-pf--large">
+                  <div class="card-pf-heading">
+                    <h2 class="card-pf-title">
+                      Select Runtime
+                      <button class="btn btn-default" type="button">
+                        Reset Selections
+                      </button>
+                    </h2>
+                  </div>
+                  <div class="card-pf-body">
+                    <div class="list-group list-view-pf">
+                      <div class="list-group-item list-view-pf-stacked list-view-pf-top-align">
+                        <div class="list-view-pf-checkbox">
+                          <input type="radio" name="runtime">
+                        </div>
+                        <div class="list-view-pf-actions">
+                          <div class="dropdown">
+                            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
+                              Dropdown
+                              <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                              <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
+                              <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
+                              <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
+                              <li role="presentation" class="divider"></li>
+                              <li role="presentation" class="disabled"><a role="menuitem" tabindex="-1" href="#">Disabled link</a></li>
+                              <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
+                            </ul>
+                          </div>
+                        </div>
+                        <div class="list-view-pf-main-info">
+                          <div class="list-view-pf-left">
+                            <span class="list-view-pf-logo">
+                              <img src="../../../assets/images/spring-boot-logo.png" />
+                            </span>
+                          </div>
+                          <div class="list-view-pf-body">
+                            <div class="list-view-pf-description">
+                              <div class="list-group-item-heading">
+                                Spring Boot
+                              </div>
+                              <div class="list-group-item-text">
+                                Brief description of the technology...<a href="#">more</a>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="list-group list-view-pf">
+                      <div class="list-group-item list-view-pf-stacked list-view-pf-top-align">
+                        <div class="list-view-pf-checkbox">
+                          <input type="radio" name="runtime">
+                        </div>
+                        <div class="list-view-pf-actions">
+                          <div class="dropdown">
+                            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
+                              Dropdown
+                              <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                              <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
+                              <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
+                              <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
+                              <li role="presentation" class="divider"></li>
+                              <li role="presentation" class="disabled"><a role="menuitem" tabindex="-1" href="#">Disabled link</a></li>
+                              <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
+                            </ul>
+                          </div>
+                        </div>
+                        <div class="list-view-pf-main-info">
+                          <div class="list-view-pf-left">
+                            <span class="list-view-pf-logo">
+                              <img src="../../../assets/images/nodejs-logo.png" />
+                            </span>
+                          </div>
+                          <div class="list-view-pf-body">
+                            <div class="list-view-pf-description">
+                              <div class="list-group-item-heading">
+                                Node.js
+                              </div>
+                              <div class="list-group-item-text">
+                                Brief description of the technology...<a href="#">more</a>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="list-group list-view-pf">
+                      <div class="list-group-item list-view-pf-stacked list-view-pf-top-align">
+                        <div class="list-view-pf-checkbox">
+                          <input type="radio" name="runtime">
+                        </div>
+                        <div class="list-view-pf-actions">
+                          <div class="dropdown">
+                            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
+                              Dropdown
+                              <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                              <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
+                              <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
+                              <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
+                              <li role="presentation" class="divider"></li>
+                              <li role="presentation" class="disabled"><a role="menuitem" tabindex="-1" href="#">Disabled link</a></li>
+                              <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
+                            </ul>
+                          </div>
+                        </div>
+                        <div class="list-view-pf-main-info">
+                          <div class="list-view-pf-left">
+                            <span class="list-view-pf-logo">
+                              <img src="../../../assets/images/vertx.svg" />
+                            </span>
+                          </div>
+                          <div class="list-view-pf-body">
+                            <div class="list-view-pf-description">
+                              <div class="list-group-item-heading">
+                                Eclipse Vert.x
+                              </div>
+                              <div class="list-group-item-text">
+                                Brief description of the technology...<a href="#">more</a>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="list-group list-view-pf">
+                      <div class="list-group-item list-view-pf-stacked list-view-pf-top-align">
+                        <div class="list-view-pf-checkbox">
+                          <input type="radio" name="runtime">
+                        </div>
+                        <div class="list-view-pf-actions">
+                          <div class="dropdown">
+                            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
+                              Dropdown
+                              <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                              <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
+                              <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
+                              <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
+                              <li role="presentation" class="divider"></li>
+                              <li role="presentation" class="disabled"><a role="menuitem" tabindex="-1" href="#">Disabled link</a></li>
+                              <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
+                            </ul>
+                          </div>
+                        </div>
+                        <div class="list-view-pf-main-info">
+                          <div class="list-view-pf-left">
+                            <span class="list-view-pf-logo">
+                              <img src="../../../assets/images/wildfly-swarm.png" />
+                            </span>
+                          </div>
+                          <div class="list-view-pf-body">
+                            <div class="list-view-pf-description">
+                              <div class="list-group-item-heading">
+                                Wildfly Swarm
+                              </div>
+                              <div class="list-group-item-text">
+                                Brief description of the technology...<a href="#">more</a>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xs-12 col-md-6">
+                <div class="card-pf card-pf--large">
+                  <div class="card-pf-heading">
+                    <h2 class="card-pf-title">
+                      Select Mission
+                      <button class="btn btn-default" type="button">
+                        Reset Selections
+                      </button>
+                    </h2>
+                  </div>
+                  <div class="card-pf-body">
+                    <div class="list-group list-view-pf">
+                      <div class="list-group-item list-view-pf-stacked list-view-pf-top-align">
+                        <div class="f8launcher-tag-featured">
+                          Featured Mission
+                        </div>
+                        <div class="list-view-pf-checkbox">
+                          <input type="radio" name="mission">
+                        </div>
+                        <div class="list-view-pf-main-info">
+                          <div class="list-view-pf-body">
+                            <div class="list-view-pf-description">
+                              <div class="list-group-item-heading">
+                                Basic Application
+                              </div>
+                              <div class="list-group-item-text">
+                                Brief description of the Basic Application mission and what it does...<a href="#">more</a>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="list-group list-view-pf">
+                      <div class="list-group-item list-view-pf-stacked list-view-pf-top-align">
+                        <div class="list-view-pf-checkbox">
+                          <input type="radio" name="mission">
+                        </div>
+                        <div class="list-view-pf-main-info">
+                          <div class="list-view-pf-body">
+                            <div class="list-view-pf-description">
+                              <div class="list-group-item-heading">
+                                CRUD
+                              </div>
+                              <div class="list-group-item-text">
+                                Brief description of the CRUD mission and what it does...<a href="#">more</a>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="list-group list-view-pf">
+                      <div class="list-group-item list-view-pf-stacked list-view-pf-top-align">
+                        <div class="list-view-pf-checkbox">
+                          <input type="radio" name="mission">
+                        </div>
+                        <div class="list-view-pf-main-info">
+                          <div class="list-view-pf-body">
+                            <div class="list-view-pf-description">
+                              <div class="list-group-item-heading">
+                                Circuit Break
+                              </div>
+                              <div class="list-group-item-text">
+                                Brief description of the Circuit Breaker mission and what it does...<a href="#">more</a>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="list-group list-view-pf">
+                      <div class="list-group-item list-view-pf-stacked list-view-pf-top-align">
+                        <div class="list-view-pf-checkbox">
+                          <input type="radio" name="mission">
+                        </div>
+                        <div class="list-view-pf-main-info">
+                          <div class="list-view-pf-body">
+                            <div class="list-view-pf-description">
+                              <div class="list-group-item-heading">
+                                Externalized Configuration
+                              </div>
+                              <div class="list-group-item-text">
+                                Brief description of the Externalized Configuration mission and what it does...<a href="#">more</a>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="list-group list-view-pf">
+                      <div class="list-group-item list-view-pf-stacked list-view-pf-top-align">
+                        <div class="list-view-pf-checkbox">
+                          <input type="radio" name="mission">
+                        </div>
+                        <div class="list-view-pf-main-info">
+                          <div class="list-view-pf-body">
+                            <div class="list-view-pf-description">
+                              <div class="list-group-item-heading">
+                                REST API Level 0
+                              </div>
+                              <div class="list-group-item-text">
+                                Brief description of the REST API Level 0 mission and what it does...<a href="#">more</a>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="container-fluid">
+            <div class="f8launcher-continue">
+              <button class="btn btn-primary" disabled>OK</button> or press <b>ENTER</b>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section id="TargetEnvironment" class="col-xs-12 f8launcher-section-target-environment">
+        <div>
+          <h1 snInViewport (onInViewportChange)="onInViewportChange($event, 'TargetEnvironment')" [debounce]="500">Select Target Environment</h1>
+          <p>
+            Choose which environment the application should live in.
+          </p>
+        </div>
+        <div>
+          <div class="container-fluid container-cards-pf">
+            <div class="row row-cards-pf">
+              <div class="col-xs-12 col-md-6">
+                <div class="card-pf card-pf--medium">
+                  <div class="card-title">
+                    <input type="radio" name="target-environment">
+                    <h2 class="card-pf-title--title">Code Locally, Build and Deploy Online</h2>
+                  </div>
+                  <div class="card-pf-body--body">
+                    <h3 class="card-pf-body--body_header">Benefits</h3>
+                    <ul>
+                      <li>
+                        In your GitHub namespace, create repository containg your project's code.
+                      </li>
+                      <li>
+                        Configure OpenShift Online to build and deploy your code on each push to your repository's master branch.
+                      </li>
+                      <li>
+                        Here is a benefit of using OpenShift as a project environment.
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="card-pf-footer">
+                    <span class="card-pf-footer--title">OpenShift</span>
+                    <p>
+                      Here is a brief description of what OpenShift Online is. There is a distinction between what OpenShift Online does compared to OpenShift.io.
+                    </p>
+                    <div class="card-pf-footer--logo">
+                      <img src="../../../assets/images/Logotype_RH_OpenShiftOnline_wLogo_RGB_Black.svg" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- <div class="col-xs-12 col-md-4">
+                <div class="card-pf card-pf--medium">
+                  <div class="card-title">
+                    <input type="radio" name="target-environment">
+                    <h2 class="card-pf-title--title">Code, Deploy, Build</h2>
+                  </div>
+                  <div class="card-pf-body--body">
+                    <h3 class="card-pf-body--body_header">Benefits</h3>
+                    <ul>
+                      <li>
+                        Here is a benefit of using OpenShift.io as a project environment.
+                      </li>
+                      <li>
+                        Here is another benefit of using OpenShift.io as a project environment.
+                      </li>
+                      <li>
+                        Here is one more benefit of using OpenShift.io as a project environment.
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="card-pf-footer">
+                    <span class="card-pf-footer--title">OpenShift</span>
+                    <p>
+                      Here is a brief description of what OpenShift Online is. There is a distinction between what OpenShift Online does compared to OpenShift.io.
+                    </p>
+                    <div class="card-pf-footer--logo">
+                      <img src="../../../assets/images/Logotype_RH_OpenShift-io_RGB_Black.svg" />
+                    </div>
+                  </div>
+                </div>
+              </div> -->
+              <div class="col-xs-12 col-md-6">
+                <div class="card-pf card-pf--medium">
+                  <div class="card-title">
+                    <input type="radio" name="target-environment">
+                    <h2 class="card-pf-title--title">Build &amp; Run Locally</h2>
+                  </div>
+                  <div class="card-pf-body--body">
+                    <h3 class="card-pf-body--body_header">Benefits</h3>
+                    <ul>
+                      <li>
+                        Scaffold a project based on your chosen runtime.
+                      </li>
+                      <li>
+                        Configure OpenShift Online to build and deploy your code on each push to your repository's master branch.
+                      </li>
+                      <li>
+                        Here is a benefit of using OpenShift as a project environment.
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="card-pf-footer">
+                    <span class="card-pf-footer--title">.ZIP File</span>
+                    <p>
+                      When you build and run locally, you will receive a .zip file containing the setup you have established for your application.
+                    </p>
+                    <div class="card-pf-footer--logo">
+                      <img src="../../../assets/images/icon-fa-zip.svg" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="container-fluid">
+            <div class="f8launcher-continue">
+              <button class="btn btn-primary">OK</button> or press <b>ENTER</b>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section id="ReleaseStrategy" class="col-xs-12 f8launcher-section-release-strategy">
+        <div>
+          <h1 snInViewport (onInViewportChange)="onInViewportChange($event, 'ReleaseStrategy')" [debounce]="500">Select Release Strategy</h1>
+          <p>
+            There are multiple pipelines available to deploy your application. Each has 4 different stages with a varying set of capabilities. Stages of the piplines include: build release, integration testing, staging and running an application.
+          </p>
+          <p>
+            There is a pre-selected, recommended pipeline based on the selected mission and technology.
+          </p>
+        </div>
+        <div>
+          <div class="container-fluid container-cards-pf">
+            <div class="row row-cards-pf">
+              <div class="col-xs-12">
+                <div class="card-pf">
+                  <div class="card-pf-heading">
+                    <h2 class="card-pf-title">
+                      Select Pipeline
+                    </h2>
+                  </div>
+                  <div class="card-pf-body">
+                    <div class="list-group list-view-pf list-view-pf-view">
+                      <div class="list-group-item">
+                        <div class="f8launcher-tag-featured">
+                          Recommended Pipeline
+                        </div>
+                        <div class="list-group-item-header">
+                          <div class="list-view-pf-expand">
+                            <span class="fa fa-angle-down"></span>
+                          </div>
+                          <div class="list-view-pf-checkbox">
+                            <input type="radio">
+                          </div>
+                          <div class="list-view-pf-main-info">
+                            <div class="list-view-pf-body">
+                              <div class="list-view-pf-description">
+                                <div class="list-group-item-heading">
+                                  <b>Name of Pipeline</b>
+                                </div>
+                                <div class="list-group-item-text">
+                                  <b>5</b> Stages
+                                  A slightly longer description of this pipeline's capabilities and usage.
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="list-group-item-container container-fluid">
+                          <div class="close">
+                            <span class="pficon pficon-close"></span>
+                          </div>
+                          <div class="row">
+                            <div class="col-md-12 f8launcher-pipeline-stages">
+                              <span class="f8launcher-pipeline-stages--line">Stage Name</span>
+                              <span class="f8launcher-pipeline-stages--arrow"></span>
+                              <span class="f8launcher-pipeline-stages--line">Stage Name</span>
+                              <span class="f8launcher-pipeline-stages--arrow"></span>
+                              <span class="f8launcher-pipeline-stages--line">Stage Name</span>
+                              <span class="f8launcher-pipeline-stages--arrow"></span>
+                              <span class="f8launcher-pipeline-stages--line">Stage Name</span>
+                              <span class="f8launcher-pipeline-stages--arrow"></span>
+                              <span class="f8launcher-pipeline-stages--line">Stage Name</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="container-fluid">
+            <div class="f8launcher-continue">
+              <button class="btn btn-primary">OK</button> or press <b>ENTER</b>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section id="GitProvider" class="col-xs-12 f8launcher-section-git-provider">
+        <div>
+          <h1 snInViewport (onInViewportChange)="onInViewportChange($event, 'GitProvider')" [debounce]="500">Authorize Git Provider</h1>
+        </div>
+        <div>
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-xs-12 f8launcher-provider-card">
+                <div class="col-xs-4 f8launcher-provider-card-icon">
+                  <h3>GitHub</h3>
+                  <i class="fa fa-github"></i>
+                </div>
+                <div class="col-xs-8 f8launcher-provider-card-information">
+                  <h3>Authorized Account</h3>
+                  <div class="f8launcher-provider-card-information-authorize">
+                    <i class="fa fa-ban fa-2x"></i> <span class="f8launcher-username">None</span>
+                    <button class="btn btn-primary f8launcher-authorize-account">Authorize Account</button>
+                  </div>
+                  <h4>Organization &amp; Repository</h4>
+                  <form class="form-horizontal">
+                    <div class="form-group">
+                      <label for="orgDropdown" class="col-sm-2 control-label">Organization</label>
+                      <div class="col-sm-10">
+                        <select class="form-control">
+                          <option>fabric8-ui</option>
+                          <option>fabric8-launcher</option>
+                          <option>PatternFly</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="repositoryName" class="col-sm-2 control-label">Repository</label>
+                      <div class="col-sm-10">
+                        <input type="text" class="form-control" id="orgDropdown" placeholder="Organization">
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="container-fluid">
+            <div class="f8launcher-continue">
+              <button class="btn btn-primary">OK</button> or press <b>ENTER</b>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section id="ProjectSummary" class="col-xs-12 f8launcher-section-project-summary">
+        <div>
+          <h1 snInViewport (onInViewportChange)="onInViewportChange($event, 'ProjectSummary')" [debounce]="500">Confirm Project Summary</h1>
+        </div>
+        <div>
+          <div class="container-fluid container-cards-pf">
+            <div class="row row-cards-pf">
+              <div class="col-xs-6">
+                <div class="card-pf card-pf--xsmall">
+                  <div class="card-pf-heading">
+                    <h2 class="card-pf-title">
+                      Runtime
+                    </h2>
+                  </div>
+                  <div class="card-pf-body card-column">
+                    <div class="card-column-60">
+                      <b>Eclipse Vert.x</b>
+                      <b class="pull-right">v2.4</b>
+                      <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore...<a href="#">more</a>
+                      </p>
+                    </div>
+                    <div class="card-column-40">
+                      <img src="../../../assets/images/vertx.svg" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xs-6">
+                <div class="card-pf card-pf--xsmall">
+                  <div class="card-pf-heading">
+                    <h2 class="card-pf-title">
+                      Mission
+                    </h2>
+                  </div>
+                  <div class="card-pf-body card-column">
+                    <div class="card-column-single">
+                      <b>Basic Application</b>
+                      <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore...<a href="#">more</a>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="container-fluid container-cards-pf">
+          <div class="row row-cards-pf">
+            <div class="col-xs-12">
+              <div class="card-pf card-pf--xsmall">
+                <div class="card-pf-heading">
+                  <h2 class="card-pf-title">
+                    Pipeline
+                  </h2>
+                </div>
+                <div class="card-pf-body card-column">
+                  <div class="card-column-40">
+                    <h5><b>Name of Pipeline</b></h5>
+                    <h5><b>5 Stages</b></h5>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="container-fluid">
+            <div class="f8launcher-continue">
+              <button class="btn btn-primary" disabled>OK</button> or press <b>ENTER</b>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
