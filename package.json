@@ -7,6 +7,7 @@
   "typings": "index.d.ts",
   "scripts": {
     "build": "npm run remove-dist && npm run build:library",
+    "build:demo": "webpack --config config/webpack.demo.js --progress --profile --bail",
     "build:library": "gulp build:library",
     "bundle": "rollup -c",
     "bundle-webpack": "webpack --config config/webpack.prod.js --progress --profile --bail",
@@ -18,6 +19,7 @@
     "reinstall": "npm run clean && npm install",
     "remove-dist": "rimraf dist",
     "rimraf": "rimraf",
+    "start-http": "./node_modules/.bin/http-server dist-demo/ -a 0.0.0.0 -p8080 -c-1",
     "start": "webpack-dev-server --config config/webpack.demo.js --progress --host 0.0.0.0 --port 3001 --profile --watch --content-base src/",
     "start:demo": "webpack-dev-server --config config/webpack.demo.js --progress --host 0.0.0.0 --port 8001 --profile --watch --content-base dist-demo",
     "transpile": "gulp transpile",
@@ -114,6 +116,7 @@
     "gulp-util": "^3.0.8",
     "html-loader": "0.5.1",
     "html-webpack-plugin": "2.30.1",
+    "http-server": "0.10.0",
     "husky": "0.13.3",
     "istanbul-instrumenter-loader": "2.0.0",
     "jasmine-core": "2.5.2",

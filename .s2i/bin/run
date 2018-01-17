@@ -1,0 +1,4 @@
+#!/bin/bash
+
+# run the application
+./node_modules/.bin/http-server dist-demo/ -a 0.0.0.0 -p8080 -c-1

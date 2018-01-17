@@ -1,0 +1,29 @@
+#!/bin/bash
+
+# restore build artifacts
+echo "Current folder:"
+pwd
+echo "Home folder:"
+echo $HOME
+
+echo "ls -la /tmp"
+ls -la /tmp/
+if [ "$(ls /tmp/artifacts 2>/dev/null)" ]; then
+    echo "Copying node modules"
+    mkdir -p ./node_modules
+    mv /tmp/artifacts/node_modules/* ./node_modules/
+    echo "ls -la ./"
+    ls -la ./
+fi
+
+/usr/libexec/s2i/assemble
+rc=$?
+
+if [ $rc -eq 0 ]; then
+    echo "After successful assembling"
+else
+    echo "After failed assembling"
+fi
+
+echo "npm install complete.  Running demo build..."
+npm run build:demo
