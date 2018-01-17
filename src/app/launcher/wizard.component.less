@@ -1,7 +1,7 @@
-@import (reference) '../../assets/stylesheets/shared/main.less';
+@import (reference) '../../../src/assets/stylesheets/shared/main.less';
 
 // required as a non-referenced item in order to be included with the component
-@import '../../assets/stylesheets/shared/_pipelines.less';
+@import '../../../src/assets/stylesheets/shared/_pipelines.less';
 
 body {
   overflow-x: hidden;
@@ -22,15 +22,12 @@ body {
   background-color: @color-pf-black-300;
   width: 100%;
   .active {
-    // background-color: @color-pf-black-700;
+    background-color: @color-pf-black-700;
+    // background: linear-gradient(-90deg, @color-pf-black-900, @color-pf-blue);
     border-left: 3px solid;
     text-decoration: none;
-    // .animation();
-    // .a3();
-    // .animated-background-color();
-    .gradient-animation( @color-pf-black-900, @color-pf-blue, 2s );
     /* stylelint-disable-next-line declaration-no-important */
-    border-left-color: @color-pf-blue-300 !important;
+    border-left-color: @color-pf-blue !important;
     .f8launcher-step-circle {
       background-color: @color-pf-blue-300;
       border: solid 1px @color-pf-black-700;
@@ -142,45 +139,13 @@ body {
       }
       .card-pf-footer {
         position: absolute;
-        right: 30px;
-        bottom: 20px;
-        left: 30px;
-      }
-    }
-  }
-  .f8launcher-provider-card {
-    background-color: @color-pf-white;
-    min-height: 300px;
-    padding-left: 0;
-    padding-right: 0;
-    box-shadow: 0 .5px 1px 0 rgba(0, 0, 0, .3), 0 -.5px 1px 0 rgba(0, 0, 0, .3);
-    &-icon {
-      min-height: 300px;
-      background-color: @color-pf-black-200;
-      text-align: center;
-      h3 {
-        font-weight: 300;
-      }
-      i {
-        padding: 25px;
-        font-size: 15em;
-      }
-    }
-    &-information {
-      padding-left: 15px;
-      padding-right: 15px;
-      min-height: 300px;
-      h3 {
-        font-weight: 600;
-      }
-      &-authorize {
-        margin-bottom: 65px;
-        .f8launcher-username {
-          vertical-align: super;
-        }
-        .f8launcher-authorize-account {
-          float: right;
-        }
+        right: 0;
+        bottom: 0;
+        left: 0;
+        /* stylelint-disable */
+        margin: 0 0px !important;
+        padding: 20px 20px 10px !important;
+        /* stylelint-enable */
       }
     }
   }
@@ -208,87 +173,6 @@ body {
       grid-template-areas: 'content';
       grid-template-columns: 1fr;
     }
-    &_nav {
-      @media screen and (max-width: 768px) {
-        // display: none;
-        position: fixed;
-        top: 0;
-        bottom: 0;
-        width: 250px;
-        left: -250px;
-        z-index: 10;
-        transition: transform .3s ease-in-out;
-        &:target {
-          transform: translateX(250px);
-        }
-      }
-      grid-area: nav;
-      display: flex;
-      height: 100vh;
-      // align-items: center;
-      background-color: @color-pf-black-900;
-      position: fixed;
-      left: 0;
-      padding-top: 20px;
-      width: 250px;
-      .f8launcher-vertical-bar {
-        display: grid;
-        grid-template-rows: 1fr 1fr 1fr 1fr;
-        // align-content: space-between;
-        // align-self: flex-start;
-        background-color: @color-pf-black-700;
-        width: 25px;
-        height: 90vh;
-        border-radius: 10px;
-        margin-left: 15px;
-        @media screen and (max-width: 768px) {
-          margin-top: 25px;
-        }
-        a {
-          margin-left: -15px;
-          padding-top: 10px;
-          padding-bottom: 10px;
-          border-left: 3px solid;
-          border-left-color: transparent;
-          font-weight: 700;
-          height: 40px;
-          transition: background, border .3s ease-in-out;
-          -webkit-transition: background, border .3s ease-in-out;
-          -moz-transition: background, border .3s ease-in-out;
-        }
-        &_steps {
-          color: @color-pf-black-400;
-          padding-left: 20px;
-          &--1,
-          &--2,
-          &--3,
-          &--4,
-          &--5 {
-            padding-left: 17px;
-            width: 250px;
-            color: @color-pf-black-400;
-            &:hover {
-              // background: @color-pf-black-700;
-              // .gradient-animation( @color-pf-blue, @color-pf-black-900, 2s );
-              // background: linear-gradient(-90deg, @color-pf-black-900, @color-pf-black-900, @color-pf-blue);
-              text-decoration: none;
-              border-left: 3px solid;
-              /* stylelint-disable-next-line declaration-no-important */
-              border-left-color: @color-pf-blue !important;
-            }
-            &:active {
-              &:before {
-                opacity: 0;
-              }
-            }
-          }
-          &--title {
-            margin-left: 10px;
-            vertical-align: top;
-          }
-        }
-      }
-    }
     &_main {
       grid-area: content;
       display: grid;
@@ -299,26 +183,6 @@ body {
         grid-template-rows: 50px repeat(5, auto) 50px;
       }
     }
-  }
-  /* Icons */
-  .f8launcher-step-circle {
-    border: 1px solid #303030;
-    width: 15px;
-    height: 15px;
-    border-radius: 50%;
-    background-color: @color-pf-black-300;
-    color: @color-pf-black-300;
-    margin-right: 5px;
-    display: inline-flex;
-  }
-  .f8launcher-tag-featured {
-    padding: 2px 5px;
-    background-color: @color-pf-blue;
-    color: @color-pf-white;
-    font-size: .9em;
-    position: absolute;
-    top: 0;
-    right: 0;
   }
   .box {
     display: inline-block;
@@ -348,87 +212,5 @@ body {
   }
   #ProjectSummary {
     margin-bottom: 5em;
-  }
-}
-@keyframes pulse {
-  0%,
-  100% {
-    border-bottom-color: @color-pf-blue;
-  }
-  50% {
-    border-bottom-color: @color-pf-green;
-  }
-}
-@keyframes fadeInLeft {
-  from {
-    opacity: 0;
-    transform: translate3d(-100%, 0, 0);
-  }
-
-  to {
-    opacity: 1;
-    transform: none;
-  }
-}
-@keyframes animatebackground {
-  0% {
-		background-position: 0% 50%;
-	}
-	50% {
-		background-position: 100% 50%;
-	}
-	100% {
-		background-position: 0% 50%;
-	}
-}
-@keyframes slidein {
-  from { transform: scaleX(0); }
-  to   { transform: scaleX(1); }
-}
-@keyframes stay {
-  from { transform: scaleX(0); }
-  to   { transform: scaleX(0); }
-}
-.animation {
-  background: @color-pf-black-700;
-  width: 250px;
-  height: calc(100% - 1.5em);
-  transform-origin: left center;
-}
-.a3 {
-  animation-duration: .3s;
-  animation-timing-function: linear;
-  animation-name: slidein;
-}
-.animated-background-color {
-  background: linear-gradient(-90deg, #23a6d5, @color-pf-black-900, @color-pf-black-900, #23a6d5);
-  animation: animatebackground 3s ease;
-  -webkit-animation: animatebackground 3s ease;
-	-moz-animation: animatebackground 3s ease;
-  background-size: 400% 400%;
-  width: 250px;
-}
-.gradient-animation( @start, @end, @transTime ) {
-  background-size: 100%;
-  background-image: linear-gradient(-90deg, @start, @end);
-  position: relative;
-  z-index: 100;
-  &:before {
-    background-image: linear-gradient(-90deg, @end, @start);
-    content: '';
-    display: block;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    opacity: 0;
-    width: 100%;
-    z-index: -100;
-    transition: opacity @transTime;
-  }
-  &:hover {
-     &:before {
-       opacity: 1;
-     }
   }
 }

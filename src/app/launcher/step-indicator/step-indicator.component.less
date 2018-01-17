@@ -1,0 +1,97 @@
+@import (reference) '../../../assets/stylesheets/shared/main.less';
+
+.f8launcher {
+  .f8launcher-container {
+    &_nav {
+      @media screen and (max-width: 768px) {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        width: 250px;
+        left: -250px;
+        z-index: 10;
+        transition: transform .3s ease-in-out;
+        &:target {
+          transform: translateX(250px);
+        }
+      }
+      grid-area: nav;
+      display: flex;
+      height: 100vh;
+      background-color: @color-pf-black-900;
+      position: fixed;
+      left: 0;
+      padding-top: 20px;
+      width: 250px;
+      .f8launcher-vertical-bar {
+        display: grid;
+        grid-template-rows: 1fr 1fr 1fr 1fr;
+        background-color: @color-pf-black-700;
+        width: 25px;
+        // height: 90vh;
+        height: 85vh;
+        border-radius: 10px;
+        margin-left: 15px;
+        @media screen and (max-width: 768px) {
+          margin-top: 25px;
+        }
+        a {
+          margin-left: -15px;
+          padding-top: 10px;
+          padding-bottom: 10px;
+          border-left: 3px solid;
+          border-left-color: transparent;
+          font-weight: 700;
+          height: 40px;
+          transition: background .3s ease-in-out;
+          -webkit-transition: background .3s ease-in-out;
+          -moz-transition: background .3s ease-in-out;
+          // transition: background .2s ease-in-out, border .2s ease-in-out;
+          // -webkit-transition: background .2s ease-in-out, border .2s ease-in-out;
+          // -moz-transition: background .2s ease-in-out, border .2s ease-in-out;
+        }
+        &_steps {
+          color: @color-pf-black-400;
+          padding-left: 20px;
+          &--1,
+          &--2,
+          &--3,
+          &--4,
+          &--5 {
+            padding-left: 17px;
+            width: 250px;
+            color: @color-pf-black-400;
+            &:hover {
+              background: @color-pf-black-700;
+              // .gradient-animation( @color-pf-blue, @color-pf-black-900, 2s );
+              // background: linear-gradient(-90deg, @color-pf-black-900, @color-pf-blue);
+              text-decoration: none;
+              border-left: 3px solid;
+              /* stylelint-disable-next-line declaration-no-important */
+              border-left-color: @color-pf-blue !important;
+            }
+            &:active,
+            &:focus {
+              text-decoration: none;
+            }
+          }
+          &--title {
+            margin-left: 10px;
+            vertical-align: top;
+          }
+        }
+      }
+    }
+  }
+  /* Icons */
+  .f8launcher-step-circle {
+    border: 1px solid #303030;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: @color-pf-black-300;
+    color: @color-pf-black-300;
+    margin-right: 5px;
+    display: inline-flex;
+  }
+}
