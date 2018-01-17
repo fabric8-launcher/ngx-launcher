@@ -9,21 +9,22 @@ body {
 }
 .f8launcher-grid {
   display: grid;
-  grid-template-rows: auto 1fr 200px;
+  // grid-template-rows: repeat(5, 100vh);
   grid-template-columns: 1fr;
-  height: 100vh;
-  @media screen and (max-width: 768px) {
-    height: auto;
-  }
+  grid-auto-rows: minmax(750px, 1fr);
+  // @media screen and (max-width: 768px) {
+  //   height: auto;
+  // }
 }
 .f8launcher {
   position: absolute;
   top: 41px;
-  background-color: @color-pf-black-300;
+  background-color: #ededed;
   width: 100%;
   .active {
     background-color: @color-pf-black-700;
     // background: linear-gradient(-90deg, @color-pf-black-900, @color-pf-blue);
+    // .gradient-animation( @color-pf-black-900, @color-pf-blue, 2s );
     border-left: 3px solid;
     text-decoration: none;
     /* stylelint-disable-next-line declaration-no-important */
@@ -124,15 +125,16 @@ body {
     }
   }
   .f8launcher-section {
-    &-mission-runtime,
-    &-target-environment,
-    &-release-strategy {
-      .f8launcher-grid();
-    }
-    &-git-provider {
-      &:extend(.f8launcher-grid);
-      grid-template-rows: auto auto 200px;
-    }
+    // &-mission-runtime,
+    // &-target-environment,
+    // &-release-strategy {
+    //   &:extend(.f8launcher-grid);
+    //   grid-template-rows: auto 1fr 200px;
+    // }
+    // &-git-provider {
+    //   &:extend(.f8launcher-grid);
+    //   grid-template-rows: auto auto 200px;
+    // }
     &-target-environment {
       .card-pf-title {
         height: 80px;
@@ -165,23 +167,13 @@ body {
     padding-bottom: 15px;
   }
   &-container {
-    display: grid;
-    grid-template-areas: 'nav content';
-    height: 100vh;
-    grid-template-columns: 250px 1fr;
+    .f8launcher-grid();
     @media screen and (max-width: 768px) {
       grid-template-areas: 'content';
       grid-template-columns: 1fr;
     }
     &_main {
-      grid-area: content;
-      display: grid;
-      grid-template-rows: 50px 100vh 100vh 100vh 100vh 100vh 50px;
-      background-color: #ededed;
-      padding-left: 15px;
-      @media screen and (max-width: 768px) {
-        grid-template-rows: 50px repeat(5, auto) 50px;
-      }
+      margin-left: 250px;
     }
   }
   .box {
@@ -203,14 +195,14 @@ body {
     #MissionRuntime,
     #TargetEnvironment,
     #ReleaseStrategy,
-    #GitProvider,
-    #ProjectSummary {
+    #GitProvider {
     margin-top: 15em;
   }
   #MissionRuntime {
     margin-top: 0;
   }
   #ProjectSummary {
+    margin-top: 35em;
     margin-bottom: 5em;
   }
 }
