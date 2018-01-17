@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# Besides the tar command, all other output to standard out must
+# be surpressed.  Otherwise, the tar stream will be corrupted.
+
+set -e
+tar -C /opt/app-root/src -cf - node_modules
