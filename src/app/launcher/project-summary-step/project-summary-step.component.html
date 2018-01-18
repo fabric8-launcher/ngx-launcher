@@ -7,7 +7,7 @@
   <div>
     <div class="container-fluid container-cards-pf">
       <div class="row row-cards-pf">
-        <div class="col-xs-6">
+        <div class="col-xs-12 col-md-6">
           <div class="card-pf card-pf--xsmall">
             <div class="card-pf-heading">
               <h2 class="card-pf-title">
@@ -28,7 +28,7 @@
             </div>
           </div>
         </div>
-        <div class="col-xs-6">
+        <div class="col-xs-12 col-md-6">
           <div class="card-pf card-pf--xsmall">
             <div class="card-pf-heading">
               <h2 class="card-pf-title">
@@ -51,16 +51,138 @@
   <div class="container-fluid container-cards-pf">
     <div class="row row-cards-pf">
       <div class="col-xs-12">
-        <div class="card-pf card-pf--xsmall">
+        <div class="card-pf">
           <div class="card-pf-heading">
             <h2 class="card-pf-title">
               Pipeline
             </h2>
           </div>
+          <div class="card-pf-body">
+            <div class="list-group list-view-pf list-view-pf-view">
+              <div class="list-group-item">
+                <div class="list-group-item-header">
+                  <div class="list-view-pf-main-info">
+                    <div class="list-view-pf-body">
+                      <div class="list-view-pf-description">
+                        <div class="list-group-item-heading">
+                          <b>Name of Pipeline</b>
+                        </div>
+                        <div class="list-group-item-text">
+                          <b>5</b> Stages
+                        </div>
+                        <div class="list-view-pf-additional-info">
+                          <div class="list-view-pf-additional-info-item">
+                            A slightly longer description of this pipeline's capabilities and usage...<a href="#">more</a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="list-group-item-container container-fluid">
+                  <div class="row">
+                    <div class="col-md-12 f8launcher-pipeline-stages">
+                      <span class="f8launcher-pipeline-stages--line">Stage Name</span>
+                      <span class="f8launcher-pipeline-stages--arrow"></span>
+                      <span class="f8launcher-pipeline-stages--line">Stage Name</span>
+                      <span class="f8launcher-pipeline-stages--arrow"></span>
+                      <span class="f8launcher-pipeline-stages--line">Stage Name</span>
+                      <span class="f8launcher-pipeline-stages--arrow"></span>
+                      <span class="f8launcher-pipeline-stages--line">Stage Name</span>
+                      <span class="f8launcher-pipeline-stages--arrow"></span>
+                      <span class="f8launcher-pipeline-stages--line">Stage Name</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid container-cards-pf">
+    <div class="row row-cards-pf">
+      <div class="col-xs-12 col-md-6">
+        <div class="card-pf card-pf--small">
+          <div class="card-pf-heading">
+            <h2 class="card-pf-title">
+              Project Information
+            </h2>
+          </div>
           <div class="card-pf-body card-column">
-            <div class="card-column-40">
-              <h5><b>Name of Pipeline</b></h5>
-              <h5><b>5 Stages</b></h5>
+            <div class="card-column-single">
+              <form class="form-horizontal">
+                <div class="form-group project-summary-data-form-group">
+                  <label for="projectName" class="col-xs-4 control-label">Project Name</label>
+                  <div class="col-xs-8 project-summary-data-field">
+                    <span>Project_test</span>
+                  </div>
+                </div>
+                <div class="form-group project-summary-data-form-group">
+                  <label for="projectName" class="col-xs-4 control-label">Maven Artifact</label>
+                  <div class="col-xs-8 project-summary-data-field">
+                    <span>d4.345</span>
+                  </div>
+                </div>
+                <div class="form-group project-summary-data-form-group">
+                  <label for="projectName" class="col-xs-4 control-label">Version</label>
+                  <div class="col-xs-8 project-summary-data-field">
+                    <span>124.644</span>
+                  </div>
+                </div>
+                <div class="form-group project-summary-data-form-group">
+                  <label for="projectName" class="col-xs-4 control-label">Group ID</label>
+                  <div class="col-xs-8 project-summary-data-field">
+                    <span>124-644</span>
+                  </div>
+                </div>
+                <div class="form-group project-summary-data-form-group">
+                  <label for="projectName" class="col-xs-4 control-label">Space Path</label>
+                  <div class="col-xs-8 project-summary-data-field">
+                    <span>/myspace</span>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-12 col-md-6">
+        <div class="card-pf card-pf--small">
+          <div class="card-pf-heading">
+            <h2 class="card-pf-title">
+              GitHub
+            </h2>
+          </div>
+          <div class="card-pf-body card-column">
+            <div class="card-column-70">
+              <form class="form-horizontal">
+                <div class="form-group project-summary-data-form-group">
+                  <label for="projectName" class="col-xs-5 control-label">Authorized Account</label>
+                  <div class="col-xs-6 project-summary-data-field">
+                    <div class="project-summary-data-field-account">
+                      <i class="fa fa-ban fa-2x"></i>
+                      <span class="project-summary-data-field-account-username">bdellasc</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group project-summary-data-form-group">
+                  <label for="projectName" class="col-xs-5 control-label">Organization</label>
+                  <div class="col-xs-6 project-summary-data-field">
+                    <span>Name_of_Org_repo</span>
+                  </div>
+                </div>
+                <div class="form-group project-summary-data-form-group">
+                  <label for="projectName" class="col-xs-5 control-label">Repository</label>
+                  <div class="col-xs-6 project-summary-data-field">
+                    <span>Name_of_Org_repo_1</span>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div class="card-column-30">
+              <i class="fa fa-github git-provider-icon"></i>
             </div>
           </div>
         </div>
