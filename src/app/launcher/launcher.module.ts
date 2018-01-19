@@ -9,7 +9,7 @@ import { GitProviderStepComponent } from './gitprovider-step/gitprovider-step.co
 import { ReleaseStrategyStepComponent } from './release-strategy-step/release-strategy-step.component';
 import { ProjectSummaryStepComponent } from './project-summary-step/project-summary-step.component';
 import { ActivateBoosterStepComponent } from './activate-booster-step/activate-booster-step.component';
-
+import { NewProjectStepComponent } from './new-project-step/new-project-step.component';
 
 @NgModule({
   imports: [
@@ -27,7 +27,8 @@ import { ActivateBoosterStepComponent } from './activate-booster-step/activate-b
     ReleaseStrategyStepComponent,
     GitProviderStepComponent,
     ProjectSummaryStepComponent,
-    ActivateBoosterStepComponent
+    ActivateBoosterStepComponent,
+    NewProjectStepComponent
   ]
 })
 export class LauncherModule {
