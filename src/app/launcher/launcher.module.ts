@@ -8,6 +8,7 @@ import { TargetEnvironmentStepComponent } from './targetenvironment-step/target-
 import { GitProviderStepComponent } from './gitprovider-step/gitprovider-step.component';
 import { ReleaseStrategyStepComponent } from './release-strategy-step/release-strategy-step.component';
 import { ProjectSummaryStepComponent } from './project-summary-step/project-summary-step.component';
+import { ActivateBoosterStepComponent } from './activate-booster-step/activate-booster-step.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { ProjectSummaryStepComponent } from './project-summary-step/project-summ
     TargetEnvironmentStepComponent,
     ReleaseStrategyStepComponent,
     GitProviderStepComponent,
-    ProjectSummaryStepComponent
+    ProjectSummaryStepComponent,
+    ActivateBoosterStepComponent
   ]
 })
 export class LauncherModule {
