@@ -35,6 +35,13 @@
         @media screen and (max-width: 768px) {
           margin-top: 25px;
         }
+        /*
+         * this is only on the element when the wizard is in-progress.
+         * once completed, this class is removed
+         */
+        &.in-progress {
+          background-image: linear-gradient(@color-pf-black-700, @color-pf-black-900);
+        }
         a {
           margin-left: -15px;
           padding-top: 10px;
