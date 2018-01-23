@@ -21,160 +21,35 @@
               </h2>
             </div>
             <div class="card-pf-body">
-              <div class="list-group list-view-pf">
+              <div class="list-group list-view-pf" *ngFor="let runtime of runtimes; let i = index">
                 <div class="list-group-item list-view-pf-stacked list-view-pf-top-align">
                   <div class="list-view-pf-checkbox">
                     <input type="radio" name="runtime">
                   </div>
                   <div class="list-view-pf-actions">
-                    <div class="dropdown">
-                      <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
+                    <div class="dropdown" dropdown>
+                      <button dropdownToggle type="button" class="btn btn-default dropdown-toggle" id="{{i + 'dropdown'}}">
                         Dropdown
                         <span class="caret"></span>
                       </button>
-                      <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
-                        <li role="presentation" class="divider"></li>
-                        <li role="presentation" class="disabled"><a role="menuitem" tabindex="-1" href="#">Disabled link</a></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
+                      <ul *dropdownMenu class="dropdown-menu" role="menu" [attr.aria-labelledby]="i + 'dropdown'">
+                        <li role="menuitem" *ngFor="let version of runtime.versions"><a role="menuitem" class="dropdown-item" tabindex="-1" href="#">{{version}}</a></li>
                       </ul>
                     </div>
                   </div>
                   <div class="list-view-pf-main-info">
                     <div class="list-view-pf-left">
-                            <span class="list-view-pf-logo">
-                              <img src="../../../assets/images/spring-boot-logo.png" />
-                            </span>
+                      <span class="list-view-pf-logo">
+                        <img [src]="runtime.logo" />
+                      </span>
                     </div>
                     <div class="list-view-pf-body">
                       <div class="list-view-pf-description">
                         <div class="list-group-item-heading">
-                          Spring Boot
+                          {{runtime.title}}
                         </div>
                         <div class="list-group-item-text">
-                          Brief description of the technology...<a href="#">more</a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="list-group list-view-pf">
-                <div class="list-group-item list-view-pf-stacked list-view-pf-top-align">
-                  <div class="list-view-pf-checkbox">
-                    <input type="radio" name="runtime">
-                  </div>
-                  <div class="list-view-pf-actions">
-                    <div class="dropdown">
-                      <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
-                        Dropdown
-                        <span class="caret"></span>
-                      </button>
-                      <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
-                        <li role="presentation" class="divider"></li>
-                        <li role="presentation" class="disabled"><a role="menuitem" tabindex="-1" href="#">Disabled link</a></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div class="list-view-pf-main-info">
-                    <div class="list-view-pf-left">
-                            <span class="list-view-pf-logo">
-                              <img src="../../../assets/images/nodejs-logo.png" />
-                            </span>
-                    </div>
-                    <div class="list-view-pf-body">
-                      <div class="list-view-pf-description">
-                        <div class="list-group-item-heading">
-                          Node.js
-                        </div>
-                        <div class="list-group-item-text">
-                          Brief description of the technology...<a href="#">more</a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="list-group list-view-pf">
-                <div class="list-group-item list-view-pf-stacked list-view-pf-top-align">
-                  <div class="list-view-pf-checkbox">
-                    <input type="radio" name="runtime">
-                  </div>
-                  <div class="list-view-pf-actions">
-                    <div class="dropdown">
-                      <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
-                        Dropdown
-                        <span class="caret"></span>
-                      </button>
-                      <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
-                        <li role="presentation" class="divider"></li>
-                        <li role="presentation" class="disabled"><a role="menuitem" tabindex="-1" href="#">Disabled link</a></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div class="list-view-pf-main-info">
-                    <div class="list-view-pf-left">
-                            <span class="list-view-pf-logo">
-                              <img src="../../../assets/images/vertx.svg" />
-                            </span>
-                    </div>
-                    <div class="list-view-pf-body">
-                      <div class="list-view-pf-description">
-                        <div class="list-group-item-heading">
-                          Eclipse Vert.x
-                        </div>
-                        <div class="list-group-item-text">
-                          Brief description of the technology...<a href="#">more</a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="list-group list-view-pf">
-                <div class="list-group-item list-view-pf-stacked list-view-pf-top-align">
-                  <div class="list-view-pf-checkbox">
-                    <input type="radio" name="runtime">
-                  </div>
-                  <div class="list-view-pf-actions">
-                    <div class="dropdown">
-                      <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
-                        Dropdown
-                        <span class="caret"></span>
-                      </button>
-                      <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
-                        <li role="presentation" class="divider"></li>
-                        <li role="presentation" class="disabled"><a role="menuitem" tabindex="-1" href="#">Disabled link</a></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div class="list-view-pf-main-info">
-                    <div class="list-view-pf-left">
-                            <span class="list-view-pf-logo">
-                              <img src="../../../assets/images/wildfly-swarm.png" />
-                            </span>
-                    </div>
-                    <div class="list-view-pf-body">
-                      <div class="list-view-pf-description">
-                        <div class="list-group-item-heading">
-                          Wildfly Swarm
-                        </div>
-                        <div class="list-group-item-text">
-                          Brief description of the technology...<a href="#">more</a>
+                          {{runtime.description}}<a href="#">more</a>
                         </div>
                       </div>
                     </div>
@@ -195,9 +70,9 @@
               </h2>
             </div>
             <div class="card-pf-body">
-              <div class="list-group list-view-pf">
+              <div class="list-group list-view-pf" *ngFor="let mission of missions">
                 <div class="list-group-item list-view-pf-stacked list-view-pf-top-align">
-                  <div class="f8launcher-tag-featured">
+                  <div class="f8launcher-tag-featured" *ngIf="mission.suggested">
                     Suggested Mission
                   </div>
                   <div class="list-view-pf-checkbox">
@@ -207,219 +82,10 @@
                     <div class="list-view-pf-body">
                       <div class="list-view-pf-description">
                         <div class="list-group-item-heading">
-                          Basic Application
+                          {{mission.title}}
                         </div>
                         <div class="list-group-item-text">
-                          Brief description of the Basic Application mission and what it does...<a href="#">more</a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="list-group list-view-pf">
-                <div class="list-group-item list-view-pf-stacked list-view-pf-top-align">
-                  <div class="list-view-pf-checkbox">
-                    <input type="radio" name="mission">
-                  </div>
-                  <div class="list-view-pf-main-info">
-                    <div class="list-view-pf-body">
-                      <div class="list-view-pf-description">
-                        <div class="list-group-item-heading">
-                          CRUD
-                        </div>
-                        <div class="list-group-item-text">
-                          Brief description of the CRUD mission and what it does...<a href="#">more</a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="list-group list-view-pf">
-                <div class="list-group-item list-view-pf-stacked list-view-pf-top-align">
-                  <div class="list-view-pf-checkbox">
-                    <input type="radio" name="mission">
-                  </div>
-                  <div class="list-view-pf-main-info">
-                    <div class="list-view-pf-body">
-                      <div class="list-view-pf-description">
-                        <div class="list-group-item-heading">
-                          Circuit Break
-                        </div>
-                        <div class="list-group-item-text">
-                          Brief description of the Circuit Breaker mission and what it does...<a href="#">more</a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="list-group list-view-pf">
-                <div class="list-group-item list-view-pf-stacked list-view-pf-top-align">
-                  <div class="list-view-pf-checkbox">
-                    <input type="radio" name="mission">
-                  </div>
-                  <div class="list-view-pf-main-info">
-                    <div class="list-view-pf-body">
-                      <div class="list-view-pf-description">
-                        <div class="list-group-item-heading">
-                          Externalized Configuration
-                        </div>
-                        <div class="list-group-item-text">
-                          Brief description of the Externalized Configuration mission and what it does...<a href="#">more</a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="list-group list-view-pf">
-                <div class="list-group-item list-view-pf-stacked list-view-pf-top-align">
-                  <div class="list-view-pf-checkbox">
-                    <input type="radio" name="mission">
-                  </div>
-                  <div class="list-view-pf-main-info">
-                    <div class="list-view-pf-body">
-                      <div class="list-view-pf-description">
-                        <div class="list-group-item-heading">
-                          REST API Level 0
-                        </div>
-                        <div class="list-group-item-text">
-                          Brief description of the REST API Level 0 mission and what it does...<a href="#">more</a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="list-group list-view-pf">
-                <div class="list-group-item list-view-pf-stacked list-view-pf-top-align">
-                  <div class="list-view-pf-checkbox">
-                    <input type="radio" name="mission">
-                  </div>
-                  <div class="list-view-pf-main-info">
-                    <div class="list-view-pf-body">
-                      <div class="list-view-pf-description">
-                        <div class="list-group-item-heading">
-                          Another item 6
-                        </div>
-                        <div class="list-group-item-text">
-                          Brief description of the mission and what it does...<a href="#">more</a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="list-group list-view-pf">
-                <div class="list-group-item list-view-pf-stacked list-view-pf-top-align">
-                  <div class="list-view-pf-checkbox">
-                    <input type="radio" name="mission">
-                  </div>
-                  <div class="list-view-pf-main-info">
-                    <div class="list-view-pf-body">
-                      <div class="list-view-pf-description">
-                        <div class="list-group-item-heading">
-                          Another item 7
-                        </div>
-                        <div class="list-group-item-text">
-                          Brief description of the mission and what it does...<a href="#">more</a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="list-group list-view-pf">
-                <div class="list-group-item list-view-pf-stacked list-view-pf-top-align">
-                  <div class="list-view-pf-checkbox">
-                    <input type="radio" name="mission">
-                  </div>
-                  <div class="list-view-pf-main-info">
-                    <div class="list-view-pf-body">
-                      <div class="list-view-pf-description">
-                        <div class="list-group-item-heading">
-                          Another item 8
-                        </div>
-                        <div class="list-group-item-text">
-                          Brief description of the mission and what it does...<a href="#">more</a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="list-group list-view-pf">
-                <div class="list-group-item list-view-pf-stacked list-view-pf-top-align">
-                  <div class="list-view-pf-checkbox">
-                    <input type="radio" name="mission">
-                  </div>
-                  <div class="list-view-pf-main-info">
-                    <div class="list-view-pf-body">
-                      <div class="list-view-pf-description">
-                        <div class="list-group-item-heading">
-                          Another item 9
-                        </div>
-                        <div class="list-group-item-text">
-                          Brief description of the mission and what it does...<a href="#">more</a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="list-group list-view-pf">
-                <div class="list-group-item list-view-pf-stacked list-view-pf-top-align">
-                  <div class="list-view-pf-checkbox">
-                    <input type="radio" name="mission">
-                  </div>
-                  <div class="list-view-pf-main-info">
-                    <div class="list-view-pf-body">
-                      <div class="list-view-pf-description">
-                        <div class="list-group-item-heading">
-                          Another item 10
-                        </div>
-                        <div class="list-group-item-text">
-                          Brief description of the mission and what it does...<a href="#">more</a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="list-group list-view-pf">
-                <div class="list-group-item list-view-pf-stacked list-view-pf-top-align">
-                  <div class="list-view-pf-checkbox">
-                    <input type="radio" name="mission">
-                  </div>
-                  <div class="list-view-pf-main-info">
-                    <div class="list-view-pf-body">
-                      <div class="list-view-pf-description">
-                        <div class="list-group-item-heading">
-                          Another item 11
-                        </div>
-                        <div class="list-group-item-text">
-                          Brief description of the mission and what it does...<a href="#">more</a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="list-group list-view-pf">
-                <div class="list-group-item list-view-pf-stacked list-view-pf-top-align">
-                  <div class="list-view-pf-checkbox">
-                    <input type="radio" name="mission">
-                  </div>
-                  <div class="list-view-pf-main-info">
-                    <div class="list-view-pf-body">
-                      <div class="list-view-pf-description">
-                        <div class="list-group-item-heading">
-                          Another item 11
-                        </div>
-                        <div class="list-group-item-text">
-                          Brief description of the mission and what it does...<a href="#">more</a>
+                          {{mission.description}}<a href="#">more</a>
                         </div>
                       </div>
                     </div>
