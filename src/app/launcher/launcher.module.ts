@@ -10,11 +10,14 @@ import { ReleaseStrategyStepComponent } from './release-strategy-step/release-st
 import { ProjectSummaryStepComponent } from './project-summary-step/project-summary-step.component';
 import { ActivateBoosterStepComponent } from './activate-booster-step/activate-booster-step.component';
 import { NewProjectStepComponent } from './new-project-step/new-project-step.component';
+import { MissionRuntimeService } from './service/mission-runtime.service';
+import { BsDropdownModule } from 'ngx-bootstrap';
 
 @NgModule({
   imports: [
     CommonModule,
-    InViewportModule
+    InViewportModule,
+    BsDropdownModule.forRoot()
   ],
   exports: [
     WizardComponent
@@ -34,3 +37,7 @@ import { NewProjectStepComponent } from './new-project-step/new-project-step.com
 export class LauncherModule {
   constructor() {}
 }
+
+export { MissionRuntimeService } from './service/mission-runtime.service';
+export { Mission } from './model/mission.model';
+export { Runtime } from './model/runtime.model';
