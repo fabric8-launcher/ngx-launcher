@@ -7,6 +7,7 @@ import { Input as ForgeInput, Message } from '../../model/base.model';
 import { DefaultValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { IMultiSelectSettings } from 'angular-2-dropdown-multiselect';
 import { Observable } from 'rxjs/Observable';
+import { Subject } from 'rxjs/Subject';
 
 @Component({
   selector: 'la-input',
@@ -25,7 +26,7 @@ export class InputComponent extends DefaultValueAccessor implements OnInit {
   @Input() messages: Message[];
   @Input() changeOnKey: boolean;
 
-  protected keyUp: Observable<string> = Observable.of();
+  protected keyUp = new Subject<string>();
 
   searchMultiSelectSettings: IMultiSelectSettings = {
     enableSearch: true,
