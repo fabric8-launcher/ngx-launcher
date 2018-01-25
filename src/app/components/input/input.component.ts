@@ -25,7 +25,7 @@ export class InputComponent extends DefaultValueAccessor implements OnInit {
   @Input() messages: Message[];
   @Input() changeOnKey: boolean;
 
-  protected keyUp = new Observable<string>();
+  protected keyUp: Observable<string> = Observable.of();
 
   searchMultiSelectSettings: IMultiSelectSettings = {
     enableSearch: true,

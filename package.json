@@ -1,6 +1,6 @@
 {
   "name": "ngx-forge",
-  "version": "0.0.34-development",
+  "version": "0.0.35-development",
   "description": "Forge services for Angular v2 and up",
   "main": "bundles/ngx-forge.js",
   "module": "bundles/ngx-forge.js",
@@ -54,13 +54,13 @@
     "ng-forge",
     "ngx-forge"
   ],
-  "homepage": "https://github.com/fabric8-ui/ngx-forge",
+  "homepage": "https://github.com/fabric8-launcher/ngx-launcher",
   "repository": {
     "type": "git",
-    "url": "https://github.com/fabric8-ui/ngx-forge.git"
+    "url": "https://github.com/fabric8-launcher/ngx-launcher.git"
   },
   "bugs": {
-    "url": "https://github.com/fabric8-ui/ngx-forge/issues"
+    "url": "https://github.com/fabric8-launcher/ngx-launcher/issues"
   },
   "engines": {
     "node": ">= 6.9.1",
