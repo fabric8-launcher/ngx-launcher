@@ -36,12 +36,13 @@ export class InputComponent extends DefaultValueAccessor implements OnInit {
 
   ngOnInit() {
     if (this.changeOnKey) {
-      this.keyUp.debounceTime(1000).distinctUntilChanged()
+      this.keyUp.asObservable()
+        .debounceTime(1000).distinctUntilChanged()
         .flatMap((search) => {
           return Observable.of(search).delay(500);
         }).subscribe((data) => {
-        this.onChange(data);
-      });
+          this.onChange(data);
+        });
     }
   }
 
@@ -72,7 +73,7 @@ export class InputComponent extends DefaultValueAccessor implements OnInit {
   convertToOptions(options: string[]): any[] {
     let result: any[] = [];
     for (let option of options) {
-      result.push({id: option, name: option});
+      result.push({ id: option, name: option });
     }
     return result;
   }
