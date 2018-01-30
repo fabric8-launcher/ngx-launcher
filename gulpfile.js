@@ -2,7 +2,8 @@
 var gulp = require('gulp'),
   less = require('gulp-less'),
   LessAutoprefix = require('less-plugin-autoprefix'),
-  autoprefix = new LessAutoprefix({ browsers: ['last 2 versions'] });
+  autoprefix = new LessAutoprefix({ browsers: ['last 2 versions'] }),
+  autoprefixer = require('gulp-autoprefixer'),
   lesshint = require('gulp-lesshint'),
   cssmin = require('gulp-cssmin'),
   stylelint = require('gulp-stylelint'),
@@ -50,6 +51,10 @@ function transpileLESS(src, debug) {
                 path.join('node_modules/patternfly/node_modules/')],
     }).on('error', function (err) {
       console.log(err);
+    }))
+    .pipe(autoprefixer({
+      browsers: ['last 2 versions'],
+      cascade: false
     }))
     .pipe(cssmin().on('error', function(err) {
       console.log(err);

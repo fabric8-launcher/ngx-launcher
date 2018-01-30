@@ -8,6 +8,25 @@ body {
   overflow-x: hidden;
   background-color: @color-pf-black-200;
 }
+/* Content */
+#section0 {
+  min-height: 50px;
+}
+// if adding a new section, the ID (which the scrollspy uses as its selector)
+// must be added to this list for proper spacing
+#MissionRuntime,
+#TargetEnvironment,
+#ReleaseStrategy,
+#GitProvider {
+  margin-top: 15em;
+}
+#MissionRuntime {
+  margin-top: 0;
+}
+#ProjectSummary {
+  margin-top: 35em;
+  margin-bottom: 5em;
+}
 .f8launcher {
   position: absolute;
   top: 41px;
@@ -53,20 +72,22 @@ body {
     border-top: 0;
   }
   .list-view-pf {
-    .list-group-item {
-      &:hover {
-        .list-group-item-container {
-          background-color: #edf8ff;
-          cursor: pointer;
+    .list-group {
+      &-item {
+        &:hover {
+          .list-group-item-container {
+            background-color: #edf8ff;
+            cursor: pointer;
+          }
         }
       }
-    }
-    .list-group-item-heading {
-      font-size: 1.2em;
-    }
-    .list-group-item-text {
-      font-size: 1.2em;
-      width: auto;
+      &-item-heading {
+        font-size: 1.2em;
+      }
+      &-item-text {
+        font-size: 1.2em;
+        width: auto;
+      }
     }
     &-description {
     width: 100%;
@@ -106,22 +127,5 @@ body {
     i {
       vertical-align: middle;
     }
-  }
-  /* Content */
-  #section0 {
-    min-height: 50px;
-  }
-    #MissionRuntime,
-    #TargetEnvironment,
-    #ReleaseStrategy,
-    #GitProvider {
-    margin-top: 15em;
-  }
-  #MissionRuntime {
-    margin-top: 0;
-  }
-  #ProjectSummary {
-    margin-top: 35em;
-    margin-bottom: 5em;
   }
 }

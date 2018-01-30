@@ -1,6 +1,17 @@
 @import (reference) 'main.less';
 
 .f8launcher-grid {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -moz-flex;
+  display: -webkit-flex;
+  display: flex;
+  > div {
+    flex: 1 100%;
+  }
+}
+.f8launcher-grid {
   display: grid;
   grid-template-columns: 1fr;
   grid-auto-rows: minmax(750px, 1fr);
