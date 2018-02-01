@@ -1,7 +1,12 @@
 <section id="MissionRuntime" class="f8launcher-section-mission-runtime">
   <div>
     <div class="container-fluid">
-      <h1 snInViewport (onInViewportChange)="wizardComponent.onInViewportChange($event, 'MissionRuntime')" [debounce]="500">Select Mission &amp; Runtime</h1>
+      <h1 snInViewport (onInViewportChange)="wizardComponent.onInViewportChange($event, 'MissionRuntime')" [debounce]="500">
+        Select Mission &amp; Runtime
+        <button class="btn btn-default btn-lg pull-right" type="button">
+          Reset Selections
+        </button>
+      </h1>
       <p>
         Start by selecting a runtime or mission. Secondary selection will be narrowed based on your primary selection.
       </p>
@@ -15,9 +20,6 @@
             <div class="card-pf-heading">
               <h2 class="card-pf-title">
                 Select Runtime
-                <button class="btn btn-default" type="button">
-                  Reset Selections
-                </button>
               </h2>
             </div>
             <div class="card-pf-body">
@@ -70,9 +72,6 @@
             <div class="card-pf-heading">
               <h2 class="card-pf-title">
                 Select Mission
-                <button class="btn btn-default" type="button">
-                  Reset Selections
-                </button>
               </h2>
             </div>
             <div class="card-pf-body">

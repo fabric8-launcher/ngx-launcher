@@ -3,6 +3,20 @@
 .f8launcher {
   .f8launcher-container {
     &_nav {
+      display: -webkit-box;
+      display: -moz-box;
+      display: -ms-flexbox;
+      display: -moz-flex;
+      display: -webkit-flex;
+      display: flex;
+      grid-area: nav;
+      height: 100vh;
+      background-color: @color-pf-black-900;
+      position: fixed;
+      top: 0;
+      left: 0;
+      padding-top: 40px;
+      width: 250px;
       @media screen and (max-width: 768px) {
         position: fixed;
         top: 0;
@@ -15,19 +29,6 @@
           transform: translateX(250px);
         }
       }
-      display: -webkit-box;
-      display: -moz-box;
-      display: -ms-flexbox;
-      display: -moz-flex;
-      display: -webkit-flex;
-      display: flex;
-      grid-area: nav;
-      height: 100vh;
-      background-color: @color-pf-black-900;
-      position: fixed;
-      left: 0;
-      padding-top: 20px;
-      width: 250px;
       .f8launcher-vertical-bar {
         display: -webkit-box;
         display: -moz-box;
@@ -42,13 +43,13 @@
         flex-direction: column;
         justify-content: space-between;
         display: grid; /* stylelint-disable-line */
-        grid-template-rows: 1fr 1fr 1fr 1fr;
-        background-color: @color-pf-black-700;
-        width: 25px;
-        // height: 90vh;
+        // grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+        background-color: #bbb;
+        width: 3px;
         height: 85vh;
+        // height: 100vh;
         border-radius: 10px;
-        margin-left: 15px;
+        margin-left: 25px;
         @media screen and (max-width: 768px) {
           margin-top: 25px;
         }
@@ -56,47 +57,92 @@
          * this is only on the element when the wizard is in-progress.
          * once completed, this class is removed
          */
+         &_application-title {
+           // position: absolute;
+           // top: -25px;
+           margin-bottom: 45px;
+           &:hover {
+             &:after {
+               position: absolute;
+               right: 15px;
+               margin-top: 5px;
+               font-family: PatternFlyIcons-webfont;
+               content: '\e60a';
+               color: @color-pf-blue;
+             }
+           }
+           &-input {
+             width: 200px;
+             margin-left: 25px;
+             border: none;
+             border-bottom: 1px solid;
+             border-bottom-color: #bbb;
+             background: transparent;
+             font-size: 1.42em; // ~20px
+             color: @color-pf-white;
+             &:hover,
+             &:active,
+             &:focus {
+               border-bottom-color: @color-pf-blue !important; /* stylelint-disable-line */
+             }
+           }
+           input {
+             &::-webkit-input-placeholder,
+             &::-moz-placeholder,
+             &::-ms-input-placeholder,
+             &::-moz-placeholder {
+               color: @color-pf-white;
+             }
+           }
+         }
         &.in-progress {
           background-image: linear-gradient(@color-pf-black-700, @color-pf-black-900);
         }
         a {
-          margin-left: -15px;
+          margin-top: -20px;
+          margin-left: -25px;
           padding-top: 10px;
           padding-bottom: 10px;
           border-left: 3px solid;
           border-left-color: transparent;
           font-weight: 700;
-          height: 40px;
+          font-size: 1.14em; // ~16px
+          height: 60px;
           transition: background .3s, border .3s ease-in-out;
           -webkit-transition: background .3s, border .3s ease-in-out;
           -moz-transition: background .3s, border .3s ease-in-out;
+          &.project-summary {
+            // margin-bottom: -20px;
+            position: fixed;
+            bottom: 0;
+            // bottom: 85px;
+          }
+          &.active {
+            .f8launcher-vertical-bar_steps--title {
+              color: @color-pf-white;
+            }
+          }
         }
         &_steps {
           color: @color-pf-black-400;
           padding-left: 20px;
-          &--1, // spacer above first item
-          &--2,
-          &--3,
-          &--4,
-          &--5,
-          &--6,
-          &--7,
-          &--8,
-          &--9,
-          &--10,
-          &--11 { // spacer below last item
+          &--item {
             padding-left: 17px;
             width: 250px;
             color: @color-pf-black-400;
+            .hide {
+              // visibility: hidden;
+              display: none;
+            }
             &:hover {
               background: @color-pf-black-700;
               text-decoration: none;
               border-left: 3px solid;
               /* stylelint-disable-next-line declaration-no-important */
-              border-left-color: @color-pf-blue !important;
+              border-left-color: @color-pf-blue-300 !important;
               .f8launcher-step-circle {
                 background-color: @color-pf-black-700;
-                border-color: @color-pf-blue;
+                border-color: @color-pf-blue-300;
               }
             }
             &:active,
@@ -105,8 +151,9 @@
             }
           }
           &--title {
-            margin-left: 10px;
-            vertical-align: top;
+            position: absolute;
+            margin-top: 8px;
+            margin-left: 10px;;
           }
         }
       }
@@ -114,14 +161,14 @@
   }
   /* Icons */
   .f8launcher-step-circle {
-    border: 1px solid #303030;
-    width: 25px;
-    height: 25px;
-    margin-top: -3px;
-    margin-left: -5px;
+    border: 1px solid #bbb;
+    width: 26px;
+    height: 26px;
+    margin-top: 6px;
+    margin-left: -7px;
     border-radius: 50%;
     // background-color: @color-pf-black-300;
-    background-color: @color-pf-black-900;
+    background-color: #282d33;
     color: @color-pf-black-300;
     display: inline-flex;
     transition: background .3s, border .3s ease-in-out;

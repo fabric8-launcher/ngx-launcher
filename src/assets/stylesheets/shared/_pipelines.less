@@ -8,6 +8,7 @@
     border-bottom: 5px solid @color-pf-blue;
     padding-left: 15px;
     padding-right: 15px;
+    width: 110px;
     &:after {
       width: 25px;
       height: 25px;
@@ -18,7 +19,7 @@
       right: 45%;
       bottom: -12px;
       @media screen and (max-width: 768px) {
-        right: 15%;
+        // right: 15%;
       }
     }
     /*
@@ -44,6 +45,9 @@
       border-left: 10px solid @color-pf-blue;
       border-top: 5px solid transparent;
       border-bottom: 5px solid transparent;
+    }
+    @media screen and (max-width: 768px) {
+      display: none;
     }
     /*
      * adding .approved to the arrow will change it to green
