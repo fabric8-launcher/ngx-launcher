@@ -3,7 +3,10 @@
 .f8launcher {
   .card {
     &-title {
-      display: inline-flex;
+      display: inline-block;
+      input[type=radio] {
+        vertical-align: super;
+      }
     }
     &-pf {
       &--xsmall {
@@ -72,6 +75,9 @@
           }
         }
       }
+      .list-group {
+        margin-bottom: 0;
+      }
     }
     &-column {
       display: inline-flex;
@@ -106,7 +112,21 @@
       }
       .git-provider-icon {
         padding: 0;
-        font-size: 15em;
+        font-size: 12em;
+        @media(max-width: 1390px) {
+          font-size: 10em;
+        }
+      }
+    }
+    .list-group-item {
+      &.disabled {
+        background-color: @color-pf-black-300;
+        opacity: .6;
+        .list-view-pf-checkbox {
+          input[type='radio'] {
+            pointer-events: none;
+          }
+        }
       }
     }
   }

@@ -5,6 +5,15 @@
 @import '../../../src/assets/stylesheets/shared/_cards.less';
 
 body {
+  font-family: 'Open Sans', sans-serif;
+  /* stylelint-disable */
+  /* required to overwrite the default PatternFly font size */
+  font-size: @font-size-base !important;
+  /* stylelint-enable */
+  min-height: 100vh;
+  position: relative;
+  margin: 0;
+  padding: 0;
   overflow-x: hidden;
   background-color: @color-pf-black-200;
 }
@@ -106,13 +115,13 @@ body {
   }
   &-container {
     .f8launcher-grid();
-    @media screen and (max-width: 768px) {
+    @media screen and (max-width: 1024px) {
       grid-template-areas: 'content';
       grid-template-columns: 1fr;
     }
     &_main {
       margin-left: 250px;
-      @media screen and (max-width: 768px) {
+      @media screen and (max-width: 1024px) {
         margin-left: 0;
       }
     }

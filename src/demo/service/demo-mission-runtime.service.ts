@@ -69,6 +69,7 @@ export class DemoMissionRuntimeService implements MissionRuntimeService {
       }, {
         'runtimeId': 'Nodejs',
         'title': 'Node.js',
+        'disabled': true,
         'description': 'Brief description of the technology...',
         'logo': '../../../assets/images/nodejs-logo.png',
         'supportedMissions': [],

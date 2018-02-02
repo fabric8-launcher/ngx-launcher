@@ -17,7 +17,7 @@
       left: 0;
       padding-top: 40px;
       width: 250px;
-      @media screen and (max-width: 768px) {
+      @media screen and (max-width: 1024px) {
         position: fixed;
         top: 0;
         bottom: 0;
@@ -46,8 +46,36 @@
         // grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
         background-color: #bbb;
         width: 3px;
-        height: 85vh;
-        // height: 100vh;
+        /*
+        ** Who has something this  small? (500px in height and up)
+        */
+        @media(min-height: 500px) {
+          height: 77vh;
+        }
+        /*
+        ** Small devices (tablets, 758px in height and up)
+        */
+        @media(min-height: 750px) {
+          height: 80vh;
+        }
+        /*
+        ** Medium devices (desktops, 980px in height and up)
+        */
+        @media(min-height: 980px) {
+          height: 85vh;
+        }
+        /*
+        ** Large devices (desktops, 1080px in height and up)
+        */
+        @media(min-height: 1080px) {
+          height: 87vh;
+        }
+        /*
+        ** Devices that are too tall (1440px in height and up...reasonably)
+        */
+        @media(min-height: 1440px) {
+          height: 90vh;
+        }
         border-radius: 10px;
         margin-left: 25px;
         @media screen and (max-width: 768px) {
@@ -64,8 +92,8 @@
            &:hover {
              &:after {
                position: absolute;
+               top: 45px;
                right: 15px;
-               margin-top: 5px;
                font-family: PatternFlyIcons-webfont;
                content: '\e60a';
                color: @color-pf-blue;
@@ -106,7 +134,7 @@
           border-left: 3px solid;
           border-left-color: transparent;
           font-weight: 700;
-          font-size: 1.14em; // ~16px
+          // font-size: 1.14em; // ~16px
           height: 60px;
           transition: background .3s, border .3s ease-in-out;
           -webkit-transition: background .3s, border .3s ease-in-out;
@@ -131,7 +159,6 @@
             width: 250px;
             color: @color-pf-black-400;
             .hide {
-              // visibility: hidden;
               display: none;
             }
             &:hover {
@@ -139,10 +166,13 @@
               text-decoration: none;
               border-left: 3px solid;
               /* stylelint-disable-next-line declaration-no-important */
-              border-left-color: @color-pf-blue-300 !important;
+              border-left-color: transparent !important;
               .f8launcher-step-circle {
-                background-color: @color-pf-black-700;
+                background-color: @color-pf-blue-300;
                 border-color: @color-pf-blue-300;
+              }
+              .f8launcher-vertical-bar_steps--title {
+                color: @color-pf-white;
               }
             }
             &:active,
