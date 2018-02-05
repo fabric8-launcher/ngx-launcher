@@ -53,6 +53,41 @@ body {
       border: solid 1px @color-pf-black-700;
     }
   }
+  &-application-title {
+    &:hover {
+      &:after {
+        font-family: PatternFlyIcons-webfont;
+        content: '\e60a';
+        color: @color-pf-blue;
+      }
+    }
+    &-input {
+      width: 200px;
+      margin-left: 10px;
+      border: none;
+      border-bottom: 1px solid;
+      border-bottom-color: #bbb;
+      background: transparent;
+      font-size: 1.42em; // ~20px
+      color: @color-pf-white;
+      &:hover,
+      &:active,
+      &:focus {
+        border-bottom-color: @color-pf-blue !important; /* stylelint-disable-line declaration-no-important */
+      }
+    }
+    input {
+      &::-webkit-input-placeholder,
+      &::-moz-placeholder,
+      &::-ms-input-placeholder,
+      &::-moz-placeholder {
+        color: @color-pf-white;
+      }
+      &:focus {
+        outline: none;
+      }
+    }
+  }
   .f8launcher-section {
     &-mission-runtime,
     &-target-environment,

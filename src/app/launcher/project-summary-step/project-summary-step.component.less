@@ -1,7 +1,7 @@
 @import (reference) '../../../assets/stylesheets/shared/main.less';
 
 .f8launcher {
-  .project-summary-data {
+  &-project-summary-data {
     &-form-group {
       label {
         text-align: left;
@@ -9,6 +9,14 @@
     }
     &-field {
       padding-top: 3px;
+      input {
+        &::-webkit-input-placeholder,
+        &::-moz-placeholder,
+        &::-ms-input-placeholder,
+        &::-moz-placeholder {
+          color: @color-pf-black-900;
+        }
+      }
       &-account {
         margin-top: -6px;
         padding-bottom: 6px;
@@ -17,6 +25,12 @@
         &-username {
           padding-left: 10px;
         }
+      }
+      &_input {
+        width: 95%;
+        margin-left: 0;
+        font-size: @font-size-base;
+        color: @color-pf-black-900;
       }
     }
   }
