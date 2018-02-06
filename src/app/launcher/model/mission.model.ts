@@ -1,8 +1,8 @@
 export class Mission {
   description: string;
-  missionId: string;
+  id: string;
   suggested?: boolean;
-  supportedRuntimes: string[];
-  title: string;
+  runtimes: string[];
+  name: string;
   url?: string;
 }

@@ -12,57 +12,74 @@ export class DemoMissionRuntimeService implements MissionRuntimeService {
   }
 
   getMissions(): Observable<Mission[]> {
-    let missions = Observable.of([
-      {
-        'missionId': 'BasicApplication',
-        'suggested': true,
-        'title': 'Basic Application',
-        'description': 'Brief description of the Basic Application mission and what it does.',
-        'supportedRuntimes': [],
+    let missions = Observable.of([{
+        "id": "crud",
+        "name": "CRUD",
+        "suggested": false,
+        "runtimes": [
+        ],
         'url': 'https://github.com/fabric8-launcher/ngx-launcher'
-      }, {
-        'missionId': 'Crud',
-        'title': 'Crud',
-        'description': 'Brief description of the Crud mission and what it does.',
-        'supportedRuntimes': [],
+    },
+    {
+        "id": "circuit-breaker",
+        "name": "Circuit Breaker",
+        "suggested": false,
+        "runtimes": [
+            "vert.x",
+            "nodejs",
+            "spring-boot",
+            "wildfly-swarm"
+        ],
         'url': 'https://github.com/fabric8-launcher/ngx-launcher'
-      }, {
-        'missionId': 'CircuitBreaker',
-        'title': 'Circuit Breaker',
-        'description': 'Brief description of the Circuit Breaker mission and what it does.',
-        'supportedRuntimes': [],
+    },
+    {
+        "id": "configmap",
+        "name": "Externalized Configuration",
+        "suggested": false,
+        "runtimes": [
+            "vert.x",
+            "nodejs",
+            "spring-boot",
+            "wildfly-swarm"
+        ],
         'url': 'https://github.com/fabric8-launcher/ngx-launcher'
-      }, {
-        'missionId': 'ExternalizedConfiguration',
-        'title': 'Externalized Configuration',
-        'description': 'Brief description of the Externalized Configuration mission and what it does.',
-        'supportedRuntimes': [],
+    },
+    {
+        "id": "health-check",
+        "name": "Health Check",
+        "suggested": false,
+        "runtimes": [
+            "vert.x",
+            "nodejs",
+            "spring-boot",
+            "wildfly-swarm"
+        ],
         'url': 'https://github.com/fabric8-launcher/ngx-launcher'
-      }, {
-        'missionId': 'RESTAPILevel0',
-        'title': 'REST API Level 0',
-        'description': 'Brief description of the REST API Level 0 mission and what it does.',
-        'supportedRuntimes': [],
+    },
+    {
+        "id": "rest-http",
+        "name": "REST API Level 0",
+        "suggested": false,
+        "runtimes": [
+            "vert.x",
+            "nodejs",
+            "spring-boot",
+            "wildfly-swarm"
+        ],
         'url': 'https://github.com/fabric8-launcher/ngx-launcher'
-      }, {
-        'missionId': '1',
-        'title': 'Another Item 1',
-        'description': 'Brief description of the another item mission and what it does.',
-        'supportedRuntimes': [],
+    },
+    {
+        "id": "rest-http-secured",
+        "name": "Secured",
+        "suggested": false,
+        "runtimes": [
+            "vert.x",
+            "nodejs",
+            "spring-boot",
+            "wildfly-swarm"
+        ],
         'url': 'https://github.com/fabric8-launcher/ngx-launcher'
-      }, {
-        'missionId': '2',
-        'title': 'Another Item 2',
-        'description': 'Brief description of the another item mission and what it does.',
-        'supportedRuntimes': [],
-        'url': 'https://github.com/fabric8-launcher/ngx-launcher'
-      }, {
-        'missionId': '3',
-        'title': 'Another Item 3',
-        'description': 'Brief description of the another item mission and what it does.',
-        'supportedRuntimes': [],
-        'url': 'https://github.com/fabric8-launcher/ngx-launcher'
-      }] as Mission[]);
+    }] as Mission[]);
     return missions;
   }
 

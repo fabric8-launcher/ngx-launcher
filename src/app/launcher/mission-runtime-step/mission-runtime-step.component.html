@@ -87,14 +87,14 @@
                   <div class="list-view-pf-checkbox">
                     <input type="radio" name="mission"
                            [(ngModel)]="missionId"
-                           [value]="mission.missionId"
+                           [value]="mission.id"
                            (ngModelChange)="updateMissionSelection(mission)">
                   </div>
                   <div class="list-view-pf-main-info">
                     <div class="list-view-pf-body">
                       <div class="list-view-pf-description">
                         <div class="list-group-item-heading">
-                          {{mission.title}}
+                          {{mission.name}}
                         </div>
                         <div class="list-group-item-text">
                           {{mission.description}}<a href="#">more</a>
