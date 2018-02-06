@@ -1,6 +1,7 @@
 @import (reference) '../../../src/assets/stylesheets/shared/main.less';
 
 // required as a non-referenced item in order to be included with the component
+@import '../../../src/assets/stylesheets/shared/_typography.less';
 @import '../../../src/assets/stylesheets/shared/_pipelines.less';
 @import '../../../src/assets/stylesheets/shared/_cards.less';
 
@@ -43,11 +44,9 @@ body {
   width: 100%;
   .active {
     background-color: @color-pf-black-700;
-    // background: linear-gradient(to right, @color-pf-blue, @color-pf-black-700);
     border-left: 3px solid;
     text-decoration: none;
-    /* stylelint-disable-next-line declaration-no-important */
-    border-left-color: @color-pf-blue !important;
+    border-left-color: @color-pf-blue !important;  /* stylelint-disable-line declaration-no-important */
     .f8launcher-step-circle {
       background-color: @color-pf-blue-300;
       border: solid 1px @color-pf-black-700;
@@ -58,7 +57,7 @@ body {
       &:after {
         font-family: PatternFlyIcons-webfont;
         content: '\e60a';
-        color: @color-pf-blue;
+        color: @color-pf-white;
       }
     }
     &-input {

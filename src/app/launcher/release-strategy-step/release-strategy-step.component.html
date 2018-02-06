@@ -17,9 +17,9 @@
         <div class="col-xs-12">
           <div class="card-pf">
             <div class="card-pf-heading">
-              <h1 class="card-pf-title">
+              <h2 class="card-pf-title">
                 Pipeline
-              </h1>
+              </h2>
               <div class="container-fluid">
                 <div class="row toolbar-pf">
                   <div class="col-sm-12">
@@ -34,9 +34,9 @@
                               <li><a href="#">Type</a></li>
                               <li><a href="#">Color</a></li>
                             </ul>
-                          </div><!-- /btn-group -->
+                          </div>
                           <input type="text" class="form-control" id="filter" placeholder="Filter By Name...">
-                        </div><!-- /input-group -->
+                        </div>
                       </div>
                       <div class="form-group">
                         <div class="dropdown btn-group">
@@ -59,7 +59,7 @@
             <div class="card-pf-body">
               <div class="list-group list-view-pf list-view-pf-view">
                 <div class="list-group-item" *ngFor="let pipeline of pipelines; let i = index">
-                  <div class="f8launcher-tag-featured" *ngIf="pipeline.suggested" tooltip="Suggestion based on selected mission and runtime">
+                  <div class="f8launcher-tag-featured" *ngIf="pipeline.suggested" placement="top" tooltip="Suggestion based on selected mission and runtime">
                     Suggested Pipeline <i class="pficon pficon-info"></i>
                   </div>
                   <div class="list-group-item-header">

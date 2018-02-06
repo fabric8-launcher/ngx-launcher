@@ -2,13 +2,13 @@
 
 .f8launcher-pipeline-stages {
   display: inline-flex;
-  justify-content: space-between;
+  // justify-content: space-between;
   margin-bottom: 15px;
+  margin-left: 57px;
   &--line {
     border-bottom: 5px solid @color-pf-blue;
-    padding-left: 15px;
-    padding-right: 15px;
-    // width: 110px;
+    padding-left: 5px;
+    padding-right: 5px;
     &:after {
       width: 25px;
       height: 25px;
@@ -17,16 +17,9 @@
       color: @color-pf-blue;
       position: relative;
       right: 45%;
-      // bottom: -12px;
-      // right: 10%;
-      bottom: -15px;
-      @media screen and (max-width: 768px) {
-        // right: 15%;
-      }
+      bottom: -14px;
     }
-    /*
-     * adding .approved to the line will set it to pulse from blue to green
-    */
+    // adding .approved to the line will set it to pulse from blue to green
     &.approved {
       animation: pulse 2s ease infinite alternate;
     }
@@ -36,6 +29,8 @@
     height: 2px;
     position: relative;
     margin-top: 20px;
+    margin-right: 20px;
+    margin-left: 20px;
     background: @color-pf-blue;
     &:before {
       content: '';
@@ -51,9 +46,7 @@
     @media screen and (max-width: 768px) {
       display: none;
     }
-    /*
-     * adding .approved to the arrow will change it to green
-    */
+    // adding .approved to the arrow will change it to green
     &.approved {
       background-color: @color-pf-green;
       &:before {

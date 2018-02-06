@@ -1,7 +1,7 @@
 @import (reference) '../../../assets/stylesheets/shared/main.less';
 
 .f8launcher {
-  .f8launcher-container {
+  &-container {
     &_nav {
       display: -webkit-box;
       display: -moz-box;
@@ -117,7 +117,17 @@
             padding-left: 17px;
             width: 250px;
             color: @color-pf-black-400;
-            .hide {
+            animation: slide-down .3s ease-out;
+            -moz-animation: slide-down .3s ease-out;
+            @keyframes slide-down {
+                0% { opacity: 0; -moz-transform: translateY(-100%); }
+                100% { opacity: 1; -moz-transform: translateY(0); }
+            }
+            @-moz-keyframes slide-down {
+                0% { opacity: 0; -moz-transform: translateY(-100%); }
+                100% { opacity: 1; -moz-transform: translateY(0); }
+            }
+            &.hide {
               display: none;
             }
             &:hover {
@@ -140,6 +150,11 @@
             &:focus {
               text-decoration: none;
             }
+            .f8launcher-step-circle {
+              &.completed {
+                background-color: @color-pf-black-900;
+              }
+            }
           }
           &--title {
             position: absolute;
@@ -151,7 +166,7 @@
     }
   }
   // Launcher step icons
-  .f8launcher-step-circle {
+  &-step-circle {
     border: 1px solid #bbb;
     width: 26px;
     height: 26px;
