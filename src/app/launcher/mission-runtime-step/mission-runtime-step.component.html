@@ -38,11 +38,11 @@
                   <div class="list-view-pf-actions">
                     <div class="dropdown" dropdown>
                       <button dropdownToggle type="button" class="btn btn-default dropdown-toggle" id="{{i + 'dropdown'}}">
-                        {{runtime.version || runtime.versions[0]}}
+                        {{runtime.projectVersion || runtime.projectVersions[0]}}
                         <span class="caret"></span>
                       </button>
                       <ul *dropdownMenu class="dropdown-menu" role="menu" [attr.aria-labelledby]="i + 'dropdown'">
-                        <li role="menuitem" *ngFor="let version of runtime.versions">
+                        <li role="menuitem" *ngFor="let version of runtime.projectVersions">
                           <a role="menuitem" class="dropdown-item" tabindex="-1" href="#"
                              (click)="updateVersionSelection(runtime, version)">{{version}}</a>
                         </li>
@@ -52,13 +52,13 @@
                   <div class="list-view-pf-main-info">
                     <div class="list-view-pf-left">
                       <span class="list-view-pf-logo">
-                        <img [src]="runtime.logo" />
+                        <img [src]="_DomSanitizer.bypassSecurityTrustUrl(runtime.icon)" />
                       </span>
                     </div>
                     <div class="list-view-pf-body">
                       <div class="list-view-pf-description">
                         <div class="list-group-item-heading">
-                          {{runtime.title}}
+                          {{runtime.name}}
                         </div>
                         <div class="list-group-item-text">
                           {{runtime.description}}<a href="#">more</a>

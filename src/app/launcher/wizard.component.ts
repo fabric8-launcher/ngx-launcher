@@ -62,6 +62,7 @@ export class WizardComponent implements AfterViewInit, OnInit {
    * @returns {Selection} The current selection
    */
   get selection(): Selection {
+    debugger;
     let selection = {
       githubOrg: this._summary.githubOrg,
       githubRepo: this._summary.githubRepo,

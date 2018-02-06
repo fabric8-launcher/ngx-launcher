@@ -1,10 +1,11 @@
 export class Runtime {
   description: string;
-  logo: string;
-  runtimeId: string;
-  supportedMissions: string[];
-  title: string;
+  icon: string;
+  id: string;
+  missions: string[];
+  name: string;
   version?: string; // Menu selection
   versions: string[];
   url?: string;
+  projectVersion: string;
 }
