@@ -23,26 +23,29 @@
               </h2>
             </div>
             <div class="card-pf-body">
-              <div class="list-group list-view-pf list-view-pf-equalized-column">
-                <div class="list-group-item" *ngFor="let item of progress">
-                  <div class="list-view-pf-main-info"
-                       [ngClass]="{'list-view-pf-main-info--in-progress': item.completed !== true}">
-                    <div class="list-view-pf-left">
-                      <span class="pficon"
-                            [ngClass]="{'pficon-ok': item.completed === true,
-                                        'pficon-in-progress fa-spin': item.completed !== true,
-                                        'icon-clear': item.completed !== true && item.inProgress !== true}">
-                      </span>
-                    </div>
-                    <div class="list-view-pf-body">
-                      <div class="list-view-pf-description">
-                        <div class="list-group-item-heading">
-                          {{item.description}}
+              <div class="list-pf">
+                <div class="list-pf-item" *ngFor="let item of progress">
+                  <div class="list-pf-container">
+                    <div class="list-pf-content list-pf-content-flex">
+                      <div class="pfng-list-content">
+                        <div class="list-pf-left"
+                                [ngClass]="{'item-in-progress': item.completed !== true}">
+                          <span class="pficon"
+                                [ngClass]="{'pficon-ok': item.completed === true,
+                                            'pficon-in-progress fa-spin': item.completed !== true,
+                                            'icon-clear': item.completed !== true && item.inProgress !== true}">
+                          </span>
                         </div>
-                      </div>
-                      <div class="list-view-pf-additional-info"
-                           *ngIf="item.url !== undefined && item.hypertext !== undefined && item.completed === true">
-                        <a [href]="item.url">{{item.hypertext}}</a>
+                        <div class="list-pf-content-wrapper">
+                          <div class="list-pf-main-content"
+                                  [ngClass]="{'item-in-progress': item.completed !== true}">
+                            {{item.description}}
+                          </div>
+                        </div>
+                        <div class="list-pf-actions"
+                                *ngIf="item.url !== undefined && item.hypertext !== undefined && item.completed === true">
+                          <a [href]="item.url">{{item.hypertext}}</a>
+                        </div>
                       </div>
                     </div>
                   </div>
