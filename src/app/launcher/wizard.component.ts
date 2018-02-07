@@ -62,7 +62,6 @@ export class WizardComponent implements AfterViewInit, OnInit {
    * @returns {Selection} The current selection
    */
   get selection(): Selection {
-    debugger;
     let selection = {
       githubOrg: this._summary.githubOrg,
       githubRepo: this._summary.githubRepo,
@@ -71,8 +70,8 @@ export class WizardComponent implements AfterViewInit, OnInit {
       pipelineId: this._summary.pipeline.pipelineId,
       projectName: this._summary.projectName,
       projectVersion: this._summary.projectVersion,
-      runtimeId: this._summary.runtime.runtimeId,
-      runtimeVersion: this._summary.runtime.version,
+      runtimeId: this._summary.runtime.id,
+      runtimeVersion: this._summary.runtime.projectVersion,
       spacePath: this._summary.spacePath,
       targetEnvironment: this._summary.targetEnvironment
     } as Selection;

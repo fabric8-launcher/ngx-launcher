@@ -38,7 +38,6 @@ export class MissionRuntimeStepComponent extends WizardStep implements OnInit, O
   }
 
   ngOnInit() {
-    debugger;
     this.wizardComponent.addStep(this);
     let missionSubscription = this.missionRuntimeService.getMissions().subscribe((result) => {
       this._missions = result;
@@ -139,7 +138,7 @@ export class MissionRuntimeStepComponent extends WizardStep implements OnInit, O
       }
     });
     this.runtimes.forEach((val) => {
-      if (this.runtimeId === val.runtimeId) {
+      if (this.runtimeId === val.id) {
         this.updateRuntimeSelection(val);
         this.updateVersionSelection(val, selection.runtimeVersion);
       }
