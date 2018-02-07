@@ -27,6 +27,7 @@ export class MissionRuntimeStepComponent extends WizardStep implements OnInit, O
   private _runtimes: Runtime[];
 
   public selectedRuntime: Runtime;
+  public selectedMission: Mission;
 
   private missionId: string;
   private runtimeId: string;
@@ -149,6 +150,7 @@ export class MissionRuntimeStepComponent extends WizardStep implements OnInit, O
   }
 
   private updateMissionSelection(val: Mission): void {
+    this.selectedMission = val;
     this.wizardComponent.summary.mission = val;
     this.initCompleted();
   }

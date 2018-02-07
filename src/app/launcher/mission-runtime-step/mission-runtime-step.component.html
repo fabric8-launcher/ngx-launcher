@@ -27,10 +27,10 @@
             </div>
             <div class="card-pf-body">
               <div class="list-group list-view-pf" *ngFor="let runtime of runtimes; let i = index">
-                <div class="list-group-item list-view-pf-stacked list-view-pf-top-align" [ngClass]="{'disabled': runtime.disabled === true}">
+                <div class="list-group-item list-view-pf-stacked list-view-pf-top-align" [ngClass]="{'disabled': selectedMission?.id && selectedMission?.runtimes?.indexOf(runtime?.id) === -1}">
                   <div class="list-view-pf-checkbox">
                     <input name="runtime" type="radio"
-                           [disabled]="runtime.disabled === true"
+                           [disabled]="selectedMission?.id && selectedMission?.runtimes?.indexOf(runtime?.id) === -1"
                            [(ngModel)]="runtimeId"
                            [value]="runtime.id"
                            (ngModelChange)="updateRuntimeSelection(runtime)">
