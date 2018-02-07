@@ -3,9 +3,9 @@
 .f8launcher {
   &-container {
     &_nav {
-      display: -webkit-box;
       display: -moz-box;
       display: -ms-flexbox;
+      display: -webkit-box;
       display: -moz-flex;
       display: -webkit-flex;
       display: flex;
@@ -25,25 +25,27 @@
         left: -250px;
         z-index: 10;
         transition: transform .3s ease-in-out;
+        -webkit-transition: transform .3s ease-in-out;
+        -moz-transition: transform .3s ease-in-out;
         &:target {
           transform: translateX(250px);
         }
       }
       .f8launcher-vertical-bar {
-        display: -webkit-box;
         display: -moz-box;
         display: -ms-flexbox;
+        display: -webkit-box;
         display: -moz-flex;
         display: -webkit-flex;
         display: flex;
-        -webkit-box-orient: vertical;
+        display: grid; /* stylelint-disable-line */
         -moz-box-orient: vertical;
-        -webkit-flex-direction: column;
+        -webkit-box-orient: vertical;
         -ms-flex-direction: column;
+        -webkit-flex-direction: column;
         flex-direction: column;
         justify-content: space-between;
-        display: grid; /* stylelint-disable-line */
-        background-color: #bbb;
+        background-color: @color-pf-black-400;
         width: 3px;
         margin-top: 45px;
         //
@@ -81,10 +83,10 @@
         @media screen and (max-width: 768px) {
           margin-top: 25px;
         }
-         //
-         // this is only on the element when the wizard is in-progress.
-         // once completed, this class is removed
-         //
+        //
+        // this is only on the element when the wizard is in-progress.
+        // once completed, this class is removed
+        //
         &.in-progress {
           background-image: linear-gradient(@color-pf-black-700, @color-pf-black-900);
         }
@@ -98,8 +100,8 @@
           font-weight: 700;
           height: 60px;
           transition: background .3s, border .3s ease-in-out;
-          -webkit-transition: background .3s, border .3s ease-in-out;
           -moz-transition: background .3s, border .3s ease-in-out;
+          -webkit-transition: background .3s, border .3s ease-in-out;
           &.project-summary {
             position: fixed;
             bottom: 0;
@@ -119,16 +121,33 @@
             color: @color-pf-black-400;
             animation: slide-down .3s ease-out;
             -moz-animation: slide-down .3s ease-out;
+            -webkit-animation: slide-down .3s ease-out;
             @keyframes slide-down {
-                0% { opacity: 0; -moz-transform: translateY(-100%); }
-                100% { opacity: 1; -moz-transform: translateY(0); }
+                0% { opacity: 0; transform: translateY(-100%); }
+                100% { opacity: 1; transform: translateY(0); }
             }
             @-moz-keyframes slide-down {
                 0% { opacity: 0; -moz-transform: translateY(-100%); }
                 100% { opacity: 1; -moz-transform: translateY(0); }
             }
+            @-webkit-keyframes slide-down {
+                0% { opacity: 0; -webkit-transform: translateY(-100%); }
+                100% { opacity: 1; -webkit-transform: translateY(0); }
+            }
+            .f8launcher-step-circle {
+              &.completed {
+                background-color: @color-pf-black-900;
+              }
+            }
             &.hide {
               display: none;
+            }
+            &.active {
+              .f8launcher-step-circle.completed {
+                &:after {
+                  color: @color-pf-blue-300;
+                }
+              }
             }
             &:hover {
               background: @color-pf-black-700;
@@ -140,6 +159,9 @@
                 border-color: @color-pf-blue-300;
                 &.completed {
                   background-color: @color-pf-black-900;
+                  &:after {
+                    color: @color-pf-blue-300;
+                  }
                 }
               }
               .f8launcher-vertical-bar_steps--title {
@@ -150,16 +172,11 @@
             &:focus {
               text-decoration: none;
             }
-            .f8launcher-step-circle {
-              &.completed {
-                background-color: @color-pf-black-900;
-              }
-            }
           }
           &--title {
             position: absolute;
             margin-top: 8px;
-            margin-left: 10px;;
+            margin-left: 10px;
           }
         }
       }
@@ -167,7 +184,7 @@
   }
   // Launcher step icons
   &-step-circle {
-    border: 1px solid #bbb;
+    border: 1px solid @color-pf-black-400;
     width: 26px;
     height: 26px;
     margin-top: 6px;
@@ -177,8 +194,8 @@
     color: @color-pf-black-300;
     display: inline-flex;
     transition: background .3s, border .3s ease-in-out;
-    -webkit-transition: background .3s, border .3s ease-in-out;
     -moz-transition: background .3s, border .3s ease-in-out;
+    -webkit-transition: background .3s, border .3s ease-in-out;
     &.completed {
       background-color: @color-pf-black-900;
       &:after {
@@ -189,6 +206,11 @@
         color: @color-pf-white;
         margin-top: -8px;
         margin-left: -1px;
+      }
+      &:hover {
+        &:after {
+          color: @color-pf-blue-300;
+        }
       }
     }
     &.warning {
