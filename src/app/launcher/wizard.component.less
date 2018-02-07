@@ -18,30 +18,30 @@ body {
   overflow-x: hidden;
   background-color: @color-pf-black-200;
 }
-/* Content */
-#section0 {
-  min-height: 50px;
-}
-// if adding a new section, the ID (which the scrollspy uses as its selector)
-// must be added to this list for proper spacing
-#MissionRuntime,
-#TargetEnvironment,
-#ReleaseStrategy,
-#GitProvider {
-  margin-top: 15em;
-}
-#MissionRuntime {
-  margin-top: 0;
-}
-#ProjectSummary {
-  margin-top: 35em;
-  margin-bottom: 5em;
-}
+//
+// Content
+//
 .f8launcher {
   position: absolute;
   top: 41px;
-  background-color: #ededed;
+  background-color: @color-pf-black-200;
   width: 100%;
+  // if adding a new section, you must add the .f8launcher-container_main--* class to the <section>
+  &-container_main {
+    &--spacer {
+      min-height: 50px;
+    }
+    &--start {
+      margin-top: 0;
+    }
+    &--inside {
+      margin-top: 15em;
+    }
+    &--end {
+      margin-top: 35em;
+      margin-bottom: 5em;
+    }
+  }
   .active {
     background-color: @color-pf-black-700;
     border-left: 3px solid;
@@ -54,6 +54,11 @@ body {
         background-color: @color-pf-blue-300;
       }
     }
+  }
+  &-continue {
+    text-align: center;
+    padding-top: 15px;
+    padding-bottom: 15px;
   }
   &-application-title {
     &:hover {
@@ -68,7 +73,7 @@ body {
       margin-left: 10px;
       border: none;
       border-bottom: 1px solid;
-      border-bottom-color: #bbb;
+      border-bottom-color: @color-pf-black-400;
       background: transparent;
       font-size: 1.42em; // ~20px
       color: @color-pf-white;
@@ -90,28 +95,29 @@ body {
       }
     }
   }
-  .f8launcher-section {
-    &-mission-runtime,
-    &-target-environment,
-    &-release-strategy,
-    &-git-provider {
-      display: grid;
-      grid-template-rows: 1fr auto 400px;
-      // align-items: end;
-    }
-    &-target-environment {
-      .card-pf-title {
-        height: 80px;
+  .f8launcher {
+      &-section {
+      &-mission-runtime,
+      &-target-environment,
+      &-release-strategy,
+      &-git-provider {
+        display: grid;
+        grid-template-rows: 1fr auto 400px;
       }
-      .card-pf-footer {
-        position: absolute;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        /* stylelint-disable */
-        margin: 0 0px !important;
-        padding: 20px 20px 10px !important;
-        /* stylelint-enable */
+      &-target-environment {
+        .card-pf-title {
+          height: 80px;
+        }
+        .card-pf-footer {
+          position: absolute;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          /* stylelint-disable */
+          margin: 0 0px !important;
+          padding: 20px 20px 10px !important;
+          /* stylelint-enable */
+        }
       }
     }
   }
@@ -144,11 +150,6 @@ body {
         width: 4em;
       }
     }
-  }
-  .f8launcher-continue {
-    text-align: center;
-    padding-top: 15px;
-    padding-bottom: 15px;
   }
   &-container {
     .f8launcher-grid();
