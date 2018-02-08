@@ -7,10 +7,8 @@
 
 body {
   font-family: 'Open Sans', sans-serif;
-  /* stylelint-disable */
-  /* required to overwrite the default PatternFly font size */
-  font-size: @font-size-base !important;
-  /* stylelint-enable */
+  // required to overwrite the default PatternFly font size
+  font-size: @font-size-base !important; /* stylelint-disable-line declaration-no-important */
   min-height: 100vh;
   position: relative;
   margin: 0;
@@ -60,7 +58,7 @@ body {
     padding-top: 15px;
     padding-bottom: 15px;
   }
-  &-application-title {
+  &-application-text-field {
     &:hover {
       &:after {
         font-family: PatternFlyIcons-webfont;
@@ -68,7 +66,7 @@ body {
         color: @color-pf-white;
       }
     }
-    &-input {
+    &_input {
       width: 200px;
       margin-left: 10px;
       border: none;
