@@ -7,6 +7,7 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
+import { DomSanitizer } from '@angular/platform-browser';
 
 import { Mission } from '../model/mission.model';
 import { Runtime } from '../model/runtime.model';
@@ -25,12 +26,17 @@ export class MissionRuntimeStepComponent extends WizardStep implements OnInit, O
   private _missions: Mission[];
   private _runtimes: Runtime[];
 
+  public selectedRuntime: Runtime;
+  public selectedMission: Mission;
+
   private missionId: string;
   private runtimeId: string;
   private subscriptions: Subscription[] = [];
 
   constructor(@Host() public wizardComponent: WizardComponent,
-              private missionRuntimeService: MissionRuntimeService) {
+              private missionRuntimeService: MissionRuntimeService,
+              public _DomSanitizer: DomSanitizer
+            ) {
     super();
   }
 
@@ -92,7 +98,8 @@ export class MissionRuntimeStepComponent extends WizardStep implements OnInit, O
   get stepCompleted(): boolean {
     return (this.wizardComponent.summary.mission !== undefined
       && this.wizardComponent.summary.runtime !== undefined
-      && this.wizardComponent.summary.runtime.version !== undefined);
+      && this.wizardComponent.summary.runtime !== undefined
+      && this.wizardComponent.summary.runtime.projectVersion !== undefined);
   }
 
   // Steps
@@ -101,6 +108,7 @@ export class MissionRuntimeStepComponent extends WizardStep implements OnInit, O
    * Navigate to next step
    */
   navToNextStep(): void {
+    this.wizardComponent.getStep(this.id).completed = this.stepCompleted;
     this.wizardComponent.navToNextStep();
   }
 
@@ -110,6 +118,10 @@ export class MissionRuntimeStepComponent extends WizardStep implements OnInit, O
     this.wizardComponent.summary.mission = undefined;
     this.wizardComponent.summary.runtime = undefined;
     this.initCompleted();
+
+    // Resetting the disabled things
+    this.selectedMission =  null;
+    this.selectedRuntime = null;
   }
 
   // Private
@@ -128,12 +140,12 @@ export class MissionRuntimeStepComponent extends WizardStep implements OnInit, O
     this.runtimeId = selection.runtimeId;
 
     this.missions.forEach((val) => {
-      if (this.missionId === val.missionId) {
+      if (this.missionId === val.id) {
         this.updateMissionSelection(val);
       }
     });
     this.runtimes.forEach((val) => {
-      if (this.runtimeId === val.runtimeId) {
+      if (this.runtimeId === val.id) {
         this.updateRuntimeSelection(val);
         this.updateVersionSelection(val, selection.runtimeVersion);
       }
@@ -142,17 +154,19 @@ export class MissionRuntimeStepComponent extends WizardStep implements OnInit, O
   }
 
   private updateMissionSelection(val: Mission): void {
+    this.selectedMission = val;
     this.wizardComponent.summary.mission = val;
     this.initCompleted();
   }
 
   private updateRuntimeSelection(val: Runtime): void {
+    this.selectedRuntime = val;
     this.wizardComponent.summary.runtime = val;
     this.wizardComponent.summary.runtime.version = (val.version !== undefined) ? val.version : val.versions[0];
     this.initCompleted();
   }
 
   private updateVersionSelection(val: Runtime, version: string): void {
-    val.version = version; // Don't update summary, just store selection
+    val.projectVersion = version; // Don't update summary, just store selection
   }
 }

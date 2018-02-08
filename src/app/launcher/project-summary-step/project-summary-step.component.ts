@@ -7,6 +7,7 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
+import { DomSanitizer } from '@angular/platform-browser';
 
 import { ProjectSummaryService } from '../service/project-summary.service';
 import { Selection } from '../model/selection.model';
@@ -25,7 +26,8 @@ export class ProjectSummaryStepComponent extends WizardStep implements OnDestroy
   private subscriptions: Subscription[] = [];
 
   constructor(@Host() public wizardComponent: WizardComponent,
-              private projectSummaryService: ProjectSummaryService) {
+              private projectSummaryService: ProjectSummaryService,
+              public _DomSanitizer: DomSanitizer) {
     super();
   }
 

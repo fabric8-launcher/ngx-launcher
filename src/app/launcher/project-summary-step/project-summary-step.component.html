@@ -17,15 +17,16 @@
             </div>
             <div class="card-pf-body card-column">
               <div class="card-column-60">
-                <b>{{wizardComponent.summary?.runtime?.title}}</b>
+                <b>{{wizardComponent.summary?.runtime?.name}}</b>
                 <b class="pull-right">{{wizardComponent.summary?.runtime?.version}}</b>
                 <p>{{wizardComponent.summary?.runtime?.description}}
                   <a [href]="wizardComponent.summary?.runtime?.url" target="_blank"
                      *ngIf="wizardComponent.summary?.runtime?.url !== undefined">more</a>
                 </p>
               </div>
-              <div class="card-column-40" *ngIf="wizardComponent.summary?.runtime?.logo !== undefined">
-                <img class="card-column_runtime-icon" [src]="wizardComponent.summary?.runtime?.logo">
+              <div class="card-column-40" *ngIf="wizardComponent.summary?.runtime?.icon !== undefined">
+                <img class="card-column_runtime-icon"
+                     [src]="_DomSanitizer.bypassSecurityTrustUrl(wizardComponent.summary?.runtime?.icon)">
               </div>
             </div>
           </div>
@@ -39,7 +40,7 @@
             </div>
             <div class="card-pf-body card-column">
               <div class="card-column-single">
-                <b>{{wizardComponent.summary?.mission?.title}}</b>
+                <b>{{wizardComponent.summary?.mission?.name}}</b>
                 <p>{{wizardComponent.summary?.mission?.description}}
                   <a [href]="wizardComponent.summary?.mission?.url" target="_blank"
                      *ngIf="wizardComponent.summary?.mission?.url !== undefined">more</a>
