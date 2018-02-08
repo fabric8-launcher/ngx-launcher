@@ -25,7 +25,7 @@
                 </p>
               </div>
               <div class="card-column-40" *ngIf="wizardComponent.summary?.runtime?.logo !== undefined">
-                <img [src]="wizardComponent.summary?.runtime?.logo">
+                <img class="card-column_runtime-icon" [src]="wizardComponent.summary?.runtime?.logo">
               </div>
             </div>
           </div>
@@ -127,8 +127,8 @@
               <form class="form-horizontal">
                 <div class="form-group f8launcher-project-summary-data-form-group">
                   <label class="col-xs-4 control-label">Project Name</label>
-                  <div class="col-xs-8 f8launcher-project-summary-data-field f8launcher-application-title">
-                    <input class="f8launcher-project-summary-data-field_input f8launcher-application-title-input"
+                  <div class="col-xs-8 f8launcher-project-summary-data-field f8launcher-application-text-field">
+                    <input class="f8launcher-project-summary-data-field_input f8launcher-application-text-field_input"
                            name="applicationTitle" placeholder="New Application" type="text"
                            [(ngModel)]="this.wizardComponent.summary.projectName"
                            (keyup.enter)="$event.target.blur();">
@@ -142,8 +142,8 @@
                 </div>
                 <div class="form-group f8launcher-project-summary-data-form-group">
                   <label class="col-xs-4 control-label">Version</label>
-                  <div class="col-xs-8 f8launcher-project-summary-data-field">
-                    <input class="f8launcher-project-summary-data-field_input f8launcher-application-title-input"
+                  <div class="col-xs-8 f8launcher-project-summary-data-field f8launcher-application-text-field">
+                    <input class="f8launcher-project-summary-data-field_input f8launcher-application-text-field_input"
                            name="version" placeholder="Version Number" type="text"
                            [(ngModel)]="this.wizardComponent.summary.projectVersion"
                            (keyup.enter)="$event.target.blur();">
@@ -151,8 +151,8 @@
                 </div>
                 <div class="form-group f8launcher-project-summary-data-form-group">
                   <label class="col-xs-4 control-label">Group ID</label>
-                  <div class="col-xs-8 f8launcher-project-summary-data-field">
-                    <input class="f8launcher-project-summary-data-field_input f8launcher-application-title-input"
+                  <div class="col-xs-8 f8launcher-project-summary-data-field f8launcher-application-text-field">
+                    <input class="f8launcher-project-summary-data-field_input f8launcher-application-text-field_input"
                            name="groupId" placeholder="Group ID" type="text"
                            [(ngModel)]="this.wizardComponent.summary.groupId"
                            (keyup.enter)="$event.target.blur();">
@@ -160,8 +160,8 @@
                 </div>
                 <div class="form-group f8launcher-project-summary-data-form-group">
                   <label class="col-xs-4 control-label">Space Path</label>
-                  <div class="col-xs-8 f8launcher-project-summary-data-field">
-                    <input class="f8launcher-project-summary-data-field_input f8launcher-application-title-input"
+                  <div class="col-xs-8 f8launcher-project-summary-data-field f8launcher-application-text-field">
+                    <input class="f8launcher-project-summary-data-field_input f8launcher-application-text-field_input"
                            name="spacePath" placeholder="Space Path" type="text"
                            [(ngModel)]="this.wizardComponent.summary.spacePath"
                            (keyup.enter)="$event.target.blur();">
@@ -198,7 +198,7 @@
                     <label class="col-xs-5 control-label">Authorized Account</label>
                     <div class="col-xs-6 f8launcher-project-summary-data-field">
                       <div class="f8launcher-project-summary-data-field-account">
-                        <img height="30px" width="30px" [src]="wizardComponent.summary.githubAvatar"
+                        <img class="card-column_user-profile-icon" [src]="wizardComponent.summary.githubAvatar"
                              *ngIf="wizardComponent.summary?.githubAvatar !== undefined">
                         <i class="fa fa-ban fa-2x" *ngIf="this.wizardComponent.summary?.githubAvatar === undefined"></i>
                         <span class="f8launcher-project-summary-data-field-account-username">
