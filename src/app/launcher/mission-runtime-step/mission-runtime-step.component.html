@@ -27,7 +27,8 @@
             </div>
             <div class="card-pf-body">
               <div class="list-group list-view-pf" *ngFor="let runtime of runtimes; let i = index">
-                <div class="list-group-item list-view-pf-stacked list-view-pf-top-align" [ngClass]="{'disabled': selectedMission?.id && selectedMission?.runtimes?.indexOf(runtime?.id) === -1}">
+                <div class="list-group-item list-view-pf-stacked list-view-pf-top-align"
+                [ngClass]="{'disabled': selectedMission?.id && selectedMission?.runtimes?.indexOf(runtime?.id) === -1}">
                   <div class="list-view-pf-checkbox">
                     <input name="runtime" type="radio"
                            [disabled]="selectedMission?.id && selectedMission?.runtimes?.indexOf(runtime?.id) === -1"
@@ -38,11 +39,11 @@
                   <div class="list-view-pf-actions">
                     <div class="dropdown" dropdown>
                       <button dropdownToggle type="button" class="btn btn-default dropdown-toggle" id="{{i + 'dropdown'}}">
-                        {{runtime.projectVersion || runtime.projectVersions[0]}}
+                        {{runtime.version || runtime.versions[0]}}
                         <span class="caret"></span>
                       </button>
                       <ul *dropdownMenu class="dropdown-menu" role="menu" [attr.aria-labelledby]="i + 'dropdown'">
-                        <li role="menuitem" *ngFor="let version of runtime.projectVersions">
+                        <li role="menuitem" *ngFor="let version of runtime.versions">
                           <a role="menuitem" class="dropdown-item" tabindex="-1" href="#"
                              (click)="updateVersionSelection(runtime, version)">{{version}}</a>
                         </li>
@@ -80,7 +81,8 @@
             </div>
             <div class="card-pf-body">
               <div class="list-group list-view-pf" *ngFor="let mission of missions">
-                <div class="list-group-item list-view-pf-stacked list-view-pf-top-align" [ngClass]="{'disabled': selectedRuntime?.id && mission?.runtimes?.indexOf(selectedRuntime?.id) === -1}">
+                <div class="list-group-item list-view-pf-stacked list-view-pf-top-align"
+                [ngClass]="{'disabled': selectedRuntime?.id && mission?.runtimes?.indexOf(selectedRuntime?.id) === -1}">
                   <div class="f8launcher-tag-featured" *ngIf="mission.suggested">
                     Suggested Mission <i class="pficon pficon-info"></i>
                   </div>

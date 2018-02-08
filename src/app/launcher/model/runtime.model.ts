@@ -2,7 +2,7 @@ export class Runtime {
   description: string;
   icon: string;
   id: string;
-  missions: string[];
+  missions: any[];
   name: string;
   version?: string; // Menu selection
   versions: string[];
