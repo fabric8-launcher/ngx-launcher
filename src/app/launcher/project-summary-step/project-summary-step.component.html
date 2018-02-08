@@ -25,7 +25,7 @@
                 </p>
               </div>
               <div class="card-column-40" *ngIf="wizardComponent.summary?.runtime?.icon !== undefined">
-                <img [src]="wizardComponent.summary?.runtime?.icon">
+                <img [src]="_DomSanitizer.bypassSecurityTrustUrl(wizardComponent.summary?.runtime?.icon)">
               </div>
             </div>
           </div>

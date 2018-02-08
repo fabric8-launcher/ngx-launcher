@@ -71,7 +71,7 @@ export class WizardComponent implements AfterViewInit, OnInit {
       projectName: this._summary.projectName,
       projectVersion: this._summary.projectVersion,
       runtimeId: this._summary.runtime.id,
-      runtimeVersion: this._summary.runtime.projectVersion,
+      runtimeVersion: this._summary.runtime.version,
       spacePath: this._summary.spacePath,
       targetEnvironment: this._summary.targetEnvironment
     } as Selection;
