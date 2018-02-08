@@ -3,7 +3,6 @@ import {
   Component,
   OnInit,
   ViewChild,
-  ChangeDetectionStrategy,
   ViewEncapsulation
 } from '@angular/core';
 import { Router } from '@angular/router';
@@ -16,7 +15,6 @@ import { WizardStep } from './wizard-step';
 @Component({
   encapsulation: ViewEncapsulation.None,
   selector: 'f8launcher-wizard',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './wizard.component.html',
   styleUrls: ['./wizard.component.less']
 })
