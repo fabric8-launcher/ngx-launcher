@@ -8,7 +8,7 @@
         </f8launcher-step-indicator>
       </div>
       <div class="f8launcher-container_main">
-        <section id="section0" class="f8launcher-container_main-start"></section>
+        <section id="section0" class="f8launcher-container_main--spacer"></section>
         <f8launcher-missionruntime-step #missionRuntimeStep
             [id]="'MissionRuntime'"
             [styleClass]="'mission-runtime'"
@@ -27,7 +27,7 @@
           [styleClass]="'target-environment'"
           [title]="'Select Target Environment'">
         </f8launcher-targetenvironment-step>
-        <f8launcher-releasestrategy-step #releaSestrategyStep
+        <f8launcher-releasestrategy-step #releaseStrategyStep
           [hidden]="!(missionRuntimeStep.completed === true && targetEnvStep.completed === true
             && summary?.targetEnvironment === 'os')"
           [id]="'ReleaseStrategy'"
