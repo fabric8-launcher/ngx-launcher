@@ -1,90 +1,48 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-
+import { Headers, Http, RequestOptions, Response } from '@angular/http';
 import { MissionRuntimeService } from '../../app/launcher/launcher.module';
 import { Mission } from '../../app/launcher/launcher.module';
 import { Runtime } from '../../app/launcher/launcher.module';
 
 @Injectable()
 export class DemoMissionRuntimeService implements MissionRuntimeService {
-  constructor() {
+
+    //TODO: remove the hardcodes
+    private END_POINT: string = 'https://forge.api.prod-preview.openshift.io';
+    private API_BASE: string = '/api/booster-catalog/';
+    private ORIGIN: string = 'osio';
+
+  constructor(private http: Http) {
+  }
+
+  private get options(): RequestOptions {
+    let headers = new Headers();
+    headers.append('X-App', this.ORIGIN);
+    return new RequestOptions({
+        headers: headers
+    })
   }
 
   getMissions(): Observable<Mission[]> {
-    let missions = Observable.of([{
-      'id': 'crud',
-      'description': 'Brief description of the mission...',
-      'name': 'CRUD',
-      'suggested': false,
-      'runtimes': [
-        'vert.x',
-        'nodejs',
-        'wildfly-swarm'
-      ],
-      'url': 'https://github.com/fabric8-launcher/ngx-launcher'
-    },
-      {
-        'id': 'circuit-breaker',
-        'description': 'Brief description of the mission...',
-        'name': 'Circuit Breaker',
-        'suggested': false,
-        'runtimes': [
-          'vert.x',
-          'nodejs',
-          'spring-boot',
-          'wildfly-swarm'
-        ],
-        'url': 'https://github.com/fabric8-launcher/ngx-launcher'
-      },
-      {
-        'id': 'configmap',
-        'description': 'Brief description of the mission...',
-        'name': 'Externalized Configuration',
-        'suggested': false,
-        'runtimes': [
-          'vert.x',
-          'spring-boot',
-          'wildfly-swarm'
-        ],
-        'url': 'https://github.com/fabric8-launcher/ngx-launcher'
-      },
-      {
-        'id': 'health-check',
-        'description': 'Brief description of the mission...',
-        'name': 'Health Check',
-        'suggested': false,
-        'runtimes': [
-          'vert.x',
-          'spring-boot',
-          'wildfly-swarm'
-        ],
-        'url': 'https://github.com/fabric8-launcher/ngx-launcher'
-      },
-      {
-        'id': 'rest-http',
-        'description': 'Brief description of the mission...',
-        'name': 'REST API Level 0',
-        'suggested': false,
-        'runtimes': [
-          'vert.x',
-          'spring-boot',
-          'wildfly-swarm'
-        ],
-        'url': 'https://github.com/fabric8-launcher/ngx-launcher'
-      },
-      {
-        'id': 'rest-http-secured',
-        'description': 'Brief description of the mission...',
-        'name': 'Secured',
-        'suggested': false,
-        'runtimes': [
-          'vert.x',
-          'spring-boot',
-          'wildfly-swarm'
-        ],
-        'url': 'https://github.com/fabric8-launcher/ngx-launcher'
-      }] as Mission[]);
-    return missions;
+    let missionEndPoint: string = this.END_POINT + this.API_BASE + 'missions';
+    return this.http.get(missionEndPoint, this.options)
+                 .map(response => response.json() as Mission[])
+                 .catch(this.handleError);
+  }
+
+  private handleError(error: Response | any) {
+    // In a real world app, we might use a remote logging infrastructure
+    let errMsg: string;
+    if (error instanceof Response) {
+      const body = error.json() || '';
+      const err = body.error || JSON.stringify(body);
+      errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
+    } else {
+      errMsg = error.message ? error.message : error.toString();
+    }
+    console.error(errMsg);
+    return Observable.throw(errMsg);
   }
 
   getRuntimes(): Observable<Runtime[]> {
