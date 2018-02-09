@@ -17,3 +17,8 @@ export class Runtime {
   url?: string;
   projectVersion: string;
 }
+
+export class Missions {
+  id: string;
+  versions: any[];
+}
