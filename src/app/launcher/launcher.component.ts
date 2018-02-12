@@ -70,7 +70,7 @@ export class LauncherComponent implements AfterViewInit, OnInit {
     let selection = {
       groupId: (this._summary.dependencyCheck !== undefined) ? this._summary.dependencyCheck.groupId : undefined,
       missionId: (this._summary.mission !== undefined) ? this._summary.mission.id : undefined,
-      pipelineId: (this._summary.pipeline !== undefined) ? this._summary.pipeline.pipelineId : undefined,
+      pipelineId: (this._summary.pipeline !== undefined) ? this._summary.pipeline.id : undefined,
       projectName: (this._summary.dependencyCheck !== undefined)
         ? this._summary.dependencyCheck.projectName : undefined,
       projectVersion: (this._summary.dependencyCheck !== undefined)

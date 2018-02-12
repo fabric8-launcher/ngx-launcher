@@ -78,7 +78,13 @@ export class ReleaseStrategyStepComponent extends LauncherStep implements OnInit
 
     this.launcherComponent.addStep(this);
     this.subscriptions.push(this.pipelineService.getPipelines().subscribe((result) => {
-      this._pipelines = this.allPipelines = result;
+      // needs to filter out associated pipelines from list of pipelines
+      let selPipelines: any[] = [];
+      selPipelines = result.filter(item => {
+        return item.platform == "maven";
+      })
+
+      this._pipelines = this.allPipelines = selPipelines;
       for (let i = 0; i < this._pipelines.length; i++) {
         if (this._pipelines[i].suggested === true) {
           this._pipelines[i].expanded = true;
@@ -216,7 +222,7 @@ export class ReleaseStrategyStepComponent extends LauncherStep implements OnInit
     }
     this.pipelineId = selection.pipelineId;
     for (let i = 0; i < this.pipelines.length; i++) {
-      if (this.pipelineId === this.pipelines[i].pipelineId) {
+      if (this.pipelineId === this.pipelines[i].id) {
         this.launcherComponent.summary.pipeline = this.pipelines[i];
       }
     }
