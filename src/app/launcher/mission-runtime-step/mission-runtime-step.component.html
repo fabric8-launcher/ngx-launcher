@@ -4,7 +4,7 @@
     <div class="container-fluid">
       <h1 snInViewport (onInViewportChange)="wizardComponent.onInViewportChange($event, 'MissionRuntime')"
           [debounce]="500">
-        Select Mission &amp; Runtime
+        Select Runtime &amp; Mission
         <button class="btn btn-default btn-lg pull-right" type="button"
                 [disabled]="selectionAvailable !== true"
                 (click)="resetSelections()">
@@ -12,7 +12,7 @@
         </button>
       </h1>
       <p>
-        Start by selecting a runtime or mission. Secondary selection will be narrowed based on your primary selection.
+        Start by selecting a runtime or a mission.  Valid pairings are narrowed based on your initial selection.
       </p>
     </div>
   </div>
