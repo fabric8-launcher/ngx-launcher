@@ -37,13 +37,21 @@
         }
       }
       &_input {
-        width: 95%;
+        width: 85%;
         margin-left: 0;
         font-size: @font-size-base;
         color: @color-pf-black-900;
       }
     }
     &-unavailable {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      width: 75%;
+      height: 30%;
+      margin: auto !important; /* stylelint-disable-line declaration-no-important */
       text-align: center;
       .fa-ban {
         font-size: 60px;

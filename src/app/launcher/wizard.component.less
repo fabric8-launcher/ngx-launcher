@@ -25,19 +25,31 @@ body {
   background-color: @color-pf-black-200;
   width: 100%;
   // if adding a new section, you must add the .f8launcher-container_main--* class to the <section>
-  &-container_main {
-    &--spacer {
-      min-height: 50px;
+  &-container {
+    .f8launcher-grid();
+    grid-column-gap: 15px;
+    @media screen and (max-width: 1024px) {
+      grid-template-areas: 'content';
+      grid-template-columns: 1fr;
     }
-    &--start {
-      margin-top: 0;
-    }
-    &--inside {
-      margin-top: 15em;
-    }
-    &--end {
-      margin-top: 35em;
-      margin-bottom: 5em;
+    &_main {
+      margin-left: 250px;
+      @media screen and (max-width: 1024px) {
+        margin-left: 0;
+      }
+      &--spacer {
+        min-height: 50px;
+      }
+      &--start {
+        margin-top: 0;
+      }
+      &--inside {
+        margin-top: 15em;
+      }
+      &--end {
+        margin-top: 35em;
+        margin-bottom: 5em;
+      }
     }
   }
   .active {
@@ -146,19 +158,6 @@ body {
     &-logo {
       img {
         width: 4em;
-      }
-    }
-  }
-  &-container {
-    .f8launcher-grid();
-    @media screen and (max-width: 1024px) {
-      grid-template-areas: 'content';
-      grid-template-columns: 1fr;
-    }
-    &_main {
-      margin-left: 250px;
-      @media screen and (max-width: 1024px) {
-        margin-left: 0;
       }
     }
   }

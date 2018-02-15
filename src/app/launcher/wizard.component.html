@@ -12,7 +12,7 @@
         <f8launcher-missionruntime-step #missionRuntimeStep
             [id]="'MissionRuntime'"
             [styleClass]="'mission-runtime'"
-            [title]="'Select Mission & Runtime'">
+            [title]="'Select Runtime & Mission'">
         </f8launcher-missionruntime-step>
 <!-- Place holder for Dependency Checker
         <f8launcher-dependencychecker-step
@@ -32,7 +32,7 @@
             && summary?.targetEnvironment === 'os')"
           [id]="'ReleaseStrategy'"
           [styleClass]="'release-strategy'"
-          [title]="'Select Release Strategy'">
+          [title]="'Select Pipeline'">
         </f8launcher-releasestrategy-step>
         <f8launcher-gitprovider-step
           [hidden]="!(missionRuntimeStep.completed === true && targetEnvStep.completed === true)"
@@ -44,7 +44,7 @@
           [hidden]="!(missionRuntimeStep.completed === true && targetEnvStep.completed === true)"
           [id]="'ProjectSummary'"
           [styleClass]="'project-summary'"
-          [title]="'Confirm Project Summary'">
+        [title]="'Confirm Application Summary & Setup'">
         </f8launcher-projectsummary-step>
       </div>
     </ng-template>

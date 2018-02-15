@@ -3,7 +3,7 @@
   <div>
     <div class="container-fluid">
       <h1 snInViewport (onInViewportChange)="wizardComponent.onInViewportChange($event, 'ProjectSummary')"
-          [debounce]="500">Confirm Application Summary</h1>
+          [debounce]="500">Confirm Application Summary & Setup</h1>
     </div>
   </div>
   <div>
@@ -57,16 +57,22 @@
   <div class="container-fluid container-cards-pf" *ngIf="wizardComponent.summary?.targetEnvironment === 'os'">
     <div class="row row-cards-pf">
       <div class="col-xs-12">
-        <div class="card-pf">
+        <div class="card-pf card-pf--small">
           <div *ngIf="wizardComponent.summary?.pipeline === undefined;
                       then showNoPipelineTemplate else showPipelineTemplate"></div>
           <ng-template #showNoPipelineTemplate>
+            <div class="card-pf-heading">
+              <h2 class="card-pf-title">
+                Pipeline
+              </h2>
+            </div>
             <div class="card-pf-body f8launcher-project-summary-data-unavailable">
-              <span class="fa fa-ban"></span>
-              <h2>No Pipeline</h2>
-              <p>To proceed with setting up this application, there must be a selected pipeline</p>
+              <h2>
+                <b>Incomplete</b>
+              </h2>
+              <p>To proceed with setting up this application, this section must be completed.</p>
               <button class="btn btn-default btn-lg f8launcher-authorize-account"
-                      (click)="navToStep('ReleaseStrategy')">Select Pipeline</button>
+                      (click)="navToStep('ReleaseStrategy')">Complete Section</button>
             </div>
           </ng-template>
           <ng-template #showPipelineTemplate>
@@ -183,12 +189,18 @@
                       || wizardComponent.summary?.gitHubDetails?.repositoryAvailable !== true;
                       then showNoGitHubTemplate else showGitHubTemplate"></div>
           <ng-template #showNoGitHubTemplate>
+            <div class="card-pf-heading">
+              <h2 class="card-pf-title">
+                GitHub
+              </h2>
+            </div>
             <div class="card-pf-body f8launcher-project-summary-data-unavailable">
-              <span class="fa fa-ban"></span>
-              <h2>No Authorized Git Provider</h2>
-              <p>To proceed with setting up this application, there must be a selected Git provider</p>
+              <h2>
+                <b>Incomplete</b>
+              </h2>
+              <p>To proceed with setting up this application, this section must be completed.</p>
               <button class="btn btn-default btn-lg f8launcher-authorize-account"
-                      (click)="navToStep('GitProvider')">Authorize Git Provider</button>
+                      (click)="navToStep('GitProvider')">Complete Section</button>
             </div>
           </ng-template>
           <ng-template #showGitHubTemplate>
@@ -242,7 +254,7 @@
     <div class="f8launcher-continue">
       <button class="btn btn-primary"
               [disabled]="stepCompleted !== true"
-              (click)="setup()">Set Up</button> or press <b>ENTER</b>
+              (click)="setup()">Set Up Application</button>
     </div>
   </div>
 </section>
