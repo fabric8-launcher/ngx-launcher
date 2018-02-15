@@ -1,13 +1,15 @@
 import {
+  AfterViewInit,
   Component,
+  ElementRef,
   Host,
   OnDestroy,
   OnInit,
+  ViewChild,
   ViewEncapsulation
 } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 
-import { GitHubDetails } from '../model/github-details.model';
 import { GitProviderService } from '../service/git-provider.service';
 import { Selection } from '../model/selection.model';
 import { WizardComponent } from '../wizard.component';
@@ -19,12 +21,22 @@ import { WizardStep } from '../wizard-step';
   templateUrl: './gitprovider-step.component.html',
   styleUrls: ['./gitprovider-step.component.less']
 })
-export class GitProviderStepComponent extends WizardStep implements OnDestroy, OnInit {
+export class GitProviderStepComponent extends WizardStep implements AfterViewInit, OnDestroy, OnInit {
+  @ViewChild('versionSelect') versionSelect: ElementRef;
+
   private subscriptions: Subscription[] = [];
 
   constructor(@Host() public wizardComponent: WizardComponent,
               private gitProviderService: GitProviderService) {
     super();
+  }
+
+  ngAfterViewInit() {
+    if (this.wizardComponent.summary.gitHubDetails.authenticated === true) {
+      setTimeout(() => {
+        this.versionSelect.nativeElement.focus();
+      }, 10);
+    }
   }
 
   ngOnInit() {

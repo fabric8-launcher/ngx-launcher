@@ -37,7 +37,7 @@
             <div class="form-group">
               <label for="ghOrg" class="col-sm-2 control-label">Organization</label>
               <div class="col-sm-10">
-                <select id="ghOrg" class="form-control" name="ghOrg" placeholder="Select organization"
+                <select id="ghOrg" class="form-control" name="ghOrg" placeholder="Select organization" #versionSelect
                         [disabled]="wizardComponent.summary?.gitHubDetails?.organizations === undefined"
                         [(ngModel)]="wizardComponent.summary.gitHubDetails.organization"
                         (ngModelChange)="updateGitHubSelection()">
