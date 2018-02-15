@@ -5,20 +5,27 @@ import { Headers, Http, RequestOptions, Response } from '@angular/http';
 import { Pipeline } from '../../app/launcher/model/pipeline.model';
 import { PipelineService } from '../../app/launcher/service/pipeline.service';
 
+import { CommonService } from '../../app/launcher/service/common.service';
+
 @Injectable()
 export class DemoPipelineService implements PipelineService {
 
     //TODO: remove the hardcodes
-    private END_POINT: string = 'https://forge.api.prod-preview.openshift.io';
-    private API_BASE: string = '/api/services/jenkins/pipelines';
-    private ORIGIN: string = 'osio';
+    private END_POINT: string = '';
+    private API_BASE: string = 'services/jenkins/pipelines';
+    private ORIGIN: string = '';
   
-    constructor(private http: Http) {
+    constructor(private http: Http, private commonService: CommonService) {
+      if (this.commonService) {
+        this.END_POINT = this.commonService.getBackendUrl();
+        this.ORIGIN = this.commonService.getOrigin();
+      }
     }
-  
+
     private get options(): RequestOptions {
       let headers = new Headers();
       headers.append('X-App', this.ORIGIN);
+      headers.append('Authorization', 'Bearer ' + this.commonService.getAuthToken())
       return new RequestOptions({
           headers: headers
       })
