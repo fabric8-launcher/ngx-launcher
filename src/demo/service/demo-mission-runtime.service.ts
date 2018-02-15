@@ -1,27 +1,31 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Headers, Http, RequestOptions, Response } from '@angular/http';
 import { MissionRuntimeService } from '../../app/launcher/launcher.module';
 import { Mission } from '../../app/launcher/launcher.module';
 import { Runtime } from '../../app/launcher/launcher.module';
 
-import { Config } from '../../app/service/config.component';
+import { CommonService } from '../../app/launcher/service/common.service';
 
 @Injectable()
 export class DemoMissionRuntimeService implements MissionRuntimeService {
 
-    //TODO: remove the hardcodes
-    private END_POINT: string = ''
-    private API_BASE: string = 'booster-catalog/';
-    private ORIGIN: string = 'osio';
+  //TODO: remove the hardcodes
+  private END_POINT: string = ''
+  private API_BASE: string = 'booster-catalog/';
+  private ORIGIN: string = '';
 
-  constructor(private http: Http, private config: Config) {
-    this.END_POINT = this.config && this.config.get('backend_url');
+  constructor(private http: Http, private commonService: CommonService) {
+    if (this.commonService) {
+      this.END_POINT = this.commonService.getBackendUrl();
+      this.ORIGIN = this.commonService.getOrigin();
+    }
   }
 
   private get options(): RequestOptions {
     let headers = new Headers();
     headers.append('X-App', this.ORIGIN);
+    headers.append('Authorization', 'Bearer ' + this.commonService.getAuthToken())
     return new RequestOptions({
         headers: headers
     })
