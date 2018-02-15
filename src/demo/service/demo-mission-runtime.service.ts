@@ -5,15 +5,18 @@ import { MissionRuntimeService } from '../../app/launcher/launcher.module';
 import { Mission } from '../../app/launcher/launcher.module';
 import { Runtime } from '../../app/launcher/launcher.module';
 
+import { Config } from '../../app/service/config.component';
+
 @Injectable()
 export class DemoMissionRuntimeService implements MissionRuntimeService {
 
     //TODO: remove the hardcodes
-    private END_POINT: string = 'https://forge.api.prod-preview.openshift.io';
-    private API_BASE: string = '/api/booster-catalog/';
+    private END_POINT: string = ''
+    private API_BASE: string = 'booster-catalog/';
     private ORIGIN: string = 'osio';
 
-  constructor(private http: Http) {
+  constructor(private http: Http, private config: Config) {
+    this.END_POINT = this.config && this.config.get('backend_url');
   }
 
   private get options(): RequestOptions {

@@ -20,6 +20,10 @@ import { DemoProjectProgressService } from './service/demo-project-progress.serv
 import { DemoProjectSummaryService } from './service/demo-project-summary.service';
 import { DemoTargetEnvironmentService } from './service/demo-target-environment.service';
 
+import { Config } from '../app/service/config.component';
+import { ForgeConfig } from './shared/forge-config';
+import { FABRIC8_FORGE_API_URL } from './shared/forge-api-url';
+
 import {
   DependencyCheckService,
   GitProviderService,
@@ -50,7 +54,9 @@ import {
     { provide: PipelineService, useClass: DemoPipelineService },
     { provide: ProjectProgressService, useClass: DemoProjectProgressService },
     { provide: ProjectSummaryService, useClass: DemoProjectSummaryService },
-    { provide: TargetEnvironmentService, useClass: DemoTargetEnvironmentService}
+    { provide: TargetEnvironmentService, useClass: DemoTargetEnvironmentService},
+    { provide: Config, useClass: ForgeConfig },
+    { provide: FABRIC8_FORGE_API_URL, useValue: 'https://forge.api.prod-preview.openshift.io' }
   ],
   bootstrap: [AppComponent]
 })
