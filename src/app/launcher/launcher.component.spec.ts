@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CommonModule } from '@angular/common';
 import { By } from '@angular/platform-browser';
-import { WizardComponent } from './wizard.component';
+import { WizardComponent } from './launcher.component';
 
 
 describe('WizardComponent', () => {

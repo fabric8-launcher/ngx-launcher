@@ -1,16 +1,16 @@
 <div class="f8launcher-application-text-field">
   <input class="f8launcher-application-text-field_input"
          name="applicationTitle" placeholder="New Application" type="text"
-         [(ngModel)]="wizardComponent.summary.dependencyCheck.projectName"
+         [(ngModel)]="launcherComponent.summary.dependencyCheck.projectName"
          (keyup.enter)="$event.target.blur();">
 </div>
 <div class="f8launcher-vertical-bar"
      [ngClass]="{'in-progress': inProgress === true}">
   <a class="f8launcher-vertical-bar_steps--item {{step.styleClass}}" href="javascript:void(0)"
-     [class.active]="wizardComponent.selectedSection === step.id"
+     [class.active]="launcherComponent.selectedSection === step.id"
      [ngClass]="{'hide': step.hidden === true}"
      (click)="navToStep(step.id)"
-     *ngFor="let step of wizardComponent.steps">
+     *ngFor="let step of launcherComponent.steps">
     <div class="f8launcher-step-circle"
          [ngClass]="{'completed': step.completed === true}">
     </div>

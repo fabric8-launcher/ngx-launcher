@@ -18,7 +18,7 @@ import { ProjectProgressService } from './service/project-progress.service';
 import { ProjectSummaryStepComponent } from './project-summary-step/project-summary-step.component';
 import { ReleaseStrategyStepComponent } from './release-strategy-step/release-strategy-step.component';
 import { TargetEnvironmentStepComponent } from './targetenvironment-step/target-environment-step.component';
-import { WizardComponent } from './wizard.component';
+import { LauncherComponent } from './launcher.component';
 
 // Provide window object so as to not break SSR if using universal
 export const providers: Provider[] = [
@@ -34,7 +34,7 @@ export const providers: Provider[] = [
     ToolbarModule
   ],
   exports: [
-    WizardComponent
+    LauncherComponent
   ],
   declarations: [
     ActivateBoosterComponent,
@@ -45,7 +45,7 @@ export const providers: Provider[] = [
     ReleaseStrategyStepComponent,
     StepIndicatorComponent,
     TargetEnvironmentStepComponent,
-    WizardComponent
+    LauncherComponent
   ],
   providers: [
     BsDropdownConfig

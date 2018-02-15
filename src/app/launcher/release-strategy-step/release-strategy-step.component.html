@@ -2,7 +2,7 @@
          [ngClass]="{'hidden': hidden}">
   <div>
     <div class="container-fluid">
-      <h1 snInViewport (onInViewportChange)="wizardComponent.onInViewportChange($event, 'ReleaseStrategy')"
+      <h1 snInViewport (onInViewportChange)="launcherComponent.onInViewportChange($event, 'ReleaseStrategy')"
           [debounce]="500">Select Pipeline</h1>
       <p>
         Pipelines define how your application is deployed.  Each pipeline has multiple stages with a varying set of capabilities.

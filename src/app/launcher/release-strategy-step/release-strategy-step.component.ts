@@ -22,8 +22,8 @@ import {
 import { PipelineService } from '../service/pipeline.service';
 import { Pipeline } from '../model/pipeline.model';
 import { Selection } from '../model/selection.model';
-import { WizardComponent } from '../wizard.component';
-import { WizardStep } from '../wizard-step';
+import { LauncherComponent } from '../launcher.component';
+import { LauncherStep } from '../launcher-step';
 
 @Component({
   encapsulation: ViewEncapsulation.None,
@@ -31,7 +31,7 @@ import { WizardStep } from '../wizard-step';
   templateUrl: './release-strategy-step.component.html',
   styleUrls: ['./release-strategy-step.component.less']
 })
-export class ReleaseStrategyStepComponent extends WizardStep implements OnInit, OnDestroy {
+export class ReleaseStrategyStepComponent extends LauncherStep implements OnInit, OnDestroy {
   @Input() id: string;
 
   toolbarConfig: ToolbarConfig;
@@ -46,7 +46,7 @@ export class ReleaseStrategyStepComponent extends WizardStep implements OnInit, 
 
   private subscriptions: Subscription[] = [];
 
-  constructor(@Host() public wizardComponent: WizardComponent,
+  constructor(@Host() public launcherComponent: LauncherComponent,
               private pipelineService: PipelineService) {
     super();
   }
@@ -76,7 +76,7 @@ export class ReleaseStrategyStepComponent extends WizardStep implements OnInit, 
       sortConfig: this.sortConfig
     } as ToolbarConfig;
 
-    this.wizardComponent.addStep(this);
+    this.launcherComponent.addStep(this);
     this.subscriptions.push(this.pipelineService.getPipelines().subscribe((result) => {
       this._pipelines = this.allPipelines = result;
       for (let i = 0; i < this._pipelines.length; i++) {
@@ -129,7 +129,7 @@ export class ReleaseStrategyStepComponent extends WizardStep implements OnInit, 
    * @returns {boolean} True if step is completed
    */
   get stepCompleted(): boolean {
-    return (this.wizardComponent.summary.pipeline !== undefined);
+    return (this.launcherComponent.summary.pipeline !== undefined);
   }
 
   // Filter
@@ -194,30 +194,30 @@ export class ReleaseStrategyStepComponent extends WizardStep implements OnInit, 
   // Steps
 
   navToNextStep(): void {
-    this.wizardComponent.navToNextStep();
+    this.launcherComponent.navToNextStep();
   }
 
   updatePipelineSelection(pipeline: Pipeline): void {
-    this.wizardComponent.summary.pipeline = pipeline;
+    this.launcherComponent.summary.pipeline = pipeline;
     this.initCompleted();
   }
 
   // Private
 
   private initCompleted(): void {
-    this.wizardComponent.getStep(this.id).completed = this.stepCompleted;
+    this.launcherComponent.getStep(this.id).completed = this.stepCompleted;
   }
 
   // Restore mission & runtime summary
   private restoreSummary(): void {
-    let selection: Selection = this.wizardComponent.selectionParams;
+    let selection: Selection = this.launcherComponent.selectionParams;
     if (selection === undefined) {
       return;
     }
     this.pipelineId = selection.pipelineId;
     for (let i = 0; i < this.pipelines.length; i++) {
       if (this.pipelineId === this.pipelines[i].pipelineId) {
-        this.wizardComponent.summary.pipeline = this.pipelines[i];
+        this.launcherComponent.summary.pipeline = this.pipelines[i];
       }
     }
     this.initCompleted();

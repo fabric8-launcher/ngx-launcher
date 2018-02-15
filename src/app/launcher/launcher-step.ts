@@ -1,8 +1,8 @@
 import { Input } from '@angular/core';
 
-import { WizardComponent } from './wizard.component';
+import { LauncherComponent } from './launcher.component';
 
-export abstract class WizardStep {
+export abstract class LauncherStep {
   /**
    * The step ID
    */

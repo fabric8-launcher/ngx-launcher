@@ -2,7 +2,7 @@
          [ngClass]="{'hidden': hidden}">
   <div>
     <div class="container-fluid">
-      <h1 snInViewport (onInViewportChange)="wizardComponent.onInViewportChange($event, 'GitProvider')"
+      <h1 snInViewport (onInViewportChange)="launcherComponent.onInViewportChange($event, 'GitProvider')"
           [debounce]="500">Authorize Git Provider</h1>
       <p>
         Authorize your Git Provider account to connect the Launcher to your service.
@@ -20,17 +20,17 @@
           <!-- Enable Access-Conrtol-Expose-Headers for CORS to test -->
           <h3>Authorized Account</h3>
           <div class="f8launcher-provider-card-information-authorize">
-            <img height="30px" width="30px" [src]="wizardComponent.summary?.gitHubDetails?.avatar"
-                 *ngIf="wizardComponent.summary?.gitHubDetails?.avatar !== undefined">
-            <span *ngIf="wizardComponent.summary?.gitHubDetails?.login !== undefined">
-              {{wizardComponent.summary?.gitHubDetails?.login}}
+            <img height="30px" width="30px" [src]="launcherComponent.summary?.gitHubDetails?.avatar"
+                 *ngIf="launcherComponent.summary?.gitHubDetails?.avatar !== undefined">
+            <span *ngIf="launcherComponent.summary?.gitHubDetails?.login !== undefined">
+              {{launcherComponent.summary?.gitHubDetails?.login}}
             </span>
-            <i class="fa fa-ban fa-2x" *ngIf="wizardComponent.summary?.gitHubDetails?.avatar === undefined"></i>
+            <i class="fa fa-ban fa-2x" *ngIf="launcherComponent.summary?.gitHubDetails?.avatar === undefined"></i>
             <span class="f8launcher-username"
-                  *ngIf="wizardComponent.summary?.gitHubDetails?.login === undefined"> None
+                  *ngIf="launcherComponent.summary?.gitHubDetails?.login === undefined"> None
             </span>
             <button class="btn btn-primary btn-lg f8launcher-authorize-account"
-                    [disabled]="wizardComponent.summary?.gitHubDetails?.authenticated === true"
+                    [disabled]="launcherComponent.summary?.gitHubDetails?.authenticated === true"
                     (click)="connectAccount($event)">Log In &amp; Authorize Account</button>
           </div>
           <form class="form-horizontal">
@@ -38,12 +38,12 @@
               <label for="ghOrg" class="col-sm-2 control-label">Organization</label>
               <div class="col-sm-10">
                 <select id="ghOrg" class="form-control" name="ghOrg" placeholder="Select organization" #versionSelect
-                        [disabled]="wizardComponent.summary?.gitHubDetails?.organizations === undefined"
-                        [(ngModel)]="wizardComponent.summary.gitHubDetails.organization"
+                        [disabled]="launcherComponent.summary?.gitHubDetails?.organizations === undefined"
+                        [(ngModel)]="launcherComponent.summary.gitHubDetails.organization"
                         (ngModelChange)="updateGitHubSelection()">
                   <option [ngValue]="undefined" selected>Select</option>
                   <option [ngValue]="org"
-                          *ngFor="let org of wizardComponent.summary.gitHubDetails.organizations">
+                          *ngFor="let org of launcherComponent.summary.gitHubDetails.organizations">
                     {{org}}
                   </option>
                 </select>
@@ -52,15 +52,15 @@
             <div class="form-group">
               <label for="ghRepo" class="col-sm-2 control-label">Repository</label>
               <div class="col-sm-10"
-                   [ngClass]="{'has-error': wizardComponent.summary?.gitHubDetails?.repositoryAvailable === false}">
+                   [ngClass]="{'has-error': launcherComponent.summary?.gitHubDetails?.repositoryAvailable === false}">
                 <input id="ghRepo" class="form-control" name="ghRepo" type="text"
                        placeholder="Enter a unique name for your repository"
-                       [disabled]="wizardComponent.summary?.gitHubDetails?.organization === undefined"
-                       [(ngModel)]="wizardComponent.summary.gitHubDetails.repository"
+                       [disabled]="launcherComponent.summary?.gitHubDetails?.organization === undefined"
+                       [(ngModel)]="launcherComponent.summary.gitHubDetails.repository"
                        (ngModelChange)="updateGitHubSelection()"
                        (keyup)="validateRepo()">
                 <span class="help-block"
-                      *ngIf="wizardComponent.summary?.gitHubDetails?.repositoryAvailable === false">
+                      *ngIf="launcherComponent.summary?.gitHubDetails?.repositoryAvailable === false">
                   Duplicate Name: {{duplicateNameMessage}}
                 </span>
               </div>

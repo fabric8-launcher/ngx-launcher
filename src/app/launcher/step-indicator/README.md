@@ -8,7 +8,7 @@ Each Launcher Step ties to a respective anchor tag that is applied to the headin
 
 In order to connect the header with the proper Step item, each Step Item must have a unique ID assigned to it, included in the `<a>`.
 ```html
-<a href="javascript:void(0)" class="f8launcher-vertical-bar_steps--item" (click)="selectSection('UniqueHeaderID')" [class.active]="wizardComponent.selectedSection === 'UniqueHeaderID'">
+<a href="javascript:void(0)" class="f8launcher-vertical-bar_steps--item" (click)="selectSection('UniqueHeaderID')" [class.active]="launcherComponent.selectedSection === 'UniqueHeaderID'">
 ```
 If a heading does not have a unique ID, or a Step is given a duplicate ID, then clicking on a Launcher Step will not bring the user to the expected section.
 

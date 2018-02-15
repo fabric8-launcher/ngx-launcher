@@ -2,7 +2,7 @@
          [ngClass]="{'hidden': hidden}">
   <div>
     <div class="container-fluid">
-      <h1 snInViewport (onInViewportChange)="wizardComponent.onInViewportChange($event, 'TargetEnvironment')"
+      <h1 snInViewport (onInViewportChange)="launcherComponent.onInViewportChange($event, 'TargetEnvironment')"
           [debounce]="500">
           Select Target Environment
         </h1>
@@ -18,7 +18,7 @@
           <div class="card-pf card-pf-view card-pf-view-select card-pf-view-single-select card-pf--medium">
             <div class="card-title">
               <input name="target-environment" type="radio"
-                     [(ngModel)]="wizardComponent.summary.targetEnvironment"
+                     [(ngModel)]="launcherComponent.summary.targetEnvironment"
                      [value]="targetEnv.id"
                      (ngModelChange)="updateTargetEnvSelection()">
               <h2 class="card-pf-title--title">{{targetEnv.header}}</h2>

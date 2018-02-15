@@ -1,5 +1,9 @@
-import { Component, Host, Input, ViewEncapsulation } from '@angular/core';
-import { WizardComponent } from '../wizard.component';
+import {
+  Component,
+  Host,
+  ViewEncapsulation
+} from '@angular/core';
+import { LauncherComponent } from '../launcher.component';
 
 @Component({
   encapsulation: ViewEncapsulation.None,
@@ -9,6 +13,6 @@ import { WizardComponent } from '../wizard.component';
 })
 export class ActivateBoosterComponent {
 
-  constructor(@Host() public wizardComponent: WizardComponent) {
+  constructor(@Host() public launcherComponent: LauncherComponent) {
   }
 }
