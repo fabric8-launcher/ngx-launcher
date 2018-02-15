@@ -23,6 +23,10 @@ import { DemoTargetEnvironmentService } from './service/demo-target-environment.
 import { Config } from '../app/service/config.component';
 import { ForgeConfig } from './shared/forge-config';
 import { FABRIC8_FORGE_API_URL } from './shared/forge-api-url';
+import { FABRIC8_ORIGIN } from './shared/forge-origin';
+
+import { AuthenticationService } from 'ngx-login-client';
+import { MockAuthenticationService } from './shared/mock-auth.service';
 
 import {
   DependencyCheckService,
@@ -32,7 +36,8 @@ import {
   PipelineService,
   ProjectProgressService,
   ProjectSummaryService,
-  TargetEnvironmentService
+  TargetEnvironmentService,
+  CommonService
 } from '../app/launcher/launcher.module';
 
 @NgModule({
@@ -48,6 +53,7 @@ import {
     WelcomeComponent
   ],
   providers: [
+    CommonService,
     { provide: DependencyCheckService, useClass: DemoDependencyCheckService},
     { provide: GitProviderService, useClass: DemoGitProviderService},
     { provide: MissionRuntimeService, useClass: DemoMissionRuntimeService },
@@ -56,7 +62,9 @@ import {
     { provide: ProjectSummaryService, useClass: DemoProjectSummaryService },
     { provide: TargetEnvironmentService, useClass: DemoTargetEnvironmentService},
     { provide: Config, useClass: ForgeConfig },
-    { provide: FABRIC8_FORGE_API_URL, useValue: 'https://forge.api.prod-preview.openshift.io' }
+    { provide: FABRIC8_FORGE_API_URL, useValue: 'https://forge.api.prod-preview.openshift.io' },
+    { provide: FABRIC8_ORIGIN, useValue: 'osio' },
+    { provide: AuthenticationService, useClass: MockAuthenticationService }
   ],
   bootstrap: [AppComponent]
 })
