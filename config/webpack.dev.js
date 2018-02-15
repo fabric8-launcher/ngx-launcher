@@ -25,6 +25,7 @@ const API_URL = process.env.API_URL || (ENV==='inmemory'?'app/':'http://localhos
 const STACK_API_URL = process.env.STACK_API_URL || 'http://api-bayesian.dev.rdu2c.fabric8.io/api/v1/';
 const FORGE_URL = process.env.FORGE_URL || 'http://localhost:8080/forge';
 const PUBLIC_PATH = process.env.PUBLIC_PATH || '/';
+const OSIO_AUTH_TOKEN = process.env.OSIO_AUTH_TOKEN || '';
 
 
 const METADATA = webpackMerge(commonConfig({env: ENV}).metadata, {
@@ -35,8 +36,8 @@ const METADATA = webpackMerge(commonConfig({env: ENV}).metadata, {
   API_URL: API_URL,
   STACK_API_URL: STACK_API_URL,
   FORGE_URL: FORGE_URL,
-  PUBLIC_PATH: PUBLIC_PATH
-
+  PUBLIC_PATH: PUBLIC_PATH,
+  OSIO_AUTH_TOKEN: OSIO_AUTH_TOKEN
 });
 
 /**
