@@ -16,4 +16,10 @@ export class Runtime {
   }; // Menu selection
   url?: string;
   projectVersion: string;
+  platform: string;
+}
+
+export class Missions {
+  id: string;
+  versions: any[];
 }

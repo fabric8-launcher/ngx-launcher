@@ -70,13 +70,14 @@ export class LauncherComponent implements AfterViewInit, OnInit {
     let selection = {
       groupId: (this._summary.dependencyCheck !== undefined) ? this._summary.dependencyCheck.groupId : undefined,
       missionId: (this._summary.mission !== undefined) ? this._summary.mission.id : undefined,
-      pipelineId: (this._summary.pipeline !== undefined) ? this._summary.pipeline.pipelineId : undefined,
+      pipelineId: (this._summary.pipeline !== undefined) ? this._summary.pipeline.id : undefined,
       projectName: (this._summary.dependencyCheck !== undefined)
         ? this._summary.dependencyCheck.projectName : undefined,
       projectVersion: (this._summary.dependencyCheck !== undefined)
         ? this._summary.dependencyCheck.projectVersion : undefined,
       runtimeId: (this._summary.runtime !== undefined) ? this._summary.runtime.id : undefined,
       runtimeVersion: (this._summary.runtime !== undefined) ? this._summary.runtime.version : undefined,
+      platform: (this._summary.runtime !== undefined) ? this._summary.runtime.platform : 'maven',
       spacePath: (this._summary.dependencyCheck !== undefined) ? this._summary.dependencyCheck.spacePath : undefined,
       targetEnvironment: this._summary.targetEnvironment
     } as Selection;
