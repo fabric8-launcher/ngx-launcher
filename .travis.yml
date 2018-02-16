@@ -4,6 +4,8 @@ addons:
 language: node_js
 node_js:
   - "node"
+before_install:
+  - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost:9876/ &  
 script:
   - npm test
 sudo: required
