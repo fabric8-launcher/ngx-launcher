@@ -78,12 +78,13 @@
                   </div>
                   <div class="list-view-pf-actions">
                     <div class="dropdown" dropdown>
-                      <button dropdownToggle type="button" class="btn btn-default dropdown-toggle"
+                      <button type="button" class="btn btn-default dropdown-toggle" dropdownToggle
                               [disabled]="isRuntimeDisabled(runtime) === true">
                         {{runtime.version?.name}}
                         <span class="caret"></span>
                       </button>
-                      <ul *dropdownMenu class="dropdown-menu" role="menu" [attr.aria-labelledby]="i + 'dropdown'">
+                      <ul class="dropdown-menu" role="menu" *dropdownMenu
+                          [attr.aria-labelledby]="i + 'dropdown'">
                         <li [ngClass]="{'disabled': isRuntimeDisabled(runtime) === true}"
                             *ngFor="let version of getRuntimeVersions(runtime)">
                           <a href="javascript:void(0)" class="dropdown-item" role="menuitem" tabindex="-1"
