@@ -1,13 +1,11 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CommonModule } from '@angular/common';
-import { By } from '@angular/platform-browser';
-import { WizardComponent } from './launcher.component';
+import { LauncherComponent } from './launcher.component';
 
-
-describe('WizardComponent', () => {
-  let component: WizardComponent;
-  let fixture: ComponentFixture<WizardComponent>;
+describe('LauncherComponent', () => {
+  let component: LauncherComponent;
+  let fixture: ComponentFixture<LauncherComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -15,13 +13,13 @@ describe('WizardComponent', () => {
         CommonModule
       ],
       declarations: [
-        WizardComponent
+        LauncherComponent
       ]
     }).compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(WizardComponent);
+    fixture = TestBed.createComponent(LauncherComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
