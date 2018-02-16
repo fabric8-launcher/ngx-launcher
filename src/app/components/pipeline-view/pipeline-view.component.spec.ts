@@ -6,7 +6,6 @@ import { FormsModule } from '@angular/forms';
 import { Input as GuiInput, Option } from '../../model/base.model';
 import { PipelineViewComponent } from './pipeline-view.component';
 
-
 describe ('PipelineViewComponent', () => {
     let component: PipelineViewComponent;
     let fixture: ComponentFixture<PipelineViewComponent>;
@@ -16,7 +15,7 @@ describe ('PipelineViewComponent', () => {
 
     let json: Array<any> = [{
         name: 'field1',
-        value: 'value1',
+        id: 'Plain build',
         description: 'Test Description',
         descriptionMarkdown: '### title',
         display: {},
@@ -72,5 +71,12 @@ describe ('PipelineViewComponent', () => {
     expect(stages[1][<any>'name']).toEqual('anything_else');
     expect(stages[1][<any>'icon']).toEqual('fa-check-circle');
     expect(stages[1][<any>'color']).toEqual('success');
+  });
+
+  it('should display pipeline name as a title', () => {
+    let pipelineTitle = fixture.debugElement.nativeElement.querySelector('input[type="radio"]:first-child')
+      .getAttribute('title');
+
+    expect(pipelineTitle).toBe('Plain build');
   });
 });
