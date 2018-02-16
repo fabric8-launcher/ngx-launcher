@@ -5,7 +5,6 @@ import { FormsModule } from '@angular/forms';
 
 import { Input as GuiInput, Option } from '../../model/base.model';
 import { PipelineViewComponent } from './pipeline-view.component';
-import {By} from "@angular/platform-browser";
 
 describe ('PipelineViewComponent', () => {
     let component: PipelineViewComponent;
