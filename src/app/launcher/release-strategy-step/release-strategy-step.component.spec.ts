@@ -45,7 +45,7 @@ export class FakePfngToolbarComponent {
 let mockPipelineService = {
   getPipelines(): Observable<Pipeline[]>{
     let pipelines = Observable.of([<Pipeline>{
-        'pipelineId': 'Pipeline1',
+        'id': 'Pipeline1',
         'suggested': true,
         'name': 'Release',
         'description': 'A slightly longer description of this pipeline\'s capabilities and usage.',
