@@ -20,6 +20,16 @@ import { DemoProjectProgressService } from './service/demo-project-progress.serv
 import { DemoProjectSummaryService } from './service/demo-project-summary.service';
 import { DemoTargetEnvironmentService } from './service/demo-target-environment.service';
 
+import { Config } from '../app/service/config.component';
+import { ForgeConfig } from './shared/forge-config';
+import { FABRIC8_FORGE_API_URL } from './shared/forge-api-url';
+import { FABRIC8_ORIGIN } from './shared/forge-origin';
+
+import { TokenProvider } from '../app/service/token-provider';
+import { MockAuthenticationService } from './shared/mock-auth.service';
+
+import { HelperService } from '../app/launcher/service/helper.service';
+
 import {
   DependencyCheckService,
   GitProviderService,
@@ -44,13 +54,18 @@ import {
     WelcomeComponent
   ],
   providers: [
+    HelperService,
     { provide: DependencyCheckService, useClass: DemoDependencyCheckService},
     { provide: GitProviderService, useClass: DemoGitProviderService},
     { provide: MissionRuntimeService, useClass: DemoMissionRuntimeService },
     { provide: PipelineService, useClass: DemoPipelineService },
     { provide: ProjectProgressService, useClass: DemoProjectProgressService },
     { provide: ProjectSummaryService, useClass: DemoProjectSummaryService },
-    { provide: TargetEnvironmentService, useClass: DemoTargetEnvironmentService}
+    { provide: TargetEnvironmentService, useClass: DemoTargetEnvironmentService},
+    { provide: Config, useClass: ForgeConfig },
+    { provide: FABRIC8_FORGE_API_URL, useValue: 'https://forge.api.prod-preview.openshift.io' },
+    { provide: FABRIC8_ORIGIN, useValue: 'osio' },
+    { provide: TokenProvider, useClass: MockAuthenticationService }
   ],
   bootstrap: [AppComponent]
 })
