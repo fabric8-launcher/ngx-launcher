@@ -12,8 +12,8 @@ import { Mission } from '../model/mission.model';
 import { Runtime } from '../model/runtime.model';
 import { Selection } from '../model/selection.model';
 import { MissionRuntimeService } from '../service/mission-runtime.service';
-import { WizardComponent } from '../wizard.component';
-import { WizardStep } from '../wizard-step';
+import { LauncherComponent } from '../launcher.component';
+import { LauncherStep } from '../launcher-step';
 
 @Component({
   encapsulation: ViewEncapsulation.None,
@@ -21,7 +21,7 @@ import { WizardStep } from '../wizard-step';
   templateUrl: './mission-runtime-step.component.html',
   styleUrls: ['./mission-runtime-step.component.less']
 })
-export class MissionRuntimeStepComponent extends WizardStep implements OnInit, OnDestroy {
+export class MissionRuntimeStepComponent extends LauncherStep implements OnInit, OnDestroy {
   private _missions: Mission[];
   private _runtimes: Runtime[];
 
@@ -29,14 +29,14 @@ export class MissionRuntimeStepComponent extends WizardStep implements OnInit, O
   private runtimeId: string;
   private subscriptions: Subscription[] = [];
 
-  constructor(@Host() public wizardComponent: WizardComponent,
+  constructor(@Host() public launcherComponent: LauncherComponent,
               private missionRuntimeService: MissionRuntimeService,
               public _DomSanitizer: DomSanitizer) {
     super();
   }
 
   ngOnInit() {
-    this.wizardComponent.addStep(this);
+    this.launcherComponent.addStep(this);
     setTimeout(() => {
       this.restoreSummary();
     }, 10); // Avoids ExpressionChangedAfterItHasBeenCheckedError
@@ -84,8 +84,8 @@ export class MissionRuntimeStepComponent extends WizardStep implements OnInit, O
    * @returns {boolean} True at least one selection has been made
    */
   get selectionAvailable(): boolean {
-    return (this.wizardComponent.summary.mission !== undefined
-      || this.wizardComponent.summary.runtime !== undefined);
+    return (this.launcherComponent.summary.mission !== undefined
+      || this.launcherComponent.summary.runtime !== undefined);
   }
 
   /**
@@ -94,9 +94,9 @@ export class MissionRuntimeStepComponent extends WizardStep implements OnInit, O
    * @returns {boolean} True if step is completed
    */
   get stepCompleted(): boolean {
-    return (this.wizardComponent.summary.mission !== undefined
-      && this.wizardComponent.summary.runtime !== undefined
-      && this.wizardComponent.summary.runtime.version !== undefined);
+    return (this.launcherComponent.summary.mission !== undefined
+      && this.launcherComponent.summary.runtime !== undefined
+      && this.launcherComponent.summary.runtime.version !== undefined);
   }
 
   // Steps
@@ -111,7 +111,7 @@ export class MissionRuntimeStepComponent extends WizardStep implements OnInit, O
    */
   getRuntimeVersions(runtime: Runtime): any[] {
     let result: any[] = [];
-    let mission = this.wizardComponent.summary.mission; // selected mission
+    let mission = this.launcherComponent.summary.mission; // selected mission
     if (mission === undefined) {
       // Get all runtime versions available
       runtime.missions.forEach((_mission) => {
@@ -151,7 +151,7 @@ export class MissionRuntimeStepComponent extends WizardStep implements OnInit, O
    * @returns {boolean} True if mission choice should be disabled
    */
   isMissionDisabled(mission: Mission): boolean {
-    let runtime = this.wizardComponent.summary.runtime; // selected runtime
+    let runtime = this.launcherComponent.summary.runtime; // selected runtime
     if (runtime === undefined) {
       return false; // Nothing should be disabled initially
     }
@@ -194,11 +194,11 @@ export class MissionRuntimeStepComponent extends WizardStep implements OnInit, O
    * @returns {boolean} True if runtime choice should be disabled
    */
   isRuntimeDisabled(runtime: Runtime): boolean {
-    if (this.wizardComponent.summary.mission === undefined) {
+    if (this.launcherComponent.summary.mission === undefined) {
       return false;
     }
     let result = true;
-    let runtimes = this.wizardComponent.summary.mission.runtimes; // selected mission
+    let runtimes = this.launcherComponent.summary.mission.runtimes; // selected mission
     for (let i = 0; i < runtimes.length; i++) {
       if (runtime.id === runtimes[i]) {
         result = false;
@@ -207,7 +207,7 @@ export class MissionRuntimeStepComponent extends WizardStep implements OnInit, O
     }
     // Ensure runtime versions are not empty
     if (!result) {
-      let mission = this.wizardComponent.summary.mission; // selected mission
+      let mission = this.launcherComponent.summary.mission; // selected mission
       for (let i = 0; i < runtime.missions.length; i++) {
         if (mission.id === runtime.missions[i].id) {
           let versions = runtime.missions[i].versions;
@@ -232,7 +232,7 @@ export class MissionRuntimeStepComponent extends WizardStep implements OnInit, O
    * Navigate to next step
    */
   navToNextStep(): void {
-    this.wizardComponent.navToNextStep();
+    this.launcherComponent.navToNextStep();
   }
 
   /**
@@ -241,20 +241,20 @@ export class MissionRuntimeStepComponent extends WizardStep implements OnInit, O
   resetSelections(): void {
     this.missionId = undefined;
     this.runtimeId = undefined;
-    this.wizardComponent.summary.mission = undefined;
-    this.wizardComponent.summary.runtime = undefined;
+    this.launcherComponent.summary.mission = undefined;
+    this.launcherComponent.summary.runtime = undefined;
     this.initCompleted();
   }
 
   // Private
 
   private initCompleted(): void {
-    this.wizardComponent.getStep(this.id).completed = this.stepCompleted;
+    this.launcherComponent.getStep(this.id).completed = this.stepCompleted;
   }
 
   // Restore mission & runtime summary
   private restoreSummary(): void {
-    let selection: Selection = this.wizardComponent.selectionParams;
+    let selection: Selection = this.launcherComponent.selectionParams;
     if (selection === undefined) {
       return;
     }
@@ -276,7 +276,7 @@ export class MissionRuntimeStepComponent extends WizardStep implements OnInit, O
   }
 
   private updateMissionSelection(val: Mission): void {
-    this.wizardComponent.summary.mission = val;
+    this.launcherComponent.summary.mission = val;
 
     // Clear selected version if not supported by mission
     this.runtimes.forEach((runtime) => {
@@ -292,9 +292,9 @@ export class MissionRuntimeStepComponent extends WizardStep implements OnInit, O
         // reset menu selection
         runtime.version = versions[0];
 
-        // Reset wizard summary selection
-        if (this.wizardComponent.summary.runtime !== undefined) {
-          this.wizardComponent.summary.runtime.version = versions[0];
+        // Reset launcher summary selection
+        if (this.launcherComponent.summary.runtime !== undefined) {
+          this.launcherComponent.summary.runtime.version = versions[0];
         }
       }
     });
@@ -302,11 +302,11 @@ export class MissionRuntimeStepComponent extends WizardStep implements OnInit, O
   }
 
   private updateRuntimeSelection(val: Runtime): void {
-    this.wizardComponent.summary.runtime = val;
+    this.launcherComponent.summary.runtime = val;
 
     // Set summary version
     if (val.version !== undefined) {
-      this.wizardComponent.summary.runtime.version = val.version;
+      this.launcherComponent.summary.runtime.version = val.version;
     }
     this.initCompleted();
   }

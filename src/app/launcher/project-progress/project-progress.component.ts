@@ -9,7 +9,7 @@ import { Subscription } from 'rxjs/Subscription';
 
 import { Progress } from '../model/progress.model';
 import { ProjectProgressService } from '../service/project-progress.service';
-import { WizardComponent } from '../wizard.component';
+import { LauncherComponent } from '../launcher.component';
 
 @Component({
   encapsulation: ViewEncapsulation.None,
@@ -21,7 +21,7 @@ export class ProjectProgressComponent implements OnInit, OnDestroy {
   private _progress: Progress[];
   private subscriptions: Subscription[] = [];
 
-  constructor(@Host() public wizardComponent: WizardComponent,
+  constructor(@Host() public launcherComponent: LauncherComponent,
               private projectProgressService: ProjectProgressService) {
   }
 

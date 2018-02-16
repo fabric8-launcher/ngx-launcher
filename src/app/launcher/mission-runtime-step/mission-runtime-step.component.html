@@ -2,7 +2,7 @@
          [ngClass]="{'hidden': hidden}">
   <div>
     <div class="container-fluid">
-      <h1 snInViewport (onInViewportChange)="wizardComponent.onInViewportChange($event, 'MissionRuntime')"
+      <h1 snInViewport (onInViewportChange)="launcherComponent.onInViewportChange($event, 'MissionRuntime')"
           [debounce]="500">
         Select Mission & Runtime
         <button class="btn btn-default btn-lg pull-right" type="button"

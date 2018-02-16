@@ -7,7 +7,7 @@ import {
 } from '@angular/core';
 
 import { Selection } from '../model/selection.model';
-import { WizardComponent } from '../wizard.component';
+import { LauncherComponent } from '../launcher.component';
 
 @Component({
   encapsulation: ViewEncapsulation.None,
@@ -23,7 +23,7 @@ export class StepIndicatorComponent implements OnInit {
    */
   @Input() inProgress: boolean = false;
 
-  constructor(@Host() public wizardComponent: WizardComponent) {
+  constructor(@Host() public launcherComponent: LauncherComponent) {
   }
 
   ngOnInit() {
@@ -36,8 +36,8 @@ export class StepIndicatorComponent implements OnInit {
    * Navigate to next step
    */
   navToNextStep(): void {
-    for (let i = 0; i < this.wizardComponent.steps.length; i++) {
-      let step = this.wizardComponent.steps[i];
+    for (let i = 0; i < this.launcherComponent.steps.length; i++) {
+      let step = this.launcherComponent.steps[i];
       if (step.completed !== true && step.hidden !== true) {
         this.navToStep(step.id);
         break;
@@ -57,7 +57,7 @@ export class StepIndicatorComponent implements OnInit {
     }
     setTimeout(() => {
       // The onInViewportChange event doesn't always set the ID as expected
-      this.wizardComponent.onInViewportChange(true, id);
+      this.launcherComponent.onInViewportChange(true, id);
     }, 10);
   }
 
@@ -65,10 +65,10 @@ export class StepIndicatorComponent implements OnInit {
 
   // Restore mission & runtime summary
   private restoreSummary(): void {
-    let selection: Selection = this.wizardComponent.selectionParams;
+    let selection: Selection = this.launcherComponent.selectionParams;
     if (selection === undefined) {
       return;
     }
-    this.wizardComponent.summary.dependencyCheck.projectName = selection.projectName;
+    this.launcherComponent.summary.dependencyCheck.projectName = selection.projectName;
   }
 }

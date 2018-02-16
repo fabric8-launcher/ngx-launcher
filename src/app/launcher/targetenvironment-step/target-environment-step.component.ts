@@ -11,8 +11,8 @@ import { Subscription } from 'rxjs/Subscription';
 import { Selection } from '../model/selection.model';
 import { TargetEnvironment } from '../model/target-environment.model';
 import { TargetEnvironmentService } from '../service/target-environment.service';
-import { WizardComponent } from '../wizard.component';
-import { WizardStep } from '../wizard-step';
+import { LauncherComponent } from '../launcher.component';
+import { LauncherStep } from '../launcher-step';
 
 @Component({
   encapsulation: ViewEncapsulation.None,
@@ -20,13 +20,13 @@ import { WizardStep } from '../wizard-step';
   templateUrl: './target-environment-step.component.html',
   styleUrls: ['./target-environment-step.component.less']
 })
-export class TargetEnvironmentStepComponent extends WizardStep implements OnDestroy {
+export class TargetEnvironmentStepComponent extends LauncherStep implements OnDestroy {
   @Input() id: string;
 
   private subscriptions: Subscription[] = [];
   private _targetEnvironments: TargetEnvironment[];
 
-  constructor(@Host() public wizardComponent: WizardComponent,
+  constructor(@Host() public launcherComponent: LauncherComponent,
               private targetEnvironmentService: TargetEnvironmentService,
               public _DomSanitizer: DomSanitizer) {
     super();
@@ -39,7 +39,7 @@ export class TargetEnvironmentStepComponent extends WizardStep implements OnDest
   }
 
   ngOnInit() {
-    this.wizardComponent.addStep(this);
+    this.launcherComponent.addStep(this);
     setTimeout(() => {
       this.restoreSummary();
     }, 10); // Avoids ExpressionChangedAfterItHasBeenCheckedError
@@ -59,7 +59,7 @@ export class TargetEnvironmentStepComponent extends WizardStep implements OnDest
    * @returns {boolean} True if step is completed
    */
   get stepCompleted(): boolean {
-    return (this.wizardComponent.summary.targetEnvironment !== undefined);
+    return (this.launcherComponent.summary.targetEnvironment !== undefined);
   }
 
   /**
@@ -74,7 +74,7 @@ export class TargetEnvironmentStepComponent extends WizardStep implements OnDest
   // Steps
 
   navToNextStep(): void {
-    this.wizardComponent.navToNextStep();
+    this.launcherComponent.navToNextStep();
   }
 
   updateTargetEnvSelection(): void {
@@ -84,16 +84,16 @@ export class TargetEnvironmentStepComponent extends WizardStep implements OnDest
   // Private
 
   private initCompleted(): void {
-    this.wizardComponent.getStep(this.id).completed = this.stepCompleted;
+    this.launcherComponent.getStep(this.id).completed = this.stepCompleted;
   }
 
   // Restore mission & runtime summary
   private restoreSummary(): void {
-    let selection: Selection = this.wizardComponent.selectionParams;
+    let selection: Selection = this.launcherComponent.selectionParams;
     if (selection === undefined) {
       return;
     }
-    this.wizardComponent.summary.targetEnvironment = selection.targetEnvironment;
+    this.launcherComponent.summary.targetEnvironment = selection.targetEnvironment;
     this.initCompleted();
   }
 }

@@ -12,8 +12,8 @@ import { Subscription } from 'rxjs/Subscription';
 
 import { GitProviderService } from '../service/git-provider.service';
 import { Selection } from '../model/selection.model';
-import { WizardComponent } from '../wizard.component';
-import { WizardStep } from '../wizard-step';
+import { LauncherComponent } from '../launcher.component';
+import { LauncherStep } from '../launcher-step';
 
 @Component({
   encapsulation: ViewEncapsulation.None,
@@ -21,18 +21,18 @@ import { WizardStep } from '../wizard-step';
   templateUrl: './gitprovider-step.component.html',
   styleUrls: ['./gitprovider-step.component.less']
 })
-export class GitProviderStepComponent extends WizardStep implements AfterViewInit, OnDestroy, OnInit {
+export class GitProviderStepComponent extends LauncherStep implements AfterViewInit, OnDestroy, OnInit {
   @ViewChild('versionSelect') versionSelect: ElementRef;
 
   private subscriptions: Subscription[] = [];
 
-  constructor(@Host() public wizardComponent: WizardComponent,
+  constructor(@Host() public launcherComponent: LauncherComponent,
               private gitProviderService: GitProviderService) {
     super();
   }
 
   ngAfterViewInit() {
-    if (this.wizardComponent.summary.gitHubDetails.authenticated === true) {
+    if (this.launcherComponent.summary.gitHubDetails.authenticated === true) {
       setTimeout(() => {
         this.versionSelect.nativeElement.focus();
       }, 10);
@@ -40,11 +40,11 @@ export class GitProviderStepComponent extends WizardStep implements AfterViewIni
   }
 
   ngOnInit() {
-    this.wizardComponent.addStep(this);
+    this.launcherComponent.addStep(this);
 
     this.subscriptions.push(this.gitProviderService.getGitHubDetails().subscribe((val) => {
       if (val !== undefined) {
-        this.wizardComponent.summary.gitHubDetails = val;
+        this.launcherComponent.summary.gitHubDetails = val;
         this.initCompleted();
       }
     }));
@@ -64,8 +64,8 @@ export class GitProviderStepComponent extends WizardStep implements AfterViewIni
    * @returns {string}
    */
   get duplicateNameMessage(): string {
-    let repo = this.wizardComponent.summary.gitHubDetails.repository;
-    return '\'' + repo + '\' is already in use as ' + this.wizardComponent.summary.gitHubDetails.organization
+    let repo = this.launcherComponent.summary.gitHubDetails.repository;
+    return '\'' + repo + '\' is already in use as ' + this.launcherComponent.summary.gitHubDetails.organization
       + '/' + repo + '.';
   }
 
@@ -75,12 +75,12 @@ export class GitProviderStepComponent extends WizardStep implements AfterViewIni
    * @returns {boolean} True if step is completed
    */
   get stepCompleted(): boolean {
-    return (this.wizardComponent.summary.gitHubDetails.authenticated === true
-      && this.wizardComponent.summary.gitHubDetails.login !== undefined
-      && this.wizardComponent.summary.gitHubDetails.organization !== undefined
-      && this.wizardComponent.summary.gitHubDetails.repository !== undefined
-      && this.wizardComponent.summary.gitHubDetails.repository.length > 0
-      && this.wizardComponent.summary.gitHubDetails.repositoryAvailable === true);
+    return (this.launcherComponent.summary.gitHubDetails.authenticated === true
+      && this.launcherComponent.summary.gitHubDetails.login !== undefined
+      && this.launcherComponent.summary.gitHubDetails.organization !== undefined
+      && this.launcherComponent.summary.gitHubDetails.repository !== undefined
+      && this.launcherComponent.summary.gitHubDetails.repository.length > 0
+      && this.launcherComponent.summary.gitHubDetails.repositoryAvailable === true);
   }
 
   // Steps
@@ -89,7 +89,7 @@ export class GitProviderStepComponent extends WizardStep implements AfterViewIni
    * Navigate to next step
    */
   navToNextStep(): void {
-    this.wizardComponent.navToNextStep();
+    this.launcherComponent.navToNextStep();
   }
 
   /**
@@ -98,7 +98,8 @@ export class GitProviderStepComponent extends WizardStep implements AfterViewIni
    * @param {MouseEvent} $event
    */
   connectAccount($event: MouseEvent): void {
-    let url = window.location.origin + window.location.pathname + this.getParams(this.wizardComponent.currentSelection);
+    let url = window.location.origin + window.location.pathname +
+      this.getParams(this.launcherComponent.currentSelection);
     this.gitProviderService.connectGitHubAccount(url);
   }
 
@@ -113,12 +114,12 @@ export class GitProviderStepComponent extends WizardStep implements AfterViewIni
    * Ensure repo name is available for the selected organization
    */
   validateRepo(): void {
-    let fullName = this.wizardComponent.summary.gitHubDetails.organization + '/'
-      + this.wizardComponent.summary.gitHubDetails.repository;
+    let fullName = this.launcherComponent.summary.gitHubDetails.organization + '/'
+      + this.launcherComponent.summary.gitHubDetails.repository;
 
     this.subscriptions.push(this.gitProviderService.isGitHubRepo(fullName).subscribe((val) => {
       if (val !== undefined) {
-        this.wizardComponent.summary.gitHubDetails.repositoryAvailable = !val;
+        this.launcherComponent.summary.gitHubDetails.repositoryAvailable = !val;
         this.initCompleted();
       }
     }));
@@ -148,6 +149,6 @@ export class GitProviderStepComponent extends WizardStep implements AfterViewIni
   }
 
   private initCompleted(): void {
-    this.wizardComponent.getStep(this.id).completed = this.stepCompleted;
+    this.launcherComponent.getStep(this.id).completed = this.stepCompleted;
   }
 }

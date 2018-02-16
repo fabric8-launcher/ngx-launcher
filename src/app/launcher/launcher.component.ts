@@ -10,19 +10,19 @@ import { Router } from '@angular/router';
 import { Selection } from './model/selection.model';
 import { Summary } from './model/summary.model';
 import { StepIndicatorComponent } from './step-indicator/step-indicator.component';
-import { WizardStep } from './wizard-step';
+import { LauncherStep } from './launcher-step';
 
 @Component({
   encapsulation: ViewEncapsulation.None,
-  selector: 'f8launcher-wizard',
-  templateUrl: './wizard.component.html',
-  styleUrls: ['./wizard.component.less']
+  selector: 'f8launcher',
+  templateUrl: './launcher.component.html',
+  styleUrls: ['./launcher.component.less']
 })
-export class WizardComponent implements AfterViewInit, OnInit {
+export class LauncherComponent implements AfterViewInit, OnInit {
   @ViewChild('stepIndicator') stepIndicator: StepIndicatorComponent;
 
   private _selectedSection: string;
-  private _steps: WizardStep[] = [];
+  private _steps: LauncherStep[] = [];
   private _summary: Summary;
   private summaryCompleted: boolean = false;
 
@@ -109,9 +109,9 @@ export class WizardComponent implements AfterViewInit, OnInit {
   /**
    * Returns steps for this component
    *
-   * @returns {WizardStep[]} Steps for this component
+   * @returns {LauncherStep[]} Steps for this component
    */
-  get steps(): WizardStep[] {
+  get steps(): LauncherStep[] {
     return this._steps;
   }
 
@@ -138,9 +138,9 @@ export class WizardComponent implements AfterViewInit, OnInit {
   /**
    * Add step
    *
-   * @param {WizardStepComponent} step
+   * @param {LauncherStepComponent} step
    */
-  addStep(step: WizardStep) {
+  addStep(step: LauncherStep) {
     for (let i = 0; i < this.steps.length; i++) {
       if (step.id === this.steps[i].id) {
         return;
@@ -155,8 +155,8 @@ export class WizardComponent implements AfterViewInit, OnInit {
    * @param {string} id The step ID
    * @returns {Step} The step for the given ID
    */
-  getStep(id: string): WizardStep {
-    let result: WizardStep;
+  getStep(id: string): LauncherStep {
+    let result: LauncherStep;
     for (let i = 0; i < this.steps.length; i++) {
       let step = this.steps[i];
       if (id === step.id) {
