@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { AuthenticationService } from 'ngx-login-client';
 
-import { Config } from '../../service/config.component';
+import { Config } from '../../../app/service/config.component';
 
 @Injectable()
-export class CommonService  {
+export class HelperService  {
 
     private keys: any = {
         BACKEND: 'backend_url',
@@ -13,8 +12,7 @@ export class CommonService  {
     };
 
     constructor(
-        private config: Config,
-        private authenticationService: AuthenticationService
+        private config: Config
     ) {}
 
     getBackendUrl(): string {
@@ -22,10 +20,6 @@ export class CommonService  {
             return this.config.get(this.keys.BACKEND);
         }
         return null;
-    }
-
-    getAuthToken(): string {
-        return this.authenticationService.getToken();
     }
 
     getOrigin(): string {

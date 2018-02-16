@@ -5,7 +5,8 @@ import { Headers, Http, RequestOptions, Response } from '@angular/http';
 import { Pipeline } from '../../app/launcher/model/pipeline.model';
 import { PipelineService } from '../../app/launcher/service/pipeline.service';
 
-import { CommonService } from '../../app/launcher/service/common.service';
+import { HelperService } from '../../app/launcher/service/helper.service';
+import { TokenProvider } from '../../app/service/token-provider';
 
 @Injectable()
 export class DemoPipelineService implements PipelineService {
@@ -15,27 +16,35 @@ export class DemoPipelineService implements PipelineService {
     private API_BASE: string = 'services/jenkins/pipelines';
     private ORIGIN: string = '';
   
-    constructor(private http: Http, private commonService: CommonService) {
-      if (this.commonService) {
-        this.END_POINT = this.commonService.getBackendUrl();
-        this.ORIGIN = this.commonService.getOrigin();
+    constructor(
+      private http: Http,
+      private helperService: HelperService,
+      private tokenProvider: TokenProvider
+    ) {
+      if (this.helperService) {
+        this.END_POINT = this.helperService.getBackendUrl();
+        this.ORIGIN = this.helperService.getOrigin();
       }
     }
 
-    private get options(): RequestOptions {
+    private get options(): Observable<RequestOptions> {
       let headers = new Headers();
       headers.append('X-App', this.ORIGIN);
-      headers.append('Authorization', 'Bearer ' + this.commonService.getAuthToken())
-      return new RequestOptions({
-          headers: headers
-      })
+      return Observable.fromPromise(this.tokenProvider.token.then((token) => {
+        headers.append('Authorization', 'Bearer ' + token);
+        return new RequestOptions({
+            headers: headers
+        })
+      }));
     }
   
     getPipelines(): Observable<Pipeline[]> {
       let runtimeEndPoint: string = this.END_POINT + this.API_BASE;
-      return this.http.get(runtimeEndPoint, this.options)
+      return this.options.flatMap((option) => {
+        return this.http.get(runtimeEndPoint, option)
                    .map(response => response.json() as Pipeline[])
                    .catch(this.handleError);
+      });
     }
   
     private handleError(error: Response | any) {

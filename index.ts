@@ -40,3 +40,6 @@ export { PipelineService } from './src/app/launcher/service/pipeline.service';
 export { ProjectProgressService } from './src/app/launcher/service/project-progress.service';
 export { ProjectSummaryService } from './src/app/launcher/service/project-summary.service';
 export { TargetEnvironmentService } from './src/app/launcher/service/target-environment.service';
+
+// Utility Service
+export { HelperService } from './src/app/launcher/service/helper.service';

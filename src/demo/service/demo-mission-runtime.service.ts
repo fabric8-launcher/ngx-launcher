@@ -5,7 +5,8 @@ import { MissionRuntimeService } from '../../app/launcher/launcher.module';
 import { Mission } from '../../app/launcher/launcher.module';
 import { Runtime } from '../../app/launcher/launcher.module';
 
-import { CommonService } from '../../app/launcher/service/common.service';
+import { HelperService } from '../../app/launcher/service/helper.service';
+import { TokenProvider } from '../../app/service/token-provider';
 
 @Injectable()
 export class DemoMissionRuntimeService implements MissionRuntimeService {
@@ -15,34 +16,44 @@ export class DemoMissionRuntimeService implements MissionRuntimeService {
   private API_BASE: string = 'booster-catalog/';
   private ORIGIN: string = '';
 
-  constructor(private http: Http, private commonService: CommonService) {
-    if (this.commonService) {
-      this.END_POINT = this.commonService.getBackendUrl();
-      this.ORIGIN = this.commonService.getOrigin();
+  constructor(
+    private http: Http,
+    private helperService: HelperService,
+    private tokenProvider: TokenProvider
+  ) {
+    if (this.helperService) {
+      this.END_POINT = this.helperService.getBackendUrl();
+      this.ORIGIN = this.helperService.getOrigin();
     }
   }
 
-  private get options(): RequestOptions {
+  private get options(): Observable<RequestOptions> {
     let headers = new Headers();
     headers.append('X-App', this.ORIGIN);
-    headers.append('Authorization', 'Bearer ' + this.commonService.getAuthToken())
-    return new RequestOptions({
-        headers: headers
-    })
+    return Observable.fromPromise(this.tokenProvider.token.then((token) => {
+      headers.append('Authorization', 'Bearer ' + token);
+      return new RequestOptions({
+          headers: headers
+      })
+    }));
   }
 
   getMissions(): Observable<Mission[]> {
     let missionEndPoint: string = this.END_POINT + this.API_BASE + 'missions';
-    return this.http.get(missionEndPoint, this.options)
-                 .map(response => response.json() as Mission[])
-                 .catch(this.handleError);
+    return this.options.flatMap((option) => {
+      return this.http.get(missionEndPoint, option)
+                  .map(response => response.json() as Mission[])
+                  .catch(this.handleError);
+    });
   }
 
   getRuntimes(): Observable<Runtime[]> {
     let runtimeEndPoint: string = this.END_POINT + this.API_BASE + 'runtimes';
-    return this.http.get(runtimeEndPoint, this.options)
-                 .map(response => response.json() as Runtime[])
-                 .catch(this.handleError);
+    return this.options.flatMap((option) => {
+      return this.http.get(runtimeEndPoint, option)
+                  .map(response => response.json() as Runtime[])
+                  .catch(this.handleError);
+    });
   }
 
   private handleError(error: Response | any) {
