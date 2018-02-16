@@ -9,6 +9,7 @@ export class Selection {
     id: string;
     name: string;
   };
+  platform: string;
   spacePath?: string;
   targetEnvironment?: string;
 }

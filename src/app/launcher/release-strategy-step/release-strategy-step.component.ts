@@ -80,8 +80,9 @@ export class ReleaseStrategyStepComponent extends LauncherStep implements OnInit
     this.subscriptions.push(this.pipelineService.getPipelines().subscribe((result) => {
       // needs to filter out associated pipelines from list of pipelines
       let selPipelines: any[] = [];
+      let selectionWiz: Selection = this.launcherComponent.currentSelection;
       selPipelines = result.filter(item => {
-        return item.platform == "maven";
+        return item.platform == selectionWiz.platform;
       })
 
       this._pipelines = this.allPipelines = selPipelines;
