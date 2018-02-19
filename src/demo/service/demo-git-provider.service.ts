@@ -31,11 +31,19 @@ export class DemoGitProviderService implements GitProviderService {
     for (let i = 0; i < GitHubMock.ORGS.length; i++) {
       orgs.push(GitHubMock.ORGS[i].login);
     }
+    let describe = [];
+    for (let i = 0; i < GitHubMock.ORGS.length; i++) {
+      describe.push(GitHubMock.ORGS[i].login);
+    }
     let gitHubDetails = {
       authenticated: this.isPageRedirect() ? true : false,
       avatar: GitHubMock.USER.avatar_url,
       login: GitHubMock.USER.login,
-      organizations: orgs
+      organizations: orgs,
+      htmlUrl: GitHubMock.PATTERNFLY.html_url,
+      url: GitHubMock.USER.url,
+      description: describe,
+      visibility: GitHubMock.PATTERNFLY.private
     } as GitHubDetails;
     return this.isPageRedirect() ? Observable.of(gitHubDetails) : Observable.empty();
   }
