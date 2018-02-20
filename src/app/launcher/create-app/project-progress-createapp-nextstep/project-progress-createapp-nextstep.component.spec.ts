@@ -11,7 +11,7 @@ import { LauncherStep } from '../../launcher-step';
 
 let progressSubject: Subject<Progress[]> = new Subject();
 let mockProjectProgressService = {
-  getProgress(): Observable<Progress[]>{
+  getProgress(): Observable<Progress[]> {
     return progressSubject.asObservable();
   },
   getItems(): Progress[] {
@@ -42,7 +42,8 @@ let mockProjectProgressService = {
     }] as Progress[];
     return progress;
   }
-}
+};
+
 export interface TypeWizardComponent {
   selectedSection: string;
   steps: LauncherStep[];
@@ -59,7 +60,7 @@ let mockWizardComponent: TypeWizardComponent = {
     gitHubDetails: {}
   },
   summaryCompleted: false,
-  addStep(step: LauncherStep){
+  addStep(step: LauncherStep) {
     for (let i = 0; i < this.steps.length; i++) {
       if (step.id === this.steps[i].id) {
         return;
@@ -67,7 +68,7 @@ let mockWizardComponent: TypeWizardComponent = {
     }
     this.steps.push(step);
   }
-}
+};
 
 describe('ProjectProgressComponent', () => {
   let component: ProjectProgressCreateappNextstepComponent;
@@ -81,7 +82,7 @@ describe('ProjectProgressComponent', () => {
       declarations: [
         ProjectProgressCreateappNextstepComponent
       ],
-      providers:[
+      providers: [
         {
           provide: LauncherComponent, useValue: mockWizardComponent
         },

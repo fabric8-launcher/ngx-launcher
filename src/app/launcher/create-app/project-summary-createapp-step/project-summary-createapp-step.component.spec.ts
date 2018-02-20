@@ -17,13 +17,13 @@ import { LauncherStep } from '../../launcher-step';
 import { Summary } from '../../launcher.module';
 
 let mockProjectSummaryService = {
-  setup(summary: Summary): Observable<boolean>{
+  setup(summary: Summary): Observable<boolean> {
     return Observable.of(true);
   },
-  verify(summary: Summary): Observable<boolean>{
+  verify(summary: Summary): Observable<boolean> {
     return Observable.of(true);
   }
-}
+};
 
 let mockDependencyCheckService = {
   getDependencyCheck(): Observable<DependencyCheck> {
@@ -35,7 +35,7 @@ let mockDependencyCheckService = {
       spacePath: '/myspace'
     });
   }
-}
+};
 
 export interface TypeWizardComponent {
   selectedSection: string;
@@ -53,7 +53,7 @@ let mockWizardComponent: TypeWizardComponent = {
     gitHubDetails: {}
   },
   summaryCompleted: false,
-  addStep(step: LauncherStep){
+  addStep(step: LauncherStep) {
     for (let i = 0; i < this.steps.length; i++) {
       if (step.id === this.steps[i].id) {
         return;
@@ -61,7 +61,7 @@ let mockWizardComponent: TypeWizardComponent = {
     }
     this.steps.push(step);
   }
-}
+};
 
 describe('ProjectSummaryStepComponent', () => {
   let component: ProjectSummaryCreateappStepComponent;

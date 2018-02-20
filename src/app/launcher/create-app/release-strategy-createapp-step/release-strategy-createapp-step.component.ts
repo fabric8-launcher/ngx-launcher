@@ -83,7 +83,7 @@ export class ReleaseStrategyCreateappStepComponent extends LauncherStep implemen
       let selection: Selection = this.launcherComponent.currentSelection;
       selPipelines = result.filter(item => {
         return item.platform === selection.platform;
-      })
+      });
 
       this._pipelines = this.allPipelines = selPipelines;
       for (let i = 0; i < this._pipelines.length; i++) {
@@ -231,6 +231,6 @@ export class ReleaseStrategyCreateappStepComponent extends LauncherStep implemen
   }
 
   private toggleExpanded(pipeline: Pipeline) {
-    pipeline.expanded = (pipeline.expanded !== undefined) ? !pipeline.expanded : false;
+    pipeline.expanded = (pipeline.expanded !== undefined) ? !pipeline.expanded : true;
   }
 }

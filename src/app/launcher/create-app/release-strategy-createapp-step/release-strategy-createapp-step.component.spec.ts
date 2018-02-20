@@ -23,6 +23,8 @@ import { LauncherStep } from '../../launcher-step';
 import { PipelineService } from '../../service/pipeline.service';
 import { Pipeline } from '../../model/pipeline.model';
 import { ReleaseStrategyCreateappStepComponent } from './release-strategy-createapp-step.component';
+import { Selection } from '../../model/selection.model';
+import { Summary } from '../../model/summary.model';
 
 @Component({
   selector: 'pfng-toolbar',
@@ -35,24 +37,26 @@ export class FakePfngToolbarComponent {
 }
 
 let mockPipelineService = {
-  getPipelines(): Observable<Pipeline[]>{
+  getPipelines(): Observable<Pipeline[]> {
     let pipelines = Observable.of([<Pipeline>{
         'id': 'Pipeline1',
         'suggested': true,
         'name': 'Release',
         'description': 'A slightly longer description of this pipeline\'s capabilities and usage.',
-        'stages': ['Stage Name', 'Stage Name', 'Stage Name']
+        'stages': ['Stage Name', 'Stage Name', 'Stage Name'],
+        'platform': 'maven'
       }]);
       return pipelines;
   }
-}
+};
 
-export interface TypeWizardComponent{
+export interface TypeWizardComponent {
   selectedSection: string;
   steps: LauncherStep[];
   summary: any;
   summaryCompleted: boolean;
   addStep(step: LauncherStep): void;
+  currentSelection(): any;
 }
 
 let mockWizardComponent: TypeWizardComponent = {
@@ -63,15 +67,33 @@ let mockWizardComponent: TypeWizardComponent = {
     gitHubDetails: {}
   },
   summaryCompleted: false,
-  addStep(step: LauncherStep){
+  addStep(step: LauncherStep) {
     for (let i = 0; i < this.steps.length; i++) {
       if (step.id === this.steps[i].id) {
         return;
       }
     }
     this.steps.push(step);
+  },
+  get currentSelection(): any {
+    let summaryVar = new Summary();
+    return {
+      groupId: (summaryVar.dependencyCheck !== undefined) ? summaryVar.dependencyCheck.groupId : undefined,
+      missionId: (summaryVar.mission !== undefined) ? summaryVar.mission.id : undefined,
+      pipelineId: (summaryVar.pipeline !== undefined) ? this.summaryVar.pipeline.id : undefined,
+      projectName: (summaryVar.dependencyCheck !== undefined)
+        ? summaryVar.dependencyCheck.projectName : undefined,
+      projectVersion: (summaryVar.dependencyCheck !== undefined)
+        ? summaryVar.dependencyCheck.projectVersion : undefined,
+      runtimeId: (summaryVar.runtime !== undefined) ? summaryVar.runtime.id : undefined,
+      runtimeVersion: (summaryVar.runtime !== undefined) ? summaryVar.runtime.version : undefined,
+      platform: (summaryVar.runtime !== undefined) ? summaryVar.runtime.pipelinePlatform : 'maven',
+      spacePath: (summaryVar.dependencyCheck !== undefined)
+        ? summaryVar.dependencyCheck.spacePath : undefined,
+      targetEnvironment: summaryVar.targetEnvironment
+    } as Selection;
   }
-}
+};
 
 describe('ReleaseStrategyStepComponent', () => {
   let component: ReleaseStrategyCreateappStepComponent;
@@ -109,7 +131,7 @@ describe('ReleaseStrategyStepComponent', () => {
     fixture.detectChanges();
   });
 
-  xit('should create', () => {
+  it('should create', () => {
     expect(component).toBeTruthy();
   });
 });

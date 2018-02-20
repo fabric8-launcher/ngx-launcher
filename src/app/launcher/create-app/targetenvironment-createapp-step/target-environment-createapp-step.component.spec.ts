@@ -15,7 +15,7 @@ import { TargetEnvironment } from '../../model/target-environment.model';
 import { TargetEnvironmentService } from '../../service/target-environment.service';
 
 let mockTargetEnvironmentService = {
-  getTargetEnvironments(): Observable<TargetEnvironment[]>{
+  getTargetEnvironments(): Observable<TargetEnvironment[]> {
     let targetEnvironments = Observable.of( [{
       description: 'Here is a brief description of what OpenShift Online is. ' +
                    'There is a distinction between what OpenShift Online does compared to OpenShift.io.',

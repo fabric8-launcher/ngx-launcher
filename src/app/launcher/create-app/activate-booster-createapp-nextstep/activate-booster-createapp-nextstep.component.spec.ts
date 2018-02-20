@@ -8,7 +8,7 @@ import { ActivateBoosterCreateappNextstepComponent } from './activate-booster-cr
 import { LauncherComponent } from '../../launcher.component';
 import { LauncherStep } from '../../launcher-step';
 
-export interface TypeWizardComponent{
+export interface TypeWizardComponent {
   selectedSection: string;
   steps: LauncherStep[];
   summary: any;
@@ -24,7 +24,7 @@ let mockWizardComponent: TypeWizardComponent = {
     gitHubDetails: {}
   },
   summaryCompleted: false,
-  addStep(step: LauncherStep){
+  addStep(step: LauncherStep) {
     for (let i = 0; i < this.steps.length; i++) {
       if (step.id === this.steps[i].id) {
         return;
@@ -32,7 +32,7 @@ let mockWizardComponent: TypeWizardComponent = {
     }
     this.steps.push(step);
   }
-}
+};
 
 describe('ActivateBoosterComponent', () => {
   let component: ActivateBoosterCreateappNextstepComponent;

@@ -31,7 +31,7 @@ let mockMissionRuntimeService = {
       }]);
       return missions;
   },
-  getRuntimes(): Observable<Runtime[]>{
+  getRuntimes(): Observable<Runtime[]> {
     let runtimes = Observable.of( [<Runtime>{
       'id': 'vert.x',
       'name': 'Eclipse Vert.x',
@@ -54,7 +54,7 @@ let mockMissionRuntimeService = {
     }]);
     return runtimes;
   }
-}
+};
 
 export interface TypeWizardComponent {
   selectedSection: string;
@@ -72,7 +72,7 @@ let mockWizardComponent: TypeWizardComponent = {
     gitHubDetails: {}
   },
   summaryCompleted: false,
-  addStep(step: LauncherStep){
+  addStep(step: LauncherStep) {
     for (let i = 0; i < this.steps.length; i++) {
       if (step.id === this.steps[i].id) {
         return;
@@ -80,7 +80,7 @@ let mockWizardComponent: TypeWizardComponent = {
     }
     this.steps.push(step);
   }
-}
+};
 
 describe('MissionRuntimeStepComponent', () => {
   let component: MissionRuntimeCreateappStepComponent;
