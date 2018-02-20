@@ -231,6 +231,6 @@ export class ReleaseStrategyCreateappStepComponent extends LauncherStep implemen
   }
 
   private toggleExpanded(pipeline: Pipeline) {
-    pipeline.expanded = (pipeline.expanded !== undefined) ? !pipeline.expanded : false;
+    pipeline.expanded = (pipeline.expanded !== undefined) ? !pipeline.expanded : true;
   }
 }
