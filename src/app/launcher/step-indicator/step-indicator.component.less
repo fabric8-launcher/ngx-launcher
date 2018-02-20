@@ -46,19 +46,13 @@
         flex-direction: column;
         justify-content: space-between;
         background-color: @color-pf-black-400;
-        width: 3px;
+        width: 2px;
         margin-top: 45px;
-        //
-        // Who has something this  small? (500px in height and up)
-        //
-        @media(min-height: 500px) {
-          height: 77vh;
-        }
         //
         // Small devices (tablets, 758px in height and up)
         //
         @media(min-height: 750px) {
-          height: 80vh;
+          height: 77vh;
         }
         //
         // Medium devices (desktops, 980px in height and up)
@@ -88,7 +82,9 @@
         // once completed, this class is removed
         //
         &.in-progress {
-          background-image: linear-gradient(@color-pf-black-700, @color-pf-black-900);
+          background-image: linear-gradient(
+                                                      @color-pf-black-400 60%,
+                                                      @color-pf-black-900);
         }
         a {
           margin-top: -20px;
@@ -188,9 +184,9 @@
   }
   // Launcher step icons
   &-step-circle {
-    border: 1px solid @color-pf-black-400;
-    width: 26px;
-    height: 26px;
+    border: 2px solid @color-pf-black-400;
+    width: 25px;
+    height: 25px;
     margin-top: 6px;
     margin-left: -7px;
     border-radius: 50%;
@@ -206,10 +202,10 @@
         content: '\e602'; // pficon-ok
         font-family: PatternFlyIcons-webfont;
         font-size: 1.8em;
-        font-weight: 500;
-        color: @color-pf-white;
-        margin-top: -8px;
-        margin-left: -1px;
+        font-weight: 200;
+        color: @color-pf-black-400;
+        margin-top: -10px;
+        margin-left: -2px;
       }
       &:hover {
         &:after {
