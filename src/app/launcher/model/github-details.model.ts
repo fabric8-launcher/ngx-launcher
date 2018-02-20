@@ -6,4 +6,7 @@ export class GitHubDetails {
   organizations?: string[];
   repositoryAvailable?: boolean;
   repository?: string;
+  htmlUrl?: string;
+  description?: string[];
+  visibility?: string;
 }

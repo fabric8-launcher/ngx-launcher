@@ -3,9 +3,13 @@
   <div>
     <div class="container-fluid">
       <h1 snInViewport (onInViewportChange)="launcherComponent.onInViewportChange($event, 'ReleaseStrategy')"
-          [debounce]="500">Select Pipeline</h1>
+          [debounce]="500">Select a Pipeline (optional)</h1>
       <p>
-        Pipelines define how your application is deployed.  Each pipeline has multiple stages with a varying set of capabilities.
+        There are multiple different pipeliens that you can choose to deploy your application on. Each pipeline is comprised of different stages and has
+        its own set of capabilities. Different stages of the pipeline include build releases, integration testing, staging, and running an application.
+      </p>
+      <p>
+        We have provided a suggested pipeline based off of the mission and technology that you have selected.
       </p>
     </div>
   </div>
@@ -16,16 +20,81 @@
           <div class="card-pf">
             <div class="card-pf-heading">
               <h2 class="card-pf-title">
-                Pipeline
+                Suggested Pipeline <span class="pficon pficon-info padding-left-10"></span>
               </h2>
-              <div class="container-fluid">
+              <hr>
+            </div>
+            <div class="card-pf-body">
+              <div class="container-fluid f8launcher-section-release-strategy-toolbar">
                 <pfng-toolbar [config]="toolbarConfig"
                               (onFilterChange)="filterChanged($event)"
                               (onSortChange)="sortChanged($event)">
                 </pfng-toolbar>
               </div>
+              <div class="list-group list-view-pf list-view-pf-view">
+                <div class="list-group-item" *ngFor="let pipeline of pipelines; let i = index">
+                  <div class="f8launcher-tag-featured" tooltip="Suggestion based on selected mission and runtime"
+                       *ngIf="pipeline.suggested === true" placement="top">
+                    Suggested Pipeline <i class="pficon pficon-info"></i>
+                  </div>
+                  <div class="list-group-item-header" *ngIf="i !== pipeline.stages.length - 2">
+                    <div class="list-view-pf-expand">
+                      <span class="fa"
+                            [ngClass]="{'fa-angle-down': pipeline.expanded === true,
+                                        'fa-angle-right': pipeline.expanded !== true}"
+                            (click)="toggleExpanded(pipeline)">
+                      </span>
+                    </div>
+                    <div class="list-view-pf-checkbox">
+                      <input name="pipelineId" type="radio"
+                             [(ngModel)]="pipelineId"
+                             [value]="pipeline.id"
+                             (ngModelChange)="updatePipelineSelection(pipeline)">
+                    </div>
+                    <div class="list-view-pf-main-info">
+                      <div class="list-view-pf-body">
+                        <div class="list-view-pf-description">
+                          <div class="list-group-item-heading">
+                            <b>{{pipeline.name}}</b>
+                          </div>
+                          <div class="list-group-item-text">
+                            <b>{{pipeline.stages.length}}</b> Stages
+                          </div>
+                          <div class="list-view-pf-additional-info">
+                            <div class="list-view-pf-additional-info-item">
+                              {{pipeline.description}}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="list-group-item-container container-fluid" *ngIf="pipeline.expanded === true">
+                    <div class="row">
+                      <div class="col-md-12 f8launcher-pipeline-stages">
+                        <ng-container *ngFor="let stage of pipeline.stages; let i = index">
+                          <span class="f8launcher-pipeline-stages--line">{{stage}}</span>
+                          <span class="f8launcher-pipeline-stages--arrow" *ngIf="i !== pipeline.stages.length - 1"></span>
+                        </ng-container>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card-pf-heading">
+              <h2 class="card-pf-title">
+                All Other Pipelines
+              </h2>
+              <hr>
             </div>
             <div class="card-pf-body">
+              <div class="container-fluid f8launcher-section-release-strategy-toolbar">
+                <pfng-toolbar [config]="toolbarConfig"
+                              (onFilterChange)="filterChanged($event)"
+                              (onSortChange)="sortChanged($event)">
+                </pfng-toolbar>
+              </div>
               <div class="list-group list-view-pf list-view-pf-view">
                 <div class="list-group-item" *ngFor="let pipeline of pipelines; let i = index">
                   <div class="f8launcher-tag-featured" tooltip="Suggestion based on selected mission and runtime"

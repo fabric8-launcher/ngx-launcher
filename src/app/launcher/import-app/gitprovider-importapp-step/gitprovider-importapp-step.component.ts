@@ -8,6 +8,19 @@ import {
   ViewChild,
   ViewEncapsulation
 } from '@angular/core';
+
+import {
+  Filter,
+  FilterConfig,
+  FilterField,
+  FilterEvent,
+  FilterType,
+  SortConfig,
+  SortField,
+  SortEvent,
+  ToolbarConfig
+} from 'patternfly-ng';
+
 import { Subscription } from 'rxjs/Subscription';
 
 import { GitProviderService } from '../../service/git-provider.service';
@@ -24,6 +37,12 @@ import { LauncherStep } from '../../launcher-step';
 export class GitproviderImportappStepComponent extends LauncherStep implements AfterViewInit, OnDestroy, OnInit {
   @ViewChild('versionSelect') versionSelect: ElementRef;
 
+  toolbarConfig: ToolbarConfig;
+
+  private currentSortField: SortField;
+  private filterConfig: FilterConfig;
+  private isAscendingSort: boolean = true;
+  private sortConfig: SortConfig;
   private subscriptions: Subscription[] = [];
 
   constructor(@Host() public launcherComponent: LauncherComponent,
@@ -40,6 +59,30 @@ export class GitproviderImportappStepComponent extends LauncherStep implements A
   }
 
   ngOnInit() {
+    this.filterConfig = {
+      fields: [{
+        id: 'name',
+        title: 'Name',
+        placeholder: 'Filter by Name...',
+        type: FilterType.TEXT
+      }] as FilterField[],
+      appliedFilters: []
+    } as FilterConfig;
+
+    this.sortConfig = {
+      fields: [{
+        id: 'name',
+        title: 'Name',
+        sortType: 'alpha'
+      }],
+      isAscending: this.isAscendingSort
+    } as SortConfig;
+
+    this.toolbarConfig = {
+      filterConfig: this.filterConfig,
+      sortConfig: this.sortConfig
+    } as ToolbarConfig;
+
     this.launcherComponent.addStep(this);
 
     this.subscriptions.push(this.gitProviderService.getGitHubDetails().subscribe((val) => {
@@ -81,6 +124,53 @@ export class GitproviderImportappStepComponent extends LauncherStep implements A
       && this.launcherComponent.summary.gitHubDetails.repository !== undefined
       && this.launcherComponent.summary.gitHubDetails.repository.length > 0
       && this.launcherComponent.summary.gitHubDetails.repositoryAvailable === true);
+  }
+
+  // Filter
+
+  applyFilters(filters: Filter[]): void { }
+
+  // Handle filter changes
+  filterChanged($event: FilterEvent): void {
+    this.applyFilters($event.appliedFilters);
+  }
+
+  matchesFilter(item: any, filter: Filter): boolean {
+    let match = true;
+    if (filter.field.id === 'name') {
+      match = item.name.match(filter.value) !== null;
+    }
+    return match;
+  }
+
+  matchesFilters(item: any, filters: Filter[]): boolean {
+    let matches = true;
+    filters.forEach((filter) => {
+      if (!this.matchesFilter(item, filter)) {
+        matches = false;
+        return matches;
+      }
+    });
+    return matches;
+  }
+
+  // Sort
+
+  compare(item1: any, item2: any): number {
+    let compValue = 0;
+    if (this.currentSortField.id === 'name') {
+      compValue = item1.name.localeCompare(item2.name);
+    }
+    if (!this.isAscendingSort) {
+      compValue = compValue * -1;
+    }
+    return compValue;
+  }
+
+  // Handle sort changes
+  sortChanged($event: SortEvent): void {
+    this.currentSortField = $event.field;
+    this.isAscendingSort = $event.isAscending;
   }
 
   // Steps
