@@ -28,25 +28,26 @@
           </f8launcher-dependencychecker-createapp-step>
           -->
           <f8launcher-targetenvironment-createapp-step #targetEnvStep
+            [hidden]="targetEnvironment === 'os'"
             [id]="'TargetEnvironment'"
             [styleClass]="'target-environment'"
             [title]="'Select Target Environment'">
           </f8launcher-targetenvironment-createapp-step>
           <f8launcher-releasestrategy-createapp-step
-            [hidden]="!(missionRuntimeStep.completed === true && targetEnvStep.completed === true
+            [hidden]="targetEnvironment !== 'os' && !(missionRuntimeStep.completed === true && targetEnvStep.completed === true
                       && summary?.targetEnvironment === 'os')"
             [id]="'ReleaseStrategy'"
             [styleClass]="'release-strategy'"
             [title]="'Select Pipeline'">
           </f8launcher-releasestrategy-createapp-step>
           <f8launcher-gitprovider-createapp-step
-            [hidden]="!(missionRuntimeStep.completed === true && targetEnvStep.completed === true)"
+            [hidden]="targetEnvironment !== 'os' && !(missionRuntimeStep.completed === true && targetEnvStep.completed === true)"
             [id]="'GitProvider'"
             [styleClass]="'git-provider'"
             [title]="'Authorize Git Provider'">
           </f8launcher-gitprovider-createapp-step>
           <f8launcher-projectsummary-createapp-step
-            [hidden]="!(missionRuntimeStep.completed === true && targetEnvStep.completed === true)"
+            [hidden]="targetEnvironment !== 'os' && !(missionRuntimeStep.completed === true && targetEnvStep.completed === true)"
             [id]="'ProjectSummary'"
             [styleClass]="'project-summary'"
             [title]="'Confirm Application Summary & Setup'">

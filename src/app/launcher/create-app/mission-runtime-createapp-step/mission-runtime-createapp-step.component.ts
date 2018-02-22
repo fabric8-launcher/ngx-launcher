@@ -270,7 +270,6 @@ export class MissionRuntimeCreateappStepComponent extends LauncherStep implement
       }
     });
     this.initCompleted();
-    this.launcherComponent.navToNextStep();
   }
 
   private updateMissionSelection(val: Mission): void {

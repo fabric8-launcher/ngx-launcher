@@ -22,7 +22,17 @@ import { LauncherStep } from './launcher-step';
   styleUrls: ['./launcher.component.less']
 })
 export class LauncherComponent implements AfterViewInit, OnInit {
+  /**
+   * Flag indicating to show the import application work flow. Defaults to the create new application work flow.
+   *
+   * @type {boolean}
+   */
   @Input() importApp: boolean = false;
+
+  /**
+   * Setting the target environment to 'os' will show all steps, except the completed target environment
+   */
+  @Input() targetEnvironment: string;
 
   /**
    * The event emitted when an cancel has been selected
@@ -42,8 +52,10 @@ export class LauncherComponent implements AfterViewInit, OnInit {
 
   ngAfterViewInit() {
     setTimeout(() => {
-      this.stepIndicator.navToNextStep();
-    }, 200);
+      let params = this.selectionParams;
+      let id = (this.selectionParams !== undefined) ? 'GitProvider' : this.steps[0].id;
+      this.stepIndicator.navToStep(id);
+    }, 300);
   }
 
   ngOnInit() {
@@ -51,6 +63,11 @@ export class LauncherComponent implements AfterViewInit, OnInit {
       dependencyCheck: {},
       gitHubDetails: {}
     } as Summary;
+
+    // set target environment as completed
+    if (this.targetEnvironment !== undefined && this.targetEnvironment.length > 0) {
+      this._summary.targetEnvironment = this.targetEnvironment;
+    }
   }
 
   onInViewportChange($event: any, id: string) {
@@ -88,7 +105,8 @@ export class LauncherComponent implements AfterViewInit, OnInit {
         ? this._summary.dependencyCheck.projectVersion : undefined,
       runtimeId: (this._summary.runtime !== undefined) ? this._summary.runtime.id : undefined,
       runtimeVersion: (this._summary.runtime !== undefined) ? this._summary.runtime.version : undefined,
-      platform: (this._summary.runtime !== undefined) ? this._summary.runtime.pipelinePlatform : 'maven',
+      platform: (this._summary.runtime !== undefined && this._summary.runtime.pipelinePlatform !== undefined)
+        ? this._summary.runtime.pipelinePlatform : 'maven',
       spacePath: (this._summary.dependencyCheck !== undefined) ? this._summary.dependencyCheck.spacePath : undefined,
       targetEnvironment: this._summary.targetEnvironment
     } as Selection;
@@ -215,7 +233,7 @@ export class LauncherComponent implements AfterViewInit, OnInit {
    */
   navToNextStep(): void {
     let summaryStep = this.getStep('ProjectSummary');
-    if (summaryStep.completed === true) {
+    if (summaryStep !== undefined && summaryStep.completed === true) {
       this.summaryCompleted = true;
       return;
     }
