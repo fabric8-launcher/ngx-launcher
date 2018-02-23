@@ -1,14 +1,19 @@
 @import (reference) 'main.less';
 
-.f8launcher-tag-featured {
-  padding: 2px 5px;
-  background-color: @color-pf-blue;
-  color: @color-pf-white;
-  font-size: .9em;
-  position: absolute;
-  top: 0;
-  right: 0;
-  i {
+.f8launcher-tags {
+  border-top: 1px solid @color-pf-blue;
+  &:last-child {
+    margin-right: 0;
+  }
+  &-label {
+    margin-right: 5px;
+    padding: 0 10px;
+    background-color: @color-pf-blue;
     color: @color-pf-white;
+    font-size: .9em;
+    float: right;
+    i {
+      color: @color-pf-white;
+    }
   }
 }
