@@ -7,18 +7,6 @@ import {
   ViewEncapsulation } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 
-import {
-  Filter,
-  FilterConfig,
-  FilterField,
-  FilterEvent,
-  FilterType,
-  SortConfig,
-  SortField,
-  SortEvent,
-  ToolbarConfig
-} from 'patternfly-ng';
-
 import { PipelineService } from '../../service/pipeline.service';
 import { Pipeline } from '../../model/pipeline.model';
 import { Selection } from '../../model/selection.model';
@@ -34,15 +22,8 @@ import { LauncherStep } from '../../launcher-step';
 export class ReleaseStrategyCreateappStepComponent extends LauncherStep implements OnInit, OnDestroy {
   @Input() id: string;
 
-  toolbarConfig: ToolbarConfig;
-
-  private allPipelines: Pipeline[];
-  private filterConfig: FilterConfig;
-  private isAscendingSort: boolean = true;
   private _pipelines: Pipeline[];
   private _pipelineId: string;
-  private sortConfig: SortConfig;
-  private currentSortField: SortField;
 
   private subscriptions: Subscription[] = [];
 
@@ -52,31 +33,8 @@ export class ReleaseStrategyCreateappStepComponent extends LauncherStep implemen
   }
 
   ngOnInit() {
-    this.filterConfig = {
-      fields: [{
-        id: 'name',
-        title: 'Name',
-        placeholder: 'Filter by Name...',
-        type: FilterType.TEXT
-      }] as FilterField[],
-      appliedFilters: []
-    } as FilterConfig;
-
-    this.sortConfig = {
-      fields: [{
-        id: 'name',
-        title: 'Name',
-        sortType: 'alpha'
-      }],
-      isAscending: this.isAscendingSort
-    } as SortConfig;
-
-    this.toolbarConfig = {
-      filterConfig: this.filterConfig,
-      sortConfig: this.sortConfig
-    } as ToolbarConfig;
-
     this.launcherComponent.addStep(this);
+
     this.subscriptions.push(this.pipelineService.getPipelines().subscribe((result) => {
       // needs to filter out associated pipelines from list of pipelines
       let selPipelines: any[] = [];
@@ -85,11 +43,9 @@ export class ReleaseStrategyCreateappStepComponent extends LauncherStep implemen
         return item.platform === selection.platform;
       });
 
-      this._pipelines = this.allPipelines = selPipelines;
+      this._pipelines = selPipelines;
       for (let i = 0; i < this._pipelines.length; i++) {
-        if (this._pipelines[i].suggested === true) {
-          this._pipelines[i].expanded = true;
-        }
+        this._pipelines[i].expanded = true;
       }
       this.restoreSummary();
     }));
@@ -137,65 +93,6 @@ export class ReleaseStrategyCreateappStepComponent extends LauncherStep implemen
    */
   get stepCompleted(): boolean {
     return (this.launcherComponent.summary.pipeline !== undefined);
-  }
-
-  // Filter
-
-  applyFilters(filters: Filter[]): void {
-    this._pipelines = [];
-    if (filters && filters.length > 0) {
-      this.allPipelines.forEach((pipeline) => {
-        if (this.matchesFilters(pipeline, filters)) {
-          this._pipelines.push(pipeline);
-        }
-      });
-    } else {
-      this._pipelines = this.allPipelines;
-    }
-  }
-
-  // Handle filter changes
-  filterChanged($event: FilterEvent): void {
-    this.applyFilters($event.appliedFilters);
-  }
-
-  matchesFilter(item: any, filter: Filter): boolean {
-    let match = true;
-    if (filter.field.id === 'name') {
-      match = item.name.match(filter.value) !== null;
-    }
-    return match;
-  }
-
-  matchesFilters(item: any, filters: Filter[]): boolean {
-    let matches = true;
-    filters.forEach((filter) => {
-      if (!this.matchesFilter(item, filter)) {
-        matches = false;
-        return matches;
-      }
-    });
-    return matches;
-  }
-
-  // Sort
-
-  compare(item1: any, item2: any): number {
-    let compValue = 0;
-    if (this.currentSortField.id === 'name') {
-      compValue = item1.name.localeCompare(item2.name);
-    }
-    if (!this.isAscendingSort) {
-      compValue = compValue * -1;
-    }
-    return compValue;
-  }
-
-  // Handle sort changes
-  sortChanged($event: SortEvent): void {
-    this.currentSortField = $event.field;
-    this.isAscendingSort = $event.isAscending;
-    this._pipelines.sort((item1: any, item2: any) => this.compare(item1, item2));
   }
 
   // Steps

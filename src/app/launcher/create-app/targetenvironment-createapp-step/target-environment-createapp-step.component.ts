@@ -90,10 +90,9 @@ export class TargetEnvironmentCreateappStepComponent extends LauncherStep implem
   // Restore mission & runtime summary
   private restoreSummary(): void {
     let selection: Selection = this.launcherComponent.selectionParams;
-    if (selection === undefined) {
-      return;
+    if (selection !== undefined) {
+      this.launcherComponent.summary.targetEnvironment = selection.targetEnvironment;
     }
-    this.launcherComponent.summary.targetEnvironment = selection.targetEnvironment;
-    this.initCompleted();
+    this.initCompleted(); // Ensure this is called for launcherComponent.targetEnvironment input
   }
 }

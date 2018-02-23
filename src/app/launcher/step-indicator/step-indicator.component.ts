@@ -38,8 +38,17 @@ export class StepIndicatorComponent implements OnInit {
   navToNextStep(): void {
     for (let i = 0; i < this.launcherComponent.steps.length; i++) {
       let step = this.launcherComponent.steps[i];
-      if (step.completed !== true && step.hidden !== true) {
-        this.navToStep(step.id);
+      if (step.id === this.launcherComponent.selectedSection) {
+        if (i + 1 < this.launcherComponent.steps.length) {
+          for (let k = i + 1; k < this.launcherComponent.steps.length; k++) {
+            let nextStep = this.launcherComponent.steps[k];
+            if (nextStep.hidden === true) {
+              continue;
+            }
+            this.navToStep(nextStep.id);
+            break;
+          }
+        }
         break;
       }
     }
