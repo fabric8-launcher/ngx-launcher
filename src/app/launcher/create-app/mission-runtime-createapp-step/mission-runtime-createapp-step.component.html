@@ -55,7 +55,7 @@
                             *ngIf="isMissionDisabled(mission) === true">
                         Contribute <i class="pficon pficon-info"></i>
                       </span>
-                      <span class="f8launcher-tags-label" container="body" triggers="click"
+                      <span class="f8launcher-tags-label suggested-tag" container="body" triggers="click"
                             outsideClick="true"
                             popover="This mission will get you started with a bare bones working application."
                             *ngIf="mission.suggested === true">
@@ -136,7 +136,7 @@
                             *ngIf="isRuntimeDisabled(runtime) === true">
                         Contribute <i class="pficon pficon-info"></i>
                       </span>
-                      <span class="f8launcher-tags-label" container="body" triggers="click"
+                      <span class="f8launcher-tags-label suggested-tag" container="body" triggers="click"
                             outsideClick="true"
                             popover="This runtime will get you started with a bare bones working application."
                             *ngIf="runtime.suggested === true">

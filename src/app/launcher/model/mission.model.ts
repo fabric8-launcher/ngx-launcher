@@ -6,4 +6,5 @@ export class Mission {
   runtimes: string[];
   suggested?: boolean;
   url?: string;
+  showMore?: boolean;
 }
