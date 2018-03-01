@@ -26,5 +26,5 @@ export abstract class GitProviderService {
    * @param {string} fullName The GitHub full name (e.g., fabric8-launcher/ngx-launcher)
    * @returns {Observable<boolean>} True if GitHub repo exists
    */
-  abstract isGitHubRepo(fullName: string): Observable<boolean>;
+  abstract isGitHubRepo(org: string, repoName: string): Observable<boolean>;
 }

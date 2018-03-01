@@ -42,4 +42,5 @@ export { ProjectSummaryService } from './src/app/launcher/service/project-summar
 export { TargetEnvironmentService } from './src/app/launcher/service/target-environment.service';
 
 // Utility Service
+export { AuthHelperService } from './src/app/launcher/service/auth-provider.service';
 export { HelperService } from './src/app/launcher/service/helper.service';

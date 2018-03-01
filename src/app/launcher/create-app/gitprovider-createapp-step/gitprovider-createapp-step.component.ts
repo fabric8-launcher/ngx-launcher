@@ -115,9 +115,13 @@ export class GitproviderCreateappStepComponent extends LauncherStep implements A
   validateRepo(): void {
     let fullName = this.launcherComponent.summary.gitHubDetails.organization + '/'
       + this.launcherComponent.summary.gitHubDetails.repository;
+    let org = this.launcherComponent.summary.gitHubDetails.organization;
+    let repoName = this.launcherComponent.summary.gitHubDetails.repository;
 
-    this.subscriptions.push(this.gitProviderService.isGitHubRepo(fullName).subscribe((val) => {
-      if (val !== undefined) {
+    this.subscriptions.push(this.gitProviderService.isGitHubRepo(org, repoName).subscribe((val) => {
+      if (val) {
+        this.launcherComponent.summary.gitHubDetails.repositoryAvailable = !val;
+      } else {
         this.launcherComponent.summary.gitHubDetails.repositoryAvailable = !val;
         this.initCompleted();
       }
