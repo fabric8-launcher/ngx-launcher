@@ -37,7 +37,7 @@ export class DemoPipelineService implements PipelineService {
       });
     }));
   }
-/*
+
   getPipelines(): Observable<Pipeline[]> {
     let runtimeEndPoint: string = this.END_POINT + this.API_BASE;
     return this.options.flatMap((option) => {
@@ -52,63 +52,63 @@ export class DemoPipelineService implements PipelineService {
         .catch(this.handleError);
     });
   }
-*/
+
   // Save for demo
-  getPipelines(): Observable<Pipeline[]> {
-    let pipelines = Observable.of([{
-      'id': 'maven-release',
-      'platform': 'maven',
-      'name': 'Release',
-      'stages': [{
-        'name': 'Build Release',
-        'description': 'Creates a new version then builds and deploys the project into the maven repository'
-      }, {
-        'name': 'Integration Test',
-        'description': 'Runs an integration test in the **Test** environment'
-      }],
-      'suggested': false,
-      'techpreview': false
-    }, {
-      'id': 'maven-releaseandstage',
-      'platform': 'maven',
-      'name': 'Release and Stage',
-      'stages': [{
-        'name': 'Build Release',
-        'description': 'Creates a new version then builds and deploys the project into the maven repository'
-      }, {
-        'name': 'Integration Test',
-        'description': 'Runs an integration test in the **Test** environment'
-      }, {
-        'name': 'Rollout to Stage',
-        'description': 'Stages the new version into the **Stage** environment'
-      }],
-      'suggested': false,
-      'techpreview': false
-    }, {
-      'id': 'maven-releasestageapproveandpromote',
-      'platform': 'maven',
-      'name': 'Release, Stage, Approve and Promote',
-      'stages': [{
-        'name': 'Build Release',
-        'description': 'Creates a new version then builds and deploys the project into the maven repository'
-      }, {
-        'name': 'Integration Test',
-        'description': 'Runs an integration test in the **Test** environment'
-      }, {
-        'name': 'Rollout to Stage',
-        'description': 'Stages the new version into the **Stage** environment'
-      }, {
-        'name': 'Approve',
-        'description': 'Waits for **Approval** to promote'
-      }, {
-        'name': 'Rollout to Run',
-        'description': 'Promotes to the **Run** environment'
-      }],
-      'suggested': true,
-      'techpreview': false
-    }] as Pipeline[]);
-    return pipelines;
-  }
+  // getPipelines(): Observable<Pipeline[]> {
+  //   let pipelines = Observable.of([{
+  //     'id': 'maven-release',
+  //     'platform': 'maven',
+  //     'name': 'Release',
+  //     'stages': [{
+  //       'name': 'Build Release',
+  //       'description': 'Creates a new version then builds and deploys the project into the maven repository'
+  //     }, {
+  //       'name': 'Integration Test',
+  //       'description': 'Runs an integration test in the **Test** environment'
+  //     }],
+  //     'suggested': false,
+  //     'techpreview': false
+  //   }, {
+  //     'id': 'maven-releaseandstage',
+  //     'platform': 'maven',
+  //     'name': 'Release and Stage',
+  //     'stages': [{
+  //       'name': 'Build Release',
+  //       'description': 'Creates a new version then builds and deploys the project into the maven repository'
+  //     }, {
+  //       'name': 'Integration Test',
+  //       'description': 'Runs an integration test in the **Test** environment'
+  //     }, {
+  //       'name': 'Rollout to Stage',
+  //       'description': 'Stages the new version into the **Stage** environment'
+  //     }],
+  //     'suggested': false,
+  //     'techpreview': false
+  //   }, {
+  //     'id': 'maven-releasestageapproveandpromote',
+  //     'platform': 'maven',
+  //     'name': 'Release, Stage, Approve and Promote',
+  //     'stages': [{
+  //       'name': 'Build Release',
+  //       'description': 'Creates a new version then builds and deploys the project into the maven repository'
+  //     }, {
+  //       'name': 'Integration Test',
+  //       'description': 'Runs an integration test in the **Test** environment'
+  //     }, {
+  //       'name': 'Rollout to Stage',
+  //       'description': 'Stages the new version into the **Stage** environment'
+  //     }, {
+  //       'name': 'Approve',
+  //       'description': 'Waits for **Approval** to promote'
+  //     }, {
+  //       'name': 'Rollout to Run',
+  //       'description': 'Promotes to the **Run** environment'
+  //     }],
+  //     'suggested': true,
+  //     'techpreview': false
+  //   }] as Pipeline[]);
+  //   return pipelines;
+  // }
 
   private handleError(error: Response | any) {
     // In a real world app, we might use a remote logging infrastructure

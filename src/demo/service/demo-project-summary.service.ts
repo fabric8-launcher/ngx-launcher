@@ -34,6 +34,9 @@ export class DemoProjectSummaryService implements ProjectSummaryService {
     headers.append('X-Execution-Step-Index', '0');
     headers.append('Content-Type', 'application/x-www-form-urlencoded');
     return Observable.fromPromise(this.tokenProvider.token.then((token) => {
+      /* tslint:disable */
+      //token = 'token';
+      /* tslint:enable */
       headers.append('Authorization', 'Bearer ' + token);
       return new RequestOptions({
         headers: headers
@@ -49,6 +52,7 @@ export class DemoProjectSummaryService implements ProjectSummaryService {
    */
   setup(summary: Summary): Observable<boolean> {
     let summaryEndPoint: string = this.END_POINT + this.API_BASE;
+    debugger;
     return this.options.flatMap((option) => {
       return this.http.post(summaryEndPoint, this.getPayload(summary), option)
         .map(response => {
