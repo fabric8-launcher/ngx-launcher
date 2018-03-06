@@ -29,7 +29,7 @@ export class DemoProjectSummaryService implements ProjectSummaryService {
 
   private get options(): Observable<RequestOptions> {
     let headers = new Headers();
-    headers.append('X-App', this.ORIGIN)
+    headers.append('X-App', this.ORIGIN);
     headers.append('X-Git-Provider', 'GitHub');
     headers.append('X-Execution-Step-Index', '0');
     headers.append('Content-Type', 'application/x-www-form-urlencoded');
@@ -53,7 +53,7 @@ export class DemoProjectSummaryService implements ProjectSummaryService {
       return this.http.post(summaryEndPoint, this.getPayload(summary), option)
         .map(response => {
           console.log(response.json());
-          return true;
+          return response.json();
         })
         .catch(this.handleError);
     });

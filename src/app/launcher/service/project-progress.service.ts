@@ -1,4 +1,4 @@
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 
 import { Progress } from '../model/progress.model';
 
@@ -7,9 +7,11 @@ import { Progress } from '../model/progress.model';
  */
 export abstract class ProjectProgressService {
 
+  abstract statusMessages: Subject<any>;
   /**
    * Retrieve progress list
    * @returns {Observable<Progress[]>}
    */
-  abstract getProgress(): Observable<Progress[]>;
+  abstract getProgress(uuidLink: string): Observable<Progress[]>;
+  abstract connect(uuidLink: string): any;
 }

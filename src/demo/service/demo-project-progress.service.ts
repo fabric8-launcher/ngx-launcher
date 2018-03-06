@@ -1,25 +1,79 @@
 import { Injectable } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
-import { Subscription } from 'rxjs/Subscription';
+import { Observable, Observer, Subscription, Subject } from 'rxjs';
 
 import { Progress } from '../../app/launcher/launcher.module';
 import { ProjectProgressService } from '../../app/launcher/launcher.module';
+import { HelperService } from '../../app/launcher/service/helper.service';
+import { TokenProvider } from '../../app/service/token-provider';
 
 @Injectable()
 export class DemoProjectProgressService implements ProjectProgressService {
+  statusMessages = new Subject<any>();
   private progress: Progress[];
   private _progressSubject: Subject<Progress[]> = new Subject();
   private timer: Subscription;
+  private socket: Subject<MessageEvent>;
+  private END_POINT: string = '';
+  private ORIGIN: string = '';
+  private TOKEN: string = '';
+  private ws: WebSocket;
 
-  constructor() {
+  constructor(private helperService: HelperService,
+    private tokenProvider: TokenProvider) {
+    if (this.helperService) {
+      this.END_POINT = this.helperService.getBackendUrl();
+      console.log(this.END_POINT);
+      this.END_POINT = 'wss://forge.api.prod-preview.openshift.io';
+      this.ORIGIN = this.helperService.getOrigin();
+      this.tokenProvider.token.then((token) => {
+        this.TOKEN = token;
+      });
+    }
   }
 
-  getProgress(): Observable<Progress[]> {
+  getProgress(uuidLink: string): Observable<Progress[]> {
+    console.log(uuidLink);
     this.initTimer(); // Timer to simulate progress
     return this._progressSubject.asObservable();
   }
 
+  connect(uuidLink: string) {
+    this.ws = new WebSocket(this.END_POINT + uuidLink);
+    this.ws.onmessage = (event: MessageEvent) => {
+      let data = JSON.parse(event.data);
+      this.statusMessages.next(data);
+    };
+    this.ws.onerror = (error: MessageEvent) => {
+      this.statusMessages.error(error);
+    };
+  }
+
+  connectt(uuidLink: string): Subject<MessageEvent> {
+    let progressEndPoint: string = this.END_POINT + uuidLink;
+    if (!this.socket) {
+      this.socket = this.create(progressEndPoint);
+    }
+    return this.socket;
+  }
+
   // Private
+  private create(url: string): Subject<MessageEvent> {
+    let ws = new WebSocket(url);
+    let observable = Observable.create((obs: Observer<MessageEvent>) => {
+      ws.onmessage = obs.next.bind(obs);
+      ws.onerror = obs.error.bind(obs);
+      ws.onclose = obs.complete.bind(obs);
+      return ws.close.bind(ws);
+    });
+    let observer = {
+      next: (data: Object) => {
+        if (ws.readyState === WebSocket.OPEN) {
+          ws.send(data);
+        }
+      }
+    };
+    return Subject.create(observer, observable);
+  }
 
   private getItems(): Progress[] {
     if (this.progress === undefined) {

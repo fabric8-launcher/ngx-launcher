@@ -26,7 +26,9 @@ export class ProjectProgressImportappNextstepComponent implements OnInit, OnDest
   }
 
   ngOnInit() {
-    this.subscriptions.push(this.projectProgressService.getProgress().subscribe((progress) => {
+    this.subscriptions.push(this.projectProgressService
+      .getProgress(this.launcherComponent.summary.uuidLink)
+      .subscribe((progress) => {
       this._progress = progress;
     }));
   }
