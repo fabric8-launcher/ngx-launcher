@@ -210,7 +210,6 @@ export class GitproviderImportappStepComponent extends LauncherStep implements A
     let repoName = this.launcherComponent.summary.gitHubDetails.repository;
 
     this.subscriptions.push(this.gitProviderService.isGitHubRepo(org, repoName).subscribe((val) => {
-      debugger;
       if (val) {
         this.launcherComponent.summary.gitHubDetails.repositoryAvailable = !val;
       } else {
