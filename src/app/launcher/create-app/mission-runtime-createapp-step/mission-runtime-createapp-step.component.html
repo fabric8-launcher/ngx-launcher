@@ -83,11 +83,11 @@
                         <div class="list-group-item-heading">
                           {{mission.name}}
                         </div>
-                        <div class="list-group-item-text">
-                          <div *ngIf="mission.showMore !== true && mission.description">
+                        <div class="list-group-item-text" *ngIf="mission.description">
+                          <div *ngIf="mission.showMore !== true">
                             {{mission.description | truncate: 45}}
                           </div>
-                          <div *ngIf="mission.showMore === true && mission.description">
+                          <div *ngIf="mission.showMore === true">
                             {{mission.description}}
                           </div>
                           <div class="description-more">
@@ -189,11 +189,11 @@
                             </ul>
                           </div>
                         </div>
-                        <div class="list-group-item-text">
-                          <div *ngIf="runtime.showMore !== true && runtime.description">
+                        <div class="list-group-item-text" *ngIf="runtime.description">
+                          <div *ngIf="runtime.showMore !== true">
                             {{runtime.description | truncate: 45}}
                           </div>
-                          <div *ngIf="runtime.showMore === true && runtime.description">
+                          <div *ngIf="runtime.showMore === true">
                             {{runtime.description}}
                           </div>
                           <div class="description-more">
