@@ -83,11 +83,11 @@
                         <div class="list-group-item-heading">
                           {{mission.name}}
                         </div>
-                        <!-- <div class="list-group-item-text">
-                          <div *ngIf="mission.showMore !== true">
+                        <div class="list-group-item-text">
+                          <div *ngIf="mission.showMore !== true && mission.description">
                             {{mission.description | truncate: 45}}
                           </div>
-                          <div *ngIf="mission.showMore === true">
+                          <div *ngIf="mission.showMore === true && mission.description">
                             {{mission.description}}
                           </div>
                           <div class="description-more">
@@ -97,7 +97,7 @@
                               {{(mission.showMore !== true) ? 'More' : 'Less'}}
                             </a>
                           </div>
-                        </div> -->
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -189,11 +189,11 @@
                             </ul>
                           </div>
                         </div>
-                        <!-- <div class="list-group-item-text">
-                          <div *ngIf="runtime.showMore !== true">
+                        <div class="list-group-item-text">
+                          <div *ngIf="runtime.showMore !== true && runtime.description">
                             {{runtime.description | truncate: 45}}
                           </div>
-                          <div *ngIf="runtime.showMore === true">
+                          <div *ngIf="runtime.showMore === true && runtime.description">
                             {{runtime.description}}
                           </div>
                           <div class="description-more">
@@ -203,7 +203,7 @@
                               {{(runtime.showMore !== true) ? 'More' : 'Less'}}
                             </a>
                           </div>
-                        </div> -->
+                        </div>
                       </div>
                     </div>
                   </div>
