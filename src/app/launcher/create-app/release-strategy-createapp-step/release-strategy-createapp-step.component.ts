@@ -34,11 +34,13 @@ export class ReleaseStrategyCreateappStepComponent extends LauncherStep implemen
 
   ngOnInit() {
     this.launcherComponent.addStep(this);
-
-    this.subscriptions.push(this.pipelineService.getPipelines().subscribe((result) => {
-      this._pipelines = result;
-      this.restoreSummary();
-    }));
+    if (this.launcherComponent && this.launcherComponent.summary && this.launcherComponent.summary.runtime) {
+      let filterByRuntime: string = this.launcherComponent.summary.runtime.pipelinePlatform;
+      this.subscriptions.push(this.pipelineService.getPipelines(filterByRuntime).subscribe((result: Array<Pipeline>) => {
+        this._pipelines = result;
+        this.restoreSummary();
+      }));
+    }
   }
 
   ngOnDestroy() {

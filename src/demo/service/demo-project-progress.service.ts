@@ -43,7 +43,7 @@ export class DemoProjectProgressService implements ProjectProgressService {
       let data = JSON.parse(event.data);
       this.statusMessages.next(data);
     };
-    this.ws.onerror = (error: MessageEvent) => {
+    this.ws.onerror = (error: ErrorEvent) => {
       this.statusMessages.error(error);
     };
   }

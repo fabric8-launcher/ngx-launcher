@@ -10,5 +10,5 @@ export abstract class PipelineService {
    * Retrieve pipeline list
    * @returns {Observable<Pipeline[]>}
    */
-  abstract getPipelines(): Observable<Pipeline[]>;
+  abstract getPipelines(filterByRuntime?: string): Observable<Pipeline[]>;
 }
