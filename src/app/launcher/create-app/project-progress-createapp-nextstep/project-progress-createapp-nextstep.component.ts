@@ -1,9 +1,12 @@
 import {
   Component,
   Host,
+  Input,
   OnDestroy,
   OnInit,
-  ViewEncapsulation
+  ViewEncapsulation,
+  OnChanges,
+  SimpleChanges
 } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 
@@ -17,31 +20,61 @@ import { LauncherComponent } from '../../launcher.component';
   templateUrl: './project-progress-createapp-nextstep.component.html',
   styleUrls: ['./project-progress-createapp-nextstep.component.less']
 })
-export class ProjectProgressCreateappNextstepComponent implements OnInit, OnDestroy {
+export class ProjectProgressCreateappNextstepComponent implements OnInit, OnChanges, OnDestroy {
+  @Input() statusLink: string;
   private _progress: Progress[];
-  private subscriptions: Subscription[] = [];
+  private socket: WebSocket;
 
   constructor(@Host() public launcherComponent: LauncherComponent,
               private projectProgressService: ProjectProgressService) {
   }
 
   ngOnInit() {
-    this.subscriptions.push(this.projectProgressService
-      .getProgress(this.launcherComponent.summary.uuidLink)
-      .subscribe((progress) => {
-        this._progress = progress;
-      }));
-          this.projectProgressService.connect(this.launcherComponent.summary.uuidLink);
-          this.projectProgressService.statusMessages
-          .subscribe((data) => {
-            console.log('data from ws', data);
-          });
+
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    const statusLink = changes['statusLink']['currentValue'];
+    if (statusLink) {
+      this.socket = this.projectProgressService.getProgress(statusLink);
+      this.projectProgressService.progressMessages
+      .subscribe((event: MessageEvent) => {
+        if (!this._progress) {
+          this._progress = [];
+          let values = JSON.parse(event.data);
+          console.log('data from ws', values);
+          for (let item of values) {
+            for (let key in item) {
+              if (item.hasOwnProperty(key)) {
+                let status = new Progress(false, item[key], '', true, key);
+                this._progress.push(status);
+              }
+            }
+          }
+        } else {
+          let message = JSON.parse(event.data);
+          console.log('data from ws', message);
+          let data = message.data || {};
+          if (data && data.error) {
+            console.log(message.data.error);
+          } else {
+            for (let status of this._progress) {
+              if (status.key === message.statusMessage) {
+                status.completed = true;
+                if (data.location != null) {
+                  status.hyperText = data.location;
+                }
+                break;
+              }
+            }
+          }
+        }
+      });
+    }
   }
 
   ngOnDestroy() {
-    this.subscriptions.forEach((sub) => {
-      sub.unsubscribe();
-    });
+    this.closeConnections();
   }
 
   // Accessors
@@ -57,10 +90,18 @@ export class ProjectProgressCreateappNextstepComponent implements OnInit, OnDest
         break;
       }
     }
+    if (result) {
+      this.socket.close();
+    }
     return result;
   }
 
   get progress(): Progress[] {
     return this._progress;
+  }
+
+  private closeConnections() {
+    this.socket.close();
+    this.projectProgressService.progressMessages.unsubscribe();
   }
 }

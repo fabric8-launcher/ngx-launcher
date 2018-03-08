@@ -95,7 +95,7 @@ export class ProjectSummaryCreateappStepComponent extends LauncherStep implement
   setup(): void {
     this.subscriptions.push(this.projectSummaryService.setup(this.launcherComponent.summary).subscribe((val: any) => {
       if (val && val['uuid_link']) {
-        this.launcherComponent.summary.uuidLink = val['uuid_link'];
+        this.launcherComponent.statusLink = val['uuid_link'];
         this.navToNextStep();
       }
     }));

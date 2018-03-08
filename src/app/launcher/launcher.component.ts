@@ -46,6 +46,7 @@ export class LauncherComponent implements AfterViewInit, OnInit {
 
   @ViewChild('stepIndicator') stepIndicator: StepIndicatorComponent;
 
+  public statusLink: string;
   private _selectedSection: string;
   private _showCancelOverlay: boolean = false;
   private _steps: LauncherStep[] = [];

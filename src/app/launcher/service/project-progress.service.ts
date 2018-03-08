@@ -7,11 +7,10 @@ import { Progress } from '../model/progress.model';
  */
 export abstract class ProjectProgressService {
 
-  abstract statusMessages: Subject<any>;
+  abstract progressMessages: Subject<MessageEvent>;
   /**
    * Retrieve progress list
    * @returns {Observable<Progress[]>}
    */
-  abstract getProgress(uuidLink: string): Observable<Progress[]>;
-  abstract connect(uuidLink: string): any;
+  abstract getProgress(uuidLink: string): WebSocket;
 }

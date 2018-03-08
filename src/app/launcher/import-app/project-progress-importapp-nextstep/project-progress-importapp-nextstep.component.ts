@@ -1,8 +1,11 @@
 import {
   Component,
   Host,
+  Input,
+  OnChanges,
   OnDestroy,
   OnInit,
+  SimpleChanges,
   ViewEncapsulation
 } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
@@ -17,26 +20,30 @@ import { LauncherComponent } from '../../launcher.component';
   templateUrl: './project-progress-importapp-nextstep.component.html',
   styleUrls: ['./project-progress-importapp-nextstep.component.less']
 })
-export class ProjectProgressImportappNextstepComponent implements OnInit, OnDestroy {
+export class ProjectProgressImportappNextstepComponent implements OnInit, OnChanges, OnDestroy {
+  @Input() statusLink: string;
   private _progress: Progress[];
   private subscriptions: Subscription[] = [];
+  private socket: WebSocket;
 
   constructor(@Host() public launcherComponent: LauncherComponent,
               private projectProgressService: ProjectProgressService) {
   }
 
   ngOnInit() {
-    this.subscriptions.push(this.projectProgressService
-      .getProgress(this.launcherComponent.summary.uuidLink)
-      .subscribe((progress) => {
-      this._progress = progress;
-    }));
+
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    const statusLink = changes['statusLink']['currentValue'];
+    if (statusLink) {
+      // for now i have commented this
+      // this.socket = this.projectProgressService.getProgress(statusLink);
+    }
   }
 
   ngOnDestroy() {
-    this.subscriptions.forEach((sub) => {
-      sub.unsubscribe();
-    });
+    this.closeConnections();
   }
 
   // Accessors
@@ -57,5 +64,9 @@ export class ProjectProgressImportappNextstepComponent implements OnInit, OnDest
 
   get progress(): Progress[] {
     return this._progress;
+  }
+
+  private closeConnections() {
+    this.socket.close();
   }
 }

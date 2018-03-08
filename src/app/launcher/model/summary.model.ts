@@ -14,5 +14,4 @@ export class Summary {
   pipeline: Pipeline;
   runtime: Runtime;
   targetEnvironment: string;
-  uuidLink: string;
 }
