@@ -1,7 +1,8 @@
 export class Progress {
-  completed?: boolean;
-  description: string;
-  hypertext?: string;
-  inProgress?: boolean;
-  url?: string;
+  constructor(
+  public completed?: boolean,
+  public description?: string,
+  public hyperText?: string,
+  public inProgress?: boolean,
+  public key?: string) {}
 }

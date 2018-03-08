@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 
 import { GitHubDetails } from '../../app/launcher/model/github-details.model';
 import { GitProviderService } from '../../app/launcher/launcher.module';
+import { AuthHelperService } from '../../app/launcher/service/auth-provider.service';
 
 // Enable Access-Conrtol-Expose-Headers for CORS test
 @Injectable()
@@ -19,6 +20,7 @@ export class DemoGitProviderService implements GitProviderService {
     // let url = 'https://github.com/login/oauth/authorize?client_id=' + this.clientId +
     //  '&redirect_uri=' + encodeURIComponent(redirectUrl);
     this.redirectToAuth(redirectUrl);
+    // this.authHelperService.AUTH_API_URL;
   }
 
   /**
@@ -54,8 +56,8 @@ export class DemoGitProviderService implements GitProviderService {
    * @param {string} fullName The GitHub full name (e.g., fabric8-launcher/ngx-launcher)
    * @returns {Observable<boolean>} True if GitHub repo exists
    */
-  isGitHubRepo(fullName: string): Observable<boolean> {
-    let result = (fullName === 'patternfly/patternfly'); // Simulate a existing repo
+  isGitHubRepo(org: string, repoName: string): Observable<boolean> {
+    let result = (repoName === 'patternfly/patternfly'); // Simulate a existing repo
     return Observable.of(result);
   }
 
