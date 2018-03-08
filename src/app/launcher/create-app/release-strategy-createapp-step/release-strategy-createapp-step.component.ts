@@ -34,13 +34,14 @@ export class ReleaseStrategyCreateappStepComponent extends LauncherStep implemen
 
   ngOnInit() {
     this.launcherComponent.addStep(this);
+    let filterByRuntime: string = 'maven';
     if (this.launcherComponent && this.launcherComponent.summary && this.launcherComponent.summary.runtime) {
-      let filterByRuntime: string = this.launcherComponent.summary.runtime.pipelinePlatform;
-      this.subscriptions.push(this.pipelineService.getPipelines(filterByRuntime).subscribe((result: Array<Pipeline>) => {
-        this._pipelines = result;
-        this.restoreSummary();
-      }));
+      filterByRuntime = this.launcherComponent.summary.runtime.pipelinePlatform;
     }
+    this.subscriptions.push(this.pipelineService.getPipelines(filterByRuntime).subscribe((result: Array<Pipeline>) => {
+      this._pipelines = result;
+      this.restoreSummary();
+    }));
   }
 
   ngOnDestroy() {

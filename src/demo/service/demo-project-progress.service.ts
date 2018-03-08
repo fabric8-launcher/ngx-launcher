@@ -25,7 +25,7 @@ export class DemoProjectProgressService implements ProjectProgressService {
     this.socket.onmessage = (event: MessageEvent) => {
       this.progressMessages.next(event);
     };
-    this.socket.onerror = (error: MessageEvent) => {
+    this.socket.onerror = (error: ErrorEvent) => {
       this.progressMessages.error(error);
     };
     this.socket.onclose = () => {
