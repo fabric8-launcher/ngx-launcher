@@ -79,7 +79,7 @@ export class ReleaseStrategyImportappStepComponent extends LauncherStep implemen
 
     this.launcherComponent.addStep(this);
 
-    this.subscriptions.push(this.pipelineService.getPipelines().subscribe((result) => {
+    this.subscriptions.push(this.pipelineService.getPipelines().subscribe((result: Array<Pipeline>) => {
       this._pipelines = result;
       this.restoreSummary();
     }));

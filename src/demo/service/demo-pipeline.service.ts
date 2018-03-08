@@ -38,7 +38,7 @@ export class DemoPipelineService implements PipelineService {
     }));
   }
 
-  getPipelines(): Observable<Pipeline[]> {
+  getPipelines(filterByRuntime: string = 'maven'): Observable<Pipeline[]> {
     let runtimeEndPoint: string = this.END_POINT + this.API_BASE;
     return this.options.flatMap((option) => {
       return this.http.get(runtimeEndPoint, option)
@@ -46,7 +46,7 @@ export class DemoPipelineService implements PipelineService {
         .map(pipelines => {
           // needs to filter out associated pipelines from list of pipelines
           return pipelines.filter(item => {
-            return item.platform === 'maven';
+            return item.platform === filterByRuntime;
           });
         })
         .catch(this.handleError);
