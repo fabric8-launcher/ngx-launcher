@@ -101,7 +101,11 @@ export class ProjectProgressCreateappNextstepComponent implements OnInit, OnChan
   }
 
   private closeConnections() {
-    this.socket.close();
-    this.projectProgressService.progressMessages.unsubscribe();
+    if (this.socket) {
+      this.socket.close();
+    }
+    if (this.projectProgressService && this.projectProgressService.progressMessages) {
+      this.projectProgressService.progressMessages.unsubscribe();
+    }
   }
 }

@@ -41,6 +41,7 @@ export interface TypeWizardComponent{
   summary: any,
   summaryCompleted: boolean,
   addStep(step: LauncherStep): void
+  onInViewportChange($event: any, id: string): any;
 };
 
 let mockWizardComponent: TypeWizardComponent = {
@@ -58,6 +59,13 @@ let mockWizardComponent: TypeWizardComponent = {
       }
     }
     this.steps.push(step);
+  },
+  onInViewportChange($event: any, id: string) {
+    if ($event) {
+      setTimeout(() => {
+        this.selectedSection = id;
+      }, 10); // Avoids ExpressionChangedAfterItHasBeenCheckedError
+    }
   }
 }
 
