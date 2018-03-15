@@ -86,4 +86,15 @@ describe('ProjectProgressComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should test ngOnChanges', () => {
+    let input: any = {
+      statusLink: {
+        currentValue: 'currentValue'
+      }
+    };
+    spyOn(component, 'ngOnChanges');
+    component.ngOnChanges(input);
+    expect(component.ngOnChanges).toHaveBeenCalledWith(input);
+  });
 });

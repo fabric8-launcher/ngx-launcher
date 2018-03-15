@@ -49,19 +49,19 @@
                         <a href='https://appdev.openshift.io/docs/contrib-guide.html#_documentation' target="_blank">library</a>
                         and help us expand these offerings.
                       </ng-template>
-                      <span class="f8launcher-tags-label contribute" container="body" triggers="click"
+                      <span class="f8launcher-contribute-tag-label" container="body" triggers="click"
                             outsideClick="true"
                             [popover]="missionContributeTemplate"
                             *ngIf="isMissionDisabled(mission) === true">
                         Contribute <i class="pficon pficon-info"></i>
                       </span>
-                      <span class="f8launcher-tags-label suggested-tag" container="body" triggers="click"
+                      <span class="f8launcher-suggested-tag-label" container="body" triggers="click"
                             outsideClick="true"
                             popover="This mission will get you started with a bare bones working application."
                             *ngIf="mission.suggested === true">
                         Suggested <i class="pficon pficon-info"></i>
                       </span>
-                      <span class="f8launcher-tags-label prerequisite" container="body" triggers="click"
+                      <span class="f8launcher-prerequisite-tag-label" container="body" triggers="click"
                             outsideClick="true"
                             popover="{{mission.prerequisite}}"
                             *ngIf="mission.prerequisite !== undefined">
@@ -130,19 +130,19 @@
                         <a href='https://appdev.openshift.io/docs/contrib-guide.html#_documentation' target="_blank">library</a>
                         and help us expand these offerings.
                       </ng-template>
-                      <span class="f8launcher-tags-label contribute" container="body" triggers="click"
+                      <span class="f8launcher-contribute-tag-label" container="body" triggers="click"
                             outsideClick="true"
                             [popover]="runtimeContributeTemplate"
                             *ngIf="isRuntimeDisabled(runtime) === true">
                         Contribute <i class="pficon pficon-info"></i>
                       </span>
-                      <span class="f8launcher-tags-label suggested-tag" container="body" triggers="click"
+                      <span class="f8launcher-suggested-tag-label" container="body" triggers="click"
                             outsideClick="true"
                             popover="This runtime will get you started with a bare bones working application."
                             *ngIf="runtime.suggested === true">
                         Suggested <i class="pficon pficon-info"></i>
                       </span>
-                      <span class="f8launcher-tags-label prerequisite" container="body" triggers="click"
+                      <span class="f8launcher-prerequisite-tag-label" container="body" triggers="click"
                             outsideClick="true"
                             popover="{{runtime.prerequisite}}"
                             *ngIf="runtime.prerequisite !== undefined">
