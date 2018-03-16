@@ -1,12 +1,15 @@
 @import (reference) 'main.less';
 
 .f8launcher-tags {
-  border-top: 1px solid @color-pf-blue;
-  &.contribute {
-    border-top: 1px solid @color-pf-green;
-  }
+  /* borders are ordered */
   &.prerequisite {
     border-top: 1px solid @color-pf-orange;
+  }
+  &.suggested {
+    border-top: 1px solid @color-pf-blue;
+  }
+  &.contribute {
+    border-top: 1px solid @color-pf-green;
   }
   &:last-child {
     margin-right: 0;
@@ -14,7 +17,6 @@
   &-label {
     margin-left: 5px;
     padding: 0 10px;
-    background-color: @color-pf-blue;
     color: @color-pf-white;
     cursor: pointer;
     font-size: .9em;
@@ -22,11 +24,15 @@
     i {
       color: @color-pf-white;
     }
-    &.contribute {
-      background-color: @color-pf-green;
-    }
+    /* labels are ordered */
     &.prerequisite {
       background-color: @color-pf-orange;
+    }
+    &.suggested {
+      background-color: @color-pf-blue;
+    }
+    &.contribute {
+      background-color: @color-pf-green;
     }
   }
 }

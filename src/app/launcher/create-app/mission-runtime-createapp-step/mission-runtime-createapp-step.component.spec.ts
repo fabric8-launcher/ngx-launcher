@@ -180,7 +180,7 @@ describe('MissionRuntimeStepComponent', () => {
   it('should have the suggested missions tag when mission.suggested field is true', () => {
     element = fixture.nativeElement;
     let missionsSection = element.querySelectorAll('.card-pf-body')[0];
-    let featuredTag = missionsSection.querySelector('.f8launcher-suggested-tag-label');
+    let featuredTag = missionsSection.querySelector('.f8launcher-tags-label.suggested');
     expect(featuredTag).toBeDefined();
   });
 
@@ -189,14 +189,14 @@ describe('MissionRuntimeStepComponent', () => {
     fixture.detectChanges();
     element = fixture.nativeElement;
     let missionsSection = element.querySelectorAll('.card-pf-body')[0];
-    let featuredTag = missionsSection.querySelector('.f8launcher-suggested-tag-label');
+    let featuredTag = missionsSection.querySelector('.f8launcher-tags-label.suggested');
     expect(featuredTag).toBeNull();
   });
 
   it('should have the prerequisite missions tag when mission.prerequisite field is present', () => {
     element = fixture.nativeElement;
     let missionsSection = element.querySelectorAll('.card-pf-body')[0];
-    let featuredTag = missionsSection.querySelector('.f8launcher-prerequisite-tag-label');
+    let featuredTag = missionsSection.querySelector('.f8launcher-tags-label.prerequisite');
     expect(featuredTag).toBeDefined();
   });
 
@@ -205,7 +205,7 @@ describe('MissionRuntimeStepComponent', () => {
     fixture.detectChanges();
     element = fixture.nativeElement;
     let missionsSection = element.querySelectorAll('.card-pf-body')[0];
-    let featuredTag = missionsSection.querySelector('.f8launcher-prerequisite-tag-label');
+    let featuredTag = missionsSection.querySelector('.f8launcher-tags-label.prerequisite');
     expect(featuredTag).toBeNull();
   });
 
@@ -337,7 +337,7 @@ describe('MissionRuntimeStepComponent', () => {
   it('should have the suggested runtimes tag when runtime.suggested field is true', () => {
     element = fixture.nativeElement;
     let runtimesSection = element.querySelectorAll('.card-pf-body')[1];
-    let featuredTag = runtimesSection.querySelector('.f8launcher-suggested-tag-label');
+    let featuredTag = runtimesSection.querySelector('.f8launcher-tags-label.suggested');
     expect(featuredTag).toBeDefined();
   });
 
@@ -346,14 +346,14 @@ describe('MissionRuntimeStepComponent', () => {
     fixture.detectChanges();
     element = fixture.nativeElement;
     let runtimesSection = element.querySelectorAll('.card-pf-body')[1];
-    let featuredTag = runtimesSection.querySelector('.f8launcher-suggested-tag-label');
+    let featuredTag = runtimesSection.querySelector('.f8launcher-tags-label.suggested');
     expect(featuredTag).toBeNull();
   });
 
   it('should have the prerequisite runtimes tag when runtime.prerequisite field is present', () => {
     element = fixture.nativeElement;
     let runtimesSection = element.querySelectorAll('.card-pf-body')[1];
-    let featuredTag = runtimesSection.querySelector('.f8launcher-prerequisite-tag-label');
+    let featuredTag = runtimesSection.querySelector('.f8launcher-tags-label.prerequisite');
     expect(featuredTag).toBeDefined();
   });
 
@@ -362,7 +362,7 @@ describe('MissionRuntimeStepComponent', () => {
     fixture.detectChanges();
     element = fixture.nativeElement;
     let runtimesSection = element.querySelectorAll('.card-pf-body')[1];
-    let featuredTag = runtimesSection.querySelector('.f8launcher-prerequisite-tag-label');
+    let featuredTag = runtimesSection.querySelector('.f8launcher-tags-label.prerequisite');
     expect(featuredTag).toBeNull();
   });
 
