@@ -45,28 +45,12 @@ let mockProjectProgressService = {
 };
 
 export interface TypeWizardComponent {
-  selectedSection: string;
-  steps: LauncherStep[];
-  summary: any;
-  summaryCompleted: boolean;
-  addStep(step: LauncherStep): void;
+  completed(): any;
 }
 
 let mockWizardComponent: TypeWizardComponent = {
-  selectedSection: '',
-  steps: [],
-  summary: {
-    dependencyCheck: {},
-    gitHubDetails: {}
-  },
-  summaryCompleted: false,
-  addStep(step: LauncherStep) {
-    for (let i = 0; i < this.steps.length; i++) {
-      if (step.id === this.steps[i].id) {
-        return;
-      }
-    }
-    this.steps.push(step);
+  completed() {
+    // this.onComplete.emit();
   }
 };
 
@@ -101,5 +85,16 @@ describe('ProjectProgressComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should test ngOnChanges', () => {
+    let input: any = {
+      statusLink: {
+        currentValue: 'currentValue'
+      }
+    };
+    spyOn(component, 'ngOnChanges');
+    component.ngOnChanges(input);
+    expect(component.ngOnChanges).toHaveBeenCalledWith(input);
   });
 });

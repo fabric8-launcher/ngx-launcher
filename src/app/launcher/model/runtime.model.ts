@@ -19,4 +19,5 @@ export class Runtime {
     name: string;
   }; // Menu selection
   url?: string;
+  showMore?: boolean;
 }
