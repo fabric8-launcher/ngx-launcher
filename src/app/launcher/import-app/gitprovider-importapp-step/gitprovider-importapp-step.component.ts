@@ -8,20 +8,23 @@ import {
   ViewChild,
   ViewEncapsulation
 } from '@angular/core';
+import { Subscription } from 'rxjs/Subscription';
 
 import {
   Filter,
   FilterConfig,
   FilterField,
   FilterEvent,
-  FilterType,
+  FilterType
+} from 'patternfly-ng/filter';
+
+import {
   SortConfig,
   SortField,
-  SortEvent,
-  ToolbarConfig
-} from 'patternfly-ng';
+  SortEvent
+} from 'patternfly-ng/sort';
 
-import { Subscription } from 'rxjs/Subscription';
+import { ToolbarConfig } from 'patternfly-ng/toolbar';
 
 import { GitProviderService } from '../../service/git-provider.service';
 import { Selection } from '../../model/selection.model';

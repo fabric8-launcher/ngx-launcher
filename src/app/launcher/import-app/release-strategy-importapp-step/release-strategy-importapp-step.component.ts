@@ -12,12 +12,16 @@ import {
   FilterConfig,
   FilterField,
   FilterEvent,
-  FilterType,
+  FilterType
+} from 'patternfly-ng/filter';
+
+import {
   SortConfig,
   SortField,
-  SortEvent,
-  ToolbarConfig
-} from 'patternfly-ng';
+  SortEvent
+} from 'patternfly-ng/sort';
+
+import { ToolbarConfig } from 'patternfly-ng/toolbar';
 
 import { PipelineService } from '../../service/pipeline.service';
 import { Pipeline } from '../../model/pipeline.model';
