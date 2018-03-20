@@ -4,7 +4,9 @@ import { FormsModule } from '@angular/forms';
 
 import { BsDropdownConfig, BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { PopoverModule } from 'ngx-bootstrap/popover';
-import { PipeModule, ToolbarModule } from 'patternfly-ng';
+
+import { PipeModule } from 'patternfly-ng/pipe';
+import { ToolbarModule } from 'patternfly-ng/toolbar';
 
 // Note: This has to be imported first
 import { StepIndicatorComponent } from './step-indicator/step-indicator.component';

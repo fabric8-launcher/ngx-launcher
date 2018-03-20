@@ -13,11 +13,9 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { Observable } from 'rxjs';
 import { InViewportModule, WindowRef } from '@thisissoon/angular-inviewport';
 
-import {
-  FilterEvent,
-  PipeModule,
-  SortEvent
-} from 'patternfly-ng';
+import { FilterEvent } from 'patternfly-ng/filter';
+import { PipeModule } from 'patternfly-ng/pipe';
+import { SortEvent } from 'patternfly-ng/sort';
 
 import { LauncherComponent } from '../../launcher.component';
 import { LauncherStep } from '../../launcher-step';
