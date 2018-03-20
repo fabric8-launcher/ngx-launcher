@@ -68,3 +68,4 @@ package-lock.json
 
 *.ngsummary.json
 dist-demo
+.history
