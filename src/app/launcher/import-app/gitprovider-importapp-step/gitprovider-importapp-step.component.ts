@@ -200,7 +200,24 @@ export class GitproviderImportappStepComponent extends LauncherStep implements A
    * Update selection
    */
   updateGitHubSelection(): void {
+    if (this.launcherComponent.summary.gitHubDetails.repository) {
+      this.launcherComponent.summary.gitHubDetails.repositoryAvailable = true;
+    }
     this.initCompleted();
+  }
+
+  /**
+   * Ensure repo name is available for the selected organization
+   */
+  getGitHubRepos(): void {
+    let org = this.launcherComponent.summary.gitHubDetails.organization;
+    this.launcherComponent.summary.gitHubDetails.repositoryList = [];
+    this.subscriptions.push(this.gitProviderService.getGitHubRepoList(org).subscribe((val) => {
+      if (val !== undefined) {
+        this.launcherComponent.summary.gitHubDetails.repositoryList = val;
+        this.initCompleted();
+      }
+    }));
   }
 
   /**

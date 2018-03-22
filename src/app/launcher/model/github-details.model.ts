@@ -9,4 +9,5 @@ export class GitHubDetails {
   htmlUrl?: string;
   description?: string[];
   visibility?: string;
+  repositoryList?: any[];
 }

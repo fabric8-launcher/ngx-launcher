@@ -27,4 +27,12 @@ export abstract class GitProviderService {
    * @returns {Observable<boolean>} True if GitHub repo exists
    */
   abstract isGitHubRepo(org: string, repoName: string): Observable<boolean>;
+
+  /**
+   * Returns List of GitHub repos
+   *
+   * @param {string} org The GitHub Organisation (e.g., fabric8-launcher)
+   * @returns {Observable<any>} List of GitHub repos
+   */
+  abstract getGitHubRepoList(org: string): Observable<any>;
 }
