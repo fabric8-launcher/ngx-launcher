@@ -98,7 +98,9 @@
       </ng-template>
       <!-- Import application next steps -->
       <ng-template #showImportAppNextStepsTemplate>
-        <f8launcher-projectprogress-importapp-nextstep></f8launcher-projectprogress-importapp-nextstep>
+        <f8launcher-projectprogress-importapp-nextstep
+        [statusLink]="statusLink">
+        </f8launcher-projectprogress-importapp-nextstep>
       </ng-template>
     </ng-template>
   </div>
