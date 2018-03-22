@@ -35,11 +35,6 @@ export class LauncherComponent implements AfterViewInit, OnInit {
   @Input() targetEnvironment: string;
 
   /**
-   * Get the space name from the space
-   */
-  @Input() spaceName: string;
-
-  /**
    * The event emitted when an cancel has been selected
    */
   @Output('onCancel') onCancel = new EventEmitter();
@@ -83,7 +78,6 @@ export class LauncherComponent implements AfterViewInit, OnInit {
     if (this.targetEnvironment !== undefined && this.targetEnvironment.length > 0) {
       this._summary.targetEnvironment = this.targetEnvironment;
     }
-    this._summary.dependencyCheck.spacePath = '/' + this.spaceName;
   }
 
   onInViewportChange($event: any, id: string) {

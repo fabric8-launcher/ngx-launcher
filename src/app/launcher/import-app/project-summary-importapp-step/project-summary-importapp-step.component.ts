@@ -9,6 +9,8 @@ import {
 import { Subscription } from 'rxjs/Subscription';
 import { DomSanitizer } from '@angular/platform-browser';
 
+import { Context } from 'ngx-fabric8-wit';
+
 import { Pipeline } from '../../model/pipeline.model';
 import { GitProviderService } from '../../service/git-provider.service';
 import { DependencyCheckService } from '../../service/dependency-check.service';
@@ -27,6 +29,8 @@ export class ProjectSummaryImportappStepComponent extends LauncherStep implement
   @Input() id: string;
 
   private subscriptions: Subscription[] = [];
+  private spaceId: string;
+  private spaceName: string;
 
   constructor(@Host() public launcherComponent: LauncherComponent,
               private dependencyCheckService: DependencyCheckService,
@@ -43,6 +47,13 @@ export class ProjectSummaryImportappStepComponent extends LauncherStep implement
     this.subscriptions.push(this.dependencyCheckService.getDependencyCheck().subscribe((val) => {
       this.launcherComponent.summary.dependencyCheck = val;
     }));
+
+    this.projectSummaryService.getCurrentContext()
+    .subscribe((response: Context) => {
+      this.launcherComponent.summary.dependencyCheck.spacePath = response.path;
+      this.spaceId = response.space.id;
+      this.spaceName = response.name;
+    });
   }
 
   ngOnDestroy() {
@@ -92,11 +103,14 @@ export class ProjectSummaryImportappStepComponent extends LauncherStep implement
    * Set up this application
    */
   setup(): void {
-    this.subscriptions.push(this.projectSummaryService.setup(this.launcherComponent.summary).subscribe((val) => {
-      if (val === true) {
-        this.navToNextStep();
-      }
-    }));
+    this.subscriptions.push(this.projectSummaryService
+      .setup(this.launcherComponent.summary, this.spaceId, this.spaceName)
+      .subscribe((val: any) => {
+        if (val && val['uuid_link']) {
+          this.launcherComponent.statusLink = val['uuid_link'];
+          this.navToNextStep();
+        }
+      }));
   }
 
   // Todo: When do we verify?
