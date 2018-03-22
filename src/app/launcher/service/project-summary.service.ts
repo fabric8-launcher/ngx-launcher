@@ -1,4 +1,5 @@
 import { Observable } from 'rxjs';
+import { Context } from 'ngx-fabric8-wit';
 
 import { Summary } from '../model/summary.model';
 
@@ -12,7 +13,14 @@ export abstract class ProjectSummaryService {
    * @param {Summary} summary The project summary
    * @returns {Observable<boolean>}
    */
-  abstract setup(summary: Summary): Observable<boolean>;
+  abstract setup(summary: Summary, spaceId: string, spaceName: string): Observable<boolean>;
+
+  /**
+   * Get the current context details
+   *
+   * @returns {Observable<Context>}
+   */
+  abstract getCurrentContext(): Observable<Context>;
 
   /**
    * Verify the project for the given summary
