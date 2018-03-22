@@ -23,7 +23,6 @@ import { LauncherComponent } from '../../launcher.component';
 export class ProjectProgressImportappNextstepComponent implements OnInit, OnChanges, OnDestroy {
   @Input() statusLink: string;
   private _progress: Progress[];
-  private subscriptions: Subscription[] = [];
   private socket: WebSocket;
 
   constructor(@Host() public launcherComponent: LauncherComponent,
@@ -37,8 +36,40 @@ export class ProjectProgressImportappNextstepComponent implements OnInit, OnChan
   ngOnChanges(changes: SimpleChanges) {
     const statusLink = changes['statusLink']['currentValue'];
     if (statusLink) {
-      // for now i have commented this
-      // this.socket = this.projectProgressService.getProgress(statusLink);
+      this.socket = this.projectProgressService.getProgress(statusLink);
+      this.projectProgressService.progressMessages
+      .subscribe((event: MessageEvent) => {
+        if (!this._progress) {
+          this._progress = [];
+          let values = JSON.parse(event.data);
+          console.log('data from ws', values);
+          for (let item of values) {
+            for (let key in item) {
+              if (item.hasOwnProperty(key)) {
+                let status = new Progress(false, item[key], '', true, key);
+                this._progress.push(status);
+              }
+            }
+          }
+        } else {
+          let message = JSON.parse(event.data);
+          console.log('data from ws', message);
+          let data = message.data || {};
+          if (data && data.error) {
+            console.log(message.data.error);
+          } else {
+            for (let status of this._progress) {
+              if (status.key === message.statusMessage) {
+                status.completed = true;
+                if (data.location != null) {
+                  status.hyperText = data.location;
+                }
+                break;
+              }
+            }
+          }
+        }
+      });
     }
   }
 
@@ -67,6 +98,11 @@ export class ProjectProgressImportappNextstepComponent implements OnInit, OnChan
   }
 
   private closeConnections() {
-    this.socket.close();
+    if (this.socket) {
+      this.socket.close();
+    }
+    if (this.projectProgressService && this.projectProgressService.progressMessages) {
+      this.projectProgressService.progressMessages.unsubscribe();
+    }
   }
 }

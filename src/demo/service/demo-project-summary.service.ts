@@ -59,16 +59,6 @@ export class DemoProjectSummaryService implements ProjectSummaryService {
     return data;
   }
 
-  /**
-   * Verify the project for the given summary
-   *
-   * @param {Summary} summary The project summary
-   * @returns {Observable<boolean>}
-   */
-  verify(summary: Summary): Observable<boolean> {
-    return Observable.of(true);
-  }
-
   private get options(): Observable<RequestOptions> {
     let headers = new Headers();
     headers.append('X-App', this.ORIGIN);

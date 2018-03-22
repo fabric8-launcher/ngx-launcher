@@ -47,13 +47,15 @@ export class ProjectSummaryImportappStepComponent extends LauncherStep implement
     this.subscriptions.push(this.dependencyCheckService.getDependencyCheck().subscribe((val) => {
       this.launcherComponent.summary.dependencyCheck = val;
     }));
-
-    this.projectSummaryService.getCurrentContext()
-    .subscribe((response: Context) => {
-      this.launcherComponent.summary.dependencyCheck.spacePath = response.path;
-      this.spaceId = response.space.id;
-      this.spaceName = response.name;
-    });
+    this.subscriptions.push(
+      this.projectSummaryService.getCurrentContext()
+        .subscribe((response: Context) => {
+          if (response) {
+            this.launcherComponent.summary.dependencyCheck.spacePath = response.path;
+            this.spaceName = '/' + response.name;
+            this.spaceId = response.space ? response.space.id : '';
+          }
+        }));
   }
 
   ngOnDestroy() {
@@ -104,26 +106,13 @@ export class ProjectSummaryImportappStepComponent extends LauncherStep implement
    */
   setup(): void {
     this.subscriptions.push(this.projectSummaryService
-      .setup(this.launcherComponent.summary, this.spaceId, this.spaceName)
+      .setup(this.launcherComponent.summary, this.spaceId, this.spaceName, true)
       .subscribe((val: any) => {
         if (val && val['uuid_link']) {
           this.launcherComponent.statusLink = val['uuid_link'];
           this.navToNextStep();
         }
       }));
-  }
-
-  // Todo: When do we verify?
-
-  /**
-   * Verify and set up this application
-   */
-  verify(): void {
-    this.subscriptions.push(this.projectSummaryService.verify(this.launcherComponent.summary).subscribe((val) => {
-      if (val === true) {
-        this.setup();
-      }
-    }));
   }
 
   // Private
