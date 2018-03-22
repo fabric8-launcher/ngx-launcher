@@ -61,6 +61,17 @@ export class DemoGitProviderService implements GitProviderService {
     return Observable.of(result);
   }
 
+  /**
+   * Returns true if GitHub repo exists
+   *
+   * @param {string} org The GitHub org (e.g., fabric8-launcher/ngx-launcher)
+   * @returns {Observable<boolean>} True if GitHub repo exists
+   */
+  getGitHubRepoList(org: string): Observable<any> {
+    let repoList = ['fabric-ui', 'fabric-uxd'];
+    return Observable.of(repoList);
+  }
+
   // Private
 
   private isPageRedirect(): boolean {

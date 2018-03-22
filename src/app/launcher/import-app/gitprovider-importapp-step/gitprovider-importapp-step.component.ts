@@ -10,22 +10,6 @@ import {
 } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 
-import {
-  Filter,
-  FilterConfig,
-  FilterField,
-  FilterEvent,
-  FilterType
-} from 'patternfly-ng/filter';
-
-import {
-  SortConfig,
-  SortField,
-  SortEvent
-} from 'patternfly-ng/sort';
-
-import { ToolbarConfig } from 'patternfly-ng/toolbar';
-
 import { GitProviderService } from '../../service/git-provider.service';
 import { Selection } from '../../model/selection.model';
 import { LauncherComponent } from '../../launcher.component';
@@ -40,13 +24,9 @@ import { LauncherStep } from '../../launcher-step';
 export class GitproviderImportappStepComponent extends LauncherStep implements AfterViewInit, OnDestroy, OnInit {
   @ViewChild('versionSelect') versionSelect: ElementRef;
 
-  toolbarConfig: ToolbarConfig;
-
-  private currentSortField: SortField;
-  private filterConfig: FilterConfig;
-  private isAscendingSort: boolean = true;
-  private sortConfig: SortConfig;
   private subscriptions: Subscription[] = [];
+  private gitHubReposSubscription: Subscription;
+  private isGitHubRepoSubscription: Subscription;
 
   constructor(@Host() public launcherComponent: LauncherComponent,
               private gitProviderService: GitProviderService) {
@@ -62,30 +42,6 @@ export class GitproviderImportappStepComponent extends LauncherStep implements A
   }
 
   ngOnInit() {
-    this.filterConfig = {
-      fields: [{
-        id: 'name',
-        title: 'Name',
-        placeholder: 'Filter by Name...',
-        type: FilterType.TEXT
-      }] as FilterField[],
-      appliedFilters: []
-    } as FilterConfig;
-
-    this.sortConfig = {
-      fields: [{
-        id: 'name',
-        title: 'Name',
-        sortType: 'alpha'
-      }],
-      isAscending: this.isAscendingSort
-    } as SortConfig;
-
-    this.toolbarConfig = {
-      filterConfig: this.filterConfig,
-      sortConfig: this.sortConfig
-    } as ToolbarConfig;
-
     this.launcherComponent.addStep(this);
 
     this.subscriptions.push(this.gitProviderService.getGitHubDetails().subscribe((val) => {
@@ -100,6 +56,12 @@ export class GitproviderImportappStepComponent extends LauncherStep implements A
     this.subscriptions.forEach((sub) => {
       sub.unsubscribe();
     });
+    if (this.gitHubReposSubscription !== undefined) {
+      this.gitHubReposSubscription.unsubscribe();
+    }
+    if (this.isGitHubRepoSubscription !== undefined) {
+      this.isGitHubRepoSubscription.unsubscribe();
+    }
   }
 
   // Accessors
@@ -129,53 +91,6 @@ export class GitproviderImportappStepComponent extends LauncherStep implements A
       && this.launcherComponent.summary.gitHubDetails.repositoryAvailable === true);
   }
 
-  // Filter
-
-  applyFilters(filters: Filter[]): void { }
-
-  // Handle filter changes
-  filterChanged($event: FilterEvent): void {
-    this.applyFilters($event.appliedFilters);
-  }
-
-  matchesFilter(item: any, filter: Filter): boolean {
-    let match = true;
-    if (filter.field.id === 'name') {
-      match = item.name.match(filter.value) !== null;
-    }
-    return match;
-  }
-
-  matchesFilters(item: any, filters: Filter[]): boolean {
-    let matches = true;
-    filters.forEach((filter) => {
-      if (!this.matchesFilter(item, filter)) {
-        matches = false;
-        return matches;
-      }
-    });
-    return matches;
-  }
-
-  // Sort
-
-  compare(item1: any, item2: any): number {
-    let compValue = 0;
-    if (this.currentSortField.id === 'name') {
-      compValue = item1.name.localeCompare(item2.name);
-    }
-    if (!this.isAscendingSort) {
-      compValue = compValue * -1;
-    }
-    return compValue;
-  }
-
-  // Handle sort changes
-  sortChanged($event: SortEvent): void {
-    this.currentSortField = $event.field;
-    this.isAscendingSort = $event.isAscending;
-  }
-
   // Steps
 
   /**
@@ -200,7 +115,27 @@ export class GitproviderImportappStepComponent extends LauncherStep implements A
    * Update selection
    */
   updateGitHubSelection(): void {
+    if (this.launcherComponent.summary.gitHubDetails.repository) {
+      this.launcherComponent.summary.gitHubDetails.repositoryAvailable = true;
+    }
     this.initCompleted();
+  }
+
+  /**
+   * Ensure repo name is available for the selected organization
+   */
+  getGitHubRepos(): void {
+    let org = this.launcherComponent.summary.gitHubDetails.organization;
+    this.launcherComponent.summary.gitHubDetails.repositoryList = [];
+    if (this.gitHubReposSubscription !== undefined) {
+      this.gitHubReposSubscription.unsubscribe();
+    }
+    this.gitHubReposSubscription = this.gitProviderService.getGitHubRepoList(org).subscribe((val) => {
+      if (val !== undefined) {
+        this.launcherComponent.summary.gitHubDetails.repositoryList = val;
+        this.initCompleted();
+      }
+    });
   }
 
   /**
@@ -211,13 +146,15 @@ export class GitproviderImportappStepComponent extends LauncherStep implements A
       + this.launcherComponent.summary.gitHubDetails.repository;
     let org = this.launcherComponent.summary.gitHubDetails.organization;
     let repoName = this.launcherComponent.summary.gitHubDetails.repository;
-
-    this.subscriptions.push(this.gitProviderService.isGitHubRepo(org, repoName).subscribe((val) => {
+    if (this.isGitHubRepoSubscription !== undefined) {
+      this.isGitHubRepoSubscription.unsubscribe();
+    }
+    this.isGitHubRepoSubscription = this.gitProviderService.isGitHubRepo(org, repoName).subscribe((val) => {
       if (val !== undefined) {
         this.launcherComponent.summary.gitHubDetails.repositoryAvailable = !val;
         this.initCompleted();
       }
-    }));
+    });
   }
 
   // Private
