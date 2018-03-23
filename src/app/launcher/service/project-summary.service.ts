@@ -1,5 +1,4 @@
 import { Observable } from 'rxjs';
-import { Context } from 'ngx-fabric8-wit';
 
 import { Summary } from '../model/summary.model';
 
@@ -18,7 +17,7 @@ export abstract class ProjectSummaryService {
   /**
    * Get the current context details
    *
-   * @returns {Observable<Context>}
+   * @returns {Observable<any>}
    */
-  abstract getCurrentContext(): Observable<Context>;
+  abstract getCurrentContext(): Observable<any>;
 }

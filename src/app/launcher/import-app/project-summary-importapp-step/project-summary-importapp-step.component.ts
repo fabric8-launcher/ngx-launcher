@@ -9,8 +9,6 @@ import {
 import { Subscription } from 'rxjs/Subscription';
 import { DomSanitizer } from '@angular/platform-browser';
 
-import { Context } from 'ngx-fabric8-wit';
-
 import { Pipeline } from '../../model/pipeline.model';
 import { GitProviderService } from '../../service/git-provider.service';
 import { DependencyCheckService } from '../../service/dependency-check.service';
@@ -49,7 +47,7 @@ export class ProjectSummaryImportappStepComponent extends LauncherStep implement
     }));
     this.subscriptions.push(
       this.projectSummaryService.getCurrentContext()
-        .subscribe((response: Context) => {
+        .subscribe((response: any) => {
           if (response) {
             this.launcherComponent.summary.dependencyCheck.spacePath = response.path;
             this.spaceName = '/' + response.name;

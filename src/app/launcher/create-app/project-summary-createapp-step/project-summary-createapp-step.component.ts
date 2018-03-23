@@ -11,8 +11,6 @@ import { DomSanitizer } from '@angular/platform-browser';
 
 import { defaults } from 'lodash';
 
-import { Context } from 'ngx-fabric8-wit';
-
 import { Pipeline } from '../../model/pipeline.model';
 import { DependencyCheckService } from '../../service/dependency-check.service';
 import { ProjectSummaryService } from '../../service/project-summary.service';
@@ -50,7 +48,7 @@ export class ProjectSummaryCreateappStepComponent extends LauncherStep implement
     }));
     this.subscriptions.push(
       this.projectSummaryService.getCurrentContext()
-        .subscribe((response: Context) => {
+        .subscribe((response: any) => {
           if (response) {
             this.launcherComponent.summary.dependencyCheck.spacePath = response.path;
             this.spaceName = '/' + response.name;

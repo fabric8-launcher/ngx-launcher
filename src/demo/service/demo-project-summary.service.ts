@@ -2,10 +2,6 @@ import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { Headers, Http, RequestOptions, Response } from '@angular/http';
 
-import {
-  Context
-} from 'ngx-fabric8-wit';
-
 import { ProjectSummaryService } from '../../app/launcher/service/project-summary.service';
 import { Summary } from '../../app/launcher/model/summary.model';
 
@@ -52,10 +48,10 @@ export class DemoProjectSummaryService implements ProjectSummaryService {
   /**
    * Get the current context details
    *
-   * @returns {Observable<Context>}
+   * @returns {Observable<any>}
    */
-  getCurrentContext(): Observable<Context> {
-    let data = Observable.of(<Context>{});
+  getCurrentContext(): Observable<any> {
+    let data = Observable.of(<any>{});
     return data;
   }
 
