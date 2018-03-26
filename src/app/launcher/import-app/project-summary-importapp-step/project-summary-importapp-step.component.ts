@@ -10,7 +10,6 @@ import { Subscription } from 'rxjs/Subscription';
 import { DomSanitizer } from '@angular/platform-browser';
 
 import { Pipeline } from '../../model/pipeline.model';
-import { GitProviderService } from '../../service/git-provider.service';
 import { DependencyCheckService } from '../../service/dependency-check.service';
 import { ProjectSummaryService } from '../../service/project-summary.service';
 import { Selection } from '../../model/selection.model';
@@ -32,7 +31,6 @@ export class ProjectSummaryImportappStepComponent extends LauncherStep implement
 
   constructor(@Host() public launcherComponent: LauncherComponent,
               private dependencyCheckService: DependencyCheckService,
-              private gitProviderService: GitProviderService,
               private projectSummaryService: ProjectSummaryService,
               public _DomSanitizer: DomSanitizer) {
     super();
