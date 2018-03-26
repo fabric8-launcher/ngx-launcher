@@ -67,13 +67,13 @@ export class GitproviderImportappStepComponent extends LauncherStep implements A
   // Accessors
 
   /**
-   * Returns duplicate name message for when repo exists
+   * Returns repo name message for when repo doesn't exists
    *
    * @returns {string}
    */
-  get duplicateNameMessage(): string {
+  get repoNameStatusMessage(): string {
     let repo = this.launcherComponent.summary.gitHubDetails.repository;
-    return '\'' + repo + '\' is already in use as ' + this.launcherComponent.summary.gitHubDetails.organization
+    return '\'' + repo + '\' does not exist as ' + this.launcherComponent.summary.gitHubDetails.organization
       + '/' + repo + '.';
   }
 
@@ -131,6 +131,7 @@ export class GitproviderImportappStepComponent extends LauncherStep implements A
    */
   getGitHubRepos(): void {
     let org = this.launcherComponent.summary.gitHubDetails.organization;
+    this.launcherComponent.summary.gitHubDetails.repository = '';
     this.launcherComponent.summary.gitHubDetails.repositoryList = [];
     if (this.gitHubReposSubscription !== undefined) {
       this.gitHubReposSubscription.unsubscribe();
@@ -147,19 +148,14 @@ export class GitproviderImportappStepComponent extends LauncherStep implements A
    * Ensure repo name is available for the selected organization
    */
   validateRepo(): void {
-    let fullName = this.launcherComponent.summary.gitHubDetails.organization + '/'
-      + this.launcherComponent.summary.gitHubDetails.repository;
-    let org = this.launcherComponent.summary.gitHubDetails.organization;
     let repoName = this.launcherComponent.summary.gitHubDetails.repository;
-    if (this.isGitHubRepoSubscription !== undefined) {
-      this.isGitHubRepoSubscription.unsubscribe();
+    let repoList = this.launcherComponent.summary.gitHubDetails.repositoryList;
+    if (repoList.indexOf(repoName) !== -1) {
+      this.launcherComponent.summary.gitHubDetails.repositoryAvailable = true;
+    }else {
+      this.launcherComponent.summary.gitHubDetails.repositoryAvailable = false;
     }
-    this.isGitHubRepoSubscription = this.gitProviderService.isGitHubRepo(org, repoName).subscribe((val) => {
-      if (val !== undefined) {
-        this.launcherComponent.summary.gitHubDetails.repositoryAvailable = !val;
-        this.initCompleted();
-      }
-    });
+    this.initCompleted();
   }
 
   // Private

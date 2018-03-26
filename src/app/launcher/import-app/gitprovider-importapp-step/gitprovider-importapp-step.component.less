@@ -7,34 +7,40 @@
     padding-left: 0;
     padding-right: 0;
     box-shadow: .5px 1px 0 rgba(0, 0, 0, .3), 0 -.5px 1px 0 rgba(0, 0, 0, .3);
-    &-toolbar {
-      margin-right: 20px;
-      margin-left: 20px;
-      .toolbar-pf-actions {
-        display: inline-flex;
-        justify-content: flex-end;
-      }
-    }
     &-icon {
       min-height: 300px;
-      background-color: @color-pf-black-200;
-      text-align: center;
+      border-right: 1px solid;
+      margin: 10px 0px;
+      border-right-color: @color-pf-black-400;
       h3 {
-        font-weight: 300;
+        font-weight: 600;
       }
       i {
         padding: 25px;
-        font-size: 15em;
       }
     }
+    &-info {
+      text-align: left;
+    }
     &-information {
-      padding-top: 25px;
-      padding-right: 15px;
-      padding-bottom: 25px;
       padding-left: 15px;
+      padding-right: 15px;
       min-height: 300px;
+      margin: 10px 0px;
       h3 {
         font-weight: 600;
+      }
+      &-authorize {
+        .f8launcher {
+          &-username {
+            vertical-align: bottom;
+            font-style: italic;
+            font-size: 1.4em;
+          }
+          &-authorize-account {
+            float: right;
+          }
+        }
       }
     }
   }

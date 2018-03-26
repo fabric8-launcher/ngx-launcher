@@ -20,11 +20,11 @@
             </div>
             <div class="card-pf-body f8launcher-project-summary-data-unavailable">
               <h2>
-                <b>Optional</b>
+                <b>Incomplete</b>
               </h2>
-              <p>A pipeline is not required to proceed; however, if you wish to select a pipeline for this application, complete this section.</p>
+              <p>To proceed with setting up this application, this section must be completed.</p>
               <button class="btn btn-default btn-lg f8launcher-authorize-account"
-                      (click)="navToStep('ReleaseStrategy')">Optional Section</button>
+                      (click)="navToStep('ReleaseStrategy')">Complete Section</button>
             </div>
           </ng-template>
           <ng-template #showPipelineTemplate>
@@ -124,14 +124,14 @@
           <ng-template #showGitHubTemplate>
             <div class="card-pf-heading">
               <h2 class="card-pf-title">
-                GitHub
+                Authorized GitHub Account
               </h2>
             </div>
             <div class="card-pf-body card-column">
-              <div class="card-column-single">
-                <div class="form-horizontal">
+              <div class="card-column-70">
+                <form class="form-horizontal">
                   <div class="form-group f8launcher-project-summary-data-form-group">
-                    <label class="col-xs-2 control-label">Authorized Account</label>
+                    <label class="col-xs-2 control-label">Username</label>
                     <div class="f8launcher-project-summary-data-field-account">
                       <img class="card-column_user-profile-icon"
                            [src]="launcherComponent.summary?.gitHubDetails?.avatar"
@@ -144,39 +144,21 @@
                     </div>
                   </div>
                   <div class="form-group f8launcher-project-summary-data-form-group">
-                    <label class="col-xs-2 control-label">Organization</label>
+                    <label class="col-xs-2 control-label">Location</label>
                     <div class="col-xs-8 f8launcher-project-summary-data-field">
                       <span>{{launcherComponent.summary?.gitHubDetails?.organization}}</span>
                     </div>
                   </div>
                   <div class="form-group f8launcher-project-summary-data-form-group">
-                    <label class="col-xs-2 control-label">Repository URL</label>
+                    <label class="col-xs-2 control-label">Repository</label>
                     <div class="col-xs-8 f8launcher-project-summary-data-field">
-                      <span>{{launcherComponent.summary?.gitHubDetails?.htmlUrl}}</span>
+                      <span>{{launcherComponent.summary?.gitHubDetails?.repository}}</span>
                     </div>
                   </div>
-                  <div class="form-group f8launcher-project-summary-data-form-group">
-                    <label class="col-xs-2 control-label">Repository Description</label>
-                    <div class="col-xs-8 f8launcher-project-summary-data-field">
-                      <span *ngIf="launcherComponent.summary?.gitHubDetails?.description !== false">
-                        {{launcherComponent.summary?.gitHubDetails?.description}}
-                      </span>
-                    </div>
-                  </div>
-                  <div class="form-group f8launcher-project-summary-data-form-group">
-                    <label class="col-xs-2 control-label">Repository Visibility</label>
-                    <div class="col-xs-8 f8launcher-project-summary-data-field">
-                      <span *ngIf="launcherComponent.summary?.gitHubDetails?.visibility !== false
-                                      then showGitHubPrivate else showGitHubPublic"></span>
-                      <ng-template #showGitHubPrivate>
-                        <span>Private</span>
-                      </ng-template>
-                      <ng-template #showGitHubPublic>
-                        <span>Public</span>
-                      </ng-template>
-                    </div>
-                  </div>
-                </div>
+                </form>
+              </div>
+              <div class="card-column-30">
+                <i class="fa fa-github git-provider-icon"></i>
               </div>
             </div>
           </ng-template>
@@ -188,7 +170,7 @@
     <div class="f8launcher-continue">
       <button class="btn btn-primary"
               [disabled]="stepCompleted !== true"
-              (click)="setup()">Import</button>
+              (click)="setup()">Import Application</button>
     </div>
   </div>
 </section>

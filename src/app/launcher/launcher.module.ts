@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 
 import { BsDropdownConfig, BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { PopoverModule } from 'ngx-bootstrap/popover';
+import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 
 import { PipeModule } from 'patternfly-ng/pipe';
 import { ToolbarModule } from 'patternfly-ng/toolbar';
@@ -55,7 +56,8 @@ export const providers: Provider[] = [
     InViewportModule.forRoot(providers),
     PipeModule,
     PopoverModule.forRoot(),
-    ToolbarModule
+    ToolbarModule,
+    TypeaheadModule.forRoot()
   ],
   exports: [
     LauncherComponent

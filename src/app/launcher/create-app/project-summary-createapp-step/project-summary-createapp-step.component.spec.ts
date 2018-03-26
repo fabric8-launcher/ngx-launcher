@@ -22,6 +22,9 @@ let mockProjectSummaryService = {
   },
   verify(summary: Summary): Observable<boolean> {
     return Observable.of(true);
+  },
+  getCurrentContext(): Observable<any> {
+    return Observable.of({});
   }
 };
 

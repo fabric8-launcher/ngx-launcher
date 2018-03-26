@@ -130,7 +130,7 @@ export class ReleaseStrategyImportappStepComponent extends LauncherStep implemen
    * @returns {boolean} True if step is completed
    */
   get stepCompleted(): boolean {
-    return (this.launcherComponent.summary.pipeline !== undefined || this.optional);
+    return (this.launcherComponent.summary.pipeline !== undefined);
   }
 
   // Filter

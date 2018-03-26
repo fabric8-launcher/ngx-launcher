@@ -25,6 +25,7 @@ export class GitproviderCreateappStepComponent extends LauncherStep implements A
   @ViewChild('versionSelect') versionSelect: ElementRef;
 
   private subscriptions: Subscription[] = [];
+  private gitHubReposSubscription: Subscription;
 
   constructor(@Host() public launcherComponent: LauncherComponent,
               private gitProviderService: GitProviderService) {
@@ -54,6 +55,9 @@ export class GitproviderCreateappStepComponent extends LauncherStep implements A
     this.subscriptions.forEach((sub) => {
       sub.unsubscribe();
     });
+    if (this.gitHubReposSubscription !== undefined) {
+      this.gitHubReposSubscription.unsubscribe();
+    }
   }
 
   // Accessors
@@ -110,20 +114,35 @@ export class GitproviderCreateappStepComponent extends LauncherStep implements A
   }
 
   /**
+   * get all repos List for the selected organization
+   */
+  getGitHubRepos(): void {
+    let org = this.launcherComponent.summary.gitHubDetails.organization;
+    this.launcherComponent.summary.gitHubDetails.repository = '';
+    this.launcherComponent.summary.gitHubDetails.repositoryList = [];
+    this.initCompleted();
+    if (this.gitHubReposSubscription !== undefined) {
+      this.gitHubReposSubscription.unsubscribe();
+    }
+    this.gitHubReposSubscription = this.gitProviderService.getGitHubRepoList(org).subscribe((val) => {
+      if (val !== undefined) {
+        this.launcherComponent.summary.gitHubDetails.repositoryList = val;
+      }
+    });
+  }
+
+  /**
    * Ensure repo name is available for the selected organization
    */
   validateRepo(): void {
-    let fullName = this.launcherComponent.summary.gitHubDetails.organization + '/'
-      + this.launcherComponent.summary.gitHubDetails.repository;
-    let org = this.launcherComponent.summary.gitHubDetails.organization;
     let repoName = this.launcherComponent.summary.gitHubDetails.repository;
-
-    this.subscriptions.push(this.gitProviderService.isGitHubRepo(org, repoName).subscribe((val) => {
-      if (val !== undefined) {
-        this.launcherComponent.summary.gitHubDetails.repositoryAvailable = !val;
-        this.initCompleted();
-      }
-    }));
+    let repoList = this.launcherComponent.summary.gitHubDetails.repositoryList;
+    if (repoList.indexOf(repoName) !== -1) {
+      this.launcherComponent.summary.gitHubDetails.repositoryAvailable = false;
+    }else {
+      this.launcherComponent.summary.gitHubDetails.repositoryAvailable = true;
+    }
+    this.initCompleted();
   }
 
   // Private

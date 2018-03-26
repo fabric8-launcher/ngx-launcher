@@ -3,49 +3,54 @@
   <div>
     <div class="container-fluid">
       <h1 snInViewport (onInViewportChange)="launcherComponent.onInViewportChange($event, 'GitProvider')"
-          [debounce]="500">Import Existing Application</h1>
+          [debounce]="500">Authorize Git Provider</h1>
       <p>
-        To import an existing application, you must include the necessary GitHub information to complete the importing proces.
+        You must provide GitHub account information to complete the import process.
       </p>
     </div>
   </div>
   <div>
     <div class="container-fluid">
       <div class="col-xs-12 f8launcher-provider-card">
-        <div class="col-xs-4 f8launcher-provider-card-icon">
-          <h2>GitHub Information</h2>
-          <i class="fa fa-github"></i>
-        </div>
+          <div class="col-xs-4 f8launcher-provider-card-icon">
+              <h3>GitHub</h3>
+              <div class="f8launcher-provider-card-info">
+                <p>
+                  OpenShift uses GitHub access to perform the following actions on your behalf:
+                </p>
+                <ul>
+                  <li>
+                    Create new repositories in your GitHub namespace
+                  </li>
+                  <li>
+                    Build and deploy your code on each push to a repository’s master branch
+                  </li>
+                </ul>
+              </div>
+            </div>
         <div class="col-xs-8 f8launcher-provider-card-information">
+
+          <h3>Authorized Account Information</h3>
           <div class="form-horizontal">
             <div class="form-group">
-              <label for="ghAccount" class='col-sm-2 control-label'>Connected Account</label>
-                <!-- Enable Access-Conrtol-Expose-Headers for CORS to test -->
-                <!-- <div class="f8launcher-provider-card-information-authorize"> -->
-              <div class="col-sm-10">
-                <img height="30px" width="30px" [src]="launcherComponent.summary?.gitHubDetails?.avatar"
-                     *ngIf="launcherComponent.summary?.gitHubDetails?.avatar !== undefined">
-                <span *ngIf="launcherComponent.summary?.gitHubDetails?.login !== undefined">
-                  {{launcherComponent.summary?.gitHubDetails?.login}}
-                  <i class="pficon pficon-ok padding-left-5"></i>
-                </span>
-                <!-- <i class="fa fa-ban" *ngIf="launcherComponent.summary?.gitHubDetails?.avatar === undefined"></i> -->
-                <!-- <span class="f8launcher-username"
-                      *ngIf="launcherComponent.summary?.gitHubDetails?.login === undefined"> None
-                </span> -->
-                <button class="btn btn-link f8launcher-authorize-account"
-                        *ngIf="launcherComponent.summary?.gitHubDetails?.login === undefined"
-                        [disabled]="launcherComponent.summary?.gitHubDetails?.authenticated === true"
-                        (click)="connectAccount($event)">Click here to authorize your GitHub account <i class="fa fa-external-link"></i></button>
-                <div class="has-error">
-                  <span class="help-block"
-                  *ngIf="launcherComponent.summary?.gitHubDetails?.login === undefined">
-                  Something went wrong. Please try to reconnect your GitHub account.</span>
-                </div>
+              <label for="ghAccount" class='col-sm-2 control-label'>Username</label>
+              <div class="col-sm-10 f8launcher-provider-card-information-authorize">
+                  <img height="30px" width="30px" [src]="launcherComponent.summary?.gitHubDetails?.avatar"
+                       *ngIf="launcherComponent.summary?.gitHubDetails?.avatar !== undefined">
+                  <span *ngIf="launcherComponent.summary?.gitHubDetails?.login !== undefined">
+                    {{launcherComponent.summary?.gitHubDetails?.login}}
+                  </span>
+                  <i class="fa fa-ban fa-2x" *ngIf="launcherComponent.summary?.gitHubDetails?.avatar === undefined"></i>
+                  <span class="f8launcher-username"
+                        *ngIf="launcherComponent.summary?.gitHubDetails?.login === undefined"> None
+                  </span>
+                  <button class="btn btn-primary btn-lg f8launcher-authorize-account"
+                          [disabled]="launcherComponent.summary?.gitHubDetails?.authenticated === true"
+                          (click)="connectAccount($event)">Log In &amp; Authorize Account</button>
               </div>
             </div>
             <div class="form-group">
-              <label for="ghOrg" class="col-sm-2 control-label">Organization</label>
+              <label for="ghOrg" class="col-sm-2 control-label">Location</label>
               <div class="col-sm-10">
                 <select id="ghOrg" class="form-control" name="ghOrg" placeholder="Select organization" #versionSelect
                         [disabled]="launcherComponent.summary?.gitHubDetails?.organizations === undefined"
@@ -61,17 +66,19 @@
             </div>
             <div class="form-group">
               <label for="ghRepo" class="col-sm-2 control-label">Repository</label>
-              <div class="col-sm-10">
-                <select id="ghRepo" class="form-control" name="ghRepo" placeholder="Select Repository"
-                        [disabled]="launcherComponent.summary?.gitHubDetails?.organization === undefined || launcherComponent.summary?.gitHubDetails?.repositoryList?.length === 0"
-                        [(ngModel)]="launcherComponent.summary.gitHubDetails.repository"
-                        (ngModelChange)="updateGitHubSelection()">
-                  <option [ngValue]="undefined" selected>Select</option>
-                  <option [ngValue]="repo"
-                          *ngFor="let repo of launcherComponent.summary.gitHubDetails.repositoryList">
-                    {{repo}}
-                  </option>
-                </select>
+              <div class="col-sm-10"
+                [ngClass]="{'has-error': launcherComponent.summary?.gitHubDetails?.repositoryAvailable === false}">
+                <input id="ghRepo" [(ngModel)]="launcherComponent.summary.gitHubDetails.repository" placeholder="Select Repository"
+                  [typeahead]="launcherComponent.summary.gitHubDetails.repositoryList"
+                  [typeaheadMinLength]="0"
+                  [disabled]="launcherComponent.summary?.gitHubDetails?.organization === undefined || launcherComponent.summary?.gitHubDetails?.repositoryList?.length === 0"
+                  (ngModelChange)="updateGitHubSelection()"
+                  (keyup)="validateRepo()"
+                  class="form-control">
+                  <span class="help-block"
+                    *ngIf="launcherComponent.summary?.gitHubDetails?.repositoryAvailable === false">
+                    {{repoNameStatusMessage}}
+                  </span>
               </div>
             </div>
           </div>
@@ -82,9 +89,13 @@
   <div>
     <div class="container-fluid">
       <div class="f8launcher-continue">
-        <button class="btn btn-primary"
-                [disabled]="stepCompleted !== true"
-                (click)="navToNextStep()">Import Repository</button>
+        <button class="btn btn-link" [ngClass]="{'animate-continue': stepCompleted === true}" [disabled]="stepCompleted !== true"
+          (click)="navToNextStep()">
+          <span class="fa-stack fa-2x">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <i class="fa fa-angle-double-down fa-stack-1x fa-inverse"></i>
+          </span>
+        </button>
       </div>
     </div>
   </div>
