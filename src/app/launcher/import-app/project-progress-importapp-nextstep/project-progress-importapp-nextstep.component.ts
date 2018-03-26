@@ -49,7 +49,9 @@ export class ProjectProgressImportappNextstepComponent implements OnInit, OnChan
             for (let key in item) {
               if (item.hasOwnProperty(key)) {
                 let status = new Progress(false, item[key], '', true, key);
-                this._progress.push(status);
+                if (status['key'] !== 'GITHUB_CREATE' && status['key'] !== 'GITHUB_PUSHED') {
+                  this._progress.push(status);
+                }
               }
             }
           }
