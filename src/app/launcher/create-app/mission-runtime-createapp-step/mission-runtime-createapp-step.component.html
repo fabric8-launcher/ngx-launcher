@@ -7,10 +7,8 @@
         Select Mission & Runtime
       </h1>
       <p>
-        Start by selecting a runtime or a mission. Valid pairings are narrowed based on your initial selection.
-        Missions are preconfigured, functioning applications that demonstrate a fundamental aspect of modern application
-        development running in an environment similar to production. These can be used as a proof of technology
-        demonstration, a teaching tool, or even a sandbox for understanding how to develop applications.
+        Choose a mission and runtime to create a booster or sample application.You set up a booster to generate 
+        source code and specifications for your new application.
       </p>
     </div>
   </div>
@@ -19,7 +17,7 @@
       <button class="btn btn-default pull-right" type="button"
               [disabled]="selectionAvailable !== true"
               (click)="resetSelections()">
-        Reset Selections
+        Clear Selections
       </button>
     </div>
     <div class="container-fluid container-cards-pf">
@@ -28,8 +26,11 @@
           <div class="card-pf card-pf--large">
             <div class="card-pf-heading">
               <h2 class="card-pf-title">
-                Select Mission
+                Choose a mission
               </h2>
+              <p>
+                A specification that describes what your application will do
+              </p>
             </div>
             <div class="card-pf-body">
               <div class="list-group list-view-pf f8launcher-tags"
@@ -85,19 +86,19 @@
                           {{mission.name}}
                         </div>
                         <div class="list-group-item-text" *ngIf="mission.description">
-                          <div *ngIf="mission.showMore !== true">
+                          <span *ngIf="mission.showMore !== true">
                             {{mission.description | truncate: 45}}
-                          </div>
-                          <div *ngIf="mission.showMore === true">
+                          </span>
+                          <span *ngIf="mission.showMore === true">
                             {{mission.description}}
-                          </div>
-                          <div class="description-more">
+                          </span>
+                          <span class="description-more">
                             <a href="javascript:void(0)"
                                (click)="mission.showMore = (mission.showMore !== undefined)
                                         ? !mission.showMore : true; $event.stopPropagation()">
                               {{(mission.showMore !== true) ? 'More' : 'Less'}}
                             </a>
-                          </div>
+                          </span>
                         </div>
                       </div>
                     </div>
@@ -111,8 +112,11 @@
           <div class="card-pf card-pf--large">
             <div class="card-pf-heading">
               <h2 class="card-pf-title">
-                Select Runtime
+                Choose a runtime
               </h2>
+              <p>
+                The framework software used in the application's process
+              </p>
             </div>
             <div class="card-pf-body">
               <div class="list-group list-view-pf f8launcher-tags"
@@ -162,12 +166,6 @@
                   </div>
                   <div class="list-view-pf-main-info"
                        (click)="updateRuntimeSelection(runtime)">
-                    <div class="list-view-pf-left">
-                      <span class="list-view-pf-logo">
-                        <img [src]="_DomSanitizer.bypassSecurityTrustUrl(runtime.icon)"
-                             *ngIf="runtime.icon !== null">
-                      </span>
-                    </div>
                     <div class="list-view-pf-body f8launcher-section-runtime"
                          (click)="updateRuntimeSelection(runtime)">
                       <div class="list-view-pf-description">
@@ -193,19 +191,19 @@
                           </div>
                         </div>
                         <div class="list-group-item-text" *ngIf="runtime.description">
-                          <div *ngIf="runtime.showMore !== true">
+                          <span *ngIf="runtime.showMore !== true">
                             {{runtime.description | truncate: 45}}
-                          </div>
-                          <div *ngIf="runtime.showMore === true">
+                          </span>
+                          <span *ngIf="runtime.showMore === true">
                             {{runtime.description}}
-                          </div>
-                          <div class="description-more">
+                          </span>
+                          <span class="description-more">
                             <a class="description-more" href="javascript:void(0)"
                                (click)="runtime.showMore = (runtime.showMore !== undefined)
                                         ? !runtime.showMore : true; $event.stopPropagation()">
                               {{(runtime.showMore !== true) ? 'More' : 'Less'}}
                             </a>
-                          </div>
+                          </span>
                         </div>
                       </div>
                     </div>

@@ -233,7 +233,7 @@ describe('MissionRuntimeStepComponent', () => {
     let missionHead = missionsSection.querySelectorAll('.list-group-item-heading');
     let missions = component.missions, len = missions.length;
     for (let i = 0; i < len; ++ i) {
-      expect((<HTMLDivElement>missionHead[i]).innerText).toBe(missions[i].name);
+      expect((<HTMLDivElement>missionHead[i]).innerText.trim()).toBe(missions[i].name);
     }
   });
 
@@ -243,7 +243,7 @@ describe('MissionRuntimeStepComponent', () => {
     let missionHead = missionsSection.querySelectorAll('.list-group-item-text');
     let missions = component.missions, len = missions.length;
     for (let i = 0; i < len; ++ i) {
-      expect((<HTMLDivElement>missionHead[i].children[0]).innerText).toBe(missions[i].description);
+      expect((<HTMLDivElement>missionHead[i].children[0]).innerText.trim()).toBe(missions[i].description);
     }
   });
 
@@ -256,7 +256,7 @@ describe('MissionRuntimeStepComponent', () => {
     let missionHead = missionsSection.querySelectorAll('.list-group-item-text');
     let missions = component.missions, len = missions.length;
     for (let i = 0; i < len; ++ i) {
-      expect((<HTMLDivElement>missionHead[i].children[0]).innerText).toBe(desc.substr(0, 45) + '...');
+      expect((<HTMLDivElement>missionHead[i].children[0]).innerText.trim()).toBe(desc.substr(0, 45) + '...');
     }
   });
 
@@ -266,7 +266,7 @@ describe('MissionRuntimeStepComponent', () => {
     element = fixture.nativeElement;
     let missionsSection = element.querySelectorAll('.card-pf-body')[0];
     let showMore = <HTMLAnchorElement>missionsSection.querySelector('.description-more').children[0];
-    expect(showMore.innerText).toBe('Less');
+    expect(showMore.innerText.trim()).toBe('Less');
   });
 
   it('should show "More" if the showMore is false - Missions', () => {
@@ -274,7 +274,7 @@ describe('MissionRuntimeStepComponent', () => {
     element = fixture.nativeElement;
     let missionsSection = element.querySelectorAll('.card-pf-body')[0];
     let showMore = <HTMLAnchorElement>missionsSection.querySelector('.description-more').children[0];
-    expect(showMore.innerText).toBe('More');
+    expect(showMore.innerText.trim()).toBe('More');
   });
 
   it('should disable the runtimes, on click of mission, which aren\'t applicable', fakeAsync(() => {
@@ -398,7 +398,7 @@ describe('MissionRuntimeStepComponent', () => {
     let runtimesHead = runtimesSection.querySelectorAll('.list-group-item-text');
     let runtimes = component.runtimes, len = runtimes.length;
     for (let i = 0; i < len; ++ i) {
-      expect((<HTMLDivElement>runtimesHead[i].children[0]).innerText).toBe(runtimes[i].description);
+      expect((<HTMLDivElement>runtimesHead[i].children[0]).innerText.trim()).toBe(runtimes[i].description);
     }
   });
 
@@ -411,7 +411,7 @@ describe('MissionRuntimeStepComponent', () => {
     let runtimesHead = runtimesSection.querySelectorAll('.list-group-item-text');
     let runtimes = component.runtimes, len = runtimes.length;
     for (let i = 0; i < len; ++ i) {
-      expect((<HTMLDivElement>runtimesHead[i].children[0]).innerText).toBe(desc.substr(0, 45) + '...');
+      expect((<HTMLDivElement>runtimesHead[i].children[0]).innerText.trim()).toBe(desc.substr(0, 45) + '...');
     }
   });
 
@@ -421,7 +421,7 @@ describe('MissionRuntimeStepComponent', () => {
     element = fixture.nativeElement;
     let runtimesSection = element.querySelectorAll('.card-pf-body')[1];
     let showMore = <HTMLAnchorElement>runtimesSection.querySelector('.description-more').children[0];
-    expect(showMore.innerText).toBe('Less');
+    expect(showMore.innerText.trim()).toBe('Less');
   });
 
   it('should show "More" if the showMore is false - Runtimes', () => {
@@ -429,6 +429,6 @@ describe('MissionRuntimeStepComponent', () => {
     element = fixture.nativeElement;
     let runtimesSection = element.querySelectorAll('.card-pf-body')[1];
     let showMore = <HTMLAnchorElement>runtimesSection.querySelector('.description-more').children[0];
-    expect(showMore.innerText).toBe('More');
+    expect(showMore.innerText.trim()).toBe('More');
   });
 });
