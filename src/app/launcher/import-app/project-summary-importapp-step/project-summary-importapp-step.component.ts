@@ -46,7 +46,8 @@ export class ProjectSummaryImportappStepComponent extends LauncherStep implement
     this.subscriptions.push(
       this.projectSummaryService.getCurrentContext()
         .subscribe((response: any) => {
-          if (response) {
+          if (response && this.launcherComponent && this.launcherComponent.summary &&
+            this.launcherComponent.summary.dependencyCheck) {
             this.launcherComponent.summary.dependencyCheck.spacePath = response.path;
             this.spaceName = '/' + response.name;
             this.spaceId = response.space ? response.space.id : '';

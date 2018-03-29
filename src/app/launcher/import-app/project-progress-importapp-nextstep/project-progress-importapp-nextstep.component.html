@@ -58,12 +58,12 @@
                         <div class="list-pf-content-wrapper">
                           <div class="list-pf-main-content"
                                   [ngClass]="{'item-in-progress': item.completed !== true}">
-                            {{item.description}}
+                            {{item?.description}}
                           </div>
                         </div>
                         <div class="list-pf-actions"
-                          *ngIf="item.hyperText !== undefined && item.completed === true">
-                          <a [href]="item.hyperText">{{item.hyperText}}</a>
+                          *ngIf="item?.hyperText !== undefined && item?.completed === true">
+                          <a [href]="item?.hyperText">{{item?.hyperText}}</a>
                         </div>
                       </div>
                     </div>

@@ -117,15 +117,21 @@ export class GitproviderCreateappStepComponent extends LauncherStep implements A
    * get all repos List for the selected organization
    */
   getGitHubRepos(): void {
-    let org = this.launcherComponent.summary.gitHubDetails.organization;
-    this.launcherComponent.summary.gitHubDetails.repository = '';
-    this.launcherComponent.summary.gitHubDetails.repositoryList = [];
+    let org = '';
+    if (this.launcherComponent && this.launcherComponent.summary &&
+      this.launcherComponent.summary.gitHubDetails) {
+      org = this.launcherComponent.summary.gitHubDetails.organization;
+      this.launcherComponent.summary.gitHubDetails.repository = '';
+      this.launcherComponent.summary.gitHubDetails.repositoryList = [];
+    }
+
     this.initCompleted();
     if (this.gitHubReposSubscription !== undefined) {
       this.gitHubReposSubscription.unsubscribe();
     }
     this.gitHubReposSubscription = this.gitProviderService.getGitHubRepoList(org).subscribe((val) => {
-      if (val !== undefined) {
+      if (val !== undefined && this.launcherComponent && this.launcherComponent.summary &&
+        this.launcherComponent.summary.gitHubDetails) {
         this.launcherComponent.summary.gitHubDetails.repositoryList = val;
       }
     });
@@ -135,8 +141,13 @@ export class GitproviderCreateappStepComponent extends LauncherStep implements A
    * Ensure repo name is available for the selected organization
    */
   validateRepo(): void {
-    let repoName = this.launcherComponent.summary.gitHubDetails.repository;
-    let repoList = this.launcherComponent.summary.gitHubDetails.repositoryList;
+    let repoName = '';
+    let repoList = [];
+    if (this.launcherComponent && this.launcherComponent.summary &&
+      this.launcherComponent.summary.gitHubDetails) {
+      repoName = this.launcherComponent.summary.gitHubDetails.repository;
+      repoList = this.launcherComponent.summary.gitHubDetails.repositoryList;
+    }
     if (repoList.indexOf(repoName) !== -1) {
       this.launcherComponent.summary.gitHubDetails.repositoryAvailable = false;
     }else {

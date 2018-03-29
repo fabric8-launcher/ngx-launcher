@@ -44,7 +44,6 @@ export class ProjectProgressImportappNextstepComponent implements OnInit, OnChan
         if (!this._progress) {
           this._progress = [];
           let values = JSON.parse(event.data);
-          console.log('data from ws', values);
           for (let item of values) {
             for (let key in item) {
               if (item.hasOwnProperty(key)) {
@@ -57,17 +56,15 @@ export class ProjectProgressImportappNextstepComponent implements OnInit, OnChan
           }
         } else {
           let message = JSON.parse(event.data);
-          console.log('data from ws', message);
           let data = message.data || {};
           if (data && data.error) {
-            console.log(message.data.error);
             this.isError = true;
             this.errorMessage = data.error;
           } else {
             for (let status of this._progress) {
               if (status.key === message.statusMessage) {
                 status.completed = true;
-                if (data.location != null) {
+                if (data.location) {
                   status.hyperText = data.location;
                 }
                 break;

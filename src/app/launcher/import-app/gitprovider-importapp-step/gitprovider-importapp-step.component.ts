@@ -26,7 +26,6 @@ export class GitproviderImportappStepComponent extends LauncherStep implements A
 
   private subscriptions: Subscription[] = [];
   private gitHubReposSubscription: Subscription;
-  private isGitHubRepoSubscription: Subscription;
 
   constructor(@Host() public launcherComponent: LauncherComponent,
               private gitProviderService: GitProviderService) {
@@ -59,9 +58,6 @@ export class GitproviderImportappStepComponent extends LauncherStep implements A
     if (this.gitHubReposSubscription !== undefined) {
       this.gitHubReposSubscription.unsubscribe();
     }
-    if (this.isGitHubRepoSubscription !== undefined) {
-      this.isGitHubRepoSubscription.unsubscribe();
-    }
   }
 
   // Accessors
@@ -72,9 +68,15 @@ export class GitproviderImportappStepComponent extends LauncherStep implements A
    * @returns {string}
    */
   get repoNameStatusMessage(): string {
-    let repo = this.launcherComponent.summary.gitHubDetails.repository;
-    return '\'' + repo + '\' does not exist as ' + this.launcherComponent.summary.gitHubDetails.organization
+    let repo = '';
+    if (this.launcherComponent && this.launcherComponent.summary &&
+      this.launcherComponent.summary.gitHubDetails) {
+      repo = this.launcherComponent.summary.gitHubDetails.repository;
+      return '\'' + repo + '\' does not exist as ' + this.launcherComponent.summary.gitHubDetails.organization
       + '/' + repo + '.';
+    } else {
+      return '';
+    }
   }
 
   /**
@@ -117,7 +119,8 @@ export class GitproviderImportappStepComponent extends LauncherStep implements A
   updateGitHubSelection(): void {
     let location: string;
     let repoName: string;
-    if (this.launcherComponent.summary.gitHubDetails.repository) {
+    if (this.launcherComponent && this.launcherComponent.summary &&
+      this.launcherComponent.summary.gitHubDetails && this.launcherComponent.summary.gitHubDetails.repository) {
       location = this.launcherComponent.summary.gitHubDetails.organization;
       repoName = this.launcherComponent.summary.gitHubDetails.repository;
       this.launcherComponent.summary.gitHubDetails.repositoryAvailable = true;
@@ -130,18 +133,24 @@ export class GitproviderImportappStepComponent extends LauncherStep implements A
    * Ensure repo name is available for the selected organization
    */
   getGitHubRepos(): void {
-    let org = this.launcherComponent.summary.gitHubDetails.organization;
-    this.launcherComponent.summary.gitHubDetails.repository = '';
-    this.launcherComponent.summary.gitHubDetails.repositoryList = [];
+    let org = '';
+    if (this.launcherComponent && this.launcherComponent.summary &&
+       this.launcherComponent.summary.gitHubDetails) {
+      org = this.launcherComponent.summary.gitHubDetails.organization;
+      this.launcherComponent.summary.gitHubDetails.repository = '';
+      this.launcherComponent.summary.gitHubDetails.repositoryList = [];
+    }
+
     if (this.gitHubReposSubscription !== undefined) {
       this.gitHubReposSubscription.unsubscribe();
     }
     this.gitHubReposSubscription = this.gitProviderService.getGitHubRepoList(org).subscribe((val) => {
-      if (val !== undefined) {
+      if (val !== undefined && this.launcherComponent && this.launcherComponent.summary &&
+        this.launcherComponent.summary.gitHubDetails) {
         this.launcherComponent.summary.gitHubDetails.repositoryList = val;
-        this.initCompleted();
       }
     });
+    this.initCompleted();
   }
 
   /**
