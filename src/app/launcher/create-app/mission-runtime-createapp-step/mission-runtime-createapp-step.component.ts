@@ -6,6 +6,7 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
+import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 
 import { Mission } from '../../model/mission.model';
@@ -22,12 +23,13 @@ import { LauncherStep } from '../../launcher-step';
   styleUrls: ['./mission-runtime-createapp-step.component.less']
 })
 export class MissionRuntimeCreateappStepComponent extends LauncherStep implements OnInit, OnDestroy {
-  private _missions: Mission[];
-  private _runtimes: Runtime[];
+  private _missions: Mission[] = [];
+  private _runtimes: Runtime[] = [];
 
   private missionId: string;
   private runtimeId: string;
   private subscriptions: Subscription[] = [];
+  private missionRuntimeSubscription: Subscription;
 
   constructor(@Host() public launcherComponent: LauncherComponent,
               private missionRuntimeService: MissionRuntimeService,
@@ -37,16 +39,24 @@ export class MissionRuntimeCreateappStepComponent extends LauncherStep implement
 
   ngOnInit() {
     this.launcherComponent.addStep(this);
-    this.subscriptions.push(this.missionRuntimeService.getMissions().subscribe((result) => {
-      this._missions = result;
-    }));
-    this.subscriptions.push(this.missionRuntimeService.getRuntimes().subscribe((result) => {
-      this._runtimes = result;
-      this._runtimes.forEach((runtime) => {
-        runtime.version = this.getRuntimeVersions(runtime)[0]; // set default menu selection
-      });
-      this.restoreSummary();
-    }));
+    this.missionRuntimeSubscription = Observable
+      .forkJoin([this.missionRuntimeService.getMissions(), this.missionRuntimeService.getRuntimes()])
+      .subscribe((results: any[]) => {
+        console.log(results);
+        if (results.length > 0) {
+          if (results[0]) {
+            this._missions = results[0];
+          }
+          if (results[1]) {
+            this._runtimes = results[1];
+            this._runtimes.forEach((runtime) => {
+              runtime.version = this.getRuntimeVersions(runtime)[0]; // set default menu selection
+            });
+          }
+          this.restoreSummary();
+        }
+    });
+    this.subscriptions.push(this.missionRuntimeSubscription);
   }
 
   ngOnDestroy() {
@@ -258,17 +268,23 @@ export class MissionRuntimeCreateappStepComponent extends LauncherStep implement
     this.missionId = selection.missionId;
     this.runtimeId = selection.runtimeId;
 
-    this.missions.forEach((val) => {
-      if (this.missionId === val.id) {
-        this.updateMissionSelection(val);
-      }
-    });
-    this.runtimes.forEach((val) => {
-      if (this.runtimeId === val.id) {
-        this.updateRuntimeSelection(val);
-        this.updateVersionSelection(val, selection.runtimeVersion);
-      }
-    });
+    if (this.missions) {
+      this.missions.forEach((val) => {
+        if (this.missionId === val.id) {
+          this.updateMissionSelection(val);
+        }
+      });
+    }
+
+    if (this.runtimes) {
+      this.runtimes.forEach((val) => {
+        if (this.runtimeId === val.id) {
+          this.updateRuntimeSelection(val);
+          this.updateVersionSelection(val, selection.runtimeVersion);
+        }
+      });
+    }
+
     this.initCompleted();
   }
 
