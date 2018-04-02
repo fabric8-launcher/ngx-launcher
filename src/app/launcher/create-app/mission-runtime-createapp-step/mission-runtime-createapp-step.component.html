@@ -6,20 +6,22 @@
           [debounce]="500">
         Select Mission & Runtime
       </h1>
-      <p>
-        Choose a mission and runtime to create a booster or sample application.You set up a booster to generate 
-        source code and specifications for your new application.
-      </p>
+      <div class="col-xs-12 col-md-6 f8launcher-section-mission-runtime-desp">
+        <p>
+          Choose a mission and runtime to create a booster or sample application.You set up a booster to generate 
+          source code and specifications for your new application.
+        </p>
+      </div>
+      <div class="col-xs-12 col-md-6">
+        <button class="btn btn-default pull-right" type="button"
+              [disabled]="selectionAvailable !== true"
+              (click)="resetSelections()">
+          Clear Selections
+        </button>
+      </div>
     </div>
   </div>
   <div>
-    <div class="container-fluid">
-      <button class="btn btn-default pull-right" type="button"
-              [disabled]="selectionAvailable !== true"
-              (click)="resetSelections()">
-        Clear Selections
-      </button>
-    </div>
     <div class="container-fluid container-cards-pf">
       <div class="row row-cards-pf">
         <div class="col-xs-12 col-md-6">
@@ -29,7 +31,7 @@
                 Choose a mission
               </h2>
               <p>
-                A specification that describes what your application will do
+                A specification that describes what your application will do.
               </p>
             </div>
             <div class="card-pf-body">
@@ -80,7 +82,7 @@
                   </div>
                   <div class="list-view-pf-main-info"
                        (click)="updateMissionSelection(mission)">
-                    <div class="list-view-pf-body">
+                    <div class="list-view-pf-body f8launcher-section-mission">
                       <div class="list-view-pf-description">
                         <div class="list-group-item-heading">
                           {{mission.name}}
