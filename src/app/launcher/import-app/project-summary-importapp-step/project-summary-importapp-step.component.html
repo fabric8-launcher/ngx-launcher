@@ -99,7 +99,78 @@
   </div>
   <div class="container-fluid container-cards-pf">
     <div class="row row-cards-pf">
-      <div class="col-xs-12">
+      <div class="col-xs-12 col-md-6">
+          <div class="card-pf card-pf--small">
+            <div class="card-pf-heading">
+              <h2 class="card-pf-title">
+                Application Information
+              </h2>
+            </div>
+            <div class="card-pf-body card-column">
+              <div class="card-column-single">
+                <div class="form-horizontal">
+                  <div class="form-group f8launcher-project-summary-data-form-group">
+                    <label class="col-xs-4 control-label">Project Name</label>
+                    <div class="col-xs-8 f8launcher-project-summary-data-field f8launcher-application-text-field">
+                      <input class="f8launcher-project-summary-data-field_input f8launcher-application-text-field_input"
+                               name="applicationTitle" placeholder="New Application" type="text"
+                               [(ngModel)]="launcherComponent.summary.dependencyCheck.projectName"
+                               (keyup.enter)="$event.target.blur();">
+                    </div>
+                  </div>
+                  <div class="form-group f8launcher-project-summary-data-form-group">
+                    <label class="col-xs-4 control-label">Maven Artifact</label>
+                    <div class="col-xs-8 f8launcher-project-summary-data-field">
+                      <span>{{launcherComponent.summary?.dependencyCheck?.mavenArtifact}}</span>
+                    </div>
+                  </div>
+                  <div class="form-group f8launcher-project-summary-data-form-group">
+                    <label class="col-xs-4 control-label">Version</label>
+                    <div class="col-xs-8 f8launcher-project-summary-data-field f8launcher-application-text-field">
+                      <input class="f8launcher-project-summary-data-field_input f8launcher-application-text-field_input"
+                               name="version" placeholder="Version Number" type="text"
+                               [(ngModel)]="launcherComponent.summary.dependencyCheck.projectVersion"
+                               (keyup.enter)="$event.target.blur();">
+                    </div>
+                  </div>
+                  <div class="form-group f8launcher-project-summary-data-form-group">
+                    <label class="col-xs-4 control-label">Group ID</label>
+                    <div class="col-xs-8 f8launcher-project-summary-data-field f8launcher-application-text-field">
+                      <input class="f8launcher-project-summary-data-field_input f8launcher-application-text-field_input"
+                               name="groupId" placeholder="Group ID" type="text"
+                               [(ngModel)]="launcherComponent.summary.dependencyCheck.groupId"
+                               (keyup.enter)="$event.target.blur();">
+                    </div>
+                  </div>
+                  <div class="form-group f8launcher-project-summary-data-form-group">
+                    <label class="col-xs-4 control-label">Space Path</label>
+                    <div class="col-xs-8 f8launcher-project-summary-data-field">
+                      <span>{{launcherComponent?.summary?.dependencyCheck?.spacePath}}</span>
+                    </div>
+                  </div>
+                  <div class="form-group f8launcher-project-summary-data-form-group"
+                         *ngIf="launcherComponent.targetEnvironment !== 'os'">
+                    <label class="col-xs-4 control-label">Target Environment</label>
+                    <div *ngIf="launcherComponent.summary?.targetEnvironment === undefined;
+                            then showNoTargetTemplate else showTargetTemplate"></div>
+                    <ng-template #showNoTargetTemplate>
+                      <div class="col-xs-8 f8launcher-project-summary-data-field">
+                        <button class="btn btn-default"
+                                  (click)="navToStep('TargetEnvironment')">Complete Section</button>
+                      </div>
+                    </ng-template>
+                    <ng-template #showTargetTemplate>
+                      <div class="col-xs-8 f8launcher-project-summary-data-field">
+                        <span>{{launcherComponent.summary?.targetEnvironment === 'os' ? 'OpenShift' : '.Zip File'}}</span>
+                      </div>
+                    </ng-template>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+      <div class="col-xs-12 col-md-6">
         <div class="card-pf card-pf--small">
           <div *ngIf="launcherComponent?.summary?.gitHubDetails?.authenticated !== true
                       || launcherComponent?.summary?.gitHubDetails?.organization === undefined
@@ -131,7 +202,7 @@
               <div class="card-column-70">
                 <form class="form-horizontal">
                   <div class="form-group f8launcher-project-summary-data-form-group">
-                    <label class="col-xs-2 control-label">Username</label>
+                    <label class="col-xs-4 control-label">Username</label>
                     <div class="f8launcher-project-summary-data-field-account">
                       <img class="card-column_user-profile-icon"
                            [src]="launcherComponent?.summary?.gitHubDetails?.avatar"
@@ -144,13 +215,13 @@
                     </div>
                   </div>
                   <div class="form-group f8launcher-project-summary-data-form-group">
-                    <label class="col-xs-2 control-label">Location</label>
+                    <label class="col-xs-4 control-label">Location</label>
                     <div class="col-xs-8 f8launcher-project-summary-data-field">
                       <span>{{launcherComponent?.summary?.gitHubDetails?.organization}}</span>
                     </div>
                   </div>
                   <div class="form-group f8launcher-project-summary-data-form-group">
-                    <label class="col-xs-2 control-label">Repository</label>
+                    <label class="col-xs-4 control-label">Repository</label>
                     <div class="col-xs-8 f8launcher-project-summary-data-field">
                       <span>{{launcherComponent?.summary?.gitHubDetails?.repository}}</span>
                     </div>
