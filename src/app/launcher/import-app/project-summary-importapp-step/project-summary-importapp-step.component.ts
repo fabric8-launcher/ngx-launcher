@@ -41,6 +41,13 @@ export class ProjectSummaryImportappStepComponent extends LauncherStep implement
     this.restoreSummary();
 
     this.subscriptions.push(this.dependencyCheckService.getDependencyCheck().subscribe((val) => {
+      if (this.launcherComponent && this.launcherComponent.summary &&
+        this.launcherComponent.summary.runtime && this.launcherComponent.summary.mission
+        && this.launcherComponent.summary.runtime.id && this.launcherComponent.summary.mission.id) {
+          let runtime = this.launcherComponent.summary.runtime.id.replace(/[.\-_]/g, '');
+          let mission = this.launcherComponent.summary.mission.id.replace(/[.\-_]/g, '');
+          val.mavenArtifact = 'booster' + '-' + mission + '-' + runtime;
+      }
       this.launcherComponent.summary.dependencyCheck = val;
     }));
     this.subscriptions.push(

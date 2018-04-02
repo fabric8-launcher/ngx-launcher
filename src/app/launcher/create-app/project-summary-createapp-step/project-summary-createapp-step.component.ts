@@ -44,6 +44,13 @@ export class ProjectSummaryCreateappStepComponent extends LauncherStep implement
 
     this.subscriptions.push(this.dependencyCheckService.getDependencyCheck().subscribe((val) => {
       // Don't override user's application name
+      if (this.launcherComponent && this.launcherComponent.summary &&
+        this.launcherComponent.summary.runtime && this.launcherComponent.summary.mission
+        && this.launcherComponent.summary.runtime.id && this.launcherComponent.summary.mission.id) {
+          let runtime = this.launcherComponent.summary.runtime.id.replace(/[.\-_]/g, '');
+          let mission = this.launcherComponent.summary.mission.id.replace(/[.\-_]/g, '');
+          val.mavenArtifact = 'booster' + '-' + mission + '-' + runtime;
+      }
       defaults(this.launcherComponent.summary.dependencyCheck, val);
     }));
     this.subscriptions.push(

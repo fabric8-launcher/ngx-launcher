@@ -120,8 +120,11 @@
                   </div>
                   <div class="form-group f8launcher-project-summary-data-form-group">
                     <label class="col-xs-4 control-label">Maven Artifact</label>
-                    <div class="col-xs-8 f8launcher-project-summary-data-field">
-                      <span>{{launcherComponent.summary?.dependencyCheck?.mavenArtifact}}</span>
+                    <div class="col-xs-8 f8launcher-project-summary-data-field f8launcher-application-text-field">
+                      <input class="f8launcher-project-summary-data-field_input f8launcher-application-text-field_input"
+                               name="artifact" placeholder="Maven Artifact" type="text"
+                               [(ngModel)]="launcherComponent.summary.dependencyCheck.mavenArtifact"
+                               (keyup.enter)="$event.target.blur();">
                     </div>
                   </div>
                   <div class="form-group f8launcher-project-summary-data-form-group">
