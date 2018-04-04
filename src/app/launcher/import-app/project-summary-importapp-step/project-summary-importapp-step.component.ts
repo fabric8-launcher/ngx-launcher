@@ -116,6 +116,14 @@ export class ProjectSummaryImportappStepComponent extends LauncherStep implement
       }));
   }
 
+  /**
+   * Validate the application name
+   */
+  validateProjectName(): void {
+    this.launcherComponent.summary.dependencyCheck.isProjectNameValid =
+      this.dependencyCheckService.validateProjectName(this.launcherComponent.summary.dependencyCheck.projectName);
+  }
+
   // Private
 
   private initCompleted(): void {

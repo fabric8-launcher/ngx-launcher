@@ -20,4 +20,15 @@ export class DemoDependencyCheckService implements DependencyCheckService {
       spacePath: '/myspace'
     });
   }
+
+  /**
+   * Validate the project name and returns a boolean value
+   *
+   * @param  {string} projectName
+   * @returns boolean
+   */
+  validateProjectName(projectName: string): boolean {
+    const pattern = /^[a-z][a-z0-9-]{3,63}$/;
+    return pattern.test(projectName);
+  }
 }

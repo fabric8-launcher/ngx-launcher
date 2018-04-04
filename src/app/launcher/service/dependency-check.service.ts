@@ -12,4 +12,12 @@ export abstract class DependencyCheckService {
    * @returns {Observable<DependencyCheck>} Project dependencies
    */
   abstract getDependencyCheck(): Observable<DependencyCheck>;
+
+  /**
+   * Validates the project name with a regex and returns a boolean value
+   *
+   * @param  {string} projectName
+   * @returns boolean
+   */
+  abstract validateProjectName(projectName: string): boolean;
 }

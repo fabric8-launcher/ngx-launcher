@@ -8,6 +8,7 @@ import {
 
 import { Selection } from '../model/selection.model';
 import { LauncherComponent } from '../launcher.component';
+import { DependencyCheckService } from '../service/dependency-check.service';
 
 @Component({
   encapsulation: ViewEncapsulation.None,
@@ -23,7 +24,9 @@ export class StepIndicatorComponent implements OnInit {
    */
   @Input() inProgress: boolean = false;
 
-  constructor(@Host() public launcherComponent: LauncherComponent) {
+  constructor(
+    @Host() public launcherComponent: LauncherComponent,
+    private dependencyCheckService: DependencyCheckService) {
   }
 
   ngOnInit() {
@@ -68,6 +71,14 @@ export class StepIndicatorComponent implements OnInit {
       // The onInViewportChange event doesn't always set the ID as expected
       this.launcherComponent.onInViewportChange(true, id);
     }, 10);
+  }
+
+  /**
+   * Validate the application name
+   */
+  validateProjectName(): void {
+    this.launcherComponent.summary.dependencyCheck.isProjectNameValid =
+      this.dependencyCheckService.validateProjectName(this.launcherComponent.summary.dependencyCheck.projectName);
   }
 
   // Private
