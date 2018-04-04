@@ -14,7 +14,7 @@ import { DependencyCheckService } from '../../app/launcher/service/dependency-ch
 })
 export class GettingStartedOsioComponent implements OnInit {
   projectName: string = '';
-
+  selectedFlow: string = '';
   private subscriptions: Subscription[] = [];
 
   constructor(private dependencyCheckService: DependencyCheckService,
@@ -35,6 +35,20 @@ export class GettingStartedOsioComponent implements OnInit {
 
   cancel(): void {
     this.router.navigate(['/']);
+  }
+
+  /**
+   * Helper to update launcher selection
+   */
+  updateLauncherFlowSelection(selLaunch: string): void {
+    this.selectedFlow = selLaunch;
+  }
+
+  /**
+   * Helper to route to create/import app
+   */
+  routeToLaunchApp(): void {
+    this.router.navigate(['/', this.selectedFlow, this.projectName]);
   }
 
   routeToCreateApp(): void {
