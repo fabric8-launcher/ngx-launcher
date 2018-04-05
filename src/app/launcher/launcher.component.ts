@@ -52,6 +52,7 @@ export class LauncherComponent implements AfterViewInit, OnInit {
   private _steps: LauncherStep[] = [];
   private _summary: Summary;
   private summaryCompleted: boolean = false;
+  private _isProjectNameValid: boolean;
 
   constructor(private route: ActivatedRoute,
               private router: Router) {
@@ -169,6 +170,24 @@ export class LauncherComponent implements AfterViewInit, OnInit {
    */
   get summary(): Summary {
     return this._summary;
+  }
+
+  /**
+   * Checks if the project name is valid
+   *
+   * @returns boolean
+   */
+  get isProjectNameValid(): boolean {
+    return this._isProjectNameValid;
+  }
+
+  /**
+   * Set the boolean value for isProjectNameValid
+   *
+   * @param  {boolean} isValid
+   */
+  set isProjectNameValid(isValid: boolean) {
+    this._isProjectNameValid = isValid;
   }
 
   /**

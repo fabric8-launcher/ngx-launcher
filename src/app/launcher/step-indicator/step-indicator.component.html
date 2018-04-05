@@ -1,14 +1,15 @@
-<div class="f8launcher-vertical-bar_application-name f8launcher-application-text-field"
-  [ngClass]="{'has-error': launcherComponent.summary?.dependencyCheck?.isProjectNameValid === false}">
+<div class="f8launcher-vertical-bar_application-name f8launcher-application-text-field">
   <input class="f8launcher-application-text-field_input"
          name="applicationTitle" placeholder="New Application" type="text"
          [(ngModel)]="launcherComponent.summary.dependencyCheck.projectName"
          (keyup.enter)="$event.target.blur();"
          (keyup)="validateProjectName()">
 </div>
-<span class="help-block f8launcher-vertical-bar_application-name-help-text" *ngIf="launcherComponent.summary?.dependencyCheck?.isProjectNameValid === false">
-  Please enter a valid Project Name.
-</span>
+<div [ngClass]="{'has-error': launcherComponent.isProjectNameValid === false}" *ngIf="launcherComponent.isProjectNameValid === false">
+  <span class="help-block f8launcher-vertical-bar_application-name-help-text">
+    Please enter a valid Project Name.
+  </span>
+</div>
 <div class="f8launcher-vertical-bar"
      [ngClass]="{'in-progress': inProgress === true}">
   <a class="f8launcher-vertical-bar_steps--item {{step.styleClass}}" href="javascript:void(0)"

@@ -77,7 +77,7 @@ export class StepIndicatorComponent implements OnInit {
    * Validate the application name
    */
   validateProjectName(): void {
-    this.launcherComponent.summary.dependencyCheck.isProjectNameValid =
+    this.launcherComponent.isProjectNameValid =
       this.dependencyCheckService.validateProjectName(this.launcherComponent.summary.dependencyCheck.projectName);
   }
 
