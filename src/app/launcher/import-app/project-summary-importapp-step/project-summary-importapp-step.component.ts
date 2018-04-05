@@ -41,6 +41,10 @@ export class ProjectSummaryImportappStepComponent extends LauncherStep implement
     this.restoreSummary();
 
     this.subscriptions.push(this.dependencyCheckService.getDependencyCheck().subscribe((val) => {
+      let artifactTS: Date = new Date();
+      if (val.mavenArtifact) {
+        val.mavenArtifact += '-' + artifactTS.getTime();
+      }
       this.launcherComponent.summary.dependencyCheck = val;
     }));
     this.subscriptions.push(

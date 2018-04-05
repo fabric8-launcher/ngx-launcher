@@ -289,6 +289,7 @@ export class MissionRuntimeCreateappStepComponent extends LauncherStep implement
   }
 
   private updateMissionSelection(val: Mission): void {
+    let artifactTS: Date = new Date();
     if (this.isMissionDisabled(val) === true) {
       return;
     }
@@ -301,7 +302,8 @@ export class MissionRuntimeCreateappStepComponent extends LauncherStep implement
       this.launcherComponent.summary.mission.id && this.launcherComponent.summary.runtime.id) {
       let runtime = this.launcherComponent.summary.runtime.id.replace(/[.\-_]/g, '');
       let mission = this.launcherComponent.summary.mission.id.replace(/[.\-_]/g, '');
-      this.launcherComponent.summary.dependencyCheck.mavenArtifact = 'booster' + '-' + mission + '-' + runtime;
+      this.launcherComponent.summary.dependencyCheck.mavenArtifact = 'booster' + '-' + mission + '-' + runtime
+        + '-' + artifactTS.getTime();
     }
     // Clear selected version if not supported by mission
     this.runtimes.forEach((runtime) => {
@@ -327,6 +329,7 @@ export class MissionRuntimeCreateappStepComponent extends LauncherStep implement
   }
 
   private updateRuntimeSelection(val: Runtime): void {
+    let artifactTS: Date = new Date();
     if (this.isRuntimeDisabled(val) === true) {
       return;
     }
@@ -339,7 +342,8 @@ export class MissionRuntimeCreateappStepComponent extends LauncherStep implement
       this.launcherComponent.summary.mission.id && this.launcherComponent.summary.runtime.id) {
       let runtime = this.launcherComponent.summary.runtime.id.replace(/[.\-_]/g, '');
       let mission = this.launcherComponent.summary.mission.id.replace(/[.\-_]/g, '');
-      this.launcherComponent.summary.dependencyCheck.mavenArtifact = 'booster' + '-' + mission + '-' + runtime;
+      this.launcherComponent.summary.dependencyCheck.mavenArtifact = 'booster' + '-' + mission + '-' + runtime
+        + '-' + artifactTS.getTime();
     }
     // Set summary version
     if (val.version !== undefined) {
