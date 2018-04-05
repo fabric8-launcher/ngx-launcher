@@ -124,6 +124,30 @@ export class ProjectSummaryImportappStepComponent extends LauncherStep implement
       this.dependencyCheckService.validateProjectName(this.launcherComponent.summary.dependencyCheck.projectName);
   }
 
+  /**
+   * Validate the project version
+   */
+  validateProjectVersion(): void {
+    this.launcherComponent.isProjectVersionValid =
+      this.dependencyCheckService.validateProjectVersion(this.launcherComponent.summary.dependencyCheck.projectVersion);
+  }
+
+  /**
+   * Validate the artifact id
+   */
+  validateArtifactId(): void {
+    this.launcherComponent.isArtifactIdValid =
+      this.dependencyCheckService.validateArtifactId(this.launcherComponent.summary.dependencyCheck.mavenArtifact);
+  }
+
+  /**
+   * Validate the group id
+   */
+  validateGroupId(): void {
+    this.launcherComponent.isGroupIdValid =
+      this.dependencyCheckService.validateGroupId(this.launcherComponent.summary.dependencyCheck.groupId);
+  }
+
   // Private
 
   private initCompleted(): void {

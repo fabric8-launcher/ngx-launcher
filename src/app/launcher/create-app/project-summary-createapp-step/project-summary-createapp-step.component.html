@@ -210,7 +210,13 @@
                     <input class="f8launcher-project-summary-data-field_input f8launcher-application-text-field_input"
                            name="artifact" placeholder="Maven Artifact" type="text"
                            [(ngModel)]="launcherComponent.summary.dependencyCheck.mavenArtifact"
-                           (keyup.enter)="$event.target.blur();">
+                           (keyup.enter)="$event.target.blur();"
+                           (keyup)="validateArtifactId()">
+                  </div>
+                  <div class="col-xs-8 col-xs-offset-4" [ngClass]="{'has-error': launcherComponent.isArtifactIdValid === false}">
+                    <span class="help-block" *ngIf="launcherComponent.isArtifactIdValid === false">
+                      Please enter a valid Maven Artifact.
+                    </span>
                   </div>
                 </div>
                 <div class="form-group f8launcher-project-summary-data-form-group">
@@ -219,7 +225,13 @@
                     <input class="f8launcher-project-summary-data-field_input f8launcher-application-text-field_input"
                            name="version" placeholder="Version Number" type="text"
                            [(ngModel)]="launcherComponent.summary.dependencyCheck.projectVersion"
-                           (keyup.enter)="$event.target.blur();">
+                           (keyup.enter)="$event.target.blur();"
+                           (keyup)="validateProjectVersion()">
+                  </div>
+                  <div class="col-xs-8 col-xs-offset-4" [ngClass]="{'has-error': launcherComponent.isProjectVersionValid === false}">
+                    <span class="help-block" *ngIf="launcherComponent.isProjectVersionValid === false">
+                      Please enter a valid Version.
+                    </span>
                   </div>
                 </div>
                 <div class="form-group f8launcher-project-summary-data-form-group">
@@ -228,7 +240,13 @@
                     <input class="f8launcher-project-summary-data-field_input f8launcher-application-text-field_input"
                            name="groupId" placeholder="Group ID" type="text"
                            [(ngModel)]="launcherComponent.summary.dependencyCheck.groupId"
-                           (keyup.enter)="$event.target.blur();">
+                           (keyup.enter)="$event.target.blur();"
+                           (keyup)="validateGroupId()">
+                  </div>
+                  <div class="col-xs-8 col-xs-offset-4" [ngClass]="{'has-error': launcherComponent.isGroupIdValid === false}">
+                    <span class="help-block" *ngIf="launcherComponent.isGroupIdValid === false">
+                      Please enter a valid Group ID.
+                    </span>
                   </div>
                 </div>
                 <div class="form-group f8launcher-project-summary-data-form-group">
