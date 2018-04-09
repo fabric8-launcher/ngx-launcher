@@ -9,6 +9,8 @@ import {
 import { Subscription } from 'rxjs/Subscription';
 import { DomSanitizer } from '@angular/platform-browser';
 
+import { defaults } from 'lodash';
+
 import { Pipeline } from '../../model/pipeline.model';
 import { DependencyCheckService } from '../../service/dependency-check.service';
 import { ProjectSummaryService } from '../../service/project-summary.service';
@@ -45,7 +47,8 @@ export class ProjectSummaryImportappStepComponent extends LauncherStep implement
       if (val.mavenArtifact) {
         val.mavenArtifact += '-' + artifactTS.getTime();
       }
-      this.launcherComponent.summary.dependencyCheck = val;
+      // Don't override user's application name
+      defaults(this.launcherComponent.summary.dependencyCheck, val);
     }));
     this.subscriptions.push(
       this.projectSummaryService.getCurrentContext()
