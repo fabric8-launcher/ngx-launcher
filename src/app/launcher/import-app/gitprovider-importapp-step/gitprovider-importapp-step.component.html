@@ -56,7 +56,6 @@
                         [disabled]="launcherComponent?.summary?.gitHubDetails?.organizations === undefined"
                         [(ngModel)]="launcherComponent.summary.gitHubDetails.organization"
                         (ngModelChange)="getGitHubRepos()">
-                  <option [ngValue]="undefined" selected>Select</option>
                   <option [ngValue]="org"
                           *ngFor="let org of launcherComponent?.summary?.gitHubDetails?.organizations">
                     {{org}}
