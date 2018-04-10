@@ -247,7 +247,7 @@ describe('MissionRuntimeStepComponent', () => {
     }
   });
 
-  it('should have the mission description truncated if the length is beyond 45 characters', () => {
+  it('should have the mission description truncated if the length is beyond 55 characters', () => {
     let desc: string = 'this is a very lengthy description just to check the functionality of truncation';
     component.missions[0].description = desc;
     fixture.detectChanges();
@@ -256,7 +256,7 @@ describe('MissionRuntimeStepComponent', () => {
     let missionHead = missionsSection.querySelectorAll('.list-group-item-text');
     let missions = component.missions, len = missions.length;
     for (let i = 0; i < len; ++ i) {
-      expect((<HTMLDivElement>missionHead[i].children[0]).innerText.trim()).toBe(desc.substr(0, 45) + '...');
+      expect((<HTMLDivElement>missionHead[i].children[0]).innerText.trim()).toBe(desc.substr(0, 55) + '...');
     }
   });
 
@@ -402,7 +402,7 @@ describe('MissionRuntimeStepComponent', () => {
     }
   });
 
-  it('should have the runtime description truncated if the length is beyond 45 characters', () => {
+  it('should have the runtime description truncated if the length is beyond 55 characters', () => {
     let desc: string = 'this is a very lengthy description just to check the functionality of truncation';
     component.runtimes[0].description = desc;
     fixture.detectChanges();
@@ -411,7 +411,7 @@ describe('MissionRuntimeStepComponent', () => {
     let runtimesHead = runtimesSection.querySelectorAll('.list-group-item-text');
     let runtimes = component.runtimes, len = runtimes.length;
     for (let i = 0; i < len; ++ i) {
-      expect((<HTMLDivElement>runtimesHead[i].children[0]).innerText.trim()).toBe(desc.substr(0, 45) + '...');
+      expect((<HTMLDivElement>runtimesHead[i].children[0]).innerText.trim()).toBe(desc.substr(0, 55) + '...');
     }
   });
 

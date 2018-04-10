@@ -40,6 +40,10 @@ let mockGitProviderService = {
   isGitHubRepo(org: string, repoName: string): Observable<boolean> {
     let gitHubRepo = Observable.of(true);
     return gitHubRepo;
+  },
+  getGitHubRepoList(org: string): Observable<any> {
+    let gitHubRepoList = Observable.of(['fabric8-ui']);
+    return gitHubRepoList;
   }
 };
 

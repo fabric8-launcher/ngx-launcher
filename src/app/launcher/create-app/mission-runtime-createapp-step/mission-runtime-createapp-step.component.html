@@ -89,7 +89,7 @@
                         </div>
                         <div class="list-group-item-text" *ngIf="mission.description">
                           <span *ngIf="mission.showMore !== true">
-                            {{mission.description | truncate: 45}}
+                            {{mission.description | truncate: 55}}
                           </span>
                           <span *ngIf="mission.showMore === true">
                             {{mission.description}}
@@ -194,7 +194,7 @@
                         </div>
                         <div class="list-group-item-text" *ngIf="runtime.description">
                           <span *ngIf="runtime.showMore !== true">
-                            {{runtime.description | truncate: 45}}
+                            {{runtime.description | truncate: 55}}
                           </span>
                           <span *ngIf="runtime.showMore === true">
                             {{runtime.description}}
