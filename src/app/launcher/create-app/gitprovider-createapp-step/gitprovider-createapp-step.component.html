@@ -75,7 +75,7 @@
                        (keyup)="validateRepo()">
                 <span class="help-block"
                       *ngIf="launcherComponent?.summary?.gitHubDetails?.repositoryAvailable === false">
-                  Duplicate Name: {{duplicateNameMessage}}
+                  {{duplicateNameMessage}}
                 </span>
               </div>
             </div>

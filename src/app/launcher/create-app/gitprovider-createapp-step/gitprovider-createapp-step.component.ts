@@ -26,6 +26,7 @@ export class GitproviderCreateappStepComponent extends LauncherStep implements A
 
   private subscriptions: Subscription[] = [];
   private gitHubReposSubscription: Subscription;
+  private isGitHubRepoNameDup: boolean = false;
 
   constructor(@Host() public launcherComponent: LauncherComponent,
               private gitProviderService: GitProviderService) {
@@ -70,8 +71,13 @@ export class GitproviderCreateappStepComponent extends LauncherStep implements A
    */
   get duplicateNameMessage(): string {
     let repo = this.launcherComponent.summary.gitHubDetails.repository;
-    return '\'' + repo + '\' is already in use as ' + this.launcherComponent.summary.gitHubDetails.organization
-      + '/' + repo + '.';
+    if (this.isGitHubRepoNameDup) {
+      return 'Duplicate Name: ' + '\'' + repo + '\' is already in use as ' +
+        this.launcherComponent.summary.gitHubDetails.organization + '/' + repo + '.';
+    } else {
+      return '\'' + repo +
+        '\' is not a valid name, only alphanumeric characters are allowed with "-", "_" or "." ';
+    }
   }
 
   /**
@@ -144,14 +150,20 @@ export class GitproviderCreateappStepComponent extends LauncherStep implements A
   validateRepo(): void {
     let repoName = '';
     let repoList = [];
+    // gitRepository should follow consist only of alphanumeric characters, '-', '_' or '.'"
+    const pattern = /^[a-zA-Z0-9][a-zA-Z0-9-._]{1,63}$/;
+    this.isGitHubRepoNameDup = false;
     if (this.launcherComponent && this.launcherComponent.summary &&
       this.launcherComponent.summary.gitHubDetails) {
       repoName = this.launcherComponent.summary.gitHubDetails.repository;
       repoList = this.launcherComponent.summary.gitHubDetails.repositoryList;
     }
-    if (repoList.indexOf(repoName) !== -1) {
+    if (!pattern.test(repoName)) {
       this.launcherComponent.summary.gitHubDetails.repositoryAvailable = false;
-    }else {
+    } else if (repoList.indexOf(repoName) !== -1) {
+      this.isGitHubRepoNameDup = true;
+      this.launcherComponent.summary.gitHubDetails.repositoryAvailable = false;
+    } else {
       this.launcherComponent.summary.gitHubDetails.repositoryAvailable = true;
     }
     this.initCompleted();
