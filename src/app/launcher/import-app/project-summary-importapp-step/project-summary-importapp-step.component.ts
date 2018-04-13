@@ -42,14 +42,17 @@ export class ProjectSummaryImportappStepComponent extends LauncherStep implement
     this.launcherComponent.addStep(this);
     this.restoreSummary();
 
-    this.subscriptions.push(this.dependencyCheckService.getDependencyCheck().subscribe((val) => {
-      let artifactTS: Date = new Date();
-      if (val.mavenArtifact) {
-        val.mavenArtifact += '-' + artifactTS.getTime();
-      }
-      // Don't override user's application name
-      defaults(this.launcherComponent.summary.dependencyCheck, val);
-    }));
+    this.subscriptions.push(
+      this.dependencyCheckService.getDependencyCheck()
+        .subscribe((val) => {
+          let artifactTS: Date = new Date();
+          if (val.mavenArtifact) {
+            val.mavenArtifact += '-' + artifactTS.getTime();
+          }
+          // Don't override user's application name
+          defaults(this.launcherComponent.summary.dependencyCheck, val);
+        })
+    );
     this.subscriptions.push(
       this.projectSummaryService.getCurrentContext()
         .subscribe((response: any) => {
@@ -59,7 +62,8 @@ export class ProjectSummaryImportappStepComponent extends LauncherStep implement
             this.spaceName = '/' + response.name;
             this.spaceId = response.space ? response.space.id : '';
           }
-        }));
+        })
+    );
   }
 
   ngOnDestroy() {
@@ -109,17 +113,18 @@ export class ProjectSummaryImportappStepComponent extends LauncherStep implement
    * Set up this application
    */
   setup(): void {
-    const setupObs = this.projectSummaryService
-      .setup(this.launcherComponent.summary, this.spaceId, this.spaceName, true)
-      .subscribe((val: any) => {
-        if (val && val['uuid_link']) {
-          this.launcherComponent.statusLink = val['uuid_link'];
-          this.navToNextStep();
-        }
-      });
-    if (this.subscriptions) {
-      this.subscriptions.push(setupObs);
-    }
+    this.subscriptions.push(
+      this.projectSummaryService
+        .setup(this.launcherComponent.summary, this.spaceId, this.spaceName, true)
+        .subscribe((val: any) => {
+          if (val && val['uuid_link']) {
+            this.launcherComponent.statusLink = val['uuid_link'];
+            this.navToNextStep();
+          }
+        }, (error) => {
+          console.log('error in setup: Import', error);
+        })
+    );
   }
 
   /**

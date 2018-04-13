@@ -39,12 +39,11 @@ export class ProjectProgressCreateappNextstepComponent implements OnInit, OnChan
     const statusLink = changes['statusLink']['currentValue'];
     if (statusLink) {
       this.socket = this.projectProgressService.getProgress(statusLink);
-      this.projectProgressService.progressMessages
-      .subscribe((event: MessageEvent) => {
+      this.socket.onmessage = (event: MessageEvent) => {
         if (!this._progress) {
           this._progress = [];
           let values = JSON.parse(event.data);
-          console.log('data from ws', values);
+          console.log('data from Create ws', values);
           for (let item of values) {
             for (let key in item) {
               if (item.hasOwnProperty(key)) {
@@ -73,7 +72,13 @@ export class ProjectProgressCreateappNextstepComponent implements OnInit, OnChan
             }
           }
         }
-      });
+      };
+      this.socket.onerror = (error: ErrorEvent) => {
+        console.log('error in fetching messages in progress Component: Create', error);
+      };
+      this.socket.onclose = () => {
+        console.log('closed the socket call in progress component in Create');
+      };
     }
   }
 
@@ -107,9 +112,6 @@ export class ProjectProgressCreateappNextstepComponent implements OnInit, OnChan
   private closeConnections() {
     if (this.socket) {
       this.socket.close();
-    }
-    if (this.projectProgressService && this.projectProgressService.progressMessages) {
-      this.projectProgressService.progressMessages.unsubscribe();
     }
   }
 

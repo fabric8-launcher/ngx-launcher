@@ -39,11 +39,11 @@ export class ProjectProgressImportappNextstepComponent implements OnInit, OnChan
     const statusLink = changes['statusLink']['currentValue'];
     if (statusLink) {
       this.socket = this.projectProgressService.getProgress(statusLink);
-      this.projectProgressService.progressMessages
-      .subscribe((event: MessageEvent) => {
+      this.socket.onmessage = (event: MessageEvent) => {
         if (!this._progress) {
           this._progress = [];
           let values = JSON.parse(event.data);
+          console.log('data from Import ws', values);
           for (let item of values) {
             for (let key in item) {
               if (item.hasOwnProperty(key)) {
@@ -72,7 +72,13 @@ export class ProjectProgressImportappNextstepComponent implements OnInit, OnChan
             }
           }
         }
-      });
+      };
+      this.socket.onerror = (error: ErrorEvent) => {
+        console.log('error in fetching messages in progress Component: Import', error);
+      };
+      this.socket.onclose = () => {
+        console.log('socket call closed in progress component in Import');
+      };
     }
   }
 
@@ -103,9 +109,6 @@ export class ProjectProgressImportappNextstepComponent implements OnInit, OnChan
   private closeConnections() {
     if (this.socket) {
       this.socket.close();
-    }
-    if (this.projectProgressService && this.projectProgressService.progressMessages) {
-      this.projectProgressService.progressMessages.unsubscribe();
     }
   }
 

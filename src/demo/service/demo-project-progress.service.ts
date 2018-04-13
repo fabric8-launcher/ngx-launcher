@@ -8,8 +8,6 @@ import { TokenProvider } from '../../app/service/token-provider';
 
 @Injectable()
 export class DemoProjectProgressService implements ProjectProgressService {
-  progressMessages = new Subject<MessageEvent>();
-  private socket: WebSocket;
   private END_POINT: string = '';
 
   constructor(private helperService: HelperService,
@@ -20,22 +18,13 @@ export class DemoProjectProgressService implements ProjectProgressService {
       if (this.END_POINT.indexOf('https') !== -1) {
         this.END_POINT = this.END_POINT.replace('https', 'wss');
       } else if (this.END_POINT.indexOf('http') !== -1) {
-        this.END_POINT = this.END_POINT.replace('http', 'wss');
+        this.END_POINT = this.END_POINT.replace('http', 'ws');
       }
     }
   }
 
   getProgress(uuidLink: string): WebSocket {
-    this.socket = new WebSocket(this.END_POINT + uuidLink);
-    this.socket.onmessage = (event: MessageEvent) => {
-      this.progressMessages.next(event);
-    };
-    this.socket.onerror = (error: ErrorEvent) => {
-      this.progressMessages.error(error);
-    };
-    this.socket.onclose = () => {
-      this.progressMessages.complete();
-    };
-    return this.socket;
+    const socket = new WebSocket(this.END_POINT + uuidLink);
+    return socket;
   }
 }

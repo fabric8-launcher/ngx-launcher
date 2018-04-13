@@ -42,10 +42,12 @@ export class ProjectSummaryCreateappStepComponent extends LauncherStep implement
     this.launcherComponent.addStep(this);
     this.restoreSummary();
 
-    this.subscriptions.push(this.dependencyCheckService.getDependencyCheck().subscribe((val) => {
-      // Don't override user's application name
-      defaults(this.launcherComponent.summary.dependencyCheck, val);
-    }));
+    this.subscriptions.push(
+      this.dependencyCheckService.getDependencyCheck()
+        .subscribe((val) => {
+          // Don't override user's application name
+          defaults(this.launcherComponent.summary.dependencyCheck, val);
+        }));
     this.subscriptions.push(
       this.projectSummaryService.getCurrentContext()
         .subscribe((response: any) => {
@@ -55,7 +57,8 @@ export class ProjectSummaryCreateappStepComponent extends LauncherStep implement
             this.spaceName = '/' + response.name;
             this.spaceId = response.space ? response.space.id : '';
           }
-        }));
+        })
+    );
   }
 
   ngOnDestroy() {
@@ -105,17 +108,18 @@ export class ProjectSummaryCreateappStepComponent extends LauncherStep implement
    * Set up this application
    */
   setup(): void {
-    const setupObs = this.projectSummaryService
+    this.subscriptions.push(
+      this.projectSummaryService
       .setup(this.launcherComponent.summary, this.spaceId, this.spaceName, false)
       .subscribe((val: any) => {
         if (val && val['uuid_link']) {
           this.launcherComponent.statusLink = val['uuid_link'];
           this.navToNextStep();
         }
-      });
-    if (this.subscriptions) {
-      this.subscriptions.push(setupObs);
-    }
+      }, (error) => {
+        console.log('error in setup: Create', error);
+      })
+    );
   }
 
   /**

@@ -33,7 +33,7 @@ export class DemoProjectSummaryService implements ProjectSummaryService {
    * @param {Summary} summary The project summary
    * @returns {Observable<boolean>}
    */
-  setup(summary: Summary, spaceId: string, spaceName: string): Observable<boolean> {
+  setup(summary: Summary, spaceId: string, spaceName: string): Observable<any> {
     let summaryEndPoint: string = this.END_POINT + this.API_BASE;
     return this.options.flatMap((option) => {
       return this.http.post(summaryEndPoint, this.getPayload(summary, spaceId, spaceName), option)
