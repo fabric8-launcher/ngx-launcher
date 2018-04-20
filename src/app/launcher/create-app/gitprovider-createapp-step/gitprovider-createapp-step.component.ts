@@ -128,7 +128,8 @@ export class GitproviderCreateappStepComponent extends LauncherStep implements A
     if (this.launcherComponent && this.launcherComponent.summary &&
       this.launcherComponent.summary.gitHubDetails) {
       org = this.launcherComponent.summary.gitHubDetails.organization;
-      this.launcherComponent.summary.gitHubDetails.repository = '';
+      this.launcherComponent.summary.gitHubDetails.repository =
+      this.launcherComponent.summary.dependencyCheck ? this.launcherComponent.summary.dependencyCheck.projectName : '';
       this.launcherComponent.summary.gitHubDetails.repositoryList = [];
     }
 
@@ -140,6 +141,7 @@ export class GitproviderCreateappStepComponent extends LauncherStep implements A
       if (val !== undefined && this.launcherComponent && this.launcherComponent.summary &&
         this.launcherComponent.summary.gitHubDetails) {
         this.launcherComponent.summary.gitHubDetails.repositoryList = val;
+        this.validateRepo();
       }
     });
   }
