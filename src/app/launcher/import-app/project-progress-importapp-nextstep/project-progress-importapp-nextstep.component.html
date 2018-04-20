@@ -33,7 +33,7 @@
                 <span *ngIf="allCompleted !== true">
                   <i class="pficon pficon-in-progress fa-spin"></i> Working Through Setup
                 </span>
-                <span *ngIf="allCompleted === true">
+                <span *ngIf="allCompleted === true && isError !== true">
                   <i class="pficon pficon-ok"></i> Your Application is Ready
                 </span>
                 <span *ngIf="isError === true">

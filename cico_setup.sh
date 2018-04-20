@@ -5,10 +5,15 @@ set -ex
 load_jenkins_vars() {
   if [ -e "jenkins-env" ]; then
       cat jenkins-env \
-        | grep -E "(DEVSHIFT_TAG_LEN|DEVSHIFT_USERNAME|DEVSHIFT_PASSWORD|JENKINS_URL|GIT_BRANCH|GIT_COMMIT|BUILD_NUMBER|ghprbSourceBranch|ghprbActualCommit|BUILD_URL|ghprbPullId|RECOMMENDER_API_TOKEN)=" \
+        | grep -E "(DEVSHIFT_TAG_LEN|DEVSHIFT_USERNAME|DEVSHIFT_PASSWORD|JENKINS_URL|GIT_BRANCH|GIT_COMMIT|BUILD_NUMBER|ghprbSourceBranch|ghprbActualCommit|BUILD_URL|ghprbPullId|RECOMMENDER_API_TOKEN|NPM_TOKEN|FABRIC8CD_GH_TOKEN|REFRESH_TOKEN)=" \
         | sed 's/^/export /g' \
         > ~/.jenkins-env
       source ~/.jenkins-env
+
+      # "semantic release" needs token value in GH_TOKEN variable, so create a new variable with the correct value.
+      export GH_TOKEN="$FABRIC8CD_GH_TOKEN"
+
+      echo "CICO: Jenkins environment variables loaded"
   fi
 }
 
@@ -55,6 +60,8 @@ build_project() {
     exit 1
   fi
 }
+
+. cico_release.sh
 
 load_jenkins_vars
 

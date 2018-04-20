@@ -9,3 +9,5 @@ install_dependencies
 run_unit_tests
 
 build_project
+
+release
