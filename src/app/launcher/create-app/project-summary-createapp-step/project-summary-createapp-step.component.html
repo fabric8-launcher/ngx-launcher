@@ -1,4 +1,4 @@
-<section id="ProjectSummary" class="f8launcher-section-project-summary f8launcher-container_main--end"
+<section class="f8launcher-section-project-summary f8launcher-container_main--end"
          [ngClass]="{'hidden': hidden}">
   <div>
     <div class="container-fluid">
@@ -347,8 +347,8 @@
     </div>
   </div>
   <div class="container-fluid">
-    <div class="f8launcher-continue">
-      <button class="btn btn-primary"
+    <div id="ProjectSummary" class="f8launcher-continue">
+      <button class="btn btn-primary btn-xlarge"
               [disabled]="stepCompleted !== true"
               (click)="setup()">Set Up Application</button>
     </div>
