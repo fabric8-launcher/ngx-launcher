@@ -23,12 +23,12 @@ let mockTargetEnvironmentService = {
       description: 'Here is a brief description of what OpenShift Online is. ' +
                    'There is a distinction between what OpenShift Online does compared to OpenShift.io.',
       benefits: [
-        'In your GitHub namespace, create repository containg your project\'s code.',
-        'Configure OpenShift Online to build and deploy your code on each push to your repository\'s master branch.',
-        'Here is a benefit of using OpenShift as a project environment.'
+        'A repository is created in GitHub containing your new application’s code.',
+        'Edit the code locally using the tool of your choice.',
+        'Use OpenShift Online to build and deploy your code automatically on each push to your repository’s master branch.'
       ],
       footer: 'OpenShift',
-      header: 'Code Locally, Build and Deploy Online',
+      header: 'Code Locally, Build & Deploy Online',
       /* tslint:disable */
       icon: 'data:image',
       id: 'os',

@@ -5,11 +5,11 @@
         <form class="form" #spaceForm="ngForm">
           <div class="row">
             <div class="col-sm-4 col-sm-offset-4">
-              <h1 class="code-imports--step_title">Create Application</h1>
+              <h1 class="code-imports--step_title">Create an Application</h1>
               <form>
                 <div class="form-group">
                   <label for="projectName">
-                    To begin creating your Application, give it a name.
+                    Name your application
                   </label>
                   <span class="code-imports--step_pencil">
                     <input id="projectName" name="projectName" type="text" class="form-control code-imports--step_input col-sm-5" placeholder="Enter Application Name"
@@ -17,9 +17,10 @@
                         [(ngModel)]="projectName">
                   </span>
                   <p class="help-block">
-                    Application name must be unique, at least 4 characters long, cannot be more than 65 characters and must contain only letters, numbers, spaces underscores or hyphens.
+                    Application names must be unique, contain 4-65 characters and must contain only letters,
+                    numbers, spaces underscores or hyphens.
                     <br>
-                    It cannot start of end with a space, underscore or hyphen.
+                    They cannot start or end with spaces, underscores or hyphens.
                   </p>
                 </div>
                 <div class="row code-imports--step_toolbar">

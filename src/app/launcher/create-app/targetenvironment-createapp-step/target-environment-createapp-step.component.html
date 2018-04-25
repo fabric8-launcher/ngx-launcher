@@ -33,7 +33,7 @@
               </ul>
 
               <p class="text-center" *ngIf="targetEnv.clusters?.length === 0">
-                <button class="btn btn-sm btn-danger" (click)="linkAccounts.open()">Grant Access</button>
+                <button class="btn btn-sm btn-primary" (click)="linkAccounts.open()">Grant Access</button>
               </p>
 
               <p class="text-center" *ngIf="targetEnv.clusters?.length > 0">
@@ -58,10 +58,6 @@
               </div>
             </div>
             <div class="card-pf-footer">
-              <span class="card-pf-footer--title">{{targetEnv.footer}}</span>
-              <p>
-                {{targetEnv.description}}
-              </p>
               <div class="card-pf-footer--logo">
                 <img [class]="targetEnv.styleClass"
                      [src]="_DomSanitizer.bypassSecurityTrustUrl(targetEnv.icon)"
