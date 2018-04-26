@@ -10,6 +10,11 @@ set -e
 set -o pipefail
 
 function release() {
+    # add .npmrc file to give permissions
+    echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN}' > ~/.npmrc
+
+    npm whoami
+
     # Enable verbose output
     npm config set loglevel verbose
 
