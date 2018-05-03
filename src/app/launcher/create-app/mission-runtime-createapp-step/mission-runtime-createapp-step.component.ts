@@ -362,22 +362,25 @@ export class MissionRuntimeCreateappStepComponent extends LauncherStep implement
         + '-' + artifactTS.getTime();
     }
     // Clear selected version if not supported by mission
+    let selectedRuntime = this.launcherComponent.summary.runtime;
     this.runtimes.forEach((runtime) => {
-      let found = false;
-      let versions = this.getRuntimeVersions(runtime);
-      for (let i = 0; i < versions.length; i++) {
-        if (runtime.version !== undefined && runtime.version.id === versions[i].id) {
-          found = true;
-          break;
+      if (!selectedRuntime || runtime.id === selectedRuntime.id) {
+        let found = false;
+        let versions = this.getRuntimeVersions(runtime);
+        for (let i = 0; i < versions.length; i++) {
+          if (runtime.version !== undefined && runtime.version.id === versions[i].id) {
+            found = true;
+            break;
+          }
         }
-      }
-      if (!found && versions.length > 0) {
-        // reset menu selection
-        runtime.version = versions[0];
+        if (!found && versions.length > 0) {
+          // reset menu selection
+          runtime.version = versions[0];
 
-        // Reset launcher summary selection
-        if (this.launcherComponent.summary.runtime !== undefined) {
-          this.launcherComponent.summary.runtime.version = versions[0];
+          // Reset launcher summary selection
+          if (this.launcherComponent.summary.runtime !== undefined) {
+            this.launcherComponent.summary.runtime.version = versions[0];
+          }
         }
       }
     });
