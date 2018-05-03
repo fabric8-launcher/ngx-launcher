@@ -190,7 +190,7 @@
             <div class="card-column-single">
               <div class="form-horizontal">
                 <div class="form-group f8launcher-project-summary-data-form-group">
-                  <label class="col-xs-4 control-label">Project Name</label>
+                  <label class="col-xs-4 control-label">Application Name</label>
                   <div class="col-xs-8 f8launcher-project-summary-data-field f8launcher-application-text-field">
                     <input class="f8launcher-project-summary-data-field_input f8launcher-application-text-field_input"
                            name="applicationTitle" placeholder="New Application" type="text"
@@ -200,7 +200,7 @@
                   </div>
                   <div class="col-xs-8 col-xs-offset-4" [ngClass]="{'has-error': launcherComponent.isProjectNameValid === false}">
                     <span class="help-block" *ngIf="launcherComponent.isProjectNameValid === false">
-                      Please enter a valid Project Name.
+                      Please enter a valid Application Name.
                     </span>
                   </div>
                 </div>

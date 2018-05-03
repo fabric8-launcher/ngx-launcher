@@ -167,6 +167,10 @@ export class GitproviderCreateappStepComponent extends LauncherStep implements A
       this.launcherComponent.summary.gitHubDetails.repositoryAvailable = false;
     } else {
       this.launcherComponent.summary.gitHubDetails.repositoryAvailable = true;
+      if (this.launcherComponent.flow === 'osio') {
+        this.launcherComponent.summary.dependencyCheck.projectName =
+          this.launcherComponent.summary.gitHubDetails.repository;
+      }
     }
     this.initCompleted();
   }

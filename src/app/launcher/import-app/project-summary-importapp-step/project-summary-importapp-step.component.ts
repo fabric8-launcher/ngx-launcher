@@ -128,11 +128,33 @@ export class ProjectSummaryImportappStepComponent extends LauncherStep implement
   }
 
   /**
+   * Ensure repo name is available for the selected organization
+   */
+  validateRepo(): void {
+    let repoName = this.launcherComponent.summary.gitHubDetails.repository;
+    let repoList = this.launcherComponent.summary.gitHubDetails.repositoryList;
+    if (repoList.indexOf(repoName) !== -1) {
+      this.launcherComponent.summary.gitHubDetails.repositoryAvailable = true;
+      if (this.launcherComponent.flow === 'osio') {
+        this.launcherComponent.summary.dependencyCheck.projectName =
+          this.launcherComponent.summary.gitHubDetails.repository;
+      }
+    }else {
+      this.launcherComponent.summary.gitHubDetails.repositoryAvailable = false;
+    }
+  }
+
+  /**
    * Validate the application name
    */
   validateProjectName(): void {
     this.launcherComponent.isProjectNameValid =
       this.dependencyCheckService.validateProjectName(this.launcherComponent.summary.dependencyCheck.projectName);
+    if (this.launcherComponent.flow === 'osio') {
+      this.launcherComponent.summary.gitHubDetails.repository =
+        this.launcherComponent.summary.dependencyCheck.projectName;
+      this.validateRepo();
+    }
   }
 
   /**
