@@ -152,6 +152,34 @@ export class MissionRuntimeCreateappStepComponent extends LauncherStep implement
   }
 
   /**
+   * Returns true if supported mission version is community
+   *
+   * @param {Mission} mission The mission choice to test
+   * @returns {boolean} True if supported mission version is community
+   */
+  isMissionCommunity(mission: Mission): boolean {
+    if (this.launcherComponent.flow === 'osio') {
+      let runtime = this.launcherComponent.summary.runtime; // selected runtime
+      if (runtime === undefined) {
+        return false; // Nothing should be disabled initially
+      } else {
+        for (let i = 0; i < runtime.missions.length; i++) {
+          if (mission.id === runtime.missions[i].id) {
+            for (let k = 0; k < runtime.missions[i].versions.length; k++) {
+              let version = runtime.missions[i].versions[k];
+              if (version !== undefined && version.id === 'community') {
+                return true;
+              }
+            }
+          }
+        }
+      }
+    } else {
+      return false;
+    }
+  }
+
+  /**
    * Returns true if mission choice should be disabled
    *
    * @param {Mission} mission The mission choice to test
