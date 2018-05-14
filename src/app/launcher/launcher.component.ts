@@ -64,7 +64,7 @@ export class LauncherComponent implements AfterViewInit, OnInit {
   ngAfterViewInit() {
     setTimeout(() => {
       let params = this.selectionParams;
-      let id = (this.selectionParams !== undefined) ? 'GitProvider' : this.steps[0].id;
+      let id = (this.selectionParams !== undefined) ? 'GitProvider' : this.firstNonHiddenStep.id;
       this.stepIndicator.navToStep(id);
     }, 300);
   }
@@ -277,6 +277,10 @@ export class LauncherComponent implements AfterViewInit, OnInit {
   }
 
   // Private
+
+  private get firstNonHiddenStep(): LauncherStep {
+    return this._steps.find(step => !step.hidden);
+  }
 
   /**
    * Helper to retrieve request parameters
