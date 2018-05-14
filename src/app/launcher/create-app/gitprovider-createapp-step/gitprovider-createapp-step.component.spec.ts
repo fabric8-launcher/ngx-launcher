@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, fakeAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -14,10 +14,24 @@ import { PipeModule } from 'patternfly-ng/pipe';
 import { LauncherComponent } from '../../launcher.component';
 import { LauncherStep } from '../../launcher-step';
 
+import { DependencyCheck } from '../../launcher.module';
+import { DependencyCheckService } from '../../service/dependency-check.service';
 import { GitproviderCreateappStepComponent } from './gitprovider-createapp-step.component';
 import { GitProviderService } from '../../service/git-provider.service';
 
 import { GitHubDetails } from '../../model/github-details.model';
+
+let mockDependencyCheckService = {
+  getDependencyCheck(): Observable<DependencyCheck> {
+    return Observable.of({
+      mavenArtifact: 'd4-345',
+      groupId: 'io.openshift.booster',
+      projectName: 'App_test_1',
+      projectVersion: '1.0.0-SNAPSHOT',
+      spacePath: '/myspace'
+    });
+  }
+};
 
 let mockGitProviderService = {
   connectGitHubAccount(redirectUrl: string): void {
@@ -84,6 +98,7 @@ let mockWizardComponent: TypeWizardComponent = {
 describe('GitProviderStepComponent', () => {
   let component: GitproviderCreateappStepComponent;
   let fixture: ComponentFixture<GitproviderCreateappStepComponent>;
+  let element: HTMLElement;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -99,6 +114,9 @@ describe('GitProviderStepComponent', () => {
         GitproviderCreateappStepComponent
       ],
       providers: [
+        {
+          provide: DependencyCheckService, useValue: mockDependencyCheckService
+        },
         {
           provide: GitProviderService, useValue: mockGitProviderService
         },
@@ -121,4 +139,28 @@ describe('GitProviderStepComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should render users git avatar', () => {
+    fixture.detectChanges();
+    element = fixture.nativeElement;
+    let userGitAvatar = element.querySelector('.f8launcher-provider-card-information-authorize>img');
+    expect(userGitAvatar.getAttribute('src')).toContain('https://avatars3.githubusercontent.com/u/17882357?v=4');
+  });
+
+  it('should show users login', () => {
+    fixture.detectChanges();
+    element = fixture.nativeElement;
+    let userGitLogin = element.
+      querySelector('.f8launcher-provider-card-information-authorize .f8launcher-username-login');
+    expect(userGitLogin.innerHTML).toContain('testuser');
+  });
+
+  it('should disable logIn button', () => {
+    fixture.detectChanges();
+    element = fixture.nativeElement;
+    let userGitLoginBtn = element.
+      querySelector('.f8launcher-provider-card-information-authorize .f8launcher-authorize-account');
+    expect(userGitLoginBtn.hasAttribute('disabled'));
+  });
+
 });

@@ -78,6 +78,13 @@ export class ProjectSummaryCreateappStepComponent extends LauncherStep implement
    */
   get stepCompleted(): boolean {
     let completed = true;
+    if ((this.launcherComponent.isProjectNameValid !== undefined && this.launcherComponent.isProjectNameValid === false)
+    || (this.launcherComponent.isGroupIdValid !== undefined && this.launcherComponent.isGroupIdValid === false)
+    || (this.launcherComponent.isArtifactIdValid !== undefined && this.launcherComponent.isArtifactIdValid === false)
+    || (this.launcherComponent.isProjectVersionValid !== undefined &&
+      this.launcherComponent.isProjectVersionValid === false)) {
+      return false;
+    }
     for (let i = 0; i < this.launcherComponent.steps.length - 1; i++) {
       let step = this.launcherComponent.steps[i];
       if (!(step.optional === true || step.completed === true) && step.hidden !== true) {
@@ -139,11 +146,18 @@ export class ProjectSummaryCreateappStepComponent extends LauncherStep implement
     }
     if (!pattern.test(repoName)) {
       this.launcherComponent.summary.gitHubDetails.repositoryAvailable = false;
+      let gitStep = this.launcherComponent.getStep('GitProvider');
+      gitStep.completed = false;
     } else if (repoList.indexOf(repoName) !== -1) {
       this.launcherComponent.summary.gitHubDetails.repositoryAvailable = false;
+      let gitStep = this.launcherComponent.getStep('GitProvider');
+      gitStep.completed = false;
     } else {
       this.launcherComponent.summary.gitHubDetails.repositoryAvailable = true;
+      let gitStep = this.launcherComponent.getStep('GitProvider');
+      gitStep.completed = true;
     }
+    this.initCompleted();
   }
 
   /**

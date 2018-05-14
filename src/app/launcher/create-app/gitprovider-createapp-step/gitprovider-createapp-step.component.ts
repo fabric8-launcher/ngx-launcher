@@ -10,6 +10,7 @@ import {
 } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 
+import { DependencyCheckService } from '../../service/dependency-check.service';
 import { GitProviderService } from '../../service/git-provider.service';
 import { Selection } from '../../model/selection.model';
 import { LauncherComponent } from '../../launcher.component';
@@ -29,6 +30,7 @@ export class GitproviderCreateappStepComponent extends LauncherStep implements A
   private isGitHubRepoNameDup: boolean = false;
 
   constructor(@Host() public launcherComponent: LauncherComponent,
+              private dependencyCheckService: DependencyCheckService,
               private gitProviderService: GitProviderService) {
     super();
   }
@@ -70,7 +72,15 @@ export class GitproviderCreateappStepComponent extends LauncherStep implements A
    * @returns {string}
    */
   get duplicateNameMessage(): string {
-    let repo = this.launcherComponent.summary.gitHubDetails.repository;
+    let repo: string = '';
+    let repoList: any[] = [];
+    this.isGitHubRepoNameDup = false;
+    if (this.launcherComponent && this.launcherComponent.summary &&
+      this.launcherComponent.summary.gitHubDetails) {
+      repo = this.launcherComponent.summary.gitHubDetails.repository;
+      repoList = this.launcherComponent.summary.gitHubDetails.repositoryList;
+      repoList.indexOf(repo) !== -1 ? this.isGitHubRepoNameDup = true : this.isGitHubRepoNameDup = false;
+    }
     if (this.isGitHubRepoNameDup) {
       return 'Duplicate Name: ' + '\'' + repo + '\' is already in use as ' +
         this.launcherComponent.summary.gitHubDetails.organization + '/' + repo + '.';
@@ -127,7 +137,7 @@ export class GitproviderCreateappStepComponent extends LauncherStep implements A
     let org = '';
     if (this.launcherComponent && this.launcherComponent.summary &&
       this.launcherComponent.summary.gitHubDetails) {
-        if(this.launcherComponent.summary.dependencyCheck.projectName) {
+        if (this.launcherComponent.summary.dependencyCheck.projectName) {
           this.launcherComponent.summary.dependencyCheck.projectName = this.launcherComponent.summary.dependencyCheck.projectName.toLowerCase();
         }
       org = this.launcherComponent.summary.gitHubDetails.organization;
@@ -147,6 +157,14 @@ export class GitproviderCreateappStepComponent extends LauncherStep implements A
         this.validateRepo();
       }
     });
+  }
+
+  /**
+   * Validate the project name
+   */
+  validateProjectName(): void {
+    this.launcherComponent.isProjectNameValid =
+      this.dependencyCheckService.validateProjectName(this.launcherComponent.summary.dependencyCheck.projectName);
   }
 
   /**
@@ -176,6 +194,7 @@ export class GitproviderCreateappStepComponent extends LauncherStep implements A
         }
         this.launcherComponent.summary.dependencyCheck.projectName =
           this.launcherComponent.summary.gitHubDetails.repository;
+        this.validateProjectName();
       }
     }
     this.initCompleted();

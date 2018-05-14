@@ -96,17 +96,35 @@ export class StepIndicatorComponent implements OnInit {
   }
 
   /**
+   * Ensure repo name is available for the selected organization
+   */
+  validateImportRepo(): void {
+    let repoName = this.launcherComponent.summary.gitHubDetails.repository;
+    let repoList = this.launcherComponent.summary.gitHubDetails.repositoryList;
+    if (repoList.indexOf(repoName) !== -1) {
+      this.launcherComponent.summary.gitHubDetails.repositoryAvailable = true;
+    }else {
+      this.launcherComponent.summary.gitHubDetails.repositoryAvailable = false;
+    }
+  }
+
+  /**
    * Validate the application name
    */
   validateProjectName(): void {
     this.launcherComponent.isProjectNameValid =
       this.dependencyCheckService.validateProjectName(this.launcherComponent.summary.dependencyCheck.projectName);
-    if (this.launcherComponent.flow === 'osio') {
-      this.launcherComponent.summary.dependencyCheck.projectName = this.launcherComponent.summary.dependencyCheck.projectName.toLowerCase();
-      this.launcherComponent.summary.gitHubDetails.repository =
-        this.launcherComponent.summary.dependencyCheck.projectName;
-      this.validateRepo();
-    }
+      if (this.launcherComponent.flow === 'osio') {
+        this.launcherComponent.summary.dependencyCheck.projectName =
+          this.launcherComponent.summary.dependencyCheck.projectName.toLowerCase();
+        this.launcherComponent.summary.gitHubDetails.repository =
+          this.launcherComponent.summary.dependencyCheck.projectName;
+      }
+      if (this.launcherComponent.importApp) {
+        this.validateImportRepo();
+      } else {
+        this.validateRepo();
+      }
   }
 
   // Private

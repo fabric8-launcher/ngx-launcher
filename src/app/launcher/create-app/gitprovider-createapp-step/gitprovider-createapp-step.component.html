@@ -34,7 +34,7 @@
               <div class="col-sm-10 f8launcher-provider-card-information-authorize">
                   <img height="30px" width="30px" [src]="launcherComponent?.summary?.gitHubDetails?.avatar"
                        *ngIf="launcherComponent?.summary?.gitHubDetails?.avatar !== undefined">
-                  <span *ngIf="launcherComponent?.summary?.gitHubDetails?.login !== undefined">
+                  <span class="f8launcher-username-login" *ngIf="launcherComponent?.summary?.gitHubDetails?.login !== undefined">
                     {{launcherComponent?.summary?.gitHubDetails?.login}}
                   </span>
                   <i class="fa fa-ban fa-2x" *ngIf="launcherComponent?.summary?.gitHubDetails?.avatar === undefined"></i>

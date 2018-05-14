@@ -10,6 +10,7 @@ import {
 } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 
+import { DependencyCheckService } from '../../service/dependency-check.service';
 import { GitProviderService } from '../../service/git-provider.service';
 import { Selection } from '../../model/selection.model';
 import { LauncherComponent } from '../../launcher.component';
@@ -28,6 +29,7 @@ export class GitproviderImportappStepComponent extends LauncherStep implements A
   private gitHubReposSubscription: Subscription;
 
   constructor(@Host() public launcherComponent: LauncherComponent,
+              private dependencyCheckService: DependencyCheckService,
               private gitProviderService: GitProviderService) {
     super();
   }
@@ -159,6 +161,14 @@ export class GitproviderImportappStepComponent extends LauncherStep implements A
   }
 
   /**
+   * Validate the application name
+   */
+  validateProjectName(): void {
+    this.launcherComponent.isProjectNameValid =
+      this.dependencyCheckService.validateProjectName(this.launcherComponent.summary.dependencyCheck.projectName);
+  }
+
+  /**
    * Ensure repo name is available for the selected organization
    */
   validateRepo(): void {
@@ -169,6 +179,7 @@ export class GitproviderImportappStepComponent extends LauncherStep implements A
       if (this.launcherComponent.flow === 'osio') {
         this.launcherComponent.summary.dependencyCheck.projectName =
           this.launcherComponent.summary.gitHubDetails.repository;
+        this.validateProjectName();
       }
     }else {
       this.launcherComponent.summary.gitHubDetails.repositoryAvailable = false;
