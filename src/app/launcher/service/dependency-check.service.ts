@@ -14,6 +14,14 @@ export abstract class DependencyCheckService {
   abstract getDependencyCheck(): Observable<DependencyCheck>;
 
   /**
+   * Returns applications in a space
+   *
+   * @param  {string} spaceId
+   * @returns Observable
+   */
+  abstract getApplicationsInASpace(spaceId: string): Observable<any[]>;
+
+  /**
    * Validates the project name with a regex and returns a boolean value
    *
    * @param  {string} projectName

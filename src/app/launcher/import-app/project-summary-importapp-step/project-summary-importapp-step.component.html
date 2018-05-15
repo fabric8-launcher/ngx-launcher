@@ -123,6 +123,11 @@
                         Please enter a valid Application Name.
                       </span>
                     </div>
+                    <div class="col-xs-8 col-xs-offset-4" [ngClass]="{'has-error': launcherComponent.isProjectNameAvailable === false}">
+                      <span class="help-block" *ngIf="launcherComponent.isProjectNameAvailable === false">
+                        Application name is already used. Please enter a new one.
+                      </span>
+                    </div>
                   </div>
                   <div class="form-group f8launcher-project-summary-data-form-group"
                   *ngIf="launcherComponent.flow !== 'osio'">

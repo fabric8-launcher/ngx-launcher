@@ -161,14 +161,6 @@ export class GitproviderImportappStepComponent extends LauncherStep implements A
   }
 
   /**
-   * Validate the application name
-   */
-  validateProjectName(): void {
-    this.launcherComponent.isProjectNameValid =
-      this.dependencyCheckService.validateProjectName(this.launcherComponent.summary.dependencyCheck.projectName);
-  }
-
-  /**
    * Ensure repo name is available for the selected organization
    */
   validateRepo(): void {
@@ -179,9 +171,10 @@ export class GitproviderImportappStepComponent extends LauncherStep implements A
       if (this.launcherComponent.flow === 'osio') {
         this.launcherComponent.summary.dependencyCheck.projectName =
           this.launcherComponent.summary.gitHubDetails.repository;
-        this.validateProjectName();
+        this.launcherComponent.validateProjectName();
+        this.launcherComponent.checkIfProjectNameAvailable();
       }
-    }else {
+    } else {
       this.launcherComponent.summary.gitHubDetails.repositoryAvailable = false;
     }
     this.initCompleted();

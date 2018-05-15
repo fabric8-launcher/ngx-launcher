@@ -84,10 +84,12 @@ export class ProjectSummaryImportappStepComponent extends LauncherStep implement
   get stepCompleted(): boolean {
     let completed = true;
     if ((this.launcherComponent.isProjectNameValid !== undefined && this.launcherComponent.isProjectNameValid === false)
-    || (this.launcherComponent.isGroupIdValid !== undefined && this.launcherComponent.isGroupIdValid === false)
-    || (this.launcherComponent.isArtifactIdValid !== undefined && this.launcherComponent.isArtifactIdValid === false)
-    || (this.launcherComponent.isProjectVersionValid !== undefined &&
-      this.launcherComponent.isProjectVersionValid === false)) {
+      || (this.launcherComponent.isGroupIdValid !== undefined && this.launcherComponent.isGroupIdValid === false)
+      || (this.launcherComponent.isArtifactIdValid !== undefined && this.launcherComponent.isArtifactIdValid === false)
+      || (this.launcherComponent.isProjectVersionValid !== undefined &&
+        this.launcherComponent.isProjectVersionValid === false)
+      || (this.launcherComponent.isProjectNameAvailable !== undefined &&
+        this.launcherComponent.isProjectNameAvailable === false)) {
       return false;
     }
     for (let i = 0; i < this.launcherComponent.steps.length - 1; i++) {

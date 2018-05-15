@@ -28,6 +28,10 @@ import { ProjectProgressImportappNextstepComponent }
   from './import-app/project-progress-importapp-nextstep/project-progress-importapp-nextstep.component';
 
 import { from } from 'rxjs/observable/from';
+import { DependencyCheckService } from './service/dependency-check.service';
+import { ProjectSummaryService } from './service/project-summary.service';
+import { DemoDependencyCheckService } from '../../demo/service/demo-dependency-check.service';
+import { DemoProjectSummaryService } from '../../demo/service/demo-project-summary.service';
 
 @Component({
   selector: 'f8launcher-step-indicator',
@@ -160,6 +164,10 @@ describe('LauncherComponent', () => {
         LauncherComponent,
         ProjectProgressCreateappNextstepComponent,
         ProjectProgressImportappNextstepComponent
+      ],
+      providers: [
+        { provide: DependencyCheckService, useClass: DemoDependencyCheckService },
+        { provide: ProjectSummaryService, useClass: DemoProjectSummaryService }
       ]
     }).compileComponents();
   }));

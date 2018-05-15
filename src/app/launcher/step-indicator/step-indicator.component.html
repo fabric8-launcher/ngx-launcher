@@ -11,6 +11,11 @@
     Please enter a valid Application Name.
   </span>
 </div>
+<div [ngClass]="{'has-error': launcherComponent.isProjectNameAvailable === false}" *ngIf="launcherComponent.isProjectNameAvailable === false">
+  <span class="help-block f8launcher-vertical-bar_application-name-help-text">
+    Application name is already used. Please enter a new one.
+  </span>
+</div>
 <div class="f8launcher-vertical-bar"
      [ngClass]="{'in-progress': inProgress === true}">
   <a class="f8launcher-vertical-bar_steps--item {{step.styleClass}}" href="javascript:void(0)"

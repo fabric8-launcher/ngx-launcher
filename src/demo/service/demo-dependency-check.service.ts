@@ -22,6 +22,22 @@ export class DemoDependencyCheckService implements DependencyCheckService {
   }
 
   /**
+   * Returns available projects in a space
+   *
+   * @param  {string} spaceId
+   * @returns Observable
+   */
+  getApplicationsInASpace(spaceId: string): Observable<any[]> {
+    return Observable.of([{
+      attributes: { name: 'app-apr-10-2018-4-25' }
+    }, {
+      attributes: { name: 'app-may-11-2018' }
+    }, {
+      attributes: { name: 'app-may-14-1-04' }
+    }]);
+  }
+
+  /**
    * Validate the project name and returns a boolean value
    *
    * @param  {string} projectName

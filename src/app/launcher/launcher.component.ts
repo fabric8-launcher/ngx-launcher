@@ -14,6 +14,8 @@ import { Selection } from './model/selection.model';
 import { Summary } from './model/summary.model';
 import { StepIndicatorComponent } from './step-indicator/step-indicator.component';
 import { LauncherStep } from './launcher-step';
+import { ProjectSummaryService } from './service/project-summary.service';
+import { DependencyCheckService } from './service/dependency-check.service';
 
 @Component({
   encapsulation: ViewEncapsulation.None,
@@ -50,15 +52,20 @@ export class LauncherComponent implements AfterViewInit, OnInit {
   public isArtifactIdValid: boolean;
   public isGroupIdValid: boolean;
   public isProjectVersionValid: boolean;
+  public applicationNames: string[];
+  public isProjectNameAvailable: boolean;
   private _selectedSection: string;
   private _showCancelOverlay: boolean = false;
   private _steps: LauncherStep[] = [];
   private _summary: Summary;
   private summaryCompleted: boolean = false;
   private _isProjectNameValid: boolean;
+  private spaceId: string;
 
   constructor(private route: ActivatedRoute,
-              private router: Router) {
+              private router: Router,
+              private dependencyCheckService: DependencyCheckService,
+              private projectSummaryService: ProjectSummaryService) {
   }
 
   ngAfterViewInit() {
@@ -78,6 +85,21 @@ export class LauncherComponent implements AfterViewInit, OnInit {
       },
       gitHubDetails: {}
     } as Summary;
+    this.projectSummaryService.getCurrentContext()
+      .subscribe((response: any) => {
+        if (response && this.summary && this.summary.dependencyCheck) {
+          this.spaceId = response.space ? response.space.id : '';
+          this.dependencyCheckService.getApplicationsInASpace(this.spaceId)
+            .subscribe((applications: any[]) => {
+              const apps: string[] = applications.map((app: any) => {
+                const appNameInLowerCase = app.attributes.name ? (<string>app.attributes.name).toLowerCase() : '';
+                return appNameInLowerCase;
+              });
+              this.applicationNames = apps;
+              console.log('applications in step indicator', this.applicationNames);
+            });
+        }
+      });
   }
 
   onInViewportChange($event: any, id: string) {
@@ -274,6 +296,26 @@ export class LauncherComponent implements AfterViewInit, OnInit {
     setTimeout(() => {
       this.stepIndicator.navToNextStep();
     }, 10);
+  }
+
+  /**
+   * Validate the project name
+   *
+   * @returns void
+   */
+  validateProjectName(): void {
+    this.isProjectNameValid =
+      this.dependencyCheckService.validateProjectName(this.summary.dependencyCheck.projectName);
+  }
+
+  /**
+   * Check if the application name is already used
+   *
+   * @returns void
+   */
+  checkIfProjectNameAvailable(): void {
+    this.isProjectNameAvailable =
+      this.applicationNames.indexOf(this.summary.dependencyCheck.projectName) === -1 ? true : false;
   }
 
   // Private
