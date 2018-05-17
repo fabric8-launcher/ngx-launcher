@@ -259,6 +259,9 @@ export class MissionRuntimeCreateappStepComponent extends LauncherStep implement
       return false;
     }
     let selectedMission = runtime.missions.find(m => m.id === this.launcherComponent.summary.mission.id);
+    if (!selectedMission) {
+      return true;
+    }
     let version = selectedMission.versions.find(v => v.booster !== undefined);
     return version? !this.checkRunsOnCluster(version.booster.metadata.runsOn, this.launcherComponent.summary.cluster.type) : false;
   }
