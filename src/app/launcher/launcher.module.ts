@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { ModalModule } from 'ngx-modal';
 
 import { DependencyEditorModule,  URLProvider, DependencyEditorTokenProvider }
-  from '../../../node_modules/fabric8-analytics-dependency-editor';
+  from 'fabric8-analytics-dependency-editor';
 import { BsDropdownConfig, BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { PopoverModule } from 'ngx-bootstrap/popover';
 import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
