@@ -32,7 +32,7 @@ export class DemoTargetEnvironmentService implements TargetEnvironmentService {
       /* tslint:enable */
       id: 'os',
       styleClass: 'card-pf-footer--logo-os',
-      clusters: clusters
+      clusters: clusters.filter(c => c.connected)
     }, {
       benefits: [
         'Scaffolding for your new application is generated.',
