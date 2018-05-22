@@ -9,25 +9,37 @@ import { Observable } from 'rxjs';
   templateUrl: './link-accounts-createapp-step.component.html',
   styleUrls: ['./link-accounts-createapp-step.component.less']
 })
+
+
+
 export class LinkAccountsCreateappStepComponent {
   @Output() select = new EventEmitter();
+  private _clusters: Cluster[] = [];
   private clusterId: string;
-  availableClusters: Cluster[] = [];
-  clusters: Cluster[] = [];
 
   constructor(@Optional() private tokenService: TokenService) {
-    if (tokenService) {
-      tokenService.clusters.subscribe(clusters => this.clusters = clusters);
-      tokenService.availableClusters.subscribe(clusters => this.availableClusters = clusters);
-    }
-  }
-
-  isChecked(token: Cluster): boolean {
-    return this.availableClusters.map(cluster => cluster.id).indexOf(token.id) !== -1;
+    this.load();
   }
 
   selectCluster(cluster: Cluster): void {
     this.clusterId = cluster.id;
     this.select.emit(cluster);
+  }
+
+  get clusters(): Cluster[] {
+    return this._clusters;
+  }
+
+  private load() {
+    if (this.tokenService) {
+      this.tokenService.clusters.subscribe(clusters => this._clusters = clusters.sort(this.clusterSortFn));
+    }
+  }
+
+  private clusterSortFn(a: Cluster, b: Cluster): number {
+    if (a.connected) {
+      return -1;
+    }
+    return a.id.localeCompare(b.id);
   }
 }

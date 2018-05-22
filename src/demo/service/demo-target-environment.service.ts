@@ -20,7 +20,7 @@ export class DemoTargetEnvironmentService implements TargetEnvironmentService {
    * @returns {Observable<TargetEnvironment>} The target environments
    */
   getTargetEnvironments(): Observable<TargetEnvironment[]> {
-    return this.tokenService.availableClusters.map(clusters => [{
+    return this.tokenService.clusters.map(clusters => [{
       benefits: [
         'A repository is created in GitHub containing your new application’s code.',
         'Edit the code locally using the tool of your choice.',
@@ -32,7 +32,7 @@ export class DemoTargetEnvironmentService implements TargetEnvironmentService {
       /* tslint:enable */
       id: 'os',
       styleClass: 'card-pf-footer--logo-os',
-      clusters: clusters
+      clusters: clusters.filter(c => c.connected)
     }, {
       benefits: [
         'Scaffolding for your new application is generated.',
