@@ -21,7 +21,7 @@ function release() {
     # Build and Release Planner (It will update the tag on github and push fabric8-planner to npmjs.org)
     npm run semantic-release
 
-    create_merge_PR
+    # create_merge_PR
 }
 
 # This function raises a PR against fabric8-npm-dependencies
@@ -83,7 +83,7 @@ function create_merge_PR {
     curl --silent -X PUT -H "Authorization: Bearer $GH_TOKEN" "${apiUrl}"
 }
 
-# Updates fabric8-planner's version in package.json file
+# Updates ngx-launcher's version in package.json file
 function updatePackageJSONVersion {
     local f="package.json"
     local p="ngx-forge"
