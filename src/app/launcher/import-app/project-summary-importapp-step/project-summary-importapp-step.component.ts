@@ -29,6 +29,7 @@ import { Summary } from '../../model/summary.model';
 export class ProjectSummaryImportappStepComponent extends LauncherStep implements OnDestroy, OnInit {
   @Input() id: string;
 
+  public setUpErrResponse: Array<any> = [];
   private subscriptions: Subscription[] = [];
   private spaceId: string;
   private spaceName: string;
@@ -133,6 +134,9 @@ export class ProjectSummaryImportappStepComponent extends LauncherStep implement
             this.navToNextStep();
           }
         }, (error) => {
+          if (error) {
+            this.displaySetUpErrorResponse(error);
+          }
           console.log('error in setup: Import', error);
         })
     );
@@ -226,5 +230,18 @@ export class ProjectSummaryImportappStepComponent extends LauncherStep implement
 
   private toggleExpanded(pipeline: Pipeline) {
     pipeline.expanded = (pipeline.expanded !== undefined) ? !pipeline.expanded : true;
+  }
+
+    /**
+     * displaySetUpErrorResponse - takes a message string and returns nothing
+     * Displays the response received from the setup in case of error
+     */
+    private displaySetUpErrorResponse(err: any): void {
+      let notification = {
+          iconClass: 'pficon-error-circle-o',
+          alertClass: 'alert-danger',
+          text: err
+      };
+      this.setUpErrResponse.push(notification);
   }
 }

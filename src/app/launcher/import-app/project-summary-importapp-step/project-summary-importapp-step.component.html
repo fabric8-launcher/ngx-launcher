@@ -1,5 +1,6 @@
 <section class="f8launcher-section-project-summary f8launcher-container_main--end"
          [ngClass]="{'hidden': hidden}">
+  <fab-toast-notification [notifications]="setUpErrResponse"></fab-toast-notification>
   <div>
     <div class="container-fluid">
       <h1 snInViewport (onInViewportChange)="launcherComponent.onInViewportChange($event, 'ProjectSummary')"

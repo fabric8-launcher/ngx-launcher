@@ -1,5 +1,11 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
+import {
+  Component,
+  EventEmitter,
+  Input,
+  Output
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
@@ -15,6 +21,14 @@ import { ProjectSummaryService } from '../../service/project-summary.service';
 import { LauncherComponent } from '../../launcher.component';
 import { LauncherStep } from '../../launcher-step';
 import { Summary } from '../../launcher.module';
+
+@Component({
+  selector: 'fab-toast-notification',
+  template: ''
+})
+export class FakeToastNotificationComponent {
+  @Input() notifications: any 
+}
 
 let mockProjectSummaryService = {
   setup(summary: Summary): Observable<boolean> {
@@ -87,7 +101,8 @@ describe('Import ProjectSummaryStepComponent', () => {
         InViewportModule
       ],
       declarations: [
-        ProjectSummaryImportappStepComponent
+        ProjectSummaryImportappStepComponent,
+        FakeToastNotificationComponent
       ],
       providers : [
         {

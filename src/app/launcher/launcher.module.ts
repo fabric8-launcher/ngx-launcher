@@ -43,12 +43,14 @@ import { ProjectSummaryImportappStepComponent }
   from './import-app/project-summary-importapp-step/project-summary-importapp-step.component';
 import { ReleaseStrategyImportappStepComponent }
   from './import-app/release-strategy-importapp-step/release-strategy-importapp-step.component';
+import { ToastNotificationComponent} from './toast-notification/toast-notification.component';
 
 import { InViewportModule, WindowRef } from '@thisissoon/angular-inviewport';
 import { MissionRuntimeService } from './service/mission-runtime.service';
 import { ProjectProgressService } from './service/project-progress.service';
 
 import { LauncherComponent } from './launcher.component';
+import { from } from 'rxjs/observable/from';
 
 // Provide window object so as to not break SSR if using universal
 export const providers: Provider[] = [
@@ -87,6 +89,7 @@ export const providers: Provider[] = [
     TargetEnvironmentCreateappStepComponent,
     LinkAccountsCreateappStepComponent,
     StepIndicatorComponent,
+    ToastNotificationComponent,
     LauncherComponent
   ],
   providers: [
