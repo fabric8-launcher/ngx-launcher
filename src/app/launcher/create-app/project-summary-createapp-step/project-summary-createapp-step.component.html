@@ -96,7 +96,7 @@
           <ng-template #showNoDependencyTemplate>
             <div class="card-pf-heading">
               <h2 class="card-pf-title">
-                Selected Dependencies 
+                Selected Dependencies
               </h2>
             </div>
             <div class="card-pf-body f8launcher-project-summary-data-unavailable dependency noData-label">
@@ -111,7 +111,7 @@
           <ng-template #showDependencyTemplate>
             <div class="card-pf-heading">
               <h2 class="card-pf-title">
-                Selected Dependencies 
+                Selected Dependencies
               </h2>
             </div>
             <div class="card-pf-body">
@@ -123,7 +123,7 @@
                       <ng-container>
                         <span class="dependencies-added" *ngFor="let snapshot of launcherComponent?.summary?.dependencyEditor?.dependencySnapshot">
                           {{snapshot.package}}
-                        </span>                        
+                        </span>
                       </ng-container>
                     </div>
                   </div>
@@ -135,7 +135,7 @@
       </div>
     </div>
   </div>
-  <div class="container-fluid container-cards-pf" *ngIf="launcherComponent.summary?.targetEnvironment === 'os'">
+  <div class="container-fluid container-cards-pf" *ngIf="launcherComponent.summary?.targetEnvironment === 'os' && launcherComponent.flow !== 'launch'">
     <div class="row row-cards-pf">
       <div class="col-xs-12">
         <div class="card-pf" [ngClass]="{'card-pf--small': summary?.pipeline === undefined}">
