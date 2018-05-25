@@ -2,8 +2,6 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { By } from '@angular/platform-browser';
-import { DomSanitizer } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { Observable } from 'rxjs';
@@ -22,6 +20,7 @@ import { MissionRuntimeService } from '../../service/mission-runtime.service';
 let mockTargetEnvironmentService = {
   getTargetEnvironments(): Observable<TargetEnvironment[]> {
     let targetEnvironments = Observable.of( [{
+      /* tslint:disable */
       description: 'Here is a brief description of what OpenShift Online is. ' +
                    'There is a distinction between what OpenShift Online does compared to OpenShift.io.',
       benefits: [
@@ -35,6 +34,7 @@ let mockTargetEnvironmentService = {
       icon: 'data:image',
       id: 'os',
       styleClass: 'card-pf-footer--logo-os'
+      /* tslint:enable */
       }]);
       return targetEnvironments;
   }
