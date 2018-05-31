@@ -137,12 +137,14 @@ export class GitproviderCreateappStepComponent extends LauncherStep implements A
     let org = '';
     if (this.launcherComponent && this.launcherComponent.summary &&
       this.launcherComponent.summary.gitHubDetails) {
-        if (this.launcherComponent.summary.dependencyCheck.projectName) {
-          this.launcherComponent.summary.dependencyCheck.projectName = this.launcherComponent.summary.dependencyCheck.projectName.toLowerCase();
-        }
+      if (this.launcherComponent.summary.dependencyCheck.projectName) {
+        this.launcherComponent.summary.dependencyCheck.projectName =
+          this.launcherComponent.summary.dependencyCheck.projectName.toLowerCase();
+      }
       org = this.launcherComponent.summary.gitHubDetails.organization;
       this.launcherComponent.summary.gitHubDetails.repository =
-      this.launcherComponent.summary.dependencyCheck ? this.launcherComponent.summary.dependencyCheck.projectName : '';
+        this.launcherComponent.summary.dependencyCheck ?
+          this.launcherComponent.summary.dependencyCheck.projectName : '';
       this.launcherComponent.summary.gitHubDetails.repositoryList = [];
     }
 
@@ -165,7 +167,7 @@ export class GitproviderCreateappStepComponent extends LauncherStep implements A
   validateRepo(): void {
     let repoName = '';
     let repoList = [];
-    // gitRepository should follow consist only of alphanumeric characters, '-', '_' or '.'"
+    // gitRepository should consist only alphanumeric characters, '-', '_' or '.'"
     const pattern = /^[a-zA-Z0-9][a-zA-Z0-9-._]{1,63}$/;
     this.isGitHubRepoNameDup = false;
     if (this.launcherComponent && this.launcherComponent.summary &&
@@ -185,10 +187,6 @@ export class GitproviderCreateappStepComponent extends LauncherStep implements A
           this.launcherComponent.summary.gitHubDetails.repository =
             this.launcherComponent.summary.gitHubDetails.repository.toLowerCase();
         }
-        this.launcherComponent.summary.dependencyCheck.projectName =
-          this.launcherComponent.summary.gitHubDetails.repository;
-        this.launcherComponent.validateProjectName();
-        this.launcherComponent.checkIfProjectNameAvailable();
       }
     }
     this.initCompleted();

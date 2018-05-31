@@ -168,12 +168,6 @@ export class GitproviderImportappStepComponent extends LauncherStep implements A
     let repoList = this.launcherComponent.summary.gitHubDetails.repositoryList;
     if (repoList.indexOf(repoName) !== -1) {
       this.launcherComponent.summary.gitHubDetails.repositoryAvailable = true;
-      if (this.launcherComponent.flow === 'osio') {
-        this.launcherComponent.summary.dependencyCheck.projectName =
-          this.launcherComponent.summary.gitHubDetails.repository;
-        this.launcherComponent.validateProjectName();
-        this.launcherComponent.checkIfProjectNameAvailable();
-      }
     } else {
       this.launcherComponent.summary.gitHubDetails.repositoryAvailable = false;
     }

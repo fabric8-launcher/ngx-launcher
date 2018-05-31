@@ -74,57 +74,10 @@ export class StepIndicatorComponent implements OnInit {
   }
 
   /**
-   * Ensure repo name is available for the selected organization
-   */
-  validateRepo(): void {
-    let repoName = '';
-    let repoList = [];
-    // gitRepository should follow consist only of alphanumeric characters, '-', '_' or '.'"
-    const pattern = /^[a-zA-Z0-9][a-zA-Z0-9-._]{1,63}$/;
-    if (this.launcherComponent && this.launcherComponent.summary &&
-      this.launcherComponent.summary.gitHubDetails) {
-      repoName = this.launcherComponent.summary.gitHubDetails.repository;
-      repoList = this.launcherComponent.summary.gitHubDetails.repositoryList;
-    }
-    if (!pattern.test(repoName)) {
-      this.launcherComponent.summary.gitHubDetails.repositoryAvailable = false;
-    } else if (repoList.indexOf(repoName) !== -1) {
-      this.launcherComponent.summary.gitHubDetails.repositoryAvailable = false;
-    } else {
-      this.launcherComponent.summary.gitHubDetails.repositoryAvailable = true;
-    }
-  }
-
-  /**
-   * Ensure repo name is available for the selected organization
-   */
-  validateImportRepo(): void {
-    let repoName = this.launcherComponent.summary.gitHubDetails.repository;
-    let repoList = this.launcherComponent.summary.gitHubDetails.repositoryList;
-    if (repoList.indexOf(repoName) !== -1) {
-      this.launcherComponent.summary.gitHubDetails.repositoryAvailable = true;
-    }else {
-      this.launcherComponent.summary.gitHubDetails.repositoryAvailable = false;
-    }
-  }
-
-  /**
    * Validate the application name
    */
   validateProjectName(): void {
     this.launcherComponent.validateProjectName();
-    if (this.launcherComponent.flow === 'osio') {
-      this.launcherComponent.summary.dependencyCheck.projectName =
-        this.launcherComponent.summary.dependencyCheck.projectName.toLowerCase();
-      this.launcherComponent.summary.gitHubDetails.repository =
-        this.launcherComponent.summary.dependencyCheck.projectName;
-      this.launcherComponent.checkIfProjectNameAvailable();
-    }
-    if (this.launcherComponent.importApp) {
-      this.validateImportRepo();
-    } else {
-      this.validateRepo();
-    }
   }
 
   // Private

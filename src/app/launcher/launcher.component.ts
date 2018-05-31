@@ -309,6 +309,13 @@ export class LauncherComponent implements AfterViewInit, OnInit {
   validateProjectName(): void {
     this.isProjectNameValid =
       this.dependencyCheckService.validateProjectName(this.summary.dependencyCheck.projectName);
+    if (this.flow === 'osio') {
+      if (this.summary.dependencyCheck.projectName) {
+        this.summary.dependencyCheck.projectName =
+          this.summary.dependencyCheck.projectName.toLowerCase();
+      }
+      this.checkIfProjectNameAvailable();
+    }
   }
 
   /**
@@ -319,6 +326,30 @@ export class LauncherComponent implements AfterViewInit, OnInit {
   checkIfProjectNameAvailable(): void {
     this.isProjectNameAvailable =
       this.applicationNames.indexOf(this.summary.dependencyCheck.projectName) === -1 ? true : false;
+  }
+
+  /**
+   * Validate the project version
+   */
+  validateProjectVersion(): void {
+    this.isProjectVersionValid =
+      this.dependencyCheckService.validateProjectVersion(this.summary.dependencyCheck.projectVersion);
+  }
+
+  /**
+   * Validate the artifact id
+   */
+  validateArtifactId(): void {
+    this.isArtifactIdValid =
+      this.dependencyCheckService.validateArtifactId(this.summary.dependencyCheck.mavenArtifact);
+  }
+
+  /**
+   * Validate the group id
+   */
+  validateGroupId(): void {
+    this.isGroupIdValid =
+      this.dependencyCheckService.validateGroupId(this.summary.dependencyCheck.groupId);
   }
 
   // Private

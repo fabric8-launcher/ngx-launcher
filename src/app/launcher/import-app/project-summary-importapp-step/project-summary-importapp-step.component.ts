@@ -143,62 +143,31 @@ export class ProjectSummaryImportappStepComponent extends LauncherStep implement
   }
 
   /**
-   * Ensure repo name is available for the selected organization
-   */
-  validateRepo(): void {
-    let repoName = this.launcherComponent.summary.gitHubDetails.repository;
-    let repoList = this.launcherComponent.summary.gitHubDetails.repositoryList;
-    if (repoList.indexOf(repoName) !== -1) {
-      this.launcherComponent.summary.gitHubDetails.repositoryAvailable = true;
-      let gitStep = this.launcherComponent.getStep('GitProvider');
-      gitStep.completed = true;
-      if (this.launcherComponent.flow === 'osio') {
-        this.launcherComponent.summary.dependencyCheck.projectName =
-          this.launcherComponent.summary.gitHubDetails.repository;
-      }
-    }else {
-      this.launcherComponent.summary.gitHubDetails.repositoryAvailable = false;
-      let gitStep = this.launcherComponent.getStep('GitProvider');
-      gitStep.completed = false;
-    }
-    this.initCompleted();
-  }
-
-  /**
    * Validate the application name
    */
   validateProjectName(): void {
-    this.launcherComponent.isProjectNameValid =
-      this.dependencyCheckService.validateProjectName(this.launcherComponent.summary.dependencyCheck.projectName);
-    if (this.launcherComponent.flow === 'osio') {
-      this.launcherComponent.summary.gitHubDetails.repository =
-        this.launcherComponent.summary.dependencyCheck.projectName;
-      this.validateRepo();
-    }
+    this.launcherComponent.validateProjectName();
   }
 
   /**
    * Validate the project version
    */
   validateProjectVersion(): void {
-    this.launcherComponent.isProjectVersionValid =
-      this.dependencyCheckService.validateProjectVersion(this.launcherComponent.summary.dependencyCheck.projectVersion);
+    this.launcherComponent.validateProjectVersion();
   }
 
   /**
    * Validate the artifact id
    */
   validateArtifactId(): void {
-    this.launcherComponent.isArtifactIdValid =
-      this.dependencyCheckService.validateArtifactId(this.launcherComponent.summary.dependencyCheck.mavenArtifact);
+    this.launcherComponent.validateArtifactId();
   }
 
   /**
    * Validate the group id
    */
   validateGroupId(): void {
-    this.launcherComponent.isGroupIdValid =
-      this.dependencyCheckService.validateGroupId(this.launcherComponent.summary.dependencyCheck.groupId);
+    this.launcherComponent.validateGroupId();
   }
 
   get dependencyCheck(): DependencyCheck {
