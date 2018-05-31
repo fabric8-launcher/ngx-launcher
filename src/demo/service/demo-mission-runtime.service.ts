@@ -191,10 +191,15 @@ export class DemoMissionRuntimeService implements MissionRuntimeService {
                 "name": "3.5.0.Final (Community)",
                 "booster": {
                   "metadata": {
-                    "runsOn": [
-                      "!starter",
-                      "!osio"
-                    ]
+                    "app": {
+                      "launcher": {
+
+                        "runsOn": [
+                          "!starter",
+                          "!osio"
+                        ]
+                      }
+                    }
                   }
                 }
               },
@@ -203,10 +208,14 @@ export class DemoMissionRuntimeService implements MissionRuntimeService {
                 "name": "3.5.1.redhat-003 (RHOAR)",
                 "booster": {
                   "metadata": {
-                    "runsOn": [
-                      "!starter",
-                      "!osio"
-                    ]
+                    "app": {
+                      "launcher": {
+                        "runsOn": [
+                          "!starter",
+                          "!osio"
+                        ]
+                      }
+                    }
                   }
                 }
               }
@@ -220,10 +229,15 @@ export class DemoMissionRuntimeService implements MissionRuntimeService {
                 "name": "3.5.0.Final (Community)",
                 "booster": {
                   "metadata": {
-                    "runsOn": [
-                      "!starter",
-                      "!osio"
-                    ]
+                    "app": {
+                      "launcher": {
+
+                        "runsOn": [
+                          "!starter",
+                          "!osio"
+                        ]
+                      }
+                    }
                   }
                 }
               },
@@ -232,10 +246,13 @@ export class DemoMissionRuntimeService implements MissionRuntimeService {
                 "name": "3.5.1.redhat-003 (RHOAR)",
                 "booster": {
                   "metadata": {
+                    "app": {
+                      "launcher": {
+
                     "runsOn": [
                       "!starter",
                       "!osio"
-                    ]
+                    ]}}
                   }
                 }
               }
@@ -249,10 +266,14 @@ export class DemoMissionRuntimeService implements MissionRuntimeService {
                 "name": "3.5.0.Final (Community)",
                 "booster": {
                   "metadata": {
-                    "runsOn": [
-                      "!starter",
-                      "!osio"
-                    ]
+                    "app": {
+                      "launcher": {
+                        "runsOn": [
+                          "!starter",
+                          "!osio"
+                        ]
+                      }
+                    }
                   }
                 }
               },
@@ -261,10 +282,14 @@ export class DemoMissionRuntimeService implements MissionRuntimeService {
                 "name": "3.5.1.redhat-003 (RHOAR)",
                 "booster": {
                   "metadata": {
-                    "runsOn": [
-                      "!starter",
-                      "!osio"
-                    ]
+                    "app": {
+                      "launcher": {
+                        "runsOn": [
+                          "!starter",
+                          "!osio"
+                        ]
+                      }
+                    }
                   }
                 }
               }
@@ -278,7 +303,11 @@ export class DemoMissionRuntimeService implements MissionRuntimeService {
                 "name": "3.5.0.Final (Community)",
                 "booster": {
                   "metadata": {
-                    "runsOn": "!osio"
+                    "app": {
+                      "launcher": {
+                        "runsOn": "!osio"
+                      }
+                    }
                   }
                 }
               },
@@ -297,9 +326,13 @@ export class DemoMissionRuntimeService implements MissionRuntimeService {
                 "name": "3.5.0.Final (Community)",
                 "booster": {
                   "metadata": {
-                    "runsOn": [
-                      "!osio"
-                    ]
+                    "app": {
+                      "launcher": {
+                        "runsOn": [
+                          "!osio"
+                        ]
+                      }
+                    }
                   }
                 }
               },
@@ -318,9 +351,14 @@ export class DemoMissionRuntimeService implements MissionRuntimeService {
                 "name": "3.5.0.Final (Community)",
                 "booster": {
                   "metadata": {
-                    "runsOn": [
-                      "!osio"
-                    ]
+                    "app": {
+                      "launcher": {
+
+                        "runsOn": [
+                          "!osio"
+                        ]
+                      }
+                    }
                   }
                 }
               },
@@ -339,7 +377,12 @@ export class DemoMissionRuntimeService implements MissionRuntimeService {
                 "name": "3.5.0.Final (Community)",
                 "booster": {
                   "metadata": {
-                    "runsOn": "none"
+                    "app": {
+                      "launcher": {
+
+                        "runsOn": "none"
+                      }
+                    }
                   }
                 }
               },
@@ -348,7 +391,12 @@ export class DemoMissionRuntimeService implements MissionRuntimeService {
                 "name": "3.5.1.redhat-003 (RHOAR)",
                 "booster": {
                   "metadata": {
-                    "runsOn": "none"
+                    "app": {
+                      "launcher": {
+
+                        "runsOn": "none"
+                      }
+                    }
                   }
                 }
               }
@@ -373,10 +421,15 @@ export class DemoMissionRuntimeService implements MissionRuntimeService {
                 "name": "2.21.0 (Community)",
                 "booster": {
                   "metadata": {
-                    "runsOn": [
-                      "!starter",
-                      "!osio"
-                    ]
+                    "app": {
+                      "launcher": {
+
+                        "runsOn": [
+                          "!starter",
+                          "!osio"
+                        ]
+                      }
+                    }
                   }
                 }
               },
@@ -385,10 +438,15 @@ export class DemoMissionRuntimeService implements MissionRuntimeService {
                 "name": "7.0.0 (Red Hat Fuse)",
                 "booster": {
                   "metadata": {
-                    "runsOn": [
-                      "!starter",
-                      "!osio"
-                    ]
+                    "app": {
+                      "launcher": {
+
+                        "runsOn": [
+                          "!starter",
+                          "!osio"
+                        ]
+                      }
+                    }
                   }
                 }
               }
@@ -402,7 +460,12 @@ export class DemoMissionRuntimeService implements MissionRuntimeService {
                 "name": "2.21.0 (Community)",
                 "booster": {
                   "metadata": {
-                    "runsOn": "!osio"
+                    "app": {
+                      "launcher": {
+
+                        "runsOn": "!osio"
+                      }
+                    }
                   }
                 }
               },
@@ -411,7 +474,12 @@ export class DemoMissionRuntimeService implements MissionRuntimeService {
                 "name": "7.0.0 (Red Hat Fuse)",
                 "booster": {
                   "metadata": {
-                    "runsOn": "!osio"
+                    "app": {
+                      "launcher": {
+
+                        "runsOn": "!osio"
+                      }
+                    }
                   }
                 }
               }
@@ -425,7 +493,12 @@ export class DemoMissionRuntimeService implements MissionRuntimeService {
                 "name": "2.21.0 (Community)",
                 "booster": {
                   "metadata": {
-                    "runsOn": "!osio"
+                    "app": {
+                      "launcher": {
+
+                        "runsOn": "!osio"
+                      }
+                    }
                   }
                 }
               },
@@ -434,7 +507,12 @@ export class DemoMissionRuntimeService implements MissionRuntimeService {
                 "name": "7.0.0 (Red Hat Fuse)",
                 "booster": {
                   "metadata": {
-                    "runsOn": "!osio"
+                    "app": {
+                      "launcher": {
+
+                        "runsOn": "!osio"
+                      }
+                    }
                   }
                 }
               }
@@ -448,7 +526,12 @@ export class DemoMissionRuntimeService implements MissionRuntimeService {
                 "name": "2.21.0 (Community)",
                 "booster": {
                   "metadata": {
-                    "runsOn": "!osio"
+                    "app": {
+                      "launcher": {
+
+                        "runsOn": "!osio"
+                      }
+                    }
                   }
                 }
               },
@@ -457,7 +540,12 @@ export class DemoMissionRuntimeService implements MissionRuntimeService {
                 "name": "7.0.0 (Red Hat Fuse)",
                 "booster": {
                   "metadata": {
-                    "runsOn": "!osio"
+                    "app": {
+                      "launcher": {
+
+                        "runsOn": "!osio"
+                      }
+                    }
                   }
                 }
               }
@@ -482,10 +570,15 @@ export class DemoMissionRuntimeService implements MissionRuntimeService {
                 "name": "10.x (Community)",
                 "booster": {
                   "metadata": {
-                    "runsOn": [
-                      "!starter",
-                      "!osio"
-                    ]
+                    "app": {
+                      "launcher": {
+
+                        "runsOn": [
+                          "!starter",
+                          "!osio"
+                        ]
+                      }
+                    }
                   }
                 }
               },
@@ -494,10 +587,15 @@ export class DemoMissionRuntimeService implements MissionRuntimeService {
                 "name": "10.x (RHOAR)",
                 "booster": {
                   "metadata": {
-                    "runsOn": [
-                      "!starter",
-                      "!osio"
-                    ]
+                    "app": {
+                      "launcher": {
+
+                        "runsOn": [
+                          "!starter",
+                          "!osio"
+                        ]
+                      }
+                    }
                   }
                 }
               },
@@ -506,10 +604,15 @@ export class DemoMissionRuntimeService implements MissionRuntimeService {
                 "name": "8.x (Community)",
                 "booster": {
                   "metadata": {
-                    "runsOn": [
-                      "!starter",
-                      "!osio"
-                    ]
+                    "app": {
+                      "launcher": {
+
+                        "runsOn": [
+                          "!starter",
+                          "!osio"
+                        ]
+                      }
+                    }
                   }
                 }
               },
@@ -518,10 +621,15 @@ export class DemoMissionRuntimeService implements MissionRuntimeService {
                 "name": "8.x (RHOAR)",
                 "booster": {
                   "metadata": {
-                    "runsOn": [
-                      "!starter",
-                      "!osio"
-                    ]
+                    "app": {
+                      "launcher": {
+
+                        "runsOn": [
+                          "!starter",
+                          "!osio"
+                        ]
+                      }
+                    }
                   }
                 }
               }
@@ -535,10 +643,15 @@ export class DemoMissionRuntimeService implements MissionRuntimeService {
                 "name": "10.x (Community)",
                 "booster": {
                   "metadata": {
-                    "runsOn": [
-                      "!starter",
-                      "!osio"
-                    ]
+                    "app": {
+                      "launcher": {
+
+                        "runsOn": [
+                          "!starter",
+                          "!osio"
+                        ]
+                      }
+                    }
                   }
                 }
               },
@@ -547,10 +660,15 @@ export class DemoMissionRuntimeService implements MissionRuntimeService {
                 "name": "10.x (RHOAR)",
                 "booster": {
                   "metadata": {
-                    "runsOn": [
-                      "!starter",
-                      "!osio"
-                    ]
+                    "app": {
+                      "launcher": {
+
+                        "runsOn": [
+                          "!starter",
+                          "!osio"
+                        ]
+                      }
+                    }
                   }
                 }
               },
@@ -559,10 +677,15 @@ export class DemoMissionRuntimeService implements MissionRuntimeService {
                 "name": "8.x (Community)",
                 "booster": {
                   "metadata": {
-                    "runsOn": [
-                      "!starter",
-                      "!osio"
-                    ]
+                    "app": {
+                      "launcher": {
+
+                        "runsOn": [
+                          "!starter",
+                          "!osio"
+                        ]
+                      }
+                    }
                   }
                 }
               },
@@ -571,10 +694,15 @@ export class DemoMissionRuntimeService implements MissionRuntimeService {
                 "name": "8.x (RHOAR)",
                 "booster": {
                   "metadata": {
-                    "runsOn": [
-                      "!starter",
-                      "!osio"
-                    ]
+                    "app": {
+                      "launcher": {
+
+                        "runsOn": [
+                          "!starter",
+                          "!osio"
+                        ]
+                      }
+                    }
                   }
                 }
               }
@@ -588,10 +716,15 @@ export class DemoMissionRuntimeService implements MissionRuntimeService {
                 "name": "10.x (Community)",
                 "booster": {
                   "metadata": {
-                    "runsOn": [
-                      "!starter",
-                      "!osio"
-                    ]
+                    "app": {
+                      "launcher": {
+
+                        "runsOn": [
+                          "!starter",
+                          "!osio"
+                        ]
+                      }
+                    }
                   }
                 }
               },
@@ -612,10 +745,15 @@ export class DemoMissionRuntimeService implements MissionRuntimeService {
                 "name": "8.x (Community)",
                 "booster": {
                   "metadata": {
-                    "runsOn": [
-                      "!starter",
-                      "!osio"
-                    ]
+                    "app": {
+                      "launcher": {
+
+                        "runsOn": [
+                          "!starter",
+                          "!osio"
+                        ]
+                      }
+                    }
                   }
                 }
               },
@@ -624,10 +762,15 @@ export class DemoMissionRuntimeService implements MissionRuntimeService {
                 "name": "8.x (RHOAR)",
                 "booster": {
                   "metadata": {
-                    "runsOn": [
-                      "!starter",
-                      "!osio"
-                    ]
+                    "app": {
+                      "launcher": {
+
+                        "runsOn": [
+                          "!starter",
+                          "!osio"
+                        ]
+                      }
+                    }
                   }
                 }
               }
@@ -641,7 +784,12 @@ export class DemoMissionRuntimeService implements MissionRuntimeService {
                 "name": "10.x (Community)",
                 "booster": {
                   "metadata": {
-                    "runsOn": "!osio"
+                    "app": {
+                      "launcher": {
+
+                        "runsOn": "!osio"
+                      }
+                    }
                   }
                 }
               },
@@ -650,7 +798,12 @@ export class DemoMissionRuntimeService implements MissionRuntimeService {
                 "name": "10.x (RHOAR)",
                 "booster": {
                   "metadata": {
-                    "runsOn": "!osio"
+                    "app": {
+                      "launcher": {
+
+                        "runsOn": "!osio"
+                      }
+                    }
                   }
                 }
               },
@@ -659,7 +812,12 @@ export class DemoMissionRuntimeService implements MissionRuntimeService {
                 "name": "8.x (Community)",
                 "booster": {
                   "metadata": {
-                    "runsOn": "!osio"
+                    "app": {
+                      "launcher": {
+
+                        "runsOn": "!osio"
+                      }
+                    }
                   }
                 }
               },
@@ -668,7 +826,12 @@ export class DemoMissionRuntimeService implements MissionRuntimeService {
                 "name": "8.x (RHOAR)",
                 "booster": {
                   "metadata": {
-                    "runsOn": "!osio"
+                    "app": {
+                      "launcher": {
+
+                        "runsOn": "!osio"
+                      }
+                    }
                   }
                 }
               }
@@ -682,7 +845,12 @@ export class DemoMissionRuntimeService implements MissionRuntimeService {
                 "name": "10.x (Community)",
                 "booster": {
                   "metadata": {
-                    "runsOn": "!osio"
+                    "app": {
+                      "launcher": {
+
+                        "runsOn": "!osio"
+                      }
+                    }
                   }
                 }
               },
@@ -691,7 +859,12 @@ export class DemoMissionRuntimeService implements MissionRuntimeService {
                 "name": "10.x (RHOAR)",
                 "booster": {
                   "metadata": {
-                    "runsOn": "!osio"
+                    "app": {
+                      "launcher": {
+
+                        "runsOn": "!osio"
+                      }
+                    }
                   }
                 }
               },
@@ -700,7 +873,12 @@ export class DemoMissionRuntimeService implements MissionRuntimeService {
                 "name": "8.x (Community)",
                 "booster": {
                   "metadata": {
-                    "runsOn": "!osio"
+                    "app": {
+                      "launcher": {
+
+                        "runsOn": "!osio"
+                      }
+                    }
                   }
                 }
               },
@@ -709,7 +887,12 @@ export class DemoMissionRuntimeService implements MissionRuntimeService {
                 "name": "8.x (RHOAR)",
                 "booster": {
                   "metadata": {
-                    "runsOn": "!osio"
+                    "app": {
+                      "launcher": {
+
+                        "runsOn": "!osio"
+                      }
+                    }
                   }
                 }
               }
@@ -723,7 +906,12 @@ export class DemoMissionRuntimeService implements MissionRuntimeService {
                 "name": "10.x (Community)",
                 "booster": {
                   "metadata": {
-                    "runsOn": "!osio"
+                    "app": {
+                      "launcher": {
+
+                        "runsOn": "!osio"
+                      }
+                    }
                   }
                 }
               },
@@ -732,7 +920,12 @@ export class DemoMissionRuntimeService implements MissionRuntimeService {
                 "name": "10.x (RHOAR)",
                 "booster": {
                   "metadata": {
-                    "runsOn": "!osio"
+                    "app": {
+                      "launcher": {
+
+                        "runsOn": "!osio"
+                      }
+                    }
                   }
                 }
               },
@@ -741,7 +934,12 @@ export class DemoMissionRuntimeService implements MissionRuntimeService {
                 "name": "8.x (Community)",
                 "booster": {
                   "metadata": {
-                    "runsOn": "!osio"
+                    "app": {
+                      "launcher": {
+
+                        "runsOn": "!osio"
+                      }
+                    }
                   }
                 }
               },
@@ -750,7 +948,12 @@ export class DemoMissionRuntimeService implements MissionRuntimeService {
                 "name": "8.x (RHOAR)",
                 "booster": {
                   "metadata": {
-                    "runsOn": "!osio"
+                    "app": {
+                      "launcher": {
+
+                        "runsOn": "!osio"
+                      }
+                    }
                   }
                 }
               }
@@ -764,7 +967,12 @@ export class DemoMissionRuntimeService implements MissionRuntimeService {
                 "name": "10.x (Community)",
                 "booster": {
                   "metadata": {
-                    "runsOn": "none"
+                    "app": {
+                      "launcher": {
+
+                        "runsOn": "none"
+                      }
+                    }
                   }
                 }
               },
@@ -773,7 +981,12 @@ export class DemoMissionRuntimeService implements MissionRuntimeService {
                 "name": "10.x (RHOAR)",
                 "booster": {
                   "metadata": {
-                    "runsOn": "none"
+                    "app": {
+                      "launcher": {
+
+                        "runsOn": "none"
+                      }
+                    }
                   }
                 }
               },
@@ -782,7 +995,12 @@ export class DemoMissionRuntimeService implements MissionRuntimeService {
                 "name": "8.x (Community)",
                 "booster": {
                   "metadata": {
-                    "runsOn": "none"
+                    "app": {
+                      "launcher": {
+
+                        "runsOn": "none"
+                      }
+                    }
                   }
                 }
               },
@@ -791,7 +1009,12 @@ export class DemoMissionRuntimeService implements MissionRuntimeService {
                 "name": "8.x (RHOAR)",
                 "booster": {
                   "metadata": {
-                    "runsOn": "none"
+                    "app": {
+                      "launcher": {
+
+                        "runsOn": "none"
+                      }
+                    }
                   }
                 }
               }
@@ -816,10 +1039,15 @@ export class DemoMissionRuntimeService implements MissionRuntimeService {
                 "name": "1.5.12.RELEASE (Community)",
                 "booster": {
                   "metadata": {
-                    "runsOn": [
-                      "!starter",
-                      "!osio"
-                    ]
+                    "app": {
+                      "launcher": {
+
+                        "runsOn": [
+                          "!starter",
+                          "!osio"
+                        ]
+                      }
+                    }
                   }
                 }
               },
@@ -828,10 +1056,15 @@ export class DemoMissionRuntimeService implements MissionRuntimeService {
                 "name": "1.5.12.RELEASE (RHOAR)",
                 "booster": {
                   "metadata": {
-                    "runsOn": [
-                      "!starter",
-                      "!osio"
-                    ]
+                    "app": {
+                      "launcher": {
+
+                        "runsOn": [
+                          "!starter",
+                          "!osio"
+                        ]
+                      }
+                    }
                   }
                 }
               }
@@ -845,10 +1078,15 @@ export class DemoMissionRuntimeService implements MissionRuntimeService {
                 "name": "1.5.12.RELEASE (Community)",
                 "booster": {
                   "metadata": {
-                    "runsOn": [
-                      "!starter",
-                      "!osio"
-                    ]
+                    "app": {
+                      "launcher": {
+
+                        "runsOn": [
+                          "!starter",
+                          "!osio"
+                        ]
+                      }
+                    }
                   }
                 }
               },
@@ -857,10 +1095,15 @@ export class DemoMissionRuntimeService implements MissionRuntimeService {
                 "name": "1.5.12.RELEASE (RHOAR)",
                 "booster": {
                   "metadata": {
-                    "runsOn": [
-                      "!starter",
-                      "!osio"
-                    ]
+                    "app": {
+                      "launcher": {
+
+                        "runsOn": [
+                          "!starter",
+                          "!osio"
+                        ]
+                      }
+                    }
                   }
                 }
               }
@@ -874,10 +1117,15 @@ export class DemoMissionRuntimeService implements MissionRuntimeService {
                 "name": "1.5.12.RELEASE (Community)",
                 "booster": {
                   "metadata": {
-                    "runsOn": [
-                      "!starter",
-                      "!osio"
-                    ]
+                    "app": {
+                      "launcher": {
+
+                        "runsOn": [
+                          "!starter",
+                          "!osio"
+                        ]
+                      }
+                    }
                   }
                 }
               },
@@ -886,10 +1134,15 @@ export class DemoMissionRuntimeService implements MissionRuntimeService {
                 "name": "1.5.12.RELEASE (RHOAR)",
                 "booster": {
                   "metadata": {
-                    "runsOn": [
-                      "!starter",
-                      "!osio"
-                    ]
+                    "app": {
+                      "launcher": {
+
+                        "runsOn": [
+                          "!starter",
+                          "!osio"
+                        ]
+                      }
+                    }
                   }
                 }
               }
@@ -903,7 +1156,12 @@ export class DemoMissionRuntimeService implements MissionRuntimeService {
                 "name": "1.5.12.RELEASE (Community)",
                 "booster": {
                   "metadata": {
-                    "runsOn": "!osio"
+                    "app": {
+                      "launcher": {
+
+                        "runsOn": "!osio"
+                      }
+                    }
                   }
                 }
               },
@@ -912,7 +1170,12 @@ export class DemoMissionRuntimeService implements MissionRuntimeService {
                 "name": "1.5.12.RELEASE (OSIO)",
                 "booster": {
                   "metadata": {
-                    "runsOn": "osio"
+                    "app": {
+                      "launcher": {
+
+                        "runsOn": "osio"
+                      }
+                    }
                   }
                 }
               },
@@ -921,7 +1184,12 @@ export class DemoMissionRuntimeService implements MissionRuntimeService {
                 "name": "1.5.12.RELEASE (RHOAR)",
                 "booster": {
                   "metadata": {
-                    "runsOn": "!osio"
+                    "app": {
+                      "launcher": {
+
+                        "runsOn": "!osio"
+                      }
+                    }
                   }
                 }
               }
@@ -935,9 +1203,14 @@ export class DemoMissionRuntimeService implements MissionRuntimeService {
                 "name": "1.5.12.RELEASE (Community)",
                 "booster": {
                   "metadata": {
-                    "runsOn": [
-                      "!osio"
-                    ]
+                    "app": {
+                      "launcher": {
+
+                        "runsOn": [
+                          "!osio"
+                        ]
+                      }
+                    }
                   }
                 }
               },
@@ -955,10 +1228,14 @@ export class DemoMissionRuntimeService implements MissionRuntimeService {
                 "id": "current-community",
                 "name": "1.5.12.RELEASE (Community)",
                 "booster": {
-                  "metadata": {
-                    "runsOn": [
-                      "local"
-                    ]
+                      "metadata": {
+                        "app": {
+                          "launcher": {
+                              "runsOn": [
+                          "local"
+                        ]
+                      }
+                    }
                   }
                 }
               }
@@ -972,9 +1249,14 @@ export class DemoMissionRuntimeService implements MissionRuntimeService {
                 "name": "1.5.12.RELEASE (Community)",
                 "booster": {
                   "metadata": {
-                    "runsOn": [
-                      "local"
-                    ]
+                    "app": {
+                      "launcher": {
+
+                        "runsOn": [
+                          "local"
+                        ]
+                      }
+                    }
                   }
                 }
               }
@@ -988,9 +1270,14 @@ export class DemoMissionRuntimeService implements MissionRuntimeService {
                 "name": "1.5.12.RELEASE (Community)",
                 "booster": {
                   "metadata": {
-                    "runsOn": [
-                      "local"
-                    ]
+                    "app": {
+                      "launcher": {
+
+                        "runsOn": [
+                          "local"
+                        ]
+                      }
+                    }
                   }
                 }
               }
@@ -1004,9 +1291,14 @@ export class DemoMissionRuntimeService implements MissionRuntimeService {
                 "name": "1.5.12.RELEASE (Community)",
                 "booster": {
                   "metadata": {
-                    "runsOn": [
-                      "local"
-                    ]
+                    "app": {
+                      "launcher": {
+
+                        "runsOn": [
+                          "local"
+                        ]
+                      }
+                    }
                   }
                 }
               }
@@ -1020,9 +1312,14 @@ export class DemoMissionRuntimeService implements MissionRuntimeService {
                 "name": "1.5.12.RELEASE (Community)",
                 "booster": {
                   "metadata": {
-                    "runsOn": [
-                      "!osio"
-                    ]
+                    "app": {
+                      "launcher": {
+
+                        "runsOn": [
+                          "!osio"
+                        ]
+                      }
+                    }
                   }
                 }
               },
@@ -1041,7 +1338,12 @@ export class DemoMissionRuntimeService implements MissionRuntimeService {
                 "name": "1.5.12.RELEASE (Community)",
                 "booster": {
                   "metadata": {
-                    "runsOn": "none"
+                    "app": {
+                      "launcher": {
+
+                        "runsOn": "none"
+                      }
+                    }
                   }
                 }
               },
@@ -1050,7 +1352,12 @@ export class DemoMissionRuntimeService implements MissionRuntimeService {
                 "name": "1.5.12.RELEASE (RHOAR)",
                 "booster": {
                   "metadata": {
-                    "runsOn": "none"
+                    "app": {
+                      "launcher": {
+
+                        "runsOn": "none"
+                      }
+                    }
                   }
                 }
               }
@@ -1075,10 +1382,15 @@ export class DemoMissionRuntimeService implements MissionRuntimeService {
                 "name": "2018.5.0 (Community)",
                 "booster": {
                   "metadata": {
-                    "runsOn": [
-                      "!starter",
-                      "!osio"
-                    ]
+                    "app": {
+                      "launcher": {
+
+                        "runsOn": [
+                          "!starter",
+                          "!osio"
+                        ]
+                      }
+                    }
                   }
                 }
               },
@@ -1087,10 +1399,15 @@ export class DemoMissionRuntimeService implements MissionRuntimeService {
                 "name": "7.1.0.redhat-77 (RHOAR)",
                 "booster": {
                   "metadata": {
-                    "runsOn": [
-                      "!starter",
-                      "!osio"
-                    ]
+                    "app": {
+                      "launcher": {
+
+                        "runsOn": [
+                          "!starter",
+                          "!osio"
+                        ]
+                      }
+                    }
                   }
                 }
               }
@@ -1104,10 +1421,15 @@ export class DemoMissionRuntimeService implements MissionRuntimeService {
                 "name": "2018.5.0 (Community)",
                 "booster": {
                   "metadata": {
-                    "runsOn": [
-                      "!starter",
-                      "!osio"
-                    ]
+                    "app": {
+                      "launcher": {
+
+                        "runsOn": [
+                          "!starter",
+                          "!osio"
+                        ]
+                      }
+                    }
                   }
                 }
               },
@@ -1116,10 +1438,15 @@ export class DemoMissionRuntimeService implements MissionRuntimeService {
                 "name": "7.1.0.redhat-77 (RHOAR)",
                 "booster": {
                   "metadata": {
-                    "runsOn": [
-                      "!starter",
-                      "!osio"
-                    ]
+                    "app": {
+                      "launcher": {
+
+                        "runsOn": [
+                          "!starter",
+                          "!osio"
+                        ]
+                      }
+                    }
                   }
                 }
               }
@@ -1133,10 +1460,15 @@ export class DemoMissionRuntimeService implements MissionRuntimeService {
                 "name": "2018.5.0 (Community)",
                 "booster": {
                   "metadata": {
-                    "runsOn": [
-                      "!starter",
-                      "!osio"
-                    ]
+                    "app": {
+                      "launcher": {
+
+                        "runsOn": [
+                          "!starter",
+                          "!osio"
+                        ]
+                      }
+                    }
                   }
                 }
               },
@@ -1145,10 +1477,15 @@ export class DemoMissionRuntimeService implements MissionRuntimeService {
                 "name": "7.1.0.redhat-77 (RHOAR)",
                 "booster": {
                   "metadata": {
-                    "runsOn": [
-                      "!starter",
-                      "!osio"
-                    ]
+                    "app": {
+                      "launcher": {
+
+                        "runsOn": [
+                          "!starter",
+                          "!osio"
+                        ]
+                      }
+                    }
                   }
                 }
               }
@@ -1162,7 +1499,12 @@ export class DemoMissionRuntimeService implements MissionRuntimeService {
                 "name": "2018.5.0 (Community)",
                 "booster": {
                   "metadata": {
-                    "runsOn": "!osio"
+                    "app": {
+                      "launcher": {
+
+                        "runsOn": "!osio"
+                      }
+                    }
                   }
                 }
               },
@@ -1171,9 +1513,14 @@ export class DemoMissionRuntimeService implements MissionRuntimeService {
                 "name": "7.1.0.redhat-77 (RHOAR)",
                 "booster": {
                   "metadata": {
-                    "runsOn": [
-                      "!osio"
-                    ]
+                    "app": {
+                      "launcher": {
+
+                        "runsOn": [
+                          "!osio"
+                        ]
+                      }
+                    }
                   }
                 }
               }
@@ -1187,9 +1534,14 @@ export class DemoMissionRuntimeService implements MissionRuntimeService {
                 "name": "2018.5.0 (Community)",
                 "booster": {
                   "metadata": {
-                    "runsOn": [
-                      "all"
-                    ]
+                    "app": {
+                      "launcher": {
+
+                        "runsOn": [
+                          "all"
+                        ]
+                      }
+                    }
                   }
                 }
               },
@@ -1198,9 +1550,14 @@ export class DemoMissionRuntimeService implements MissionRuntimeService {
                 "name": "7.1.0.redhat-77 (RHOAR)",
                 "booster": {
                   "metadata": {
-                    "runsOn": [
-                      "!osio"
-                    ]
+                    "app": {
+                      "launcher": {
+
+                        "runsOn": [
+                          "!osio"
+                        ]
+                      }
+                    }
                   }
                 }
               }
@@ -1214,9 +1571,14 @@ export class DemoMissionRuntimeService implements MissionRuntimeService {
                 "name": "2018.5.0 (Community)",
                 "booster": {
                   "metadata": {
-                    "runsOn": [
-                      "local"
-                    ]
+                    "app": {
+                      "launcher": {
+
+                        "runsOn": [
+                          "local"
+                        ]
+                      }
+                    }
                   }
                 }
               }
@@ -1230,9 +1592,14 @@ export class DemoMissionRuntimeService implements MissionRuntimeService {
                 "name": "2018.5.0 (Community)",
                 "booster": {
                   "metadata": {
-                    "runsOn": [
-                      "local"
-                    ]
+                    "app": {
+                      "launcher": {
+
+                        "runsOn": [
+                          "local"
+                        ]
+                      }
+                    }
                   }
                 }
               }
@@ -1246,9 +1613,14 @@ export class DemoMissionRuntimeService implements MissionRuntimeService {
                 "name": "2018.5.0 (Community)",
                 "booster": {
                   "metadata": {
-                    "runsOn": [
-                      "local"
-                    ]
+                    "app": {
+                      "launcher": {
+
+                        "runsOn": [
+                          "local"
+                        ]
+                      }
+                    }
                   }
                 }
               }
@@ -1262,9 +1634,14 @@ export class DemoMissionRuntimeService implements MissionRuntimeService {
                 "name": "2018.5.0 (Community)",
                 "booster": {
                   "metadata": {
-                    "runsOn": [
-                      "local"
-                    ]
+                    "app": {
+                      "launcher": {
+
+                        "runsOn": [
+                          "local"
+                        ]
+                      }
+                    }
                   }
                 }
               }
@@ -1278,9 +1655,14 @@ export class DemoMissionRuntimeService implements MissionRuntimeService {
                 "name": "2018.5.0 (Community)",
                 "booster": {
                   "metadata": {
-                    "runsOn": [
-                      "all"
-                    ]
+                    "app": {
+                      "launcher": {
+
+                        "runsOn": [
+                          "all"
+                        ]
+                      }
+                    }
                   }
                 }
               },
@@ -1289,9 +1671,14 @@ export class DemoMissionRuntimeService implements MissionRuntimeService {
                 "name": "7.1.0.redhat-77 (RHOAR)",
                 "booster": {
                   "metadata": {
-                    "runsOn": [
-                      "!osio"
-                    ]
+                    "app": {
+                      "launcher": {
+
+                        "runsOn": [
+                          "!osio"
+                        ]
+                      }
+                    }
                   }
                 }
               }
@@ -1305,7 +1692,12 @@ export class DemoMissionRuntimeService implements MissionRuntimeService {
                 "name": "2018.5.0 (Community)",
                 "booster": {
                   "metadata": {
-                    "runsOn": "none"
+                    "app": {
+                      "launcher": {
+
+                        "runsOn": "none"
+                      }
+                    }
                   }
                 }
               },
@@ -1314,7 +1706,12 @@ export class DemoMissionRuntimeService implements MissionRuntimeService {
                 "name": "7.1.0.redhat-77 (RHOAR)",
                 "booster": {
                   "metadata": {
-                    "runsOn": "none"
+                    "app": {
+                      "launcher": {
+
+                        "runsOn": "none"
+                      }
+                    }
                   }
                 }
               }

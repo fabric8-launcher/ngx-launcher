@@ -7,8 +7,12 @@ export class Runtime {
     id: string;
     versions: [{
       booster?: {
-        metadata: {
-          runsOn: string[];
+        metadata?: {
+          app?: {
+            launcher?: {
+              runsOn: string[];
+            }
+          }
         }
       },
       id: string;

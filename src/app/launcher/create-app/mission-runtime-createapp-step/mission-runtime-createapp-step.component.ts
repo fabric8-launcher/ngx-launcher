@@ -262,8 +262,9 @@ export class MissionRuntimeCreateappStepComponent extends LauncherStep implement
     if (!selectedMission) {
       return true;
     }
-    let version = selectedMission.versions.find(v => v.booster !== undefined && v.booster.metadata !== undefined);
-    return version? !this.checkRunsOnCluster(version.booster.metadata.runsOn, this.launcherComponent.summary.cluster.type) : false;
+    let version = selectedMission.versions.find(v => v.booster !== undefined && v.booster.metadata !== undefined
+      && v.booster.metadata.app !== undefined && v.booster.metadata.app.launcher !== undefined && v.booster.metadata.app.launcher.runsOn !== undefined);
+    return version? !this.checkRunsOnCluster(version.booster.metadata.app.launcher.runsOn, this.launcherComponent.summary.cluster.type) : false;
   }
 
   isMissionAvailableOnCluster(mission: Mission): boolean {
@@ -275,7 +276,8 @@ export class MissionRuntimeCreateappStepComponent extends LauncherStep implement
     let runtimeVersion = runtimesThatHaveThisMission.map(r => r.missions.find(m => m.id === mission.id));
 
     let versions = [].concat.apply([], runtimeVersion.map(x => x.versions));
-    let versionsThatDontRunSomeClusters = versions.filter((v: any) => v.booster !== undefined && v.booster.metadata !== undefined);
+    let versionsThatDontRunSomeClusters = versions.filter((v: any) => v.booster !== undefined && v.booster.metadata !== undefined
+      && v.booster.metadata.app !== undefined && v.booster.metadata.app.launcher !== undefined && v.booster.metadata.app.launcher.runsOn !== undefined);
 
     // when there are some verions that don't have a booster field it means they run on all clusters
     if (versions.length > versionsThatDontRunSomeClusters.length) {
@@ -283,7 +285,7 @@ export class MissionRuntimeCreateappStepComponent extends LauncherStep implement
     }
 
     let runs = versionsThatDontRunSomeClusters.map((v:any) =>
-        this.checkRunsOnCluster(v.booster.metadata.runsOn, this.launcherComponent.summary.cluster.type));
+        this.checkRunsOnCluster(v.booster.metadata.app.launcher.runsOn, this.launcherComponent.summary.cluster.type));
 
     return runs.every((x:boolean) => x);
   }
