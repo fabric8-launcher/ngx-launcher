@@ -45,8 +45,8 @@
         </div>
       </div>
     </div>
-    <f8launcher-link-accounts-createapp-step [@toggleAnimation]="'os' === launcherComponent?.summary?.targetEnvironment ? 'active' : 'inactive'"
-      (select)="selectCluster($event)">
+    <f8launcher-link-accounts-createapp-step
+      (select)="selectCluster($event)" *ngIf="launcherComponent?.summary?.targetEnvironment === 'os'">
     </f8launcher-link-accounts-createapp-step>
   </div>
   <div>
