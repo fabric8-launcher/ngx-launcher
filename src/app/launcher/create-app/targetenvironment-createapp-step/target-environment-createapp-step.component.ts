@@ -103,8 +103,8 @@ export class TargetEnvironmentCreateappStepComponent extends LauncherStep implem
   }
 
   updateTargetEnvSelection(target: TargetEnvironment): void {
-    if (this.missionRuntimeService.setCluster) {
-      this.missionRuntimeService.setCluster(target.id === 'os' ? this.launcherComponent.summary.cluster : null);
+    if (target.id === 'zip') {
+      this.launcherComponent.summary.cluster = null;
     }
     this.initCompleted();
   }
