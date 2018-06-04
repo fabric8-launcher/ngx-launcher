@@ -27,6 +27,7 @@ export { TokenService } from './src/app/launcher/service/token.service';
 export { AuthHelperService } from './src/app/launcher/service/auth-provider.service';
 export { HelperService } from './src/app/launcher/service/helper.service';
 export { TokenProvider } from './src/app/service/token-provider';
+export { Config } from './src/app/service/config.component';
 
 // Imported from Dependency Editor
 export { URLProvider, DependencyEditorTokenProvider } from './src/app/launcher/launcher.module';
