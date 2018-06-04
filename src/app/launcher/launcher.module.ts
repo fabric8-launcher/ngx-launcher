@@ -52,6 +52,8 @@ import { ProjectProgressService } from './service/project-progress.service';
 import { LauncherComponent } from './launcher.component';
 import { from } from 'rxjs/observable/from';
 
+import { Broadcaster } from 'ngx-base';
+
 // Provide window object so as to not break SSR if using universal
 export const providers: Provider[] = [
   { provide: WindowRef, useValue: window }
@@ -93,7 +95,8 @@ export const providers: Provider[] = [
     LauncherComponent
   ],
   providers: [
-    BsDropdownConfig
+    BsDropdownConfig,
+    Broadcaster
   ]
 })
 export class LauncherModule {
