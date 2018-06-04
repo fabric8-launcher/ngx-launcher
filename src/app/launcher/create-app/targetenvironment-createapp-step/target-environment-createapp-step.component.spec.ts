@@ -16,6 +16,7 @@ import { TokenService } from '../../service/token.service';
 import { ModalModule } from 'ngx-modal';
 import { LinkAccountsCreateappStepComponent } from '../link-accounts-createapp-step/link-accounts-createapp-step.component';
 import { MissionRuntimeService } from '../../service/mission-runtime.service';
+import { Broadcaster } from 'ngx-base';
 
 let mockTargetEnvironmentService = {
   getTargetEnvironments(): Observable<TargetEnvironment[]> {
@@ -114,7 +115,8 @@ describe('TargetEnvironmentStepComponent', () => {
         {
           provide: MissionRuntimeService, useValue: mockMissionRuntimeService
         },
-        { provide: TokenService, useValue: mockTokenService }
+        { provide: TokenService, useValue: mockTokenService },
+        Broadcaster
       ]
     }).compileComponents();
   }));
