@@ -53,7 +53,6 @@ import {
   TargetEnvironmentService,
   TokenService
 } from '../app/launcher/launcher.module';
-import { Broadcaster } from 'ngx-base';
 
 @NgModule({
   imports: [
@@ -75,7 +74,6 @@ import { Broadcaster } from 'ngx-base';
   ],
   providers: [
     HelperService,
-    Broadcaster,
     { provide: DependencyCheckService, useClass: DemoDependencyCheckService},
     { provide: DependencyEditorService, useClass: DemoDependencyEditorService},
     { provide: GitProviderService, useClass: DemoGitProviderService},
