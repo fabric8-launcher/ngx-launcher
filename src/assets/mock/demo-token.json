@@ -1,42 +1,44 @@
 [
   {
     "id": "starter-us-east-1",
+    "name": "Starter: US East (Virginia)",
     "type": "starter",
     "connected": true
   },
   {
     "id": "starter-us-west-1",
+    "name": "Starter: US West (California)",
     "type": "starter",
     "connected": false
   },
   {
     "id": "starter-us-west-2",
+    "name": "Starter: US West (Oregon)",
     "type": "starter",
     "connected": false
   },
   {
     "id": "starter-ca-central-1",
+    "name": "Starter: Canada (Central)",
     "type": "starter",
     "connected": false
   },
   {
     "id": "pro-us-east-1",
+    "name": "Pro: US East (N. Virginia)",
     "type": "pro",
     "connected": false
   },
   {
     "id": "pro-eu-west-1",
+    "name": "Pro: EU West (Ireland)",
     "type": "pro",
     "connected": false
   },
   {
     "id": "pro-ap-southeast-2",
+    "name": "Pro: Asia Pacific (Sydney)",
     "type": "pro",
-    "connected": false
-  },
-  {
-    "id": "online-stg",
-    "type": "internal",
     "connected": false
   }
 ]
