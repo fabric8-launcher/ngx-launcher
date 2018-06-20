@@ -19,7 +19,12 @@ export function broadcast(event: string, properties: any): MethodDecorator {
         const originalMethod = descriptor.value;
 
         descriptor.value = function (...args: any[]) {
-            const broadcast: Broadcaster = StaticInjector.getInjector().get(Broadcaster);
+            const injectorInstance = StaticInjector.getInjector();
+            if (!injectorInstance) {
+                return originalMethod.apply(this, args);
+            }
+
+            const broadcast: Broadcaster = injectorInstance.get(Broadcaster);
             if (!broadcast) {
                 return originalMethod.apply(this, args);
             }
