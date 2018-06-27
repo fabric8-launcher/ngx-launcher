@@ -114,18 +114,15 @@
                     <label class="col-xs-4 control-label">Application Name</label>
                     <div class="col-xs-8 f8launcher-project-summary-data-field f8launcher-application-text-field">
                       <input class="f8launcher-project-summary-data-field_input f8launcher-application-text-field_input"
-                               name="applicationTitle" placeholder="New Application" type="text"
-                               [(ngModel)]="dependencyCheck.projectName"
-                               (keyup.enter)="$event.target.blur();"
-                               (keyup)="validateProjectName()">
+                               name="applicationTitle" placeholder="New Application" type="text" #projectName="ngModel"
+                               [(ngModel)]="dependencyCheck.projectName" lowercase validateProjectName
+                               (keyup.enter)="$event.target.blur();">
                     </div>
-                    <div class="col-xs-8 col-xs-offset-4" [ngClass]="{'has-error': launcherComponent.isProjectNameValid === false}">
-                      <span class="help-block" *ngIf="launcherComponent.isProjectNameValid === false">
+                    <div class="col-xs-8 col-xs-offset-4" *ngIf="projectName.invalid && (projectName.dirty || projectName.touched)">
+                      <span *ngIf="projectName.errors.pattern" class="help-block f8launcher-vertical-bar_application-name-help-text">
                         Please enter a valid Application Name.
                       </span>
-                    </div>
-                    <div class="col-xs-8 col-xs-offset-4" [ngClass]="{'has-error': launcherComponent.isProjectNameAvailable === false}">
-                      <span class="help-block" *ngIf="launcherComponent.isProjectNameAvailable === false">
+                      <span *ngIf="projectName.errors.duplicate" class="help-block f8launcher-vertical-bar_application-name-help-text">
                         Application name is already used. Please enter a new one.
                       </span>
                     </div>
@@ -234,7 +231,7 @@
             </div>
             <div class="card-pf-body card-column">
               <div class="card-column-70">
-                <form class="form-horizontal">
+                <form class="form-horizontal" #form="ngForm">
                   <div class="form-group f8launcher-project-summary-data-form-group">
                     <label class="col-xs-4 control-label">Username</label>
                     <div class="f8launcher-project-summary-data-field-account">

@@ -4,7 +4,8 @@ import {
   Input,
   OnDestroy,
   OnInit,
-  ViewEncapsulation
+  ViewEncapsulation,
+  ViewChild
 } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -19,6 +20,7 @@ import { LauncherStep } from '../../launcher-step';
 import { DependencyCheck } from '../../model/dependency-check.model';
 import { Summary } from '../../model/summary.model';
 import { broadcast } from '../../shared/telemetry.decorator';
+import { NgForm } from '@angular/forms';
 
 @Component({
   encapsulation: ViewEncapsulation.None,
@@ -27,6 +29,7 @@ import { broadcast } from '../../shared/telemetry.decorator';
   styleUrls: ['./project-summary-importapp-step.component.less']
 })
 export class ProjectSummaryImportappStepComponent extends LauncherStep implements OnDestroy, OnInit {
+  @ViewChild('form') form: NgForm;
   @Input() id: string;
 
   public setUpErrResponse: Array<any> = [];
@@ -68,23 +71,16 @@ export class ProjectSummaryImportappStepComponent extends LauncherStep implement
    * @returns {boolean} True if step is completed
    */
   get stepCompleted(): boolean {
-    let completed = true;
-    if ((this.launcherComponent.isProjectNameValid !== undefined && this.launcherComponent.isProjectNameValid === false)
-      || (this.launcherComponent.isGroupIdValid !== undefined && this.launcherComponent.isGroupIdValid === false)
-      || (this.launcherComponent.isArtifactIdValid !== undefined && this.launcherComponent.isArtifactIdValid === false)
-      || (this.launcherComponent.isProjectVersionValid !== undefined &&
-        this.launcherComponent.isProjectVersionValid === false)
-      || (this.launcherComponent.isProjectNameAvailable !== undefined &&
-        this.launcherComponent.isProjectNameAvailable === false)) {
+    if (this.form.invalid) {
       return false;
     }
     for (let i = 0; i < this.launcherComponent.steps.length - 1; i++) {
       let step = this.launcherComponent.steps[i];
       if (!(step.optional === true || step.completed === true) && step.hidden !== true) {
-        completed = false;
+        return false;
       }
     }
-    return completed;
+    return true;
   }
 
   // Steps
@@ -135,13 +131,6 @@ export class ProjectSummaryImportappStepComponent extends LauncherStep implement
           console.log('error in setup: Import', error);
         })
     );
-  }
-
-  /**
-   * Validate the application name
-   */
-  validateProjectName(): void {
-    this.launcherComponent.validateProjectName();
   }
 
   /**

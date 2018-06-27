@@ -58,13 +58,11 @@ export class LauncherComponent implements AfterViewInit, OnInit {
   public isGroupIdValid: boolean;
   public isProjectVersionValid: boolean;
   public applicationNames: string[];
-  public isProjectNameAvailable: boolean;
   private _selectedSection: string;
   private _showCancelOverlay: boolean = false;
   private _steps: LauncherStep[] = [];
   private _summary: Summary;
   private summaryCompleted: boolean = false;
-  private _isProjectNameValid: boolean;
   private spaceId: string;
 
   constructor(private route: ActivatedRoute,
@@ -195,24 +193,6 @@ export class LauncherComponent implements AfterViewInit, OnInit {
   }
 
   /**
-   * Checks if the project name is valid
-   *
-   * @returns boolean
-   */
-  get isProjectNameValid(): boolean {
-    return this._isProjectNameValid;
-  }
-
-  /**
-   * Set the boolean value for isProjectNameValid
-   *
-   * @param  {boolean} isValid
-   */
-  set isProjectNameValid(isValid: boolean) {
-    this._isProjectNameValid = isValid;
-  }
-
-  /**
    * Set user summary
    *
    * @param {Summary} val The current user summary
@@ -296,33 +276,6 @@ export class LauncherComponent implements AfterViewInit, OnInit {
     setTimeout(() => {
       this.stepIndicator.navToNextStep();
     }, 10);
-  }
-
-  /**
-   * Validate the project name
-   *
-   * @returns void
-   */
-  validateProjectName(): void {
-    this.isProjectNameValid =
-      this.dependencyCheckService.validateProjectName(this.summary.dependencyCheck.projectName);
-    if (this.flow === 'osio') {
-      if (this.summary.dependencyCheck.projectName) {
-        this.summary.dependencyCheck.projectName =
-          this.summary.dependencyCheck.projectName.toLowerCase();
-      }
-      this.checkIfProjectNameAvailable();
-    }
-  }
-
-  /**
-   * Check if the application name is already used
-   *
-   * @returns void
-   */
-  checkIfProjectNameAvailable(): void {
-    this.isProjectNameAvailable =
-      this.applicationNames.indexOf(this.summary.dependencyCheck.projectName) === -1 ? true : false;
   }
 
   /**

@@ -75,18 +75,9 @@ export class StepIndicatorComponent implements OnInit {
     }, 10);
   }
 
-  /**
-   * Validate the application name
-   */
-  validateProjectName(): void {
-    this.launcherComponent.validateProjectName();
-  }
 
   @broadcast('stepIndicatorProjectInputClicked', {})
   broadcastEvent(): void { }
-
-  // Private
-
   // Restore mission & runtime summary
   private restoreSummary(): void {
     let selection: Selection = this.launcherComponent.selectionParams;

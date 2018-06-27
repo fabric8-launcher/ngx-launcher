@@ -1,19 +1,15 @@
 <div class="f8launcher-vertical-bar_application-name f8launcher-application-text-field">
-  <input class="f8launcher-application-text-field_input"
-         name="applicationTitle" placeholder="New Application" type="text"
+  <input class="f8launcher-application-text-field_input" #projectName="ngModel"
+         name="applicationTitle" placeholder="New Application" type="text" lowercase validateProjectName
          [(ngModel)]="launcherComponent.summary.dependencyCheck.projectName"
-         [value]="launcherComponent.summary.dependencyCheck.projectName | lowercase"
          (keyup.enter)="$event.target.blur();"
-         (keyup)="validateProjectName()"
          (click)="broadcastEvent()">
 </div>
-<div [ngClass]="{'has-error': launcherComponent.isProjectNameValid === false}" *ngIf="launcherComponent.isProjectNameValid === false">
-  <span class="help-block f8launcher-vertical-bar_application-name-help-text">
+<div *ngIf="projectName.invalid && (projectName.dirty || projectName.touched)" class="has-error">
+  <span *ngIf="projectName.errors.pattern" class="help-block f8launcher-vertical-bar_application-name-help-text">
     Please enter a valid Application Name.
   </span>
-</div>
-<div [ngClass]="{'has-error': launcherComponent.isProjectNameAvailable === false}" *ngIf="launcherComponent.isProjectNameAvailable === false">
-  <span class="help-block f8launcher-vertical-bar_application-name-help-text">
+  <span *ngIf="projectName.errors.duplicate" class="help-block f8launcher-vertical-bar_application-name-help-text">
     Application name is already used. Please enter a new one.
   </span>
 </div>
