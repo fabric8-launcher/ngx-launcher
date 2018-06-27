@@ -46,7 +46,7 @@
                           (click)="connectAccount($event)">Log In &amp; Authorize Account</button>
               </div>
             </div>
-            <form>
+            <form #form="ngForm">
               <div class="form-group">
                 <label for="ghOrg" class="col-sm-2 control-label">Location</label>
                 <div class="col-sm-10">
@@ -65,11 +65,10 @@
                 <label for="ghRepo" class="col-sm-2 control-label">Repository</label>
                 <div class="col-sm-10"
                     [class.has-error]="ghRepo.invalid && (ghRepo.dirty || ghRepo.touched)">
-                  <input id="ghRepo" class="form-control" name="ghRepo" type="text" #ghRepo="ngModel" validateRepository
+                  <input id="ghRepo" class="form-control" name="ghRepo" type="text" #ghRepo="ngModel" lowercase validateRepository required
                         placeholder="Enter a unique name for your repository"
                         [disabled]="!launcherComponent.summary.gitHubDetails.organization"
-                        [(ngModel)]="launcherComponent.summary.gitHubDetails.repository"
-                        [value]="launcherComponent.summary.gitHubDetails.repository | lowercase">
+                        [(ngModel)]="launcherComponent.summary.gitHubDetails.repository">
                   <span class="help-block"
                     *ngIf="ghRepo.invalid && (ghRepo.dirty || ghRepo.touched)">
                     <span *ngIf="ghRepo.errors.duplicate">

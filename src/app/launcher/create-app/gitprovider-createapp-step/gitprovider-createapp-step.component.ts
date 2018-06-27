@@ -8,6 +8,7 @@ import {
   ViewChild,
   ViewEncapsulation
 } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Subscription } from 'rxjs/Subscription';
 
 import { DependencyCheckService } from '../../service/dependency-check.service';
@@ -24,6 +25,7 @@ import { broadcast } from '../../shared/telemetry.decorator';
   styleUrls: ['./gitprovider-createapp-step.component.less']
 })
 export class GitproviderCreateappStepComponent extends LauncherStep implements AfterViewInit, OnDestroy, OnInit {
+  @ViewChild('form') form: NgForm;
   @ViewChild('versionSelect') versionSelect: ElementRef;
 
   private subscriptions: Subscription[] = [];
@@ -75,12 +77,7 @@ export class GitproviderCreateappStepComponent extends LauncherStep implements A
    * @returns {boolean} True if step is completed
    */
   get stepCompleted(): boolean {
-    return (this.launcherComponent.summary.gitHubDetails.authenticated === true
-      && this.launcherComponent.summary.gitHubDetails.login !== undefined
-      && this.launcherComponent.summary.gitHubDetails.organization !== undefined
-      && this.launcherComponent.summary.gitHubDetails.repository !== undefined
-      && this.launcherComponent.summary.gitHubDetails.repository.length > 0
-      && this.launcherComponent.summary.gitHubDetails.repositoryAvailable === true);
+    return this.form.valid;
   }
 
   // Steps
