@@ -20,36 +20,4 @@ export abstract class DependencyCheckService {
    * @returns Observable
    */
   abstract getApplicationsInASpace(): Observable<any[]>;
-
-  /**
-   * Validates the project name with a regex and returns a boolean value
-   *
-   * @param  {string} projectName
-   * @returns boolean
-   */
-  abstract validateProjectName(projectName: string): boolean;
-
-  /**
-   * Validates the artifact id with a regex and returns a boolean value
-   *
-   * @param  {string} artifactId
-   * @returns boolean
-   */
-  abstract validateArtifactId(artifactId: string): boolean;
-
-  /**
-   * Validates the group id with a regex and returns a boolean value
-   *
-   * @param  {string} groupId
-   * @returns boolean
-   */
-  abstract validateGroupId(groupId: string): boolean;
-
-  /**
-   * Validates the project version with a regex and returns a boolean value
-   *
-   * @param  {string} projectVersion
-   * @returns boolean
-   */
-  abstract validateProjectVersion(projectVersion: string): boolean;
 }

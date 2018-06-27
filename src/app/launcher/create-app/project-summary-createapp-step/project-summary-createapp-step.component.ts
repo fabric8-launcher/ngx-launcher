@@ -134,27 +134,6 @@ export class ProjectSummaryCreateappStepComponent extends LauncherStep implement
     );
   }
 
-  /**
-   * Validate the project version
-   */
-  validateProjectVersion(): void {
-    this.launcherComponent.validateProjectVersion();
-  }
-
-  /**
-   * Validate the artifact id
-   */
-  validateArtifactId(): void {
-    this.launcherComponent.validateArtifactId();
-  }
-
-  /**
-   * Validate the group id
-   */
-  validateGroupId(): void {
-    this.launcherComponent.validateGroupId();
-  }
-
   get dependencyCheck(): DependencyCheck {
     return this.launcherComponent.summary.dependencyCheck;
   }

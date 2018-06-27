@@ -132,13 +132,12 @@
                     <label class="col-xs-4 control-label">Maven Artifact</label>
                     <div class="col-xs-8 f8launcher-project-summary-data-field f8launcher-application-text-field">
                       <input class="f8launcher-project-summary-data-field_input f8launcher-application-text-field_input"
-                               name="artifact" placeholder="Maven Artifact" type="text"
-                               [(ngModel)]="dependencyCheck.mavenArtifact"
-                               (keyup.enter)="$event.target.blur();"
-                               (keyup)="validateArtifactId()">
+                               name="artifact" placeholder="Maven Artifact" type="text" pattern="[a-z][a-z0-9-]{3,63}"
+                               [(ngModel)]="dependencyCheck.mavenArtifact" #mavenArtifact="ngModel"
+                               (keyup.enter)="$event.target.blur();">
                     </div>
-                    <div class="col-xs-8 col-xs-offset-4" [ngClass]="{'has-error': launcherComponent.isArtifactIdValid === false}">
-                      <span class="help-block" *ngIf="launcherComponent.isArtifactIdValid === false">
+                    <div *ngIf="mavenArtifact.invalid && (mavenArtifact.dirty || mavenArtifact.touched)" class="col-xs-8 col-xs-offset-4 has-error">
+                      <span class="help-block">
                         Please enter a valid Maven Artifact.
                       </span>
                     </div>
@@ -147,13 +146,12 @@
                     <label class="col-xs-4 control-label">Version</label>
                     <div class="col-xs-8 f8launcher-project-summary-data-field f8launcher-application-text-field">
                       <input class="f8launcher-project-summary-data-field_input f8launcher-application-text-field_input"
-                               name="version" placeholder="Version Number" type="text"
-                               [(ngModel)]="dependencyCheck.projectVersion"
-                               (keyup.enter)="$event.target.blur();"
-                               (keyup)="validateProjectVersion()">
+                               name="version" placeholder="Version Number" type="text" pattern="[a-z0-9-.]{3,63}"
+                               [(ngModel)]="dependencyCheck.projectVersion" #projectVersion="ngModel"
+                               (keyup.enter)="$event.target.blur();">
                     </div>
-                    <div class="col-xs-8 col-xs-offset-4" [ngClass]="{'has-error': launcherComponent.isProjectVersionValid === false}">
-                      <span class="help-block" *ngIf="launcherComponent.isProjectVersionValid === false">
+                    <div *ngIf="projectVersion.invalid && (projectVersion.dirty || projectVersion.touched)" class="col-xs-8 col-xs-offset-4 has-error">
+                      <span class="help-block">
                         Please enter a valid Version.
                       </span>
                     </div>
@@ -162,13 +160,12 @@
                     <label class="col-xs-4 control-label">Group ID</label>
                     <div class="col-xs-8 f8launcher-project-summary-data-field f8launcher-application-text-field">
                       <input class="f8launcher-project-summary-data-field_input f8launcher-application-text-field_input"
-                               name="groupId" placeholder="Group ID" type="text"
-                               [(ngModel)]="dependencyCheck.groupId"
-                               (keyup.enter)="$event.target.blur();"
-                               (keyup)="validateGroupId()">
+                               name="groupId" placeholder="Group ID" type="text" pattern="[a-z][a-z0-9.]{3,63}"
+                               [(ngModel)]="dependencyCheck.groupId" #groupId="ngModel"
+                               (keyup.enter)="$event.target.blur();">
                     </div>
-                    <div class="col-xs-8 col-xs-offset-4" [ngClass]="{'has-error': launcherComponent.isGroupIdValid === false}">
-                      <span class="help-block" *ngIf="launcherComponent.isGroupIdValid === false">
+                    <div *ngIf="groupId.invalid && (groupId.dirty || groupId.touched)" class="col-xs-8 col-xs-offset-4 has-error">
+                      <span class="help-block">
                         Please enter a valid Group ID.
                       </span>
                     </div>
@@ -203,10 +200,8 @@
       </div>
       <div class="col-xs-12 col-md-6">
         <div class="card-pf card-pf--small">
-          <div *ngIf="summary?.gitHubDetails?.authenticated !== true
-                      || summary?.gitHubDetails?.organization === undefined
-                      || summary?.gitHubDetails?.repository === undefined
-                      || summary?.gitHubDetails?.repositoryAvailable !== true;
+          <div *ngIf="summary?.gitHubDetails?.organization === undefined
+                      || summary?.gitHubDetails?.repository === undefined;
                       then showNoGitHubTemplate else showGitHubTemplate"></div>
           <ng-template #showNoGitHubTemplate>
             <div class="card-pf-heading">

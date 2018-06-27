@@ -15,7 +15,6 @@ import { Summary } from './model/summary.model';
 import { StepIndicatorComponent } from './step-indicator/step-indicator.component';
 import { LauncherStep } from './launcher-step';
 import { ProjectSummaryService } from './service/project-summary.service';
-import { DependencyCheckService } from './service/dependency-check.service';
 import { broadcast } from './shared/telemetry.decorator';
 
 @Component({
@@ -54,10 +53,6 @@ export class LauncherComponent implements AfterViewInit, OnInit {
   @ViewChild('stepIndicator') stepIndicator: StepIndicatorComponent;
 
   public statusLink: string;
-  public isArtifactIdValid: boolean;
-  public isGroupIdValid: boolean;
-  public isProjectVersionValid: boolean;
-  public applicationNames: string[];
   private _selectedSection: string;
   private _showCancelOverlay: boolean = false;
   private _steps: LauncherStep[] = [];
@@ -67,7 +62,6 @@ export class LauncherComponent implements AfterViewInit, OnInit {
 
   constructor(private route: ActivatedRoute,
     private router: Router,
-    private dependencyCheckService: DependencyCheckService,
     private projectSummaryService: ProjectSummaryService) {
   }
 
@@ -88,16 +82,6 @@ export class LauncherComponent implements AfterViewInit, OnInit {
       },
       gitHubDetails: {}
     } as Summary;
-
-    this.dependencyCheckService.getApplicationsInASpace()
-      .subscribe((applications: any[]) => {
-        const apps: string[] = applications.map((app: any) => {
-          const appNameInLowerCase = app.attributes.name ? (<string>app.attributes.name).toLowerCase() : '';
-          return appNameInLowerCase;
-        });
-        this.applicationNames = apps;
-        console.log('applications in step indicator', this.applicationNames);
-      });
   }
 
   onInViewportChange($event: any, id: string) {
@@ -278,32 +262,7 @@ export class LauncherComponent implements AfterViewInit, OnInit {
     }, 10);
   }
 
-  /**
-   * Validate the project version
-   */
-  validateProjectVersion(): void {
-    this.isProjectVersionValid =
-      this.dependencyCheckService.validateProjectVersion(this.summary.dependencyCheck.projectVersion);
-  }
-
-  /**
-   * Validate the artifact id
-   */
-  validateArtifactId(): void {
-    this.isArtifactIdValid =
-      this.dependencyCheckService.validateArtifactId(this.summary.dependencyCheck.mavenArtifact);
-  }
-
-  /**
-   * Validate the group id
-   */
-  validateGroupId(): void {
-    this.isGroupIdValid =
-      this.dependencyCheckService.validateGroupId(this.summary.dependencyCheck.groupId);
-  }
-
   // Private
-
   private get firstNonHiddenStep(): LauncherStep {
     return this._steps.find(step => !step.hidden);
   }
