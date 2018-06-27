@@ -63,7 +63,7 @@ export class StepIndicatorComponent implements OnInit {
    *
    * @param {string} id The step ID
    */
-  @broadcast('stepIndicatorClicked', {})
+  @broadcast('stepIndicatorClicked', {step: '[0]'})
   navToStep(id: string) {
     let element = document.getElementById(id);
     if (element !== null) {
@@ -81,6 +81,9 @@ export class StepIndicatorComponent implements OnInit {
   validateProjectName(): void {
     this.launcherComponent.validateProjectName();
   }
+
+  @broadcast('stepIndicatorProjectInputClicked', {})
+  broadcastEvent(): void { }
 
   // Private
 

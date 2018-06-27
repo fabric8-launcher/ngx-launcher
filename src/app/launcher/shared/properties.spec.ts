@@ -40,4 +40,10 @@ describe('should fatten object and fill properties', () => {
       .toEqual({ 'never misses': 'clint barton' });
   });
 
+  it('should work for arguments', () => {
+    this.propertiesGetter = new PropertiesGetter({}, ['some', 'args']);
+
+    expect(this.propertiesGetter.mapKeys({ 'an argument': '[0]' })).toEqual({ 'an argument': 'some' });
+  });
+
 });

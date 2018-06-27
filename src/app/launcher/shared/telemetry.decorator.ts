@@ -26,7 +26,7 @@ export function broadcast(event: string, properties: any): MethodDecorator {
             }
 
             const broadcast: Broadcaster = injectorInstance.get(Broadcaster);
-            const values = new PropertiesGetter(this).mapKeys(_.cloneDeep(properties));
+            const values = new PropertiesGetter(this, args).mapKeys(_.cloneDeep(properties));
 
             broadcast.broadcast(event, values);
             return originalMethod.apply(this, args);
