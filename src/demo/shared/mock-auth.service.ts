@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 @Injectable()
 export class MockAuthenticationService {
     getToken(): string | Promise<string> {
-        return process.env['OSIO_AUTH_TOKEN'] || '';
+        return '';
     }
 
     isPromise(token: string| Promise<string>): token is Promise<string> {
