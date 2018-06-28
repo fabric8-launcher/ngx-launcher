@@ -39,14 +39,9 @@ let mockGitProviderService = {
   },
   getGitHubDetails(): Observable<GitHubDetails> {
     let gitHubDetails = Observable.of( <GitHubDetails>{
-      authenticated: true,
       avatar: 'https://avatars3.githubusercontent.com/u/17882357?v=4',
       login: 'testuser',
-      organizations: ['fabric-ui'],
-      htmlUrl: 'https://github.com/testuser',
-      url: 'https://api.github.com/users/testuser',
-      description: [],
-      visibility: 'false'
+      organizations: ['fabric-ui']
     });
     return gitHubDetails;
   },

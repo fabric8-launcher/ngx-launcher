@@ -275,7 +275,7 @@
                   <label class="col-xs-4 control-label">Version</label>
                   <div class="col-xs-8 f8launcher-project-summary-data-field f8launcher-application-text-field">
                     <input class="f8launcher-project-summary-data-field_input f8launcher-application-text-field_input"
-                           name="version" placeholder="Version Number" type="text" pattern="[a-z0-9-.]{3,63}"
+                           name="version" placeholder="Version Number" type="text" pattern="[a-zA-Z0-9-.]{3,63}"
                            [(ngModel)]="dependencyCheck.projectVersion" #projectVersion="ngModel"
                            (keyup.enter)="$event.target.blur();">
                   </div>

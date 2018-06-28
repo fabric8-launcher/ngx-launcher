@@ -8,6 +8,7 @@ import {
   ViewChild,
   ViewEncapsulation
 } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Subscription } from 'rxjs/Subscription';
 
 import { DependencyCheckService } from '../../service/dependency-check.service';
@@ -24,6 +25,7 @@ import { broadcast } from '../../shared/telemetry.decorator';
   styleUrls: ['./gitprovider-importapp-step.component.less']
 })
 export class GitproviderImportappStepComponent extends LauncherStep implements AfterViewInit, OnDestroy, OnInit {
+  @ViewChild('form') form: NgForm;
   @ViewChild('versionSelect') versionSelect: ElementRef;
 
   private subscriptions: Subscription[] = [];
@@ -36,7 +38,7 @@ export class GitproviderImportappStepComponent extends LauncherStep implements A
   }
 
   ngAfterViewInit() {
-    if (this.launcherComponent.summary.gitHubDetails.authenticated === true) {
+    if (this.launcherComponent.summary.gitHubDetails.login) {
       setTimeout(() => {
         this.versionSelect.nativeElement.focus();
       }, 10);
@@ -67,34 +69,12 @@ export class GitproviderImportappStepComponent extends LauncherStep implements A
   // Accessors
 
   /**
-   * Returns repo name message for when repo doesn't exists
-   *
-   * @returns {string}
-   */
-  get repoNameStatusMessage(): string {
-    let repo = '';
-    if (this.launcherComponent && this.launcherComponent.summary &&
-      this.launcherComponent.summary.gitHubDetails) {
-      repo = this.launcherComponent.summary.gitHubDetails.repository;
-      return '\'' + repo + '\' does not exist as ' + this.launcherComponent.summary.gitHubDetails.organization
-      + '/' + repo + '.';
-    } else {
-      return '';
-    }
-  }
-
-  /**
    * Returns indicator that step is completed
    *
    * @returns {boolean} True if step is completed
    */
   get stepCompleted(): boolean {
-    return (this.launcherComponent.summary.gitHubDetails.authenticated === true
-      && this.launcherComponent.summary.gitHubDetails.login !== undefined
-      && this.launcherComponent.summary.gitHubDetails.organization !== undefined
-      && this.launcherComponent.summary.gitHubDetails.repository !== undefined
-      && this.launcherComponent.summary.gitHubDetails.repository.length > 0
-      && this.launcherComponent.summary.gitHubDetails.repositoryAvailable === true);
+    return this.form.valid;
   }
 
   // Steps
@@ -119,25 +99,8 @@ export class GitproviderImportappStepComponent extends LauncherStep implements A
    * @param {MouseEvent} $event
    */
   connectAccount($event: MouseEvent): void {
-    let url = window.location.origin + window.location.pathname +
-      this.getParams(this.launcherComponent.currentSelection);
+    let url = window.location.href + this.getParams(this.launcherComponent.currentSelection);
     this.gitProviderService.connectGitHubAccount(url);
-  }
-
-  /**
-   * Update selection
-   */
-  updateGitHubSelection(): void {
-    let location: string;
-    let repoName: string;
-    if (this.launcherComponent && this.launcherComponent.summary &&
-      this.launcherComponent.summary.gitHubDetails && this.launcherComponent.summary.gitHubDetails.repository) {
-      location = this.launcherComponent.summary.gitHubDetails.organization;
-      repoName = this.launcherComponent.summary.gitHubDetails.repository;
-      this.launcherComponent.summary.gitHubDetails.repositoryAvailable = true;
-      this.launcherComponent.summary.gitHubDetails.htmlUrl = 'https://github.com/' + location + '/' + repoName;
-    }
-    this.initCompleted();
   }
 
   /**
@@ -161,20 +124,6 @@ export class GitproviderImportappStepComponent extends LauncherStep implements A
         this.launcherComponent.summary.gitHubDetails.repositoryList = val;
       }
     });
-    this.initCompleted();
-  }
-
-  /**
-   * Ensure repo name is available for the selected organization
-   */
-  validateRepo(): void {
-    let repoName = this.launcherComponent.summary.gitHubDetails.repository;
-    let repoList = this.launcherComponent.summary.gitHubDetails.repositoryList;
-    if (repoList.indexOf(repoName) !== -1) {
-      this.launcherComponent.summary.gitHubDetails.repositoryAvailable = true;
-    } else {
-      this.launcherComponent.summary.gitHubDetails.repositoryAvailable = false;
-    }
     this.initCompleted();
   }
 

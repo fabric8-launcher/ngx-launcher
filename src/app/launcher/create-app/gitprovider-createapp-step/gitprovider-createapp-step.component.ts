@@ -29,8 +29,6 @@ export class GitproviderCreateappStepComponent extends LauncherStep implements A
   @ViewChild('versionSelect') versionSelect: ElementRef;
 
   private subscriptions: Subscription[] = [];
-  private gitHubReposSubscription: Subscription;
-  private isGitHubRepoNameDup: boolean = false;
 
   constructor(@Host() public launcherComponent: LauncherComponent,
               private dependencyCheckService: DependencyCheckService,
@@ -39,7 +37,7 @@ export class GitproviderCreateappStepComponent extends LauncherStep implements A
   }
 
   ngAfterViewInit() {
-    if (this.launcherComponent.summary.gitHubDetails.authenticated === true) {
+    if (this.launcherComponent.summary.gitHubDetails.login) {
       setTimeout(() => {
         if (this.versionSelect) {
           this.versionSelect.nativeElement.focus();
@@ -64,9 +62,6 @@ export class GitproviderCreateappStepComponent extends LauncherStep implements A
     this.subscriptions.forEach((sub) => {
       sub.unsubscribe();
     });
-    if (this.gitHubReposSubscription !== undefined) {
-      this.gitHubReposSubscription.unsubscribe();
-    }
   }
 
   // Accessors
@@ -111,30 +106,14 @@ export class GitproviderCreateappStepComponent extends LauncherStep implements A
    * get all repos List for the selected organization
    */
   getGitHubRepos(): void {
-    let org = '';
     if (this.launcherComponent && this.launcherComponent.summary &&
       this.launcherComponent.summary.gitHubDetails) {
-      if (this.launcherComponent.summary.dependencyCheck.projectName) {
-        this.launcherComponent.summary.dependencyCheck.projectName =
-          this.launcherComponent.summary.dependencyCheck.projectName.toLowerCase();
-      }
-      org = this.launcherComponent.summary.gitHubDetails.organization;
       this.launcherComponent.summary.gitHubDetails.repository =
         this.launcherComponent.summary.dependencyCheck ?
           this.launcherComponent.summary.dependencyCheck.projectName : '';
-      this.launcherComponent.summary.gitHubDetails.repositoryList = [];
     }
 
     this.initCompleted();
-    if (this.gitHubReposSubscription !== undefined) {
-      this.gitHubReposSubscription.unsubscribe();
-    }
-    this.gitHubReposSubscription = this.gitProviderService.getGitHubRepoList(org).subscribe((val) => {
-      if (val !== undefined && this.launcherComponent && this.launcherComponent.summary &&
-        this.launcherComponent.summary.gitHubDetails) {
-        this.launcherComponent.summary.gitHubDetails.repositoryList = val;
-      }
-    });
   }
 
   // Private

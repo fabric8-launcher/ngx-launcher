@@ -26,8 +26,9 @@ import { GitproviderCreateappStepComponent }
   from './create-app/gitprovider-createapp-step/gitprovider-createapp-step.component';
 import { GitProviderRepositoryValidatorDirective }
   from './create-app/gitprovider-createapp-step/gitprovider-repository.validator';
+import { ExistingRepositoryValidatorDirective } from './import-app/gitprovider-importapp-step/repository.validator';
 import { LowerCaseDirective } from './shared/lowercase.directive';
-import { ProjectNameValidatorDirective } from './shared/project-name.validator'
+import { ProjectNameValidatorDirective } from './shared/project-name.validator';
 import { MissionRuntimeCreateappStepComponent }
   from './create-app/mission-runtime-createapp-step/mission-runtime-createapp-step.component';
 import { ProjectProgressCreateappNextstepComponent }
@@ -87,6 +88,7 @@ export const providers: Provider[] = [
     LowerCaseDirective,
     ProjectNameValidatorDirective,
     GitProviderRepositoryValidatorDirective,
+    ExistingRepositoryValidatorDirective,
     GitproviderImportappStepComponent,
     MissionRuntimeCreateappStepComponent,
     ProjectProgressCreateappNextstepComponent,
