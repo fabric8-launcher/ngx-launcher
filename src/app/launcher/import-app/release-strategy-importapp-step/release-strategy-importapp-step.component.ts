@@ -130,7 +130,7 @@ export class ReleaseStrategyImportappStepComponent extends LauncherStep implemen
    *
    * @returns {boolean} True if step is completed
    */
-  get stepCompleted(): boolean {
+  get completed(): boolean {
     return (this.launcherComponent.summary.pipeline !== undefined);
   }
 
@@ -205,14 +205,9 @@ export class ReleaseStrategyImportappStepComponent extends LauncherStep implemen
 
   updatePipelineSelection(pipeline: Pipeline): void {
     this.launcherComponent.summary.pipeline = pipeline;
-    this.initCompleted();
   }
 
   // Private
-
-  private initCompleted(): void {
-    this.completed = this.stepCompleted;
-  }
 
   // Restore mission & runtime summary
   private restoreSummary(): void {
@@ -226,7 +221,6 @@ export class ReleaseStrategyImportappStepComponent extends LauncherStep implemen
         this.launcherComponent.summary.pipeline = this.pipelines[i];
       }
     }
-    this.initCompleted();
   }
 
   private toggleExpanded(pipeline: Pipeline) {

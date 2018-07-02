@@ -52,7 +52,6 @@ export class GitproviderImportappStepComponent extends LauncherStep implements A
       if (val !== undefined) {
         this.launcherComponent.summary.gitHubDetails = val;
         this.getGitHubRepos();
-        this.initCompleted();
       }
     }));
   }
@@ -73,7 +72,7 @@ export class GitproviderImportappStepComponent extends LauncherStep implements A
    *
    * @returns {boolean} True if step is completed
    */
-  get stepCompleted(): boolean {
+  get completed(): boolean {
     return this.form.valid;
   }
 
@@ -124,7 +123,6 @@ export class GitproviderImportappStepComponent extends LauncherStep implements A
         this.launcherComponent.summary.gitHubDetails.repositoryList = val;
       }
     });
-    this.initCompleted();
   }
 
   // Private
@@ -150,9 +148,5 @@ export class GitproviderImportappStepComponent extends LauncherStep implements A
       return decodeURIComponent(param[1]);
     }
     return null;
-  }
-
-  private initCompleted(): void {
-    this.completed = this.stepCompleted;
   }
 }

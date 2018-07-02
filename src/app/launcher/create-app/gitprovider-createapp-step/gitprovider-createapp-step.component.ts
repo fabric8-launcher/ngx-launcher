@@ -53,7 +53,6 @@ export class GitproviderCreateappStepComponent extends LauncherStep implements A
       if (val !== undefined) {
         this.launcherComponent.summary.gitHubDetails = val;
         this.getGitHubRepos();
-        this.initCompleted();
       }
     }));
   }
@@ -71,7 +70,7 @@ export class GitproviderCreateappStepComponent extends LauncherStep implements A
    *
    * @returns {boolean} True if step is completed
    */
-  get stepCompleted(): boolean {
+  get completed(): boolean {
     return this.form.valid;
   }
 
@@ -112,8 +111,6 @@ export class GitproviderCreateappStepComponent extends LauncherStep implements A
         this.launcherComponent.summary.dependencyCheck ?
           this.launcherComponent.summary.dependencyCheck.projectName : '';
     }
-
-    this.initCompleted();
   }
 
   // Private
@@ -123,9 +120,5 @@ export class GitproviderCreateappStepComponent extends LauncherStep implements A
       return '';
     }
     return '?selection=' + encodeURI(JSON.stringify(selection));
-  }
-
-  private initCompleted(): void {
-    this.completed = this.stepCompleted;
   }
 }

@@ -108,7 +108,7 @@ export class MissionRuntimeCreateappStepComponent extends LauncherStep implement
    *
    * @returns {boolean} True if step is completed
    */
-  get stepCompleted(): boolean {
+  get completed(): boolean {
     return (this.launcherComponent.summary.mission !== undefined
       && this.launcherComponent.summary.runtime !== undefined
       && this.launcherComponent.summary.runtime.version !== undefined);
@@ -153,7 +153,7 @@ export class MissionRuntimeCreateappStepComponent extends LauncherStep implement
 
       // FIXME: use a booster change event listener to do this
       // set maven artifact
-      if (this.launcherComponent.flow === 'osio' && this.stepCompleted) {
+      if (this.launcherComponent.flow === 'osio' && this.completed) {
         this.launcherComponent.summary.dependencyCheck.mavenArtifact = this.createMavenArtifact();
       }
     }
@@ -189,10 +189,6 @@ export class MissionRuntimeCreateappStepComponent extends LauncherStep implement
     const mission = this.missions.find(m => m.id === selection.missionId);
     const runtime = this.runtimes.find(r => r.id === selection.runtimeId);
     this.selectBooster(mission, runtime, selection.runtimeVersion);
-  }
-
-  private initCompleted(): void {
-    this.completed = this.stepCompleted;
   }
 
   private getSelectedCluster(): string {
@@ -236,7 +232,6 @@ export class MissionRuntimeCreateappStepComponent extends LauncherStep implement
       runtime.versions = versions;
       runtime.selectedVersion = this.getRuntimeSelectedVersion(runtime.id, versions);
     });
-    this.initCompleted();
   }
 
   private getRuntimeSelectedVersion(runtimeId: string, versions: BoosterVersion[]): BoosterVersion {

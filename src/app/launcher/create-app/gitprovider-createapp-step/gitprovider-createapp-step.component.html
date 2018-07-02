@@ -52,7 +52,7 @@
                 <div class="col-sm-10">
                   <select id="ghOrg" class="form-control" name="ghOrg" placeholder="Select organization"
                           [disabled]="launcherComponent?.summary?.gitHubDetails?.organizations === undefined"
-                          [(ngModel)]="launcherComponent.summary.gitHubDetails.organization"
+                          [(ngModel)]="launcherComponent.summary.gitHubDetails.organization" required
                           (ngModelChange)="getGitHubRepos()">
                     <option [ngValue]="org"
                             *ngFor="let org of launcherComponent?.summary?.gitHubDetails?.organizations">
@@ -90,7 +90,7 @@
   <div>
     <div class="container-fluid">
       <div class="f8launcher-continue">
-        <button class="btn btn-link" [ngClass]="{'animate-continue': stepCompleted === true}" [disabled]="stepCompleted !== true"
+        <button class="btn btn-link" class.animate-continue="completed" [disabled]="!completed"
           (click)="navToNextStep()">
           <span class="fa-stack fa-2x">
             <i class="fa fa-circle fa-stack-2x"></i>

@@ -58,7 +58,6 @@ export class LauncherComponent implements AfterViewInit, OnInit {
   private _steps: LauncherStep[] = [];
   private _summary: Summary;
   private summaryCompleted: boolean = false;
-  private spaceId: string;
 
   constructor(private route: ActivatedRoute,
     private router: Router,

@@ -90,8 +90,8 @@ export class DependencyEditorCreateappStepComponent extends LauncherStep impleme
      *
      * @returns {boolean} True if step is completed
      */
-    get stepCompleted(): boolean {
-            return (this.launcherComponent.summary.dependencyEditor !== undefined);
+    get completed(): boolean {
+        return (this.launcherComponent.summary.dependencyEditor !== undefined);
     }
 
     /**
@@ -118,10 +118,6 @@ export class DependencyEditorCreateappStepComponent extends LauncherStep impleme
         this.launcherComponent.stepIndicator.navToStep(event);
     }
 
-    updateTargetEnvSelection(): void {
-        this.initCompleted();
-    }
-
     public pickDependencies(event: any) {
         if (event) {
             this.launcherComponent.summary.dependencyEditor['dependencySnapshot'] = event;
@@ -139,14 +135,6 @@ export class DependencyEditorCreateappStepComponent extends LauncherStep impleme
             this.launcherComponent.summary.dependencyEditor['groupId'] = event.groupId;
             this.launcherComponent.summary.dependencyEditor['projectVersion'] = event.version;
         }
-        setTimeout(() => {
-            this.initCompleted();
-        }, 10);
-    }
-
-    // Private
-    private initCompleted(): void {
-        this.launcherComponent.getStep(this.id).completed = this.stepCompleted;
     }
 
     private listenForChanges(change: any): void {
@@ -235,6 +223,5 @@ export class DependencyEditorCreateappStepComponent extends LauncherStep impleme
             this.launcherComponent.summary.dependencyCheck = selection.dependencyCheck;
             this.launcherComponent.summary.dependencyEditor = selection.dependencyEditor;
         }
-        this.initCompleted(); // Ensure this is called for launcherComponent.targetEnvironment input
     }
 }

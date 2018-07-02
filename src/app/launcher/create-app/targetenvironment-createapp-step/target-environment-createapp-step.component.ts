@@ -73,7 +73,7 @@ export class TargetEnvironmentCreateappStepComponent extends LauncherStep implem
    *
    * @returns {boolean} True if step is completed
    */
-  get stepCompleted(): boolean {
+  get completed(): boolean {
     return this.launcherComponent.summary.targetEnvironment
       && (this.launcherComponent.summary.targetEnvironment === 'zip' || !!this.launcherComponent.summary.cluster);
   }
@@ -105,21 +105,15 @@ export class TargetEnvironmentCreateappStepComponent extends LauncherStep implem
   selectCluster(cluster?: Cluster): void {
     this.launcherComponent.summary.cluster = cluster;
     this.broadcaster.broadcast('cluster', cluster);
-    this.initCompleted();
   }
 
   updateTargetEnvSelection(target: TargetEnvironment): void {
     if (target.id === 'zip') {
       this.selectCluster(null);
     }
-    this.initCompleted();
   }
 
   // Private
-
-  private initCompleted(): void {
-    this.completed = this.stepCompleted;
-  }
 
   // Restore mission & runtime summary
   private restoreSummary(): void {
@@ -128,7 +122,6 @@ export class TargetEnvironmentCreateappStepComponent extends LauncherStep implem
       this.launcherComponent.summary.targetEnvironment = selection.targetEnvironment;
       this.launcherComponent.summary.cluster = selection.cluster;
     }
-    this.initCompleted(); // Ensure this is called for launcherComponent.targetEnvironment input
   }
 
   private clusterSortFn(a: Cluster, b: Cluster): number {

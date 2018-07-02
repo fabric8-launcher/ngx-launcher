@@ -98,7 +98,9 @@
   <div>
     <div class="container-fluid">
       <div class="f8launcher-continue">
-        <button class="btn btn-link" [ngClass]="{'animate-continue': stepCompleted === true}" [disabled]="stepCompleted !== true"
+        <button class="btn btn-link"
+          class.animate-continue="completed"
+          [disabled]="!completed"
           (click)="navToNextStep()">
           <span class="fa-stack fa-2x">
             <i class="fa fa-circle fa-stack-2x"></i>

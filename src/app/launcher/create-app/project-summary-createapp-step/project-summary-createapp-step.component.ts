@@ -69,7 +69,10 @@ export class ProjectSummaryCreateappStepComponent extends LauncherStep implement
    *
    * @returns {boolean} True if step is completed
    */
-  get stepCompleted(): boolean {
+  get completed(): boolean {
+    if (this.launcherComponent.selectedSection !== 'ProjectSummary' || this.form.invalid) {
+      return false;
+    }
     for (let i = 0; i < this.launcherComponent.steps.length - 1; i++) {
       let step = this.launcherComponent.steps[i];
       if (!(step.optional === true || step.completed === true) && step.hidden !== true) {
@@ -85,7 +88,6 @@ export class ProjectSummaryCreateappStepComponent extends LauncherStep implement
    * Navigate to next step
    */
   navToNextStep(): void {
-    this.completed = this.stepCompleted;
     this.launcherComponent.navToNextStep();
   }
 
@@ -141,10 +143,6 @@ export class ProjectSummaryCreateappStepComponent extends LauncherStep implement
 
   // Private
 
-  private initCompleted(): void {
-    this.completed = this.stepCompleted;
-  }
-
   // Restore mission & runtime summary
   private restoreSummary(): void {
     let selection: Selection = this.launcherComponent.selectionParams;
@@ -155,7 +153,6 @@ export class ProjectSummaryCreateappStepComponent extends LauncherStep implement
     this.launcherComponent.summary.dependencyCheck.projectName = selection.projectName;
     this.launcherComponent.summary.dependencyCheck.projectVersion = selection.projectVersion;
     this.launcherComponent.summary.dependencyCheck.spacePath = selection.spacePath;
-    this.initCompleted();
   }
 
   private toggleExpanded(pipeline: Pipeline) {

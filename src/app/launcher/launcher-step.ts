@@ -9,7 +9,7 @@ export abstract class LauncherStep {
   /**
    * Flag indicating step has been completed
    */
-  @Input() completed: boolean = false;
+  abstract get completed(): boolean;
 
   /**
    * Flag indicating step is hidden

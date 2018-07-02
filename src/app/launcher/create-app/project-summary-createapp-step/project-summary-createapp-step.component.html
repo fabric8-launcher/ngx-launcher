@@ -394,7 +394,7 @@
   <div class="container-fluid">
     <div id="ProjectSummary" class="f8launcher-continue">
       <button class="btn btn-primary btn-xlarge"
-              [disabled]="stepCompleted !== true"
+              [disabled]="!completed"
               (click)="setup()">Set Up Application</button>
     </div>
   </div>
