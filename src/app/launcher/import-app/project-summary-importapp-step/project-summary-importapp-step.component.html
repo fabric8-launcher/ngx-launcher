@@ -116,7 +116,7 @@
                     <div class="col-xs-8 f8launcher-project-summary-data-field f8launcher-application-text-field">
                       <input class="f8launcher-project-summary-data-field_input f8launcher-application-text-field_input"
                                name="applicationTitle" placeholder="New Application" type="text" #projectName="ngModel"
-                               [(ngModel)]="dependencyCheck.projectName" lowercase validateProjectName
+                               [(ngModel)]="dependencyCheck.projectName" lowercase validateProjectName required
                                (keyup.enter)="$event.target.blur();">
                     </div>
                     <div class="col-xs-8 col-xs-offset-4 has-error" *ngIf="projectName.invalid && (projectName.dirty || projectName.touched)">
@@ -133,7 +133,7 @@
                     <label class="col-xs-4 control-label">Maven Artifact</label>
                     <div class="col-xs-8 f8launcher-project-summary-data-field f8launcher-application-text-field">
                       <input class="f8launcher-project-summary-data-field_input f8launcher-application-text-field_input"
-                               name="artifact" placeholder="Maven Artifact" type="text" pattern="[a-z][a-z0-9-]{3,63}"
+                               name="artifact" placeholder="Maven Artifact" type="text" pattern="[a-z][a-z0-9-]{3,63}" required
                                [(ngModel)]="dependencyCheck.mavenArtifact" #mavenArtifact="ngModel"
                                (keyup.enter)="$event.target.blur();">
                     </div>
@@ -147,7 +147,7 @@
                     <label class="col-xs-4 control-label">Version</label>
                     <div class="col-xs-8 f8launcher-project-summary-data-field f8launcher-application-text-field">
                       <input class="f8launcher-project-summary-data-field_input f8launcher-application-text-field_input"
-                               name="version" placeholder="Version Number" type="text" pattern="[a-zA-Z0-9-.]{3,63}"
+                               name="version" placeholder="Version Number" type="text" pattern="[a-zA-Z0-9-.]{3,63}" required
                                [(ngModel)]="dependencyCheck.projectVersion" #projectVersion="ngModel"
                                (keyup.enter)="$event.target.blur();">
                     </div>
@@ -161,7 +161,7 @@
                     <label class="col-xs-4 control-label">Group ID</label>
                     <div class="col-xs-8 f8launcher-project-summary-data-field f8launcher-application-text-field">
                       <input class="f8launcher-project-summary-data-field_input f8launcher-application-text-field_input"
-                               name="groupId" placeholder="Group ID" type="text" pattern="[a-z][a-z0-9.]{3,63}"
+                               name="groupId" placeholder="Group ID" type="text" pattern="[a-z][a-z0-9.]{3,63}" required
                                [(ngModel)]="dependencyCheck.groupId" #groupId="ngModel"
                                (keyup.enter)="$event.target.blur();">
                     </div>
