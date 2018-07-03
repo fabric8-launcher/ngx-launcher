@@ -86,6 +86,7 @@ export abstract class MissionRuntimeService {
         metadata: b.metadata,
         mission: mission,
         runtime: runtime,
+        source: b.source,
         version: runtime.versions.find(v => v.id === b.version)
       };
     });

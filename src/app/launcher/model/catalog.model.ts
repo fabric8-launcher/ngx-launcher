@@ -25,6 +25,7 @@ export class CatalogBooster {
   name: string;
   description?: string;
   metadata?: any;
+  source?: any;
 }
 
 export class Catalog {

@@ -19,7 +19,6 @@ import { ImportAppComponent } from './import-app/import-app.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 
 import { DemoDependencyCheckService } from './service/demo-dependency-check.service';
-import { DemoDependencyEditorService } from './service/demo-dependency-editor.service';
 import { DemoGitProviderService } from './service/demo-git-provider.service';
 import { DemoMissionRuntimeService } from './service/demo-mission-runtime.service';
 import { DemoPipelineService } from './service/demo-pipeline.service';
@@ -41,7 +40,6 @@ import { HelperService } from '../app/launcher/service/helper.service';
 
 import {
   DependencyCheckService,
-  DependencyEditorService,
   GitProviderService,
   LauncherModule,
   MissionRuntimeService,
@@ -74,7 +72,6 @@ import {
     Broadcaster,
     HelperService,
     { provide: DependencyCheckService, useClass: DemoDependencyCheckService},
-    { provide: DependencyEditorService, useClass: DemoDependencyEditorService},
     { provide: GitProviderService, useClass: DemoGitProviderService},
     { provide: MissionRuntimeService, useClass: DemoMissionRuntimeService },
     { provide: PipelineService, useClass: DemoPipelineService },

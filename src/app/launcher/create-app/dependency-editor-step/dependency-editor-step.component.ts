@@ -12,7 +12,6 @@ import {
 import { FormsModule } from '@angular/forms';
 import { Subscription } from 'rxjs/Subscription';
 
-import { DependencyEditorService } from '../../service/dependency-editor.service';
 import { DependencyCheckService } from '../../service/dependency-check.service';
 import { Selection } from '../../model/selection.model';
 import { LauncherComponent } from '../../launcher.component';
@@ -40,7 +39,6 @@ export class DependencyEditorCreateappStepComponent extends LauncherStep impleme
     private subscriptions: Subscription[] = [];
     constructor(
         @Host() public launcherComponent: LauncherComponent,
-        @Optional() private depEditorService: DependencyEditorService,
         private dependencyCheckService: DependencyCheckService,
         private keyValueDiffers: KeyValueDiffers
     ) {
@@ -192,16 +190,14 @@ export class DependencyEditorCreateappStepComponent extends LauncherStep impleme
                 let runtime: string = this.cacheInfo['runtime'].id;
                 let runtimeVersion: string = this.cacheInfo['runtime'].version;
                 this.boosterInfo = this.cacheInfo;
-                if ( this.depEditorService) {
-                    let service = this.depEditorService.getBoosterInfo(mission, runtime, runtimeVersion);
-                    if (service) {
-                        service.subscribe((response: any) => {
-                            if (response && response.gitRepo && response.gitRef) {
-                                this.github = response.gitRepo;
-                                this.gitref = response.gitRef;
-                            }
-                        });
-                    }
+                const missionObj = <any>this.launcherComponent.summary.mission;
+                if (missionObj && missionObj['boosters'] && missionObj['boosters'].length) {
+                    missionObj['boosters'].forEach((booster: any) => {
+                        if (mission === booster.mission.id && runtime === booster.runtime.id) {
+                            this.github = booster.source.git.url;
+                            this.gitref = booster.source.git.ref;
+                        }
+                    });
                 }
             }
         }

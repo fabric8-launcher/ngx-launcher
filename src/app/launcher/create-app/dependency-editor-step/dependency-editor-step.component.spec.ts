@@ -9,11 +9,9 @@ import { DependencyEditorModule,  URLProvider, DependencyEditorTokenProvider }
 
 import { DependencyCheck } from '../../launcher.module';
 import { DependencyCheckService } from '../../service/dependency-check.service';
-import { DependencyEditorService } from '../../service/dependency-editor.service';
 import { DependencyEditorCreateappStepComponent } from './dependency-editor-step.component';
 import { LauncherComponent } from '../../launcher.component';
 import { LauncherStep } from '../../launcher-step';
-import { DemoDependencyEditorService } from '../../../../demo/service/demo-dependency-editor.service';
 import { HelperService } from '../../service/helper.service';
 import { TokenProvider } from '../../../../app/service/token-provider';
 
@@ -92,9 +90,6 @@ describe('DependencyEditorCreateappStepComponent', () => {
         TokenProvider,
         {
           provide: DependencyCheckService, useValue: mockDependencyCheckService
-        },
-        {
-          provide: DependencyEditorService, useClass: DemoDependencyEditorService
         },
         { provide: HelperService, useValue: mockHelperService },
         {

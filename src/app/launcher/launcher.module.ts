@@ -115,7 +115,6 @@ export { TargetEnvironment } from './model/target-environment.model';
 
 // Services
 export { ClusterService } from './service/cluster.service';
-export { DependencyEditorService } from './service/dependency-editor.service';
 export { DependencyCheckService } from './service/dependency-check.service';
 export { GitProviderService } from './service/git-provider.service';
 export { MissionRuntimeService } from './service/mission-runtime.service';
