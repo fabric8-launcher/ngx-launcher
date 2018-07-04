@@ -13,6 +13,7 @@ import { FormsModule } from '@angular/forms';
 import { Subscription } from 'rxjs/Subscription';
 
 import { DependencyCheckService } from '../../service/dependency-check.service';
+import { DependencyEditorService } from '../../service/dependency-editor.service';
 import { Selection } from '../../model/selection.model';
 import { LauncherComponent } from '../../launcher.component';
 import { LauncherStep } from '../../launcher-step';
@@ -33,12 +34,16 @@ export class DependencyEditorCreateappStepComponent extends LauncherStep impleme
     public gitref: string = '';
     public boosterInfo: any = null;
     public metadataInfo: any = null;
+
+    public blankResponse: any = null;
+
     private cacheInfo: any = {};
     private changes: any = {};
 
     private subscriptions: Subscription[] = [];
     constructor(
         @Host() public launcherComponent: LauncherComponent,
+        @Optional() private depEditorService: DependencyEditorService,
         private dependencyCheckService: DependencyCheckService,
         private keyValueDiffers: KeyValueDiffers
     ) {
@@ -186,6 +191,12 @@ export class DependencyEditorCreateappStepComponent extends LauncherStep impleme
         if (flag) {
             if (this.cacheInfo['mission'] && this.cacheInfo['runtime']) {
                 // this.cacheInfo = JSON.parse(this.cacheInfo);
+                this.boosterInfo = this.cacheInfo;
+                if (this.cacheInfo['mission'].id === 'blank-mission') {
+                    this.handleBlankMissionFlow(this.cacheInfo['runtime'].id);
+                    return;
+                }
+                this.blankResponse = null;
                 let mission: string = this.cacheInfo['mission'].id;
                 let runtime: string = this.cacheInfo['runtime'].id;
                 let runtimeVersion: string = this.cacheInfo['runtime'].version;
@@ -199,6 +210,19 @@ export class DependencyEditorCreateappStepComponent extends LauncherStep impleme
                         }
                     });
                 }
+            }
+        }
+    }
+
+    private handleBlankMissionFlow(runtimeId: string): void {
+        if (runtimeId) {
+            let service = this.depEditorService.getCoreDependencies(runtimeId);
+            if (service) {
+                service.subscribe((response: any) => {
+                    if (response) {
+                        this.blankResponse = response;
+                    }
+                });
             }
         }
     }

@@ -27,14 +27,14 @@ import { broadcast } from '../../shared/telemetry.decorator';
   styleUrls: ['./mission-runtime-createapp-step.component.less']
 })
 export class MissionRuntimeCreateappStepComponent extends LauncherStep implements OnInit, OnDestroy {
+  public missionId: string;
+  public runtimeId: string;
+
   private disabledReason = EmptyReason;
   private _missions: ViewMission[] = [];
   private _runtimes: ViewRuntime[] = [];
   private _boosters: Booster[] = null;
   private _cluster: string;
-
-  private missionId: string;
-  private runtimeId: string;
   private versionId: string;
 
   private subscriptions: Subscription[] = [];
@@ -157,7 +157,19 @@ export class MissionRuntimeCreateappStepComponent extends LauncherStep implement
         this.launcherComponent.summary.dependencyCheck.mavenArtifact = this.createMavenArtifact();
       }
     }
+    this.handleBlankMissionFlow();
     this.updateBoosterViewStatus();
+  }
+
+  handleBlankMissionFlow(): void {
+    if (this.launcherComponent.summary.mission && this.launcherComponent.summary.runtime &&
+      this.launcherComponent.summary.mission.id === 'blank-mission') {
+      let runtimeSp: any = this.launcherComponent.summary.runtime;
+      if (runtimeSp && runtimeSp.boosters && runtimeSp.boosters.length > 0) {
+        let supportedMission: any = runtimeSp.boosters[0];
+        this.launcherComponent.summary.mission.meta = supportedMission.mission.id;
+      }
+    }
   }
 
   // Private

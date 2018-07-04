@@ -16,6 +16,7 @@ export { TargetEnvironment } from './src/app/launcher/model/target-environment.m
 // Launcher services
 export { ClusterService } from './src/app/launcher/service/cluster.service';
 export { DependencyCheckService } from './src/app/launcher/service/dependency-check.service';
+export { DependencyEditorService } from './src/app/launcher/service/dependency-editor.service';
 export { GitProviderService } from './src/app/launcher/service/git-provider.service';
 export { MissionRuntimeService } from './src/app/launcher/service/mission-runtime.service';
 export { PipelineService } from './src/app/launcher/service/pipeline.service';

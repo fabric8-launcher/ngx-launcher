@@ -8,7 +8,8 @@ import {
 } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 import { DomSanitizer } from '@angular/platform-browser';
-import { defaults } from 'lodash';
+
+import * as _ from 'lodash';
 
 import { Pipeline } from '../../model/pipeline.model';
 import { DependencyCheckService } from '../../service/dependency-check.service';
@@ -48,7 +49,7 @@ export class ProjectSummaryCreateappStepComponent extends LauncherStep implement
       this.dependencyCheckService.getDependencyCheck()
         .subscribe((val) => {
           // Don't override user's application name
-          defaults(this.launcherComponent.summary.dependencyCheck, val);
+          _.defaults(this.launcherComponent.summary.dependencyCheck, val);
         }));
   }
 

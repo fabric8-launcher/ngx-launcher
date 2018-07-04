@@ -10,4 +10,5 @@ export class DemoProjectSummaryService implements ProjectSummaryService {
   setup(summary: Summary): Observable<any> {
     return Observable.of({'uuid_link': 'http://dummy-link.com/'});
   }
+
 }
