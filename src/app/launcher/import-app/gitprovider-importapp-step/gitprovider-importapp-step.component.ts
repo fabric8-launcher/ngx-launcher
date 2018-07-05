@@ -89,7 +89,7 @@ export class GitproviderImportappStepComponent extends LauncherStep implements A
     }
   })
   navToNextStep(): void {
-    this.launcherComponent.navToNextStep();
+    this.launcherComponent.navToNextStep('GitProvider');
   }
 
   /**

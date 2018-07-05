@@ -99,7 +99,7 @@ export class TargetEnvironmentCreateappStepComponent extends LauncherStep implem
   // Steps
 
   navToNextStep(): void {
-    this.launcherComponent.navToNextStep();
+    this.launcherComponent.navToNextStep('TargetEnvironment');
   }
 
   selectCluster(cluster?: Cluster): void {

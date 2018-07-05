@@ -1,8 +1,7 @@
-import { Component, Optional, Output, EventEmitter, ChangeDetectorRef, Input } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, Input, Optional, Output } from '@angular/core';
 
 import { Cluster } from '../../model/cluster.model';
 import { TokenService } from '../../service/token.service';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'f8launcher-link-accounts-createapp-step',

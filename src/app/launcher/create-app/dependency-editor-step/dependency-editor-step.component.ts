@@ -1,15 +1,14 @@
 import {
-    Component,
-    DoCheck,
-    Host,
-    Input,
-    KeyValueDiffers,
-    OnInit,
-    OnDestroy,
-    ViewEncapsulation,
-    Optional
+  Component,
+  DoCheck,
+  Host,
+  Input,
+  KeyValueDiffers,
+  OnDestroy,
+  OnInit,
+  Optional,
+  ViewEncapsulation
 } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { Subscription } from 'rxjs/Subscription';
 
 import { DependencyCheckService } from '../../service/dependency-check.service';
@@ -18,7 +17,6 @@ import { Selection } from '../../model/selection.model';
 import { LauncherComponent } from '../../launcher.component';
 import { LauncherStep } from '../../launcher-step';
 import { DependencyEditor } from '../../model/dependency-editor/dependency-editor.model';
-import { Summary } from '../../model/summary.model';
 import { broadcast } from '../../shared/telemetry.decorator';
 
 @Component({
@@ -106,7 +104,7 @@ export class DependencyEditorCreateappStepComponent extends LauncherStep impleme
         }
     })
     navToNextStep(): void {
-        this.launcherComponent.navToNextStep();
+        this.launcherComponent.navToNextStep('SelectDependencies');
     }
 
     /**

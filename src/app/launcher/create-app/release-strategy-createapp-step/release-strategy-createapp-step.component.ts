@@ -96,7 +96,7 @@ export class ReleaseStrategyCreateappStepComponent extends LauncherStep implemen
     }
   })
   navToNextStep(): void {
-    this.launcherComponent.navToNextStep();
+    this.launcherComponent.navToNextStep('ReleaseStrategy');
   }
 
   updatePipelineSelection(pipeline: Pipeline): void {

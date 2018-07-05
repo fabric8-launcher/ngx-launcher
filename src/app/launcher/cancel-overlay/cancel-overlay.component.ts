@@ -1,9 +1,4 @@
-import {
-  Component,
-  Host,
-  Input,
-  OnInit
-} from '@angular/core';
+import { Component, Host, OnInit } from '@angular/core';
 
 import { LauncherComponent } from '../launcher.component';
 

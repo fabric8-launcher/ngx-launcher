@@ -1,14 +1,4 @@
-import {
-  Component,
-  Host,
-  Input,
-  OnChanges,
-  OnDestroy,
-  OnInit,
-  SimpleChanges,
-  ViewEncapsulation
-} from '@angular/core';
-import { Subscription } from 'rxjs/Subscription';
+import { Component, Host, Input, OnChanges, OnDestroy, OnInit, SimpleChanges, ViewEncapsulation } from '@angular/core';
 
 import { Progress } from '../../model/progress.model';
 import { ProjectProgressService } from '../../service/project-progress.service';

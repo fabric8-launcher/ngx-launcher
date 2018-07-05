@@ -89,7 +89,7 @@ export class ProjectSummaryImportappStepComponent extends LauncherStep implement
    * Navigate to next step
    */
   navToNextStep(): void {
-    this.launcherComponent.navToNextStep();
+    this.launcherComponent.navToNextStep('ProjectSummary');
   }
 
   /**
