@@ -1,7 +1,7 @@
 {
-  "name": "ngx-forge",
+  "name": "ngx-launcher",
   "version": "0.0.0-development",
-  "description": "Forge services for Angular v2 and up",
+  "description": "Fabric8 Launcher component for Angular",
   "main": "index.js",
   "module": "index.js",
   "typings": "index.d.ts",
@@ -42,17 +42,9 @@
     }
   ],
   "keywords": [
+    "fabric8",
     "angular",
-    "angular2",
-    "angular 2",
-    "angular4",
-    "angular 4",
-    "ng",
-    "ng2",
-    "ng4",
-    "forge",
-    "ng-forge",
-    "ngx-forge"
+    "ngx-launcher"
   ],
   "homepage": "https://github.com/fabric8-launcher/ngx-launcher",
   "repository": {
