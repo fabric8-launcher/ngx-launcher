@@ -9,7 +9,7 @@ import {
 import { Selection } from '../model/selection.model';
 import { LauncherComponent } from '../launcher.component';
 import { DependencyCheckService } from '../service/dependency-check.service';
-import { broadcast } from 'fabric8-analytics-dependency-editor';
+import { broadcast } from '../shared/telemetry.decorator';
 
 @Component({
   encapsulation: ViewEncapsulation.None,

@@ -15,7 +15,7 @@ import { Summary } from './model/summary.model';
 import { StepIndicatorComponent } from './step-indicator/step-indicator.component';
 import { LauncherStep } from './launcher-step';
 import { ProjectSummaryService } from './service/project-summary.service';
-import { broadcast } from 'fabric8-analytics-dependency-editor';
+import { broadcast } from './shared/telemetry.decorator';
 
 @Component({
   encapsulation: ViewEncapsulation.None,

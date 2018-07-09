@@ -17,7 +17,7 @@ import {
   ViewMission,
   ViewRuntime
 } from './mission-runtime-createapp-step.model';
-import { broadcast } from 'fabric8-analytics-dependency-editor';
+import { broadcast } from '../../shared/telemetry.decorator';
 
 
 @Component({
