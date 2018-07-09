@@ -1,9 +1,9 @@
 export default {
   entry: 'dist/index.js',
-  dest: 'dist/bundles/ngx-forge.umd.js',
+  dest: 'dist/bundles/ngx-launcher.umd.js',
   sourceMap: true,
   format: 'umd',
-  moduleName: 'ngx-forge',
+  moduleName: 'ngx-launcher',
   globals: {
     '@angular/core': 'ng.core',
     '@angular/http': 'ng.http',

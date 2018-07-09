@@ -15,7 +15,7 @@
     "clean": "npm cache clean && npm run rimraf -- node_modules doc coverage dist bundles",
     "cleanup": "rimraf dist/package.json dist/bundles dist/src dist/index.d.ts dist/index.metadata.json dist/index.js dist/index.js.map dist/LICENSE dist/README.md",
     "copy-files": "gulp copyfiles",
-    "minify": "uglifyjs dist/bundles/ngx-forge.umd.js --screw-ie8 --compress --mangle --comments --output dist/bundles/ngx-forge.umd.min.js",
+    "minify": "uglifyjs dist/bundles/ngx-launcher.umd.js --screw-ie8 --compress --mangle --comments --output dist/bundles/ngx-launcher.umd.min.js",
     "reinstall": "npm run clean && npm install",
     "remove-dist": "rimraf dist",
     "rimraf": "rimraf",

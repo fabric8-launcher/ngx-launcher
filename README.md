@@ -1,7 +1,7 @@
-# ngx-forge
+# ngx-launcher
 
 [![Build Status](https://ci.centos.org/buildStatus/icon?job=devtools-ngx-launcher-npm-publish-build-master)](https://ci.centos.org/view/Devtools/job/devtools-ngx-launcher-npm-publish-build-master/)
-[![npm version](https://badge.fury.io/js/ngx-forge.svg)](https://badge.fury.io/js/ngx-forge)
+[![npm version](https://badge.fury.io/js/ngx-launcher.svg)](https://badge.fury.io/js/ngx-launcher)
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release) 
 
 A collection of Angular services and components to work with [Forge Wizard UI](http://forge.jboss.org/). 
@@ -20,7 +20,7 @@ ForgeService provide common REST endpoints like `next`, `validate`, `execute` to
 
 This library does not run on it's own. It must be imported. 
 
-`npm install ngx-forge`
+`npm install ngx-launcher`
 
   
 ## Building it 
@@ -49,7 +49,7 @@ This library does not run on it's own. It must be imported.
 
 ### Production
 
-To build ngx-forge as a npm library, use:
+To build ngx-launcher as a npm library, use:
 
 ```
 npm run build   
@@ -59,16 +59,16 @@ npm publish dist
 
 ### Development
 
-To build ngx-forge as an npm library and embed it into a webapp such as
+To build ngx-launcher as an npm library and embed it into a webapp such as
 fabric8-ui, you should:
 
-1. Run `npm run watch:library` in this directory. This will build ngx-forge as
+1. Run `npm run watch:library` in this directory. This will build ngx-launcher as
 a library and then set up a watch task to rebuild any ts, html and less files you
 change.
-2. In the webapp into which you are embedding, run `npm link <path to ngx-forge>/dist-watch --production`.
-This will create a symlink from `node_modules/ngx-forge` to the `dist-watch` directory
+2. In the webapp into which you are embedding, run `npm link <path to ngx-launcher>/dist-watch --production`.
+This will create a symlink from `node_modules/ngx-launcher` to the `dist-watch` directory
 and install that symlinked node module into your webapp.
-3. Run your webapp in development mode, making sure you have a watch on `node_modules/ngx-forge`
+3. Run your webapp in development mode, making sure you have a watch on `node_modules/ngx-launcher`
 enabled. To do this using a typical Angular Webpack setup, such as the one based on Angular Class,
 just run `npm start. You will have access to both JS sourcemaps and SASS sourcemaps if your webapp
 is properly setup.

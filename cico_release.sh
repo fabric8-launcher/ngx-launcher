@@ -41,14 +41,14 @@ function create_merge_PR {
     cd ${repo} && git checkout -b versionUpdate"${id}"
 
     # find fabric8-planner > extract version number > remove ", char > trim whitespacs
-    current_launcher_version=$( grep ngx-forge package.json \
+    current_launcher_version=$( grep ngx-launcher package.json \
         | awk -F: '{ print $2 }' \
         | sed 's/[",]//g' \
         | tr -d '[:space:]' )
     echo "New Launcher version:" $new_launcher_version
     echo "Current Launcher version:" $current_launcher_version
     if [ "$new_launcher_version" == "$current_launcher_version" ]; then
-        echo "Skippping as ngx-forge is already on version $new_launcher_version"
+        echo "Skippping as ngx-launcher is already on version $new_launcher_version"
         exit 0
     fi
 
@@ -57,7 +57,7 @@ function create_merge_PR {
     # Set authentication credentials to allow "git push"
     git remote set-url origin https://fabric8cd:${GH_TOKEN}@github.com/${project}.git
 
-    message="fix(version): update package.json ngx-forge to ${new_launcher_version}"
+    message="fix(version): update package.json ngx-launch to ${new_launcher_version}"
     updatePackageJSONVersion "$new_launcher_version"
     git add package.json
     git commit -m "${message}"
@@ -86,7 +86,7 @@ function create_merge_PR {
 # Updates ngx-launcher's version in package.json file
 function updatePackageJSONVersion {
     local f="package.json"
-    local p="ngx-forge"
+    local p="ngx-launcher"
     local v=$1
     sed -i -r "s/\"${p}\": \"[0-9][0-9]{0,2}.[0-9][0-9]{0,2}(.[0-9][0-9]{0,2})?(.[0-9][0-9]{0,2})?(-development)?\"/\"${p}\": \"${v}\"/g" ${f}
 }
