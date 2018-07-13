@@ -10,7 +10,9 @@ import { DependencyCheckService } from '../service/dependency-check.service';
     forwardRef(() => ProjectNameValidatorDirective), multi: true }]
 })
 export class ProjectNameValidatorDirective implements Validator {
-  private pattern = /^[a-z][a-z0-9-]{3,63}$/;
+  // allows only '-', '_' and 4-40 characters (must start with alphabetic and end with alphanumeric)
+  // no continuous '-' or '_' is allowed
+  public static readonly pattern = new RegExp('^[a-zA-Z](?!.*--)(?!.*__)[a-zA-Z0-9-_]{2,38}[a-zA-Z0-9]$');
 
   constructor(private dependencyCheckService: DependencyCheckService) { }
 
@@ -20,7 +22,7 @@ export class ProjectNameValidatorDirective implements Validator {
 
   validRepositoryName(value: any): Observable<{ [key: string]: any }> {
     return new Observable((resolve) => {
-      const valid = this.pattern.test(value);
+      const valid = ProjectNameValidatorDirective.pattern.test(value);
       if (!valid) {
         resolve.next(this.createError('pattern', value));
       } else {

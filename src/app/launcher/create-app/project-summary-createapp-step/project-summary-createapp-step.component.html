@@ -247,7 +247,7 @@
                            [(ngModel)]="dependencyCheck.projectName" lowercase validateProjectName required
                            (keyup.enter)="$event.target.blur();">
                   </div>
-                  <div *ngIf="projectName.invalid && (projectName.dirty || projectName.touched)">
+                  <div *ngIf="projectName.invalid && (projectName.dirty || projectName.touched)" class="col-xs-8 col-xs-offset-4 has-error">
                     <span *ngIf="projectName.errors.pattern" class="help-block f8launcher-vertical-bar_application-name-help-text">
                       Please enter a valid Application Name.
                     </span>
