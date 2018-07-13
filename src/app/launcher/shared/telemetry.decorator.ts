@@ -2,6 +2,7 @@ import * as _ from 'lodash';
 import { Broadcaster } from 'ngx-base';
 import { Injector } from '@angular/core';
 import { PropertiesGetter } from './properties';
+import { eventKeyMap } from './woopra-key-map';
 
 export class StaticInjector {
     private static injector: Injector = null;
@@ -29,7 +30,7 @@ export function broadcast(event: string, properties: any): MethodDecorator {
             const values = new PropertiesGetter(this, args).mapKeys(_.cloneDeep(properties));
 
             broadcaster.broadcast('analyticsTracker', {
-                event: event,
+                event: eventKeyMap[event],
                 data: values
             });
             return originalMethod.apply(this, args);

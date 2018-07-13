@@ -1,0 +1,20 @@
+export const eventKeyMap: any = {
+    'showAddAppOverlay': 'add app opened',
+    'closeAddAppOverlay': 'add app closed',
+    'showCreateApp': 'create app opened',
+    'closeCreateApp': 'create app closed',
+    'showImportApp': 'import app opened',
+    'closeImportApp': 'import app closed',
+    'clickContinueAppOverlay': 'click continue app overlay',
+    'completeMissionRuntimeStep': 'mission runtime completed',
+    'completeDependencyEditorStep': 'dependency editor completed',
+    'completePipelineStep_Create': 'pipeline completed in create',
+    'completeGitProviderStep_Create': 'git provider completed in create',
+    'completeSummaryStep_Create': 'summary completed in create',
+    'completePipelineStep_Import': 'pipeline completed in import',
+    'completeGitProviderStep_Import': 'git provider completed in import',
+    'completeSummaryStep_Import': 'summary completed in import',
+    'viewApplicationButtonClicked': 'view application button clicked',
+    'stepIndicatorClicked': 'step indicator clicked',
+    'stepIndicatorProjectInputClicked': 'step indicator project name clicked'
+  };
