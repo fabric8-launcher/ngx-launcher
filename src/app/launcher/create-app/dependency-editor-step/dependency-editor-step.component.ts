@@ -10,6 +10,7 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
+import { Broadcaster } from 'ngx-base';
 
 import { DependencyCheckService } from '../../service/dependency-check.service';
 import { DependencyEditorService } from '../../service/dependency-editor.service';
@@ -41,6 +42,7 @@ export class DependencyEditorCreateappStepComponent extends LauncherStep impleme
     private subscriptions: Subscription[] = [];
     constructor(
         @Host() public launcherComponent: LauncherComponent,
+        public broadcaster: Broadcaster,
         @Optional() private depEditorService: DependencyEditorService,
         private dependencyCheckService: DependencyCheckService,
         private keyValueDiffers: KeyValueDiffers
