@@ -28,6 +28,7 @@ import { broadcast } from '../../shared/telemetry.decorator';
 })
 export class DependencyEditorCreateappStepComponent extends LauncherStep implements OnInit, OnDestroy, DoCheck {
     @Input() id: string;
+    @Input() depEditorFlag: boolean;
 
     public github: string = '';
     public gitref: string = '';
