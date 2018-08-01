@@ -66,6 +66,7 @@ export class Fakef8launcherDependencyCheckeerCreatesppStep {
   @Input() hidden: boolean = false;
   @Input() styleClass: string;
   @Input() title: string;
+  @Input() depEditorFlag = false;
 }
 
 @Component({
