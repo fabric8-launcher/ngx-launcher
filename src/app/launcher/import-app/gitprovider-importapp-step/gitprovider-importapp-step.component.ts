@@ -40,7 +40,9 @@ export class GitproviderImportappStepComponent extends LauncherStep implements A
   ngAfterViewInit() {
     if (this.launcherComponent.summary.gitHubDetails.login) {
       setTimeout(() => {
-        this.versionSelect.nativeElement.focus();
+        if (this.versionSelect) {
+          this.versionSelect.nativeElement.focus();
+        }
       }, 10);
     }
   }
