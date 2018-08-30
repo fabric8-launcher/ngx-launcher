@@ -84,4 +84,3 @@ npm publish dist
 
 > Note: semantic release are done via fabric8cd using `semantic-release`
 
-
