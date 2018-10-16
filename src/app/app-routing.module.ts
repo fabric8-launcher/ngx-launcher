@@ -2,10 +2,11 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { CreateAppComponent } from './create-app/create-app.component';
+import { PipelineDemoComponent } from './create-app/pipeline-demo.component';
 import { GettingStartedLauncherComponent } from './getting-started-launcher/getting-started-launcher.component';
 import { GettingStartedOsioComponent } from './getting-started-osio/getting-started-osio.component';
-import { LauncherAppComponent } from './launcher-app/launcher-app.component';
 import { ImportAppComponent } from './import-app/import-app.component';
+import { LauncherAppComponent } from './launcher-app/launcher-app.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 
 const routes: Routes = [{
@@ -29,6 +30,10 @@ const routes: Routes = [{
     component: CreateAppComponent,
     pathMatch: 'full'
   }, {
+    path: 'pipelines',
+    component: PipelineDemoComponent,
+    pathMatch: 'full'
+  }, {
     path: 'importapp/:projectName',
     component: ImportAppComponent,
     pathMatch: 'full'
@@ -47,7 +52,7 @@ const routes: Routes = [{
 }];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { useHash: true })],
+  imports: [RouterModule.forRoot(routes, { useHash: true, scrollPositionRestoration: 'enabled'})],
   exports: [RouterModule]
 })
 export class AppRoutingModule {}

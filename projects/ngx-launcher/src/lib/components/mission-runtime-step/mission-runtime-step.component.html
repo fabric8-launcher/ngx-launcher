@@ -1,0 +1,249 @@
+<section id="MissionRuntime" class="f8launcher-section-mission-runtime f8launcher-container_main--start"
+         [ngClass]="{'hidden': hidden}" #section>
+  <div>
+    <div class="container-fluid">
+      <h1>{{title}}</h1>
+      <div class="col-xs-12 col-md-6 f8launcher-section-mission-runtime-desp">
+        <p>
+          Choose a mission and runtime to create a booster, or sample application. You set up a booster to generate
+          source code and specifications for your new application.
+        </p>
+      </div>
+      <div class="col-xs-12 col-md-6">
+        <button class="btn btn-default pull-right" type="button"
+              [disabled]="selectionAvailable !== true"
+              (click)="resetSelections()">
+          Clear Selections
+        </button>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div class="container-fluid container-cards-pf">
+      <div class="row row-cards-pf">
+        <div class="col-xs-12 col-md-6">
+          <div class="card-pf card-pf--small">
+            <div class="card-pf-heading">
+              <h2 class="card-pf-title">
+                Select a mission
+              </h2>
+              <p>
+                A specification that describes what your application will do.
+              </p>
+            </div>
+            <div class="card-pf-body">
+              <div class="list-group list-view-pf"
+                   [ngClass]="{'prerequisite': mission.prerequisite,
+                               'suggested': mission.suggested,
+                               'contribute': mission.disabled,
+                               'disabled': mission.disabled,
+                               'shrinked': mission.shrinked,
+                               'advanced': mission.advanced,
+                               'community': mission.community}"
+                   *ngFor="let mission of (missions | sortArray: 'suggested': true | sortArray: 'shrinked': true)">
+                <div class="list-group-item list-view-pf-stacked list-view-pf-top-align"
+                     [ngClass]="{'disabled': mission.disabled, 'selected-list-item': booster.mission.id === mission.id}">
+                  <div class="list-group-item-header">
+                    <div class="f8launcher-tags"
+                         [ngClass]="{'advanced-feature-tag': mission.advanced,
+                                     'suggested-feature-tag': mission.suggested,
+                                     'not-available-feature-tag': mission.disabled,
+                                     'community-feature-tag': mission.community}">
+                      <span *ngIf="mission.disabled" [ngSwitch]="mission.disabledReason">
+                        <ng-template #missionContributeTemplate>
+                          This mission and runtime combination is not currently available, but you can contribute to our
+                          <a href='https://appdev.openshift.io/docs/contrib-guide.html#_documentation' target="_blank">library</a>
+                          and help us expand these offerings.
+                        </ng-template>
+                        <span class="f8launcher-tags-label contribute" container="body" triggers="click"
+                              outsideClick="true"
+                              [popover]="missionContributeTemplate"
+                              *ngSwitchCase="disabledReason.NOT_IMPLEMENTED">
+                          <span class="f8launcher-tags-label-text">Not available </span><i class="pficon pficon-info"></i>
+                        </span>
+                        <span class="f8launcher-tags-label" container="body" triggers="click"
+                              outsideClick="true"
+                              popover="The {{cluster}} cluster doesn't have enough resources to support the mission."
+                              *ngSwitchCase="disabledReason.CLUSTER_INCOMPATIBILITY">
+                          <span class="f8launcher-tags-label-text">Cluster incompatibility </span><i class="pficon pficon-warning-triangle-o"></i>
+                        </span>
+                      </span>
+                      <span class="f8launcher-tags-label community" container="body" triggers="click"
+                            outsideClick="true"
+                            popover="This mission and runtime combination is currently only available in the community version. Support may be discontinued. Use with caution."
+                            *ngIf="!mission.shrinked && mission.community">
+                        <span class="f8launcher-tags-label-text">Community </span><i class="pficon pficon-warning-triangle-o"></i>
+                      </span>
+                      <span class="f8launcher-tags-label suggested" container="body" triggers="click"
+                            outsideClick="true"
+                            popover="This mission will get you started with a bare bones working application."
+                            *ngIf="!mission.shrinked && mission.suggested">
+                        <span class="f8launcher-tags-label-text">Red Hat Suggests </span><i class="pficon pficon-info"></i>
+                      </span>
+                      <span class="f8launcher-tags-label advanced" container="body" triggers="click"
+                            outsideClick="true"
+                            *ngIf="!mission.shrinked && mission.advanced">
+                        Advanced <i class="fa fa-graduation-cap"></i>
+                      </span>
+                    </div>
+                  </div>
+                  <div class="list-view-pf-checkbox">
+                    <input type="radio" name="mission"
+                           [disabled]="mission.disabled"
+                           [(ngModel)]="booster.mission.id"
+                           [value]="mission.id"
+                           (ngModelChange)="selectBooster(mission)">
+                  </div>
+                  <div class="list-view-pf-main-info"
+                       (click)="selectBooster(mission)">
+                    <div class="list-view-pf-body f8launcher-section-mission">
+                      <div class="list-view-pf-description">
+                        <div class="list-group-item-heading">
+                          {{mission.name}}
+                        </div>
+                        <div class="list-group-item-text" *ngIf="mission.description">
+                          <span class="description truncated" *ngIf="mission.showMore !== true">
+                            {{mission.description | truncate: 65}}
+                          </span>
+                          <span class="description full" *ngIf="mission.showMore">
+                            {{mission.description}}
+                          </span>
+                          <span class="description-more" *ngIf="mission.description.length > 65">
+                            <a href="javascript:void(0)"
+                               (click)="mission.showMore = !mission.showMore; $event.stopPropagation()">
+                              {{(mission.showMore) ? 'Less' : 'More'}}
+                            </a>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xs-12 col-md-6">
+          <div class="card-pf card-pf--small">
+            <div class="card-pf-heading">
+              <h2 class="card-pf-title">
+                Select a runtime
+              </h2>
+              <p>
+                The framework software used in the application's process.
+              </p>
+            </div>
+            <div class="card-pf-body">
+              <div class="list-group list-view-pf"
+                   [ngClass]="{'prerequisite': runtime.prerequisite,
+                               'suggested': runtime.suggested,
+                               'contribute': runtime.disabled}"
+                   *ngFor="let runtime of runtimes; let i = index">
+                <div class="list-group-item list-view-pf-stacked list-view-pf-top-align"
+                     [ngClass]="{'disabled': runtime.disabled, 'selected-list-item': booster.runtime.id === runtime.id}">
+                  <div class="list-group-item-header"
+                       *ngIf="runtime.prerequisite || runtime.suggested || runtime.disabled">
+                    <div class="f8launcher-tags"
+                         [ngClass]="{'prerequisite': runtime.prerequisite,
+                                     'suggested-feature-tag': runtime.suggested,
+                                     'not-available-feature-tag': runtime.disabled}">
+                      <span *ngIf="runtime.disabled" [ngSwitch]="runtime.disabledReason">
+                        <ng-template #runtimeContributeTemplate>
+                          This mission and runtime combination is not currently available, but you can contribute to our
+                          <a href='https://appdev.openshift.io/docs/contrib-guide.html#_documentation' target="_blank">library</a>
+                          and help us expand these offerings.
+                        </ng-template>
+                        <span class="f8launcher-tags-label contribute" container="body" triggers="click"
+                              outsideClick="true"
+                              [popover]="runtimeContributeTemplate"
+                              *ngSwitchCase="disabledReason.NOT_IMPLEMENTED">
+                          Not available <i class="pficon pficon-info"></i>
+                        </span>
+                        <span class="f8launcher-tags-label" container="body" triggers="click"
+                              outsideClick="true"
+                              popover="The {{cluster}} cluster doesn't have enough resources to support the mission and runtime (booster) that you selected."
+                              *ngSwitchCase="disabledReason.CLUSTER_INCOMPATIBILITY">
+                          Cluster incompatibility <i class="pficon pficon-warning-triangle-o"></i>
+                        </span>
+                      </span>
+                      <span class="f8launcher-tags-label suggested" container="body" triggers="click"
+                            outsideClick="true"
+                            popover="This runtime will get you started with a bare bones working application."
+                            *ngIf="runtime.suggested">
+                        Red Hat Suggests <i class="pficon pficon-info"></i>
+                      </span>
+                      <span class="f8launcher-tags-label prerequisite" container="body" triggers="click"
+                            outsideClick="true"
+                            popover="{{runtime.prerequisite}}"
+                            *ngIf="runtime.prerequisite">
+                        Prerequisite <i class="pficon pficon-info"></i>
+                      </span>
+                    </div>
+                  </div>
+                  <div class="list-view-pf-checkbox">
+                    <input name="runtime" type="radio"
+                           [disabled]="runtime.disabled"
+                           [(ngModel)]="booster.runtime.id"
+                           [value]="runtime.id"
+                           (ngModelChange)="selectBooster(null, runtime)">
+                  </div>
+                  <div class="list-view-pf-main-info"
+                       (click)="selectBooster(null, runtime)">
+                    <div class="list-view-pf-left">
+                      <span class="list-view-pf-logo">
+                        <img [src]="_DomSanitizer.bypassSecurityTrustUrl(runtime.icon)"
+                             *ngIf="runtime.icon">
+                      </span>
+                    </div>
+                    <div class="list-view-pf-body f8launcher-section-runtime">
+                      <div class="list-view-pf-description">
+                        <div class="list-group-item-heading">
+                          {{runtime.name}}
+                          <div *ngIf="!runtime.disabled && canChangeVersion && runtime.id === booster.runtime.id" class="dropdown" dropdown>
+                            <button type="button" class="btn btn-default dropdown-toggle" dropdownToggle
+                                    [disabled]="runtime.disabled">
+                              {{runtime.selectedVersion.name}}
+                              <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" role="menu" *dropdownMenu
+                                [attr.aria-labelledby]="i + 'dropdown'">
+                              <li [ngClass]="{'disabled': runtime.disabled}"
+                                  *ngFor="let version of runtime.versions">
+                                <a href="javascript:void(0)" class="dropdown-item" role="menuitem" tabindex="-1"
+                                   (click)="selectBooster(null, runtime, version)"
+                                   *ngIf="!runtime.disabled">{{version.name}}</a>
+                                <a href="javascript:void(0)" class="dropdown-item" role="menuitem"
+                                   *ngIf="runtime.disabled">{{version.name}}</a>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                        <div class="list-group-item-text" *ngIf="runtime.description">
+                          <span class="description truncated" *ngIf="!runtime.showMore">
+                            {{runtime.description | truncate: 65}}
+                          </span>
+                          <span class="description full" *ngIf="runtime.showMore">
+                            {{runtime.description}}
+                          </span>
+                          <span class="description-more" *ngIf="runtime.description.length > 65">
+                            <a class="description-more" href="javascript:void(0)"
+                               (click)="runtime.showMore = !runtime.showMore; $event.stopPropagation()">
+                              {{(runtime.showMore) ? 'Less' : 'More'}}
+                            </a>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="launcherComponent">
+    <f8launcher-button-next-step [disabled]="!completed" [navFromId]="id"></f8launcher-button-next-step>
+  </div>
+</section>

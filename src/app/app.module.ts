@@ -1,18 +1,17 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Broadcaster } from 'ngx-base';
-//import { DependencyEditorTokenProvider, URLProvider } from 'fabric8-analytics-dependency-editor';
+import { AppRoutingModule } from './app-routing.module';
 // App components
 import { AppComponent } from './app.component';
-import { AppRoutingModule } from './app-routing.module';
 // Main areas
 import { CreateAppComponent } from './create-app/create-app.component';
 import { GettingStartedLauncherComponent } from './getting-started-launcher/getting-started-launcher.component';
 import { GettingStartedOsioComponent } from './getting-started-osio/getting-started-osio.component';
-import { LauncherAppComponent } from './launcher-app/launcher-app.component';
 import { ImportAppComponent } from './import-app/import-app.component';
+import { LauncherAppComponent } from './launcher-app/launcher-app.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 
 import { DemoDependencyCheckService } from './service/demo-dependency-check.service';
@@ -25,13 +24,13 @@ import { DemoTargetEnvironmentService } from './service/demo-target-environment.
 import { DemoTokenService } from './service/demo-token.service';
 
 import { Config } from '../../projects/ngx-launcher/src/lib/service/config.component';
-import { ForgeConfig } from './shared/forge-config';
 import { FABRIC8_FORGE_API_URL } from './shared/forge-api-url';
+import { ForgeConfig } from './shared/forge-config';
 import { FABRIC8_ORIGIN } from './shared/forge-origin';
 
 import { TokenProvider } from '../../projects/ngx-launcher/src/lib/service/token-provider';
-import { MockAuthenticationService } from './shared/mock-auth.service';
 import { AnalyticsUrlService } from './shared/analytics-url.service';
+import { MockAuthenticationService } from './shared/mock-auth.service';
 
 import { HelperService } from '../../projects/ngx-launcher/src/lib/service/helper.service';
 
@@ -44,12 +43,9 @@ import {
   ProjectProgressService,
   ProjectSummaryService,
   TargetEnvironmentService,
-  TokenService, URLProvider,
-  CheService, WorkSpacesService
+  TokenService, URLProvider
 } from '../../projects/ngx-launcher/src/lib/launcher.module';
-
-import { DemoCheService } from './service/demo-che.service';
-import { DemoWorkSpacesService } from './service/demo-workSpaces.service';
+import { PipelineDemoComponent } from './create-app/pipeline-demo.component';
 
 @NgModule({
   imports: [
@@ -62,6 +58,7 @@ import { DemoWorkSpacesService } from './service/demo-workSpaces.service';
   declarations: [
     AppComponent,
     CreateAppComponent,
+    PipelineDemoComponent,
     GettingStartedLauncherComponent,
     GettingStartedOsioComponent,
     ImportAppComponent,
@@ -84,9 +81,7 @@ import { DemoWorkSpacesService } from './service/demo-workSpaces.service';
     { provide: TokenProvider, useClass: MockAuthenticationService },
     { provide: TokenService, useClass: DemoTokenService},
     { provide: DependencyEditorTokenProvider, useExisting: TokenProvider },
-    { provide: URLProvider, useClass: AnalyticsUrlService },
-    { provide: CheService, useClass: DemoCheService },
-    { provide: WorkSpacesService, useClass: DemoWorkSpacesService }
+    { provide: URLProvider, useClass: AnalyticsUrlService }
   ],
   bootstrap: [AppComponent]
 })

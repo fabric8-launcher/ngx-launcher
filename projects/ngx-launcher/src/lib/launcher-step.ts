@@ -1,7 +1,7 @@
-import { Input, ViewChild, ElementRef, OnDestroy } from '@angular/core';
-import { LauncherComponent } from './launcher.component';
-import { fromEvent, Observable, Subscription } from 'rxjs';
+import { ElementRef, Input, OnDestroy, Type, ViewChild } from '@angular/core';
+import { fromEvent, Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
+import { Projectile } from './model/projectile.model';
 
 export abstract class LauncherStep implements OnDestroy {
   /**
@@ -17,12 +17,12 @@ export abstract class LauncherStep implements OnDestroy {
   /**
    * Flag indicating step is hidden
    */
-  @Input() hidden: boolean = false;
+  @Input() hidden: boolean;
 
   /**
    * Flag indicating step is optional
    */
-  @Input() optional: boolean = false;
+  @Input() optional: boolean;
 
   /**
    * Style class for the step container
@@ -36,13 +36,10 @@ export abstract class LauncherStep implements OnDestroy {
 
   @ViewChild('section') element: ElementRef;
 
-  protected _launcherComponent: LauncherComponent;
+  private scrollEvents: Subscription = fromEvent(window, 'scroll')
+    .pipe(debounceTime(100)).subscribe(() => this.isInView());
 
-  private scrollEvents: Subscription = fromEvent(window, 'scroll').pipe(debounceTime(100)).subscribe(() => this.isInView());
-
-  constructor(launcherComponent: LauncherComponent) {
-    this._launcherComponent = launcherComponent;
-  }
+  constructor(private _projectile: Projectile<any>) {}
 
   ngOnDestroy(): void {
     this.scrollEvents.unsubscribe();
@@ -58,8 +55,24 @@ export abstract class LauncherStep implements OnDestroy {
 
       const inView = elementBottom !== 0 && elementTop <= viewportTop;
       if (inView) {
-        this._launcherComponent.onInViewportChange(this.id);
+        this._projectile.selectedSection = this.id;
       }
     }
   }
+
+  restore(context?): void {
+    if (context) {
+      this._projectile.restore(this.id, context);
+    } else {
+      if (!this.restoreModel) {
+        throw new Error('can not call restore without context and not implement restoreModel function');
+      }
+      const state = this._projectile.getSavedState(this.id);
+      if (state) {
+        this.restoreModel(state);
+      }
+    }
+  }
+
+  restoreModel?(model: any): void;
 }

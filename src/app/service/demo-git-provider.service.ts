@@ -1,13 +1,16 @@
 import { Injectable } from '@angular/core';
 import { EMPTY, Observable, of } from 'rxjs';
-import { GitProviderService } from '../../../projects/ngx-launcher/src/lib/service/git-provider.service';
 import { GitHubDetails } from '../../../projects/ngx-launcher/src/lib/model/github-details.model';
+import { GitProviderService } from '../../../projects/ngx-launcher/src/lib/service/git-provider.service';
 
 const GitHubMock = require('../mock/demo-git-provider.json');
 
 // Enable Access-Conrtol-Expose-Headers for CORS test
 @Injectable()
 export class DemoGitProviderService implements GitProviderService {
+
+  private existingRepo = ['fabric8-ui', 'fabric8-uxd', 'patternfly'];
+
   constructor() {
   }
 
@@ -46,8 +49,7 @@ export class DemoGitProviderService implements GitProviderService {
    * @returns {Observable<boolean>} True if GitHub repo exists
    */
   isGitHubRepo(org: string, repoName: string): Observable<boolean> {
-    const result = (org === 'patternfly' && repoName === 'patternfly'); // Simulate a existing repo
-    return of(result);
+    return of(this.existingRepo.indexOf(repoName) != -1);
   }
 
   /**
@@ -56,30 +58,18 @@ export class DemoGitProviderService implements GitProviderService {
    * @param {string} org The GitHub org (e.g., fabric8-launcher/ngx-launcher)
    * @returns {Observable<boolean>} True if GitHub repo exists
    */
-  getGitHubRepoList(org: string): Observable<any> {
-    const repoList = ['fabric-ui', 'fabric-uxd'];
-    return of(repoList);
+  getGitHubRepoList(): Observable<any> {
+    return of(this.existingRepo);
   }
 
   // Private
 
   private isPageRedirect(): boolean {
-    const result = this.getRequestParam('selection'); // simulate Github auth redirect
-    return (result !== null);
-  }
-
-  private getRequestParam(name: string): string {
-    const search = (window.location.search !== undefined && window.location.search.length > 0)
-      ? window.location.search : window.location.href;
-    const param = (new RegExp('[?&]' + encodeURIComponent(name) + '=([^&]*)')).exec(search);
-    if (param !== null) {
-      return decodeURIComponent(param[1]);
-    }
-    return null;
+    return window.location.href.indexOf('selectedSection') !== -1;
   }
 
   private redirectToAuth(url: string) {
-    window.location.href = url;
-    window.location.reload(true);
+    window.location.replace(url);
+    window.location.reload();
   }
 }

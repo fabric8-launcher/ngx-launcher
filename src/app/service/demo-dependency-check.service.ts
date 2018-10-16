@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { DependencyCheckService } from '../../../projects/ngx-launcher/src/lib/service/dependency-check.service';
 import { DependencyCheck } from '../../../projects/ngx-launcher/src/lib/model/dependency-check.model';
+import { DependencyCheckService } from '../../../projects/ngx-launcher/src/lib/service/dependency-check.service';
 
 @Injectable()
 export class DemoDependencyCheckService implements DependencyCheckService {
@@ -20,7 +20,8 @@ export class DemoDependencyCheckService implements DependencyCheckService {
       projectName: 'app-test-1',
       projectVersion: '1.0.0-SNAPSHOT',
       spacePath: '/myspace',
-      dependencySnapshot: null
+      dependencySnapshot: null,
+      targetEnvironment: location.href.indexOf('launcher') !== -1 ? undefined : 'os'
     });
   }
 

@@ -5,10 +5,12 @@ import {
   OnInit,
   ViewEncapsulation
 } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
-import { Selection } from '../model/selection.model';
+import { Broadcaster } from 'ngx-base';
 import { LauncherComponent } from '../launcher.component';
-import { DependencyCheckService } from '../service/dependency-check.service';
+import { DependencyCheck } from '../model/dependency-check.model';
+import { Projectile } from '../model/projectile.model';
 import { broadcast } from '../shared/telemetry.decorator';
 
 @Component({
@@ -24,14 +26,20 @@ export class StepIndicatorComponent implements OnInit {
    * @type {boolean}
    */
   @Input() inProgress = false;
+  dependencyCheck: DependencyCheck = new DependencyCheck();
 
-  constructor(
-    @Host() public launcherComponent: LauncherComponent,
-    private dependencyCheckService: DependencyCheckService) {
+  constructor(public launcherComponent: LauncherComponent,
+    public projectile: Projectile<any>,
+    private route: ActivatedRoute,
+    broadcaster: Broadcaster) {
+      broadcaster.on<string>('navigate-to').subscribe(id => this.navToStep(id));
+      broadcaster.on<string>('navigate-from').subscribe(id => this.navToNextStep(id));
   }
 
-  ngOnInit() {
-    this.restoreSummary();
+  ngOnInit(): void {
+    this.dependencyCheck = this.projectile.sharedState.state;
+    this.dependencyCheck.projectName = this.dependencyCheck.projectName
+      || this.route.snapshot.params['projectName'];
   }
 
   // Steps
@@ -39,7 +47,11 @@ export class StepIndicatorComponent implements OnInit {
   /**
    * Navigate to next step
    */
+  @broadcast('stepIndicatorClicked', {
+    'state': 'projectile'
+  })
   navToNextStep(fromStepId?: string): void {
+    this.projectile.selectedSection = fromStepId;
     const steps = this.launcherComponent.steps.filter(step => !step.hidden);
     const index = steps.findIndex(step => step.id === fromStepId);
     this.navToStep(steps[index + 1].id);
@@ -58,15 +70,6 @@ export class StepIndicatorComponent implements OnInit {
     }
   }
 
-
   @broadcast('stepIndicatorProjectInputClicked', {})
-  broadcastEvent(): void { }
-  // Restore mission & runtime summary
-  private restoreSummary(): void {
-    const selection: Selection = this.launcherComponent.selectionParams;
-    if (selection === undefined) {
-      return;
-    }
-    this.launcherComponent.summary.dependencyCheck.projectName = selection.projectName;
-  }
+  broadcastEvent() {}
 }

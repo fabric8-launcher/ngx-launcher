@@ -1,3 +1,6 @@
+import { Cluster } from './cluster.model';
+import { DependencyCheck } from './dependency-check.model';
+
 export class TargetEnvironment {
   description: string;
   benefits: string[];
@@ -6,4 +9,9 @@ export class TargetEnvironment {
   icon: string;
   id: string;
   styleClass: string;
+}
+
+export class TargetEnvironmentSelection {
+  cluster: Cluster;
+  dependencyCheck: DependencyCheck;
 }

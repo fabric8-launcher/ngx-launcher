@@ -1,5 +1,5 @@
-import { NgModule, Provider } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { ModalModule } from 'ngx-modal';
@@ -15,49 +15,45 @@ import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 
 import { SortArrayPipeModule, TruncatePipeModule } from 'patternfly-ng/pipe';
 import { ToolbarModule } from 'patternfly-ng/toolbar';
+import { CancelOverlayComponent } from './cancel-overlay/cancel-overlay.component';
 // Note: This has to be imported first
 import { StepIndicatorComponent } from './step-indicator/step-indicator.component';
-import { CancelOverlayComponent } from './cancel-overlay/cancel-overlay.component';
 
-import { ActivateBoosterCreateappNextstepComponent }
-  from './create-app/activate-booster-createapp-nextstep/activate-booster-createapp-nextstep.component';
-import { DependencyEditorCreateappStepComponent }
-  from './create-app/dependency-editor-step/dependency-editor-step.component';
-import { GitproviderCreateappStepComponent }
-  from './create-app/gitprovider-createapp-step/gitprovider-createapp-step.component';
-import { GitProviderRepositoryValidatorDirective }
-  from './create-app/gitprovider-createapp-step/gitprovider-repository.validator';
-import { ExistingRepositoryValidatorDirective } from './import-app/gitprovider-importapp-step/repository.validator';
+import {
+  ActivateBoosterNextstepComponent
+} from './components/activate-booster-nextstep/activate-booster-nextstep.component';
+import { DependencyEditorStepComponent } from './components/dependency-editor-step/dependency-editor-step.component';
+import {
+  GitProviderRepositoryValidatorDirective
+} from './components/gitprovider-step/gitprovider-repository.validator';
+import { GitproviderStepComponent } from './components/gitprovider-step/gitprovider-step.component';
+import { LinkAccountsStepComponent } from './components/link-accounts-step/link-accounts-step.component';
+import { MissionRuntimeStepComponent } from './components/mission-runtime-step/mission-runtime-step.component';
+import {
+  ProjectProgressNextstepComponent
+} from './components/project-progress-nextstep/project-progress-nextstep.component';
+import { ProjectSummaryStepComponent } from './components/project-summary-step/project-summary-step.component';
+import { ReleaseStrategyStepComponent } from './components/release-strategy-step/release-strategy-step.component';
+import { TargetEnvironmentStepComponent } from './components/targetenvironment-step/target-environment-step.component';
 import { LowerCaseDirective } from './shared/lowercase.directive';
 import { ProjectNameValidatorDirective } from './shared/project-name.validator';
-import { MissionRuntimeCreateappStepComponent }
-  from './create-app/mission-runtime-createapp-step/mission-runtime-createapp-step.component';
-import { ProjectProgressCreateappNextstepComponent }
-  from './create-app/project-progress-createapp-nextstep/project-progress-createapp-nextstep.component';
-import { ProjectSummaryCreateappStepComponent }
-  from './create-app/project-summary-createapp-step/project-summary-createapp-step.component';
-import { ReleaseStrategyCreateappStepComponent }
-  from './create-app/release-strategy-createapp-step/release-strategy-createapp-step.component';
-import { TargetEnvironmentCreateappStepComponent }
-  from './create-app/targetenvironment-createapp-step/target-environment-createapp-step.component';
-import { LinkAccountsCreateappStepComponent }
-  from './create-app/link-accounts-createapp-step/link-accounts-createapp-step.component';
 
-import { GitproviderImportappStepComponent }
-  from './import-app/gitprovider-importapp-step/gitprovider-importapp-step.component';
-import { ProjectProgressImportappNextstepComponent }
-  from './import-app/project-progress-importapp-nextstep/project-progress-importapp-nextstep.component';
-import { ProjectSummaryImportappStepComponent }
-  from './import-app/project-summary-importapp-step/project-summary-importapp-step.component';
-import { ReleaseStrategyImportappStepComponent }
-  from './import-app/release-strategy-importapp-step/release-strategy-importapp-step.component';
 import { ToastNotificationComponent } from './toast-notification/toast-notification.component';
 
-import { MissionRuntimeService } from './service/mission-runtime.service';
-import { ProjectProgressService } from './service/project-progress.service';
+import { GitproviderReviewComponent } from './components/gitprovider-step/gitprovider-review.component';
+import { MissionRuntimeReviewComponent } from './components/mission-runtime-step/mission-runtime-review.component';
 
-import { LauncherComponent } from './launcher.component';
 import { Broadcaster } from 'ngx-base';
+import {
+  DependencyEditorReviewComponent
+} from './components/dependency-editor-step/dependency-editor-review.component';
+import { ReleaseStrategyReviewComponent } from './components/release-strategy-step/release-strategy-review.component';
+import {
+  TargetEnvironmentReviewComponent
+} from './components/targetenvironment-step/target-environment-review.component';
+import { LauncherComponent } from './launcher.component';
+import { Projectile } from './model/projectile.model';
+import { ButtonNextStepComponent } from './shared/button-next-step.component';
 
 @NgModule({
   imports: [
@@ -74,38 +70,52 @@ import { Broadcaster } from 'ngx-base';
     TypeaheadModule.forRoot()
   ],
   exports: [
-    LauncherComponent
+    LauncherComponent,
+    StepIndicatorComponent,
+    TargetEnvironmentStepComponent,
+    MissionRuntimeStepComponent,
+    GitproviderStepComponent,
+    ProjectSummaryStepComponent,
+    TargetEnvironmentReviewComponent,
+    GitproviderReviewComponent,
+    ReleaseStrategyStepComponent,
+    ReleaseStrategyReviewComponent,
+    DependencyEditorStepComponent,
+    DependencyEditorReviewComponent,
+    MissionRuntimeReviewComponent
   ],
   declarations: [
-    ActivateBoosterCreateappNextstepComponent,
+    ButtonNextStepComponent,
+    ActivateBoosterNextstepComponent,
     CancelOverlayComponent,
-    DependencyEditorCreateappStepComponent,
-    GitproviderCreateappStepComponent,
+    DependencyEditorStepComponent,
+    DependencyEditorReviewComponent,
+    GitproviderStepComponent,
     LowerCaseDirective,
     ProjectNameValidatorDirective,
     GitProviderRepositoryValidatorDirective,
-    ExistingRepositoryValidatorDirective,
-    GitproviderImportappStepComponent,
-    MissionRuntimeCreateappStepComponent,
-    ProjectProgressCreateappNextstepComponent,
-    ProjectProgressImportappNextstepComponent,
-    ProjectSummaryCreateappStepComponent,
-    ProjectSummaryImportappStepComponent,
-    ReleaseStrategyCreateappStepComponent,
-    ReleaseStrategyImportappStepComponent,
-    TargetEnvironmentCreateappStepComponent,
-    LinkAccountsCreateappStepComponent,
+    GitproviderReviewComponent,
+    MissionRuntimeReviewComponent,
+    MissionRuntimeStepComponent,
+    ProjectProgressNextstepComponent,
+    ProjectSummaryStepComponent,
+    ReleaseStrategyStepComponent,
+    ReleaseStrategyReviewComponent,
+    TargetEnvironmentStepComponent,
+    TargetEnvironmentReviewComponent,
+    LinkAccountsStepComponent,
     StepIndicatorComponent,
     ToastNotificationComponent,
     LauncherComponent
   ],
   providers: [
     BsDropdownConfig,
-    Broadcaster
+    Broadcaster,
+    Projectile,
+    LauncherComponent
   ]
 })
 export class LauncherModule {
-
 }
 
 // Models
@@ -116,7 +126,7 @@ export { Mission } from './model/mission.model';
 export { Pipeline } from './model/pipeline.model';
 export { Progress } from './model/progress.model';
 export { Runtime } from './model/runtime.model';
-export { Summary } from './model/summary.model';
+export { Projectile } from './model/projectile.model';
 export { TargetEnvironment } from './model/target-environment.model';
 
 // Services
@@ -130,10 +140,8 @@ export { ProjectProgressService } from './service/project-progress.service';
 export { ProjectSummaryService } from './service/project-summary.service';
 export { TargetEnvironmentService } from './service/target-environment.service';
 export { TokenService } from './service/token.service';
-export { CheService } from './service/che.service';
-export { WorkSpacesService } from './service/workSpaces.service';
 
 // Utility Service
 export { HelperService } from './service/helper.service';
 
-export { DependencyEditorModule,  URLProvider, DependencyEditorTokenProvider };
+export { DependencyEditorModule, URLProvider, DependencyEditorTokenProvider };
