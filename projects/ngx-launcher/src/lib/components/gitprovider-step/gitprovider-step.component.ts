@@ -32,6 +32,7 @@ export class GitproviderStepComponent extends LauncherStep implements AfterViewI
   @ViewChild('versionSelect') versionSelect: ElementRef;
 
   private subscriptions: Subscription[] = [];
+  private _organizationsKeys;
   gitHubDetails: GitHubDetails = {};
   gitHubReposSubscription: Subscription;
 
@@ -78,8 +79,8 @@ export class GitproviderStepComponent extends LauncherStep implements AfterViewI
   }
 
   restoreModel(model: any): void {
-    this.gitHubDetails.organization = model.organization;
-    this.gitHubDetails.repository = model.repository;
+    this.gitHubDetails.organization = model.gitOrganization;
+    this.gitHubDetails.repository = model.gitRepository;
   }
 
   // Accessors
@@ -90,7 +91,7 @@ export class GitproviderStepComponent extends LauncherStep implements AfterViewI
    * @returns {boolean} True if step is completed
    */
   get completed(): boolean {
-    return this.form.valid;
+    return !this.form.invalid;
   }
 
   // Steps
@@ -100,6 +101,13 @@ export class GitproviderStepComponent extends LauncherStep implements AfterViewI
    */
   connectAccount(): void {
     this.gitProviderService.connectGitHubAccount(this.projectile.redirectUrl);
+  }
+
+  get organizationsKeys(): IterableIterator<string> {
+    if (!this._organizationsKeys && this.gitHubDetails.organizations) {
+      this._organizationsKeys = Object.keys(this.gitHubDetails.organizations);
+    }
+    return this._organizationsKeys;
   }
 
   getGitHubRepos(): void {
