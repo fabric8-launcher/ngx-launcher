@@ -11,7 +11,6 @@ import { Cluster } from '../../model/cluster.model';
 import { Mission } from '../../model/mission.model';
 import { Projectile, StepState } from '../../model/projectile.model';
 import { EmptyReason, MissionRuntimeService } from '../../service/mission-runtime.service';
-import { broadcast } from '../../shared/telemetry.decorator';
 import {
   createViewMissions,
   createViewRuntimes,

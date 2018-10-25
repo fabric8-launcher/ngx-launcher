@@ -2,9 +2,9 @@ import {
   Component,
   Host,
   Input,
+  OnDestroy,
   OnInit,
-  ViewEncapsulation,
-  OnDestroy
+  ViewEncapsulation
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
