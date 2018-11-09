@@ -29,12 +29,12 @@ import { ForgeConfig } from './shared/forge-config';
 import { FABRIC8_ORIGIN } from './shared/forge-origin';
 
 import { TokenProvider } from '../../projects/ngx-launcher/src/lib/service/token-provider';
-import { AnalyticsUrlService } from './shared/analytics-url.service';
 import { MockAuthenticationService } from './shared/mock-auth.service';
 
 import { HelperService } from '../../projects/ngx-launcher/src/lib/service/helper.service';
 
 import {
+  AppCreatorService,
   DependencyCheckService,
   GitProviderService,
   LauncherModule,
@@ -46,6 +46,8 @@ import {
   TokenService
 } from '../../projects/ngx-launcher/src/lib/launcher.module';
 import { PipelineDemoComponent } from './create-app/pipeline-demo.component';
+import { LauncherAppCreatorComponent } from './launcher-app-creator/launcher-app-creator.component';
+import { DemoAppCreatorService } from './service/demo-app-creator.service';
 
 @NgModule({
   imports: [
@@ -63,11 +65,13 @@ import { PipelineDemoComponent } from './create-app/pipeline-demo.component';
     GettingStartedOsioComponent,
     ImportAppComponent,
     LauncherAppComponent,
+    LauncherAppCreatorComponent,
     WelcomeComponent
   ],
   providers: [
     Broadcaster,
     HelperService,
+    { provide: AppCreatorService, useClass: DemoAppCreatorService },
     { provide: DependencyCheckService, useClass: DemoDependencyCheckService},
     { provide: GitProviderService, useClass: DemoGitProviderService},
     { provide: MissionRuntimeService, useClass: DemoMissionRuntimeService },
