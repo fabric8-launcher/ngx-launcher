@@ -6,6 +6,8 @@ import { Capability, Property } from 'projects/ngx-launcher/src/lib/model/capabi
 import { Enums } from 'projects/ngx-launcher/src/lib/model/runtime.model';
 import { AppCreatorService } from 'projects/ngx-launcher/src/lib/service/app-creator.service';
 
+import * as _ from 'lodash';
+
 const mockCapabilities = require('../mock/demo-capabilities.json');
 const mockEnums = require('../mock/demo-capability-enums.json');
 
@@ -14,7 +16,7 @@ export class DemoAppCreatorService implements AppCreatorService {
   private enums: any;
 
   getCapabilities(): Observable<Capability[]> {
-    return of(mockCapabilities).pipe(
+    return of(_.cloneDeep(mockCapabilities)).pipe(
       delay(2000)
      );
   }
@@ -26,11 +28,18 @@ export class DemoAppCreatorService implements AppCreatorService {
     }), delay(2000));
   }
 
-  getFilteredCapabilities(): Observable<Capability[]> {
-    return this.getCapabilities().pipe(map(capabilities => this.filter(capabilities)));
+  getFrontendCapabilities(): Observable<Capability[]> {
+    return this.getCapabilities().pipe(map(capabilities =>
+      capabilities.filter(cap => cap.metadata.category === 'frontend')));
   }
 
-  private filter(capabilities: Capability[]): Capability[] {
+  getFilteredCapabilities(): Observable<Capability[]> {
+    return this.getCapabilities().pipe(map(capabilities =>
+      this.filter(capabilities, cap => cap.metadata.category !== 'frontend')));
+  }
+
+  private filter(capabilities: Capability[],
+      filterFunction: (value: Capability, index: number, array: Capability[]) => any): Capability[] {
     for (const capability of capabilities) {
       const props: Property[] = [];
       for (const prop of capability.props) {
@@ -42,7 +51,7 @@ export class DemoAppCreatorService implements AppCreatorService {
       }
       capability.props = props;
     }
-    return capabilities;
+    return capabilities.filter(filterFunction);
   }
 
 }

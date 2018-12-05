@@ -1,31 +1,39 @@
-<section [id]="id" class="f8launcher-section-select-runtime f8launcher-container_main--start" [class.hidden]="hidden" #section>
+<section [id]="id" class="f8launcher-section-select-runtime f8launcher-container_main--start" [class.hidden]="hidden"
+  #section>
   <div>
     <div class="container-fluid">
       <h1>{{title}}</h1>
     </div>
   </div>
-  <div>
-    <div id="pf-list-standard" class="list-group list-view-pf list-view-pf-view">
-      <div class="list-group-item" *ngFor="let runtime of runtimes" (click)="radio.click()">
-        <div class="list-view-pf-checkbox">
-          <input type="radio" [(ngModel)]="selectedRuntime.value.name" [value]="runtime.id" #radio (change)="selectRuntime(runtime)">
-        </div>
-        <div class="list-view-pf-main-info">
-            <div class="list-view-pf-left">
-              <img class="runtime-icon" *ngIf="runtime.icon" [src]="_DomSanitizer.bypassSecurityTrustUrl(runtime.icon)">
-              <div class="runtime-icon" *ngIf="!runtime.icon">&nbsp;</div>
-            </div>
-            <div class="list-view-pf-body">
-              <div class="list-view-pf-description">
-                <div class="list-group-item-heading">
-                  {{runtime.name}}
-                </div>
-                <div class="list-group-item-text">
-                  {{runtime.description}}
-                </div>
-              </div>
-            </div>
+  <div class="container container-cards-pf">
+    <p>
+      Add a backend to the microservice.
+    </p>
+    <div class="row row-cards-pf">
+      <div class="col-xs-4" *ngFor="let runtime of runtimes" (click)="radio.click()">
+        <div class="card-pf card-pf-view card-pf-view-select card-pf-view-single-select card-pf--xsmall"
+          [class.selected-card]="selectedRuntime.value.name === runtime.id">
+          <div class="card-title">
+            <input type="radio" [(ngModel)]="selectedRuntime.value.name" [value]="runtime.id" #radio (change)="selectRuntime(runtime)">
+            <h2 class="card-pf-title--title">{{runtime.name}}</h2>
           </div>
+          <div class="card-pf-body--body runtime-card">
+            <img class="runtime-icon2" *ngIf="runtime.icon" [src]="_DomSanitizer.bypassSecurityTrustUrl(runtime.icon)">
+            <p>{{runtime.description}}</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-4" (click)="radio.click()">
+        <div class="card-pf card-pf-view card-pf-view-select card-pf-view-single-select card-pf--xsmall"
+          [class.selected-card]="!selectedRuntime.value.name">
+          <div class="card-title">
+            <input type="radio" [checked]="!selectedRuntime.value.name" #radio (change)="selectRuntime(null)">
+            <h2 class="card-pf-title--title">None</h2>
+          </div>
+          <div class="card-pf-body--body none">
+            <span class="fa fa-ban"></span>
+          </div>
+        </div>
       </div>
     </div>
   </div>
