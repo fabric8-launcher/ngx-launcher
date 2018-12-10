@@ -12,7 +12,7 @@
   <div>
     <div>
       <div class="row row-cards-pf">
-        <div class="col-xs-3" *ngFor="let capability of frontendCapabilities" (click)="radio.click()">
+        <div class="col-md-3" *ngFor="let capability of frontendCapabilities" (click)="radio.click()">
           <div class="card-pf card-pf-view card-pf-view-select card-pf-view-single-select card-pf--xsmall"
             [class.selected-card]="selectedFrontend.value.name === capability.id">
             <div class="card-title">
@@ -25,7 +25,7 @@
             </div>
           </div>
         </div>
-        <div class="col-xs-3" (click)="radio.click()">
+        <div class="col-md-3" (click)="radio.click()">
           <div class="card-pf card-pf-view card-pf-view-select card-pf-view-single-select card-pf--xsmall"
             [class.selected-card]="!selectedFrontend.value.name">
             <div class="card-title">

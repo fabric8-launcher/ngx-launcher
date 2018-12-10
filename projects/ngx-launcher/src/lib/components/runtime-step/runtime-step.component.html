@@ -11,7 +11,7 @@
   </div>
   <div>
     <div class="row row-cards-pf">
-      <div class="col-xs-4" *ngFor="let runtime of runtimes" (click)="radio.click()">
+      <div class="col-md-4 col-lg-2" *ngFor="let runtime of runtimes" (click)="radio.click()">
         <div class="card-pf card-pf-view card-pf-view-select card-pf-view-single-select card-pf--xsmall"
           [class.selected-card]="selectedRuntime.value.name === runtime.id">
           <div class="card-title">
@@ -24,7 +24,7 @@
           </div>
         </div>
       </div>
-      <div class="col-xs-4" (click)="radio.click()">
+      <div class="col-md-4 col-lg-2" (click)="radio.click()">
         <div class="card-pf card-pf-view card-pf-view-select card-pf-view-single-select card-pf--xsmall"
           [class.selected-card]="!selectedRuntime.value.name">
           <div class="card-title">
