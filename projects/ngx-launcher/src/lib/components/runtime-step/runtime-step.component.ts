@@ -39,7 +39,7 @@ export class RuntimeStepComponent extends LauncherStep implements OnInit {
 
     this.appCreatorService.getEnums().subscribe(enums => {
       this.enums = enums;
-      this.runtimes = enums['runtime.name'];
+      this.runtimes = enums['runtime.name'].filter(r => r.metadata.categories.indexOf('backend') !== -1);
       this.restore();
     });
   }

@@ -14,7 +14,7 @@ import { AppCreatorService } from '../../service/app-creator.service';
 })
 export class FrontendStepComponent extends LauncherStep implements OnInit {
   completed: boolean = true;
-  frontendCapabilities: Enum[];
+  frontendRuntimes: Enum[];
   selectedFrontend: any = { value: {} };
 
   constructor(@Host() @Optional() public launcherComponent: LauncherComponent,
@@ -36,7 +36,7 @@ export class FrontendStepComponent extends LauncherStep implements OnInit {
 
     this.appCreatorService.getEnums()
       .subscribe(enums => {
-        this.frontendCapabilities = enums['framework.name'];
+        this.frontendRuntimes = enums['runtime.name'].filter(r => r.metadata.categories.indexOf('frontend') !== -1);
         this.restore();
       });
   }
@@ -53,7 +53,7 @@ export class FrontendStepComponent extends LauncherStep implements OnInit {
 
   restoreModel(model: any): void {
     this.selectedFrontend.value = model.frontend;
-    const frontend = this.frontendCapabilities.find(frontend => frontend.id === model.frontend.name);
+    const frontend = this.frontendRuntimes.find(frontend => frontend.id === model.frontend.name);
     Object.assign(this.selectedFrontend, frontend);
     this.updateCapabilityState(this.selectedFrontend.value);
   }
@@ -62,10 +62,10 @@ export class FrontendStepComponent extends LauncherStep implements OnInit {
     const capabilities = this.projectile.getState('Capabilities').state.capabilities;
     if (value) {
       capabilities.set(value.name,
-        { module: 'web-app', 'framework': value }
+        { module: 'web-app', 'runtime': value }
       );
     } else {
-      this.frontendCapabilities.forEach(fe => capabilities.delete(fe.id));
+      this.frontendRuntimes.forEach(fe => capabilities.delete(fe.id));
     }
   }
 }

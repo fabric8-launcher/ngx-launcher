@@ -19,5 +19,5 @@ export interface Enum {
   name: string;
   description?: string;
   icon?: string;
-  metadata?: object;
+  metadata?: any;
 }
