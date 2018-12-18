@@ -60,12 +60,11 @@ export class FrontendStepComponent extends LauncherStep implements OnInit {
 
   private updateCapabilityState(value: any) {
     const capabilities = this.projectile.getState('Capabilities').state.capabilities;
+    this.frontendRuntimes.forEach(fe => capabilities.delete(fe.id));
     if (value) {
       capabilities.set(value.name,
         { module: 'web-app', 'runtime': value }
       );
-    } else {
-      this.frontendRuntimes.forEach(fe => capabilities.delete(fe.id));
     }
   }
 }
