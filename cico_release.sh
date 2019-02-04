@@ -16,8 +16,5 @@ npm whoami
 # Enable verbose output
 npm config set loglevel verbose
 
-# Install Semantic Release globally
-npm install semantic-release -g
-
 # Build and Release 
 npm run semantic-release

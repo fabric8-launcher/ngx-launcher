@@ -16,11 +16,10 @@ before_script:
 script:
   - npm test
 sudo: required
-before_deploy:
-  - npm run build
 deploy:
   provider: script
   script: bash cico_release.sh
+  skip_cleanup: true
   on:
     branch: master
 env:
