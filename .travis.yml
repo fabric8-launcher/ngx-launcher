@@ -18,9 +18,10 @@ script:
 sudo: required
 before_deploy:
   - npm run build
+  - source cico_release.sh
 deploy:
   provider: script
-  script: source cico_release.sh && release
+  script: release
   on:
     branch: master
 env:
