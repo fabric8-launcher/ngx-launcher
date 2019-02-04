@@ -16,15 +16,13 @@ before_script:
 script:
   - npm test
 sudo: required
-before_deploy:
-  - npm run build
 deploy:
   provider: script
   script: 
-    - echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN}' > ~/.npmrc
-    - npm whoami
-    - npm config set loglevel verbose
-    - npm run semantic-release
+    - "echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN}' > ~/.npmrc"
+    - "npm whoami"
+    - "npm config set loglevel verbose"
+    - "npm run semantic-release"
   on:
     branch: master
 env:
