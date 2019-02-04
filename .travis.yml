@@ -18,10 +18,13 @@ script:
 sudo: required
 before_deploy:
   - npm run build
-  - source cico_release.sh
 deploy:
   provider: script
-  script: release
+  script: 
+    - echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN}' > ~/.npmrc
+    - npm whoami
+    - npm config set loglevel verbose
+    - npm run semantic-release
   on:
     branch: master
 env:
