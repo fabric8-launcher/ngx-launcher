@@ -18,11 +18,7 @@ script:
 sudo: required
 deploy:
   provider: script
-  script: 
-    - "echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN}' > ~/.npmrc"
-    - "npm whoami"
-    - "npm config set loglevel verbose"
-    - "npm run semantic-release"
+  script: bash cico_release.sh
   on:
     branch: master
 env:

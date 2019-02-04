@@ -107,3 +107,5 @@ function waitUntilSuccess {
         sleep $(( NEXT_WAIT_TIME++ ))
     done
 }
+
+release
